@@ -8,9 +8,13 @@ gem "decidim", "0.21.0"
 # gem "decidim-consultations", "0.21.0"
 # gem "decidim-initiatives", "0.21.0"
 
-gem "bootsnap", "~> 1.3"
+gem "bootsnap", "~> 1.4"
+gem "health_check"
+gem "sidekiq", "~> 6.0"
+gem "sidekiq-cron"
+gem "sentry-raven"
 
-gem "puma", "~> 4.3.3"
+gem "puma", "~> 4.3"
 gem "uglifier", "~> 4.1"
 
 gem "faker", "~> 1.9"
@@ -27,4 +31,9 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"
+end
+
+
+group :production do
+  gem "fog-aws"
 end
