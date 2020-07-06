@@ -2,7 +2,7 @@
 
 Decidim.configure do |config|
   config.application_name = "[TEST] Participa Catalunya En Comú"
-  config.mailer_sender = "norely@catalunyaencomu.cat"
+  config.mailer_sender = "noreply@testparticipa.catalunyaencomu.cat"
 
   # Change these lines to set your preferred locales
   config.default_locale = :ca
