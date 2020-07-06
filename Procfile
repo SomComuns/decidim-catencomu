@@ -1,2 +1,2 @@
-web: bundle exec passenger start /var/app/current --socket /var/run/puma/my_app.sock
+web: puma -C /opt/elasticbeanstalk/config/private/pumaconf.rb
 worker: bundle exec sidekiq -C config/sidekiq_worker.yml
