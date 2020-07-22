@@ -36,3 +36,6 @@ public/uploads
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Ignore .rbenv-vars
+.rbenv-vars
