@@ -1,0 +1,41 @@
+@import "variables";
+@import "foundation";
+@import "catencomu/utils/mixins";
+
+.title-bar {
+	@include gradient-background($catencomu-red, $catencomu-lilac);
+}
+
+.navbar {
+	@include gradient-background($catencomu-red, $catencomu-lilac);
+
+	.main-nav__link {
+		a {
+			color: $navbar-fg;
+		}
+
+		&--active a {
+			color: $navbar-bg;
+		}
+	}
+}
+
+
+.topbar_{
+  &_search{
+    input,
+    input:focus{
+      background-color: $navbar-bg;
+      color: $navbar-fg-hover;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+      color: $navbar-fg-hover;
+    }
+
+    svg{
+      color: $navbar-fg-hover;
+    }
+  }
+}

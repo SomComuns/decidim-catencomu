@@ -1,0 +1,18 @@
+@import "variables";
+@import "catencomu/utils/mixins";
+
+.main-footer {
+  @include gradient-background($catencomu-red, $catencomu-lilac);
+  
+  a {
+    color: $link-color;
+  }
+}
+
+.mini-footer{
+  @include gradient-background($catencomu-red, $catencomu-lilac);
+  
+  a {
+    color: $link-color;
+  }
+}
