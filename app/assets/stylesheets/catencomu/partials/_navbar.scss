@@ -3,7 +3,8 @@
 @import "catencomu/utils/mixins";
 
 .title-bar {
-	@include gradient-background($catencomu-red, $catencomu-lilac);
+  @include gradient-background($catencomu-red, $catencomu-lilac);
+  padding: 1.5rem 0.5rem;
 }
 
 .navbar {
