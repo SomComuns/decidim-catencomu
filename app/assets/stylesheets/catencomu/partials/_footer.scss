@@ -7,6 +7,9 @@
   a {
     color: $link-color;
   }
+  .main-footer__badge {
+    position: unset;
+  }
 }
 
 .mini-footer{
@@ -15,4 +18,5 @@
   a {
     color: $link-color;
   }
+
 }
