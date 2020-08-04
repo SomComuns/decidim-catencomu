@@ -1,0 +1,6 @@
+ca:
+  decidim:
+    system:
+      organizations:
+        omniauth_settings:
+          enabled_by_default: Activat per defecte
