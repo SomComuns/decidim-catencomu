@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Omniauth
-  module Catencomu
+  module Civicrm
     VERSION = "0.1.0"
   end
 end
