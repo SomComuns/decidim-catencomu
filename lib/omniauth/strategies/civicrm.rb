@@ -5,10 +5,10 @@ require "open-uri"
 
 module OmniAuth
   module Strategies
-    class Catencomu < OmniAuth::Strategies::OAuth2
+    class Civicrm < OmniAuth::Strategies::OAuth2
       args [:client_id, :client_secret, :site]
 
-      option :name, :catencomu
+      option :name, :civicrm
       option :site, nil
       option :client_options, {}
 
@@ -36,13 +36,12 @@ module OmniAuth
 
       def client
         options.client_options[:site] = options.site
-        options.client_options[:authorize_url] = options.authorize_url
-        options.client_options[:token_url] = options.token_url
+        options.client_options[:authorize_url] = URI.join(options.site, "/oauth2/authorize").to_s
+        options.client_options[:token_url] = URI.join(options.site, "/oauth2/token").to_s
         super
       end
 
       def raw_info
-        byebug
         @raw_info ||= access_token.get("/oauth/me").parsed
       end
 
