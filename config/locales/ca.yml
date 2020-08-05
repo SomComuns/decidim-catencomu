@@ -4,3 +4,5 @@ ca:
       organizations:
         omniauth_settings:
           enabled_by_default: Activat per defecte
+  forms:
+    required_explanation: "* Els camps obligatoris estan marcats amb un asterisc"
