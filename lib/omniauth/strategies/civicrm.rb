@@ -21,18 +21,10 @@ module OmniAuth
           email: raw_info["email"],
           nickname: raw_info["nickname"],
           name: raw_info["name"],
-          image: raw_info["image"]
+          image: raw_info["image"],
+          role: raw_info["role"],
         }
       end
-
-      # params:
-      #   client_id: debugger_client_id
-      #   redirect_uri: https://oauthdebugger.com/debug
-      #   scope: openid
-      #   response_type: code
-      #   response_mode: form_post
-      #   nonce: <nonce_random_value>
-      #   state: <state_value>
 
       def client
         options.client_options[:site] = options.site
@@ -42,7 +34,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get("/oauth/me").parsed
+        @raw_info ||= access_token.get("/oauth2/userinfo").parsed
       end
 
       def callback_url
