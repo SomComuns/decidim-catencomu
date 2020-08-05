@@ -6,6 +6,6 @@ if Rails.application.secrets.dig(:omniauth, :civicrm).present?
              Rails.application.secrets.dig(:omniauth, :civicrm, :client_id),
              Rails.application.secrets.dig(:omniauth, :civicrm, :client_secret),
              Rails.application.secrets.dig(:omniauth, :civicrm, :site),
-             scope: :public
+             scope: :openid
   end
 end
