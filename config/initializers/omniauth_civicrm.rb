@@ -6,6 +6,6 @@ if Rails.application.secrets.dig(:omniauth, :civicrm).present?
              Rails.application.secrets.dig(:omniauth, :civicrm, :client_id),
              Rails.application.secrets.dig(:omniauth, :civicrm, :client_secret),
              Rails.application.secrets.dig(:omniauth, :civicrm, :site),
-             scope: :openid
+             scope: "openid profile email"
   end
 end
