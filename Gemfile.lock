@@ -759,6 +759,8 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    virtus-multiparams (0.1.1)
+      virtus (~> 1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -786,6 +788,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   decidim!
   decidim-dev!
+  decidim-verifications (~> 0.21.0)
   faker (~> 1.9)
   fog-aws
   health_check
@@ -798,6 +801,7 @@ DEPENDENCIES
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)
+  virtus-multiparams (~> 0.1.1)
   web-console (~> 3.5)
 
 RUBY VERSION
