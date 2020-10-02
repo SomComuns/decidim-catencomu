@@ -1,8 +1,18 @@
 ca:
   decidim:
+    authorization_handlers:
+      civicrm_authorization_handler:
+        name: CiViCRM
+      civicrm:
+        name: CiViCRM
+        explanation: Autorització mitjançant el compte de CiViCRM
     system:
       organizations:
         omniauth_settings:
+          civicrm:
+            client_id: ID de client
+            client_secret: Secret de client
+            site: URL del servidor d'Omniauth
           enabled_by_default: Activat per defecte
   forms:
     required_explanation: "* Els camps obligatoris estan marcats amb un asterisc"
