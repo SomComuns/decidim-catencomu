@@ -13,7 +13,9 @@ module OmniAuth
       option :client_options, {}
 
       uid do
-        raw_info["id"]
+        # TMP FIX
+        # raw_info["id"] # not present in `info` hash
+        Digest::MD5.hexdigest("#{raw_info["email"]}-#{Rails.application.secrets.secret_key_base}")
       end
 
       info do
