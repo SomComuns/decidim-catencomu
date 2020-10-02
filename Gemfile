@@ -41,5 +41,3 @@ group :production do
 end
 
 gem "decidim-verifications", "~> 0.21.0"
-
-gem "virtus-multiparams", "~> 0.1.1"
