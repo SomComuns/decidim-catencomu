@@ -6,49 +6,45 @@ on:
       - master
   pull_request:
 
+env:
+  RUBY_VERSION: 2.6.6
+
 jobs:
   build:
     runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:11
-        ports:
-          - 5432:5432
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
         env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
-          POSTGRES_HOST_AUTH_METHOD: trust
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+          POSTGRES_PASSWORD: postgres
+    env:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: localhost
 
     steps:
-      - uses: actions/checkout@v1
-
-      - uses: actions/setup-ruby@v1
+      - uses: actions/checkout@v2
         with:
-          ruby-version: 2.6.x
+          fetch-depth: 1
 
-      - name: Install dependent libraries
-        run: sudo apt-get install libpq-dev
-
-      - name: Bundle install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
 
       - name: Setup & create Database
         run: |
           bundle exec rake decidim:generate_external_test_app
           bundle exec rails db:create db:schema:load
-        env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
 
       - name: Precompile assets
         run: bundle exec rake assets:precompile
-        env:
-          RAILS_ENV: test
 
       # - name: Setup Code Climate test-reporter
       #   run: |
@@ -58,10 +54,6 @@ jobs:
 
       - name: Run RSpec
         run: SIMPLECOV=1 CODECOV=1 bundle exec rake
-        env:
-          RAILS_ENV: test
-          DATABASE_USERNAME: postgres
-          DATABASE_PASSWORD: postgres
 
       # - name: Publish code coverage
       #   run: |
