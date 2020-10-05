@@ -1,9 +1,15 @@
 ca:
   decidim:
+    admin:
+      filters:
+        state_eq:
+          label: Label
     authorization_handlers:
       civicrm_authorization_handler:
-        name: CiViCRM
         explanation: Autorització mitjançant el compte de CiViCRM
+        fields:
+          user_role: Rol d'usuària
+        name: CiViCRM
     system:
       organizations:
         omniauth_settings:
