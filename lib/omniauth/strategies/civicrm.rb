@@ -24,7 +24,7 @@ module OmniAuth
           nickname: raw_info["preferred_username"],
           name: raw_info["name"],
           image: raw_info["picture"],
-          role: raw_info["role"],
+          roles: raw_info["roles"]
         }
       end
 
