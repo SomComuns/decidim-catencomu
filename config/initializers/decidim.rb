@@ -128,4 +128,8 @@ Rails.application.config.i18n.default_locale = Decidim.default_locale
 
 Decidim::Verifications.register_workflow(:civicrm_authorization_handler) do |workflow|
   workflow.form = "CivicrmAuthorizationHandler"
+
+  workflow.options do |options|
+    options.attribute :user_role, type: :string # enum, choices (0.22?)
+  end
 end
