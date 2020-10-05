@@ -8,8 +8,10 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
 
   def metadata
     super.merge(
-      role: response["role"],
-      region: response["region"]
+      user_role: response["roles"]&.first,
+      roles: response["roles"],
+      region_name: response["region_name"],
+      region_type: response["region_type"]
     )
   end
 
@@ -47,7 +49,7 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
       request.body = request_body
     end
 
-    @response ||= response.body
+    @response ||= JSON.parse(response.body).to_h
   end
 
   def request_body
