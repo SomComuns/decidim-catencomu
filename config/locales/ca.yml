@@ -9,6 +9,9 @@ ca:
         explanation: Autorització mitjançant el compte de CiViCRM
         fields:
           user_role: Rol d'usuària
+          user_role_choices:
+            interested: Interessada
+            inscribed: Inscrita
         name: CiViCRM
     system:
       organizations:
