@@ -3,8 +3,6 @@ ca:
     authorization_handlers:
       civicrm_authorization_handler:
         name: CiViCRM
-      civicrm:
-        name: CiViCRM
         explanation: Autorització mitjançant el compte de CiViCRM
     system:
       organizations:

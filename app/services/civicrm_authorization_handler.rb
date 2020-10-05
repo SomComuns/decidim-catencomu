@@ -2,66 +2,55 @@
 require "digest/md5"
 
 class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
-  include ActionView::Helpers::SanitizeHelper
-  include Virtus::Multiparams
-
-  attribute :email, String
-
-  validates :email, format: { with: Devise.email_regexp }, presence: true
+  PROVIDER_NAME = "civicrm"
 
   validate :user_valid
 
-  # If you need to store any of the defined attributes in the authorization you
-  # can do it here.
-  #
-  # You must return a Hash that will be serialized to the authorization when
-  # it's created, and available though authorization.metadata
   def metadata
     super.merge(
-      role: response["role"]
+      role: response["role"],
+      region: response["region"]
     )
   end
 
   def unique_id
-    Digest::MD5.hexdigest(
-      "#{email&.downcase}-#{Rails.application.secrets.secret_key_base}"
+    Digest::SHA512.hexdigest(
+      "#{user_uid}-#{Rails.application.secrets.secret_key_base}"
     )
   end
 
   private
 
+  def organization
+    current_organization || user&.organization
+  end
+
+  def user_uid
+    user&.identities.find_by(organization: organization, provider: PROVIDER_NAME)&.uid
+  end
+
   def user_valid
     return nil if response.blank?
-
-    errors.add(:document_number, I18n.t("civicrm_authorization_handler.invalid_email", scope: "decidim.authorization_handlers")) unless response.xpath("//existe").text == "SI"
+    if response["error"].present?
+      errors.add(:user, response["error"])
+      # errors.add(:user, I18n.t("civicrm_handler.error", scope: "decidim.authorization_handlers"))
+    end
   end
 
   def response
-    return nil if email.blank?
+    return nil if user_uid.blank?
 
     return @response if defined?(@response)
 
-    response ||= Faraday.post Rails.application.secrets.census_url do |request|
-      request.headers["Content-Type"] = "text/xml;charset=UTF-8'"
-      request.headers["SOAPAction"] = %w{"http://webtests02.getxo.org/Validar"}
+    response ||= Faraday.post Rails.application.secrets.verifications.dig(:civicrm, :url) do |request|
+      request.headers["Content-Type"] = "application/json"
       request.body = request_body
     end
 
-    @response ||= Nokogiri::XML(response.body).remove_namespaces!
+    @response ||= response.body
   end
 
-
   def request_body
-    @request_body ||= <<EOS
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <Validar xmlns="http://webtests02.getxo.org/">
-      <strDNI>#{sanitized_document_number}</strDNI>
-      <strLetra>#{sanitized_document_letter}</strLetra>
-      <strNacimiento>#{sanitized_date_of_birth}</strNacimiento>
-    </Validar>
-  </soap:Body>
-</soap:Envelope>
-EOS
+    @request_body ||= { uid: user_uid }.to_json
   end
 end
