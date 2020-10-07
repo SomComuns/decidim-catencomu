@@ -39,12 +39,23 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
     end
   end
 
+  def request_params
+    {
+      entity: "Contact",
+      action: "Get",
+      api_key: Rails.application.secrets.verifications.dig(:civicrm, :api_key),
+      key: Rails.application.secrets.verifications.dig(:civicrm, :secret),
+      json: true,
+      contact_id: user_uid
+  end
+
   def response
     return nil if user_uid.blank?
 
     return @response if defined?(@response)
 
     response ||= Faraday.post Rails.application.secrets.verifications.dig(:civicrm, :url) do |request|
+      request.params = request_params
       request.headers["Content-Type"] = "application/json"
       request.body = request_body
     end
