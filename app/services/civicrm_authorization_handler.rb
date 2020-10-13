@@ -8,16 +8,16 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
 
   def metadata
     super.merge(
-      user_role: response["roles"]&.first,
-      roles: response["roles"],
-      region_name: response["region_name"],
-      region_type: response["region_type"]
+      address: response[:address],
+      contact_id: response[:contact_id],
+      user_role: response[:user_role],
+      roles: response[:roles]
     )
   end
 
   def unique_id
     Digest::SHA512.hexdigest(
-      "#{user_uid}-#{Rails.application.secrets.secret_key_base}"
+      "#{uid}-#{Rails.application.secrets.secret_key_base}"
     )
   end
 
@@ -27,7 +27,7 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
     current_organization || user&.organization
   end
 
-  def user_uid
+  def uid
     user&.identities.find_by(organization: organization, provider: PROVIDER_NAME)&.uid
   end
 
@@ -39,31 +39,12 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
     end
   end
 
-  def request_params
-    {
-      entity: "Contact",
-      action: "Get",
-      api_key: Rails.application.secrets.verifications.dig(:civicrm, :api_key),
-      key: Rails.application.secrets.verifications.dig(:civicrm, :secret),
-      json: true,
-      contact_id: user_uid
-  end
-
   def response
-    return nil if user_uid.blank?
+    return nil if uid.blank?
 
     return @response if defined?(@response)
 
-    response ||= Faraday.post Rails.application.secrets.verifications.dig(:civicrm, :url) do |request|
-      request.params = request_params
-      request.headers["Content-Type"] = "application/json"
-      request.body = request_body
-    end
-
-    @response ||= JSON.parse(response.body).to_h
-  end
-
-  def request_body
-    @request_body ||= { uid: user_uid }.to_json
+    json = CivicrmApi::Request.new.get_user(uid)
+    @response ||= CivicrmApi::Models::User.from_contact(json, with_address: true)
   end
 end

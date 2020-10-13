@@ -13,7 +13,7 @@ module CivicrmApi
     end
 
     def get_contact(id)
-      get(entity: "Contact", contact_id: id)["values"][id.to_s]
+      get(entity: "Contact", contact_id: id, return: "roles")["values"][id.to_s]
     end
     
     def get_user(id, with_contact: true)
