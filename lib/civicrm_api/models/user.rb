@@ -1,9 +1,9 @@
 module CivicrmApi
   module Models
     module User
-      class << self
-        ROLES = { "6" => :interested, "7" => :inscribed }.freeze
+      ROLES = { "6" => :interested, "7" => :inscribed }.freeze
 
+      class << self
         def from_contact(json, with_address: false)
           {
             contact_id: json["contact_id"],
