@@ -8,10 +8,9 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
 
   def metadata
     super.merge(
-      address: response[:address],
       contact_id: response[:contact_id],
-      user_role: response[:user_role],
-      roles: response[:roles]
+      role: response[:role],
+      address: response[:address]
     )
   end
 

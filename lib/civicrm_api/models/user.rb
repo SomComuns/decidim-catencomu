@@ -2,16 +2,15 @@ module CivicrmApi
   module Models
     module User
       class << self
-        ROLES = { 6 => :interested }.freeze
+        ROLES = { "6" => :interested, "7" => :inscribed }.freeze
 
         def from_contact(json, with_address: false)
           {
             contact_id: json["contact_id"],
             email: json["email"],
             name: json["display_name"],
-            nickname: json["nick_name"],
-            roles: map_roles(json["roles"]),
-            user_role: main_role(json["roles"]),
+            nickname: json["name"],
+            role: main_role(json),
             address: (Address.from_contact(json) if with_address)
           }
         end
@@ -40,8 +39,7 @@ module CivicrmApi
         end
 
         def map_roles(roles)
-          return [] if roles.blank?
-
+          return [] if roles.blank? 
           roles.map { |id, name| ROLES[id] }.compact
         end
       end
