@@ -13,6 +13,10 @@ ca:
             interested: Interessada
             inscribed: Inscrita
         name: CiViCRM
+        error: Hi ha hagut un error a l'hora de verificar el compte
+        error_codes:
+          'not-found': No s'ha trobat l'usuària a CiViCRM
+          '2001': Els paràmetres enviats són incorrectes
     system:
       organizations:
         omniauth_settings:

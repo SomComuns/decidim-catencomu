@@ -32,9 +32,18 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
 
   def user_valid
     return nil if response.blank?
-    if response["error"].present?
-      errors.add(:user, response["error"])
-      # errors.add(:user, I18n.t("civicrm_handler.error", scope: "decidim.authorization_handlers"))
+    if response["is_error"].present?
+      error_msg = response["error_message"]
+      error_code = response["error_code"]
+
+      if error_code.present?
+        errors.add(:user, I18n.t("civicrm_authorization_handler.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
+      else
+        errors.add(:user, error_msg)
+        errors.add(:user, I18n.t("civicrm_authorization_handler.error", scope: "decidim.authorization_handlers"))
+      end
+    elsif @json["values"].blank?
+      errors.add(:user, I18n.t("civicrm_authorization_handler.error", scope: "decidim.authorization_handlers"))
     end
   end
 
@@ -43,7 +52,7 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
 
     return @response if defined?(@response)
 
-    json = CivicrmApi::Request.new.get_user(uid)
+    @json ||= CivicrmApi::Request.new.get_user(uid)
     @response ||= CivicrmApi::Models::User.from_contact(json, with_address: true)
   end
 end
