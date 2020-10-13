@@ -8,8 +8,8 @@ ca:
       civicrm_authorization_handler:
         explanation: Autorització mitjançant el compte de CiViCRM
         fields:
-          user_role: Rol d'usuària
-          user_role_choices:
+          role: Rol d'usuària
+          role_choices:
             interested: Interessada
             inscribed: Inscrita
         name: CiViCRM
