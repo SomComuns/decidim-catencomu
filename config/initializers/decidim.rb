@@ -130,6 +130,6 @@ Decidim::Verifications.register_workflow(:civicrm_authorization_handler) do |wor
   workflow.form = "CivicrmAuthorizationHandler"
 
   workflow.options do |options|
-    options.attribute :role, type: :enum, choices: -> { ["interested", "inscribed"] }
+    options.attribute :role, type: :enum, choices: -> { CivicrmApi::Models::User::ROLES.values.map(&:to_s) }
   end
 end
