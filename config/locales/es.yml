@@ -1,0 +1,29 @@
+es:
+  decidim:
+    admin:
+      filters:
+        state_eq:
+          label: Label
+    authorization_handlers:
+      civicrm_authorization_handler:
+        explanation: Autorización mediante la cuenta de CiViCRM
+        fields:
+          role: Rol de usuaria
+          role_choices:
+            interested: Interesada
+            inscribed: Inscrita
+        name: CiViCRM
+        error: Ha ocurrido un error a la hora de verificar la cuenta
+        error_codes:
+          'not-found': No se ha encontrado la usuario en CiViCRM
+          '2001': Los parámetros enviados son incorrectos
+    system:
+      organizations:
+        omniauth_settings:
+          civicrm:
+            client_id: ID de cliente
+            client_secret: Secreto de cliente
+            site: URL del servidor de Omniauth
+          enabled_by_default: Activado por defecto
+  forms:
+    required_explanation: "* Los campos obligatorios están marcados con un asterisco"
