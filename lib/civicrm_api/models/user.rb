@@ -30,7 +30,7 @@ module CivicrmApi
           elsif roles.count.zero?
             return nil
           else
-            raise Exception.new("Too many relevant roles found for user with email #{json["email"]}")
+            raise raise CivicrmApi::Error.new("Too many relevant roles found for user with email #{json["email"]}")
           end
         end
 
