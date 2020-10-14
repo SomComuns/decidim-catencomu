@@ -9,7 +9,11 @@ module CivicrmApi
         request.params = request_params.merge(extra_params)
       end
 
-      JSON.parse(response.body).to_h
+      if response.success?
+        JSON.parse(response.body).to_h
+      else
+        raise CivicrmApi::Error.new(response.reason_phrase)
+      end
     end
 
     def get_contact(id)
@@ -41,5 +45,13 @@ module CivicrmApi
     end
 
     attr_reader :response
+  end
+
+  class Error < StandardError
+    def initialize(detail = nil)
+      msg = "There was an error with the CiViCRM API"
+      msg += " (#{detail})" if detail.present?
+      super(msg)
+    end
   end
 end
