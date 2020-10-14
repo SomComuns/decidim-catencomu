@@ -40,4 +40,3 @@ group :production do
   gem "fog-aws"
 end
 
-gem "decidim-verifications", "~> 0.21.0"
