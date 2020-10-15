@@ -52,7 +52,7 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
 
     return @response if defined?(@response)
 
-    @json ||= CivicrmApi::Request.new.get_user(uid)
-    @response ||= CivicrmApi::Models::User.from_contact(json, with_address: true)
+    @json = CivicrmApi::Request.new.get_user(uid)
+    @response = CivicrmApi::Models::User.from_contact(@json, with_address: true)
   end
 end

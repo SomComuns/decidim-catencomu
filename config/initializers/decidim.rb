@@ -8,6 +8,8 @@ Decidim.configure do |config|
   config.default_locale = :ca
   config.available_locales = [:ca, :es]
 
+  # config.force_ssl = false
+
   # Geocoder configuration
   # config.geocoder = {
   #   static_map_url: "https://image.maps.ls.hereapi.com/mia/1.6/mapview",
