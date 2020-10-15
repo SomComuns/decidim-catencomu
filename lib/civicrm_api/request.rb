@@ -17,12 +17,24 @@ module CivicrmApi
     end
 
     def get_contact(id)
-      get(entity: "Contact", contact_id: id, return: "roles")["values"][id.to_s]
+      response = get(entity: "Contact", contact_id: id, return: "roles")
+      
+      unless response.has_key("values")
+        raise CivicrmApi::Error.new("Malformed response in get_contact: #{response.to_json.to_s}")
+      end
+      
+      response["values"][id.to_s]
     end
     
     def get_user(id, with_contact: true)
-      @user = get(entity: "User", id: id)["values"][id.to_s]
+      response = get(entity: "User", id: id)
       
+      unless response.has_key("values")
+        raise CivicrmApi::Error.new("Malformed response in get_user: #{response.to_json.to_s}")
+      end
+      
+      @user = response["values"][id.to_s]
+
       return @user unless with_contact
 
       @contact = get_contact(@user["contact_id"])
