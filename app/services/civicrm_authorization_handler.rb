@@ -42,8 +42,6 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
         errors.add(:user, error_msg)
         errors.add(:user, I18n.t("civicrm_authorization_handler.error", scope: "decidim.authorization_handlers"))
       end
-    elsif @json["values"].blank?
-      errors.add(:user, I18n.t("civicrm_authorization_handler.error", scope: "decidim.authorization_handlers"))
     end
   end
 
