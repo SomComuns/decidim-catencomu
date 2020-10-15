@@ -2,6 +2,7 @@
 
 require "omniauth-oauth2"
 require "open-uri"
+require "civicrm_api/civicrm_api"
 
 module OmniAuth
   module Strategies
@@ -13,18 +14,18 @@ module OmniAuth
       option :client_options, {}
 
       uid do
-        # TMP FIX
-        # raw_info["id"] # not present in `info` hash
-        Digest::MD5.hexdigest("#{raw_info["email"]}-#{Rails.application.secrets.secret_key_base}")
+        raw_info["sub"]
       end
 
       info do
+        json = CivicrmApi::Request.new.get_user(uid)
+        user = CivicrmApi::Models::User.from_contact(json)
+
         {
+          name: user[:name],
+          nickname: user[:nickname],
           email: raw_info["email"],
-          nickname: raw_info["preferred_username"],
-          name: raw_info["name"],
-          image: raw_info["picture"],
-          roles: raw_info["roles"]
+          image: raw_info["picture"]
         }
       end
 

@@ -1,11 +1,22 @@
 ca:
   decidim:
+    admin:
+      filters:
+        state_eq:
+          label: Label
     authorization_handlers:
       civicrm_authorization_handler:
-        name: CiViCRM
-      civicrm:
-        name: CiViCRM
         explanation: Autorització mitjançant el compte de CiViCRM
+        fields:
+          role: Rol d'usuària
+          role_choices:
+            interested: Interessada
+            inscribed: Inscrita
+        name: CiViCRM
+        error: Hi ha hagut un error a l'hora de verificar el compte
+        error_codes:
+          'not-found': No s'ha trobat l'usuària a CiViCRM
+          '2001': Els paràmetres enviats són incorrectes
     system:
       organizations:
         omniauth_settings:
