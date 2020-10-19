@@ -32,6 +32,7 @@ module Decidim
           event_class: notification_class,
           resource: user,
           affected_users: [user],
+          force_send: true,
           extra: {
             status: status,
             errors: handler.errors.full_messages
