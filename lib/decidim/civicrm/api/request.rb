@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decidim
   module Civicrm
     module Api
@@ -11,29 +13,24 @@ module Decidim
             request.params = request_params.merge(extra_params)
           end
 
-          if response.success?
-            JSON.parse(response.body).to_h
-          else
-            raise Error.new(response.reason_phrase)
-          end
+          return raise Error, response.reason_phrase unless response.success?
+
+          JSON.parse(response.body).to_h
         end
 
         def get_contact(id)
           response = get(entity: "Contact", contact_id: id, return: "roles")
 
-          unless response.has_key?("values")
-            raise Error.new("Malformed response in get_contact: #{response.to_json.to_s}")
-          end
+          raise Error, "Malformed response in get_contact: #{response.to_json}" unless response.has_key?("values")
+
           response["values"][id.to_s]
         end
-        
+
         def get_user(id, with_contact: true)
           response = get(entity: "User", id: id)
 
-          unless response.has_key?("values")
-            raise Error.new("Malformed response in get_user: #{response.to_json.to_s}")
-          end
-          
+          raise Error, "Malformed response in get_user: #{response.to_json}" unless response.has_key?("values")
+
           @user = response["values"][id.to_s]
 
           return @user unless with_contact
@@ -45,12 +42,12 @@ module Decidim
         private
 
         def request_params
-          @params.reverse_merge({
+          @params.reverse_merge(
             action: "Get",
             api_key: config[:api_key],
             key: config[:secret],
             json: @params.fetch(:json, true)
-          })
+          )
         end
 
         def config

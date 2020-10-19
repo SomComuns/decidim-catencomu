@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decidim
   module Civicrm
     module Api
@@ -15,33 +17,32 @@ module Decidim
               address: (Address.from_contact(json) if with_address)
             }
           end
-          
+
           def from_user(json)
             {
               id: json["id"],
               contact_id: json["contact_id"],
-              email: json["email"],
+              email: json["email"]
             }
           end
 
           def main_role(json)
             roles = relevant_roles(json["roles"])
-            if roles.count == 1
-              return roles.first
-            elsif roles.count.zero?
-              return nil
-            else
-              raise raise Error.new("Too many relevant roles found for user with email #{json["email"]}")
-            end
+
+            return raise Error, "Too many relevant roles found for user with email #{json["email"]}" if roles.count > 1
+            return nil if roles.count.zero?
+
+            roles.first
           end
 
           def relevant_roles(roles)
-            relevant_roles = map_roles(roles) & ROLES.values
+            map_roles(roles) & ROLES.values
           end
 
           def map_roles(roles)
-            return [] if roles.blank? 
-            roles.map { |id, name| ROLES[id] }.compact
+            return [] if roles.blank?
+
+            roles.map { |id, _name| ROLES[id] }.compact
           end
         end
       end
