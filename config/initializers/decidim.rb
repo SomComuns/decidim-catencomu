@@ -132,6 +132,10 @@ Decidim::Verifications.register_workflow(:civicrm_handler) do |workflow|
   workflow.form = "Decidim::Verifications::CivicrmHandler"
 
   workflow.options do |options|
-    options.attribute :role, type: :enum, choices: -> { Civicrm::Api::User::ROLES.values.map(&:to_s) }
+    options.attribute :role, type: :enum, choices: -> { Decidim::Civicrm::Api::User::ROLES.values.map(&:to_s) }
   end
+end
+
+ActiveSupport::Notifications.subscribe(/^decidim\.user\.omniauth_registration/) do |name, data|
+  Decidim::Civicrm::VerificationJob.perform_later(data[:user_id])
 end
