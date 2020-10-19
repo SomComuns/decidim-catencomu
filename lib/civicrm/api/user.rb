@@ -1,5 +1,5 @@
-module CivicrmApi
-  module Models
+module Civicrm
+  module Api
     module User
       ROLES = { "6" => :interested, "7" => :inscribed }.freeze
 
@@ -30,7 +30,7 @@ module CivicrmApi
           elsif roles.count.zero?
             return nil
           else
-            raise raise CivicrmApi::Error.new("Too many relevant roles found for user with email #{json["email"]}")
+            raise raise Error.new("Too many relevant roles found for user with email #{json["email"]}")
           end
         end
 
@@ -46,4 +46,4 @@ module CivicrmApi
     end
   end
 end
-    
+      

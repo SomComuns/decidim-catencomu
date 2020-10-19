@@ -2,7 +2,7 @@
 
 require "omniauth-oauth2"
 require "open-uri"
-require "civicrm_api/civicrm_api"
+require "civicrm/api"
 
 module OmniAuth
   module Strategies
@@ -18,8 +18,8 @@ module OmniAuth
       end
 
       info do
-        json = CivicrmApi::Request.new.get_user(uid)
-        user = CivicrmApi::Models::User.from_contact(json)
+        json = ::Civicrm::Api::Request.new.get_user(uid)
+        user = ::Civicrm::Api::User.from_contact(json)
 
         {
           name: user[:name],

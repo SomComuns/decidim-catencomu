@@ -1,5 +1,5 @@
-module CivicrmApi
-  module Models
+module Civicrm
+  module Api
     module Address
       class << self
         def from_contact(json)
