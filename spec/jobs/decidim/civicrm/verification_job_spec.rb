@@ -31,6 +31,7 @@ module Decidim
                 event_class: Decidim::Civicrm::VerificationSuccessNotification,
                 resource: user,
                 affected_users: [user],
+                force_send: true,
                 extra: {
                   status: :ok,
                   errors: []
@@ -51,6 +52,7 @@ module Decidim
                 event_class: Decidim::Civicrm::VerificationInvalidNotification,
                 resource: user,
                 affected_users: [user],
+                force_send: true,
                 extra: {
                   status: :invalid,
                   errors: []
