@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "omniauth/civicrm"
 
 if Rails.application.secrets.dig(:omniauth, :civicrm).present?
