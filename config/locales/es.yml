@@ -25,5 +25,20 @@ es:
             client_secret: Secreto de cliente
             site: URL del servidor de Omniauth
           enabled_by_default: Activado por defecto
+    verifications:
+      civicrm:
+        errors:
+          invalid_method: No se te ha podido verificar. El método de verificación OAuth2 no era "civicrm" tal y como se esperaba.
+          invalid_status: No se te ha podido verificar. La verificación OAuth2 ha fallado.
+        invalid:
+          email_intro: No se ha podido conceder la autorización de CiViCRM.
+          email_outro: Por favor, poneros en contacto con el soporte de vuestra plataforma para comprobar el error que ha ocurrido.
+          email_subject: La verificación con CiViCRM ha fallado
+          notification_title: La verificación con CiViCRM ha fallado
+        ok:
+          email_intro: Te has autorizado correctamente mediante CiViCRM.
+          email_outro: A partir de ahora ya puedes participar en todas aquellas acciones que requieran autorización expresa mediante este método.
+          email_subject: Has sido verificado mediante CiViCRM.
+          notification_title: Te has verificado mediante CiViCRM correctamente.
   forms:
     required_explanation: "* Los campos obligatorios están marcados con un asterisco"
