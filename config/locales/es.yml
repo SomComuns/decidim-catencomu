@@ -25,8 +25,8 @@ es:
             client_secret: Secreto de cliente
             site: URL del servidor de Omniauth
           enabled_by_default: Activado por defecto
-    verifications:
-      civicrm:
+    events:
+      civicrm_verification:
         errors:
           invalid_method: No se os ha podido verificar. El método de verificación OAuth2 no era "civicrm" tal y como se esperaba.
           invalid_status: No se os ha podido verificar. La verificación OAuth2 ha fallado.

@@ -4,11 +4,11 @@ module Decidim
   module Civicrm
     class VerificationSuccessNotification < Decidim::Events::SimpleEvent
       def resource_path
-        "http"
+        Decidim::Verifications::Engine.routes.url_helpers.authorizations_path
       end
 
       def resource_url
-        "http"
+        Decidim::Verifications::Engine.routes.url_helpers.authorizations_url(host: resource.organization.host)
       end
     end
   end
