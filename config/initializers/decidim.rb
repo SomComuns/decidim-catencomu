@@ -128,8 +128,8 @@ end
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
 
-Decidim::Verifications.register_workflow(:civicrm_handler) do |workflow|
-  workflow.form = "Decidim::Verifications::CivicrmHandler"
+Decidim::Verifications.register_workflow(:civicrm) do |workflow|
+  workflow.form = "Decidim::Verifications::Civicrm"
 
   workflow.options do |options|
     options.attribute :role, type: :enum, choices: -> { Decidim::Civicrm::Api::User::ROLES.values.map(&:to_s) }

@@ -3,7 +3,7 @@ require "digest/md5"
 
 module Decidim
   module Verifications
-    class CivicrmHandler < AuthorizationHandler
+    class Civicrm < AuthorizationHandler
       PROVIDER_NAME = "civicrm"
 
       validate :user_valid
@@ -39,10 +39,10 @@ module Decidim
           error_code = response["error_code"]
 
           if error_code.present?
-            errors.add(:user, I18n.t("civicrm_handler.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
+            errors.add(:user, I18n.t("civicrm.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
           else
             errors.add(:user, error_msg)
-            errors.add(:user, I18n.t("civicrm_handler.error", scope: "decidim.authorization_handlers"))
+            errors.add(:user, I18n.t("civicrm.error", scope: "decidim.authorization_handlers"))
           end
         end
       end
