@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Decidim::Verifications.register_workflow(:civicrm) do |workflow|
   workflow.form = "Decidim::Verifications::Civicrm"
 
