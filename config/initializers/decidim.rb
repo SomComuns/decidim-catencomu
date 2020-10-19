@@ -136,6 +136,6 @@ Decidim::Verifications.register_workflow(:civicrm) do |workflow|
   end
 end
 
-ActiveSupport::Notifications.subscribe(/^decidim\.user\.omniauth_registration/) do |name, data|
+ActiveSupport::Notifications.subscribe(/^decidim\.user\.omniauth_registration/) do |_name, data|
   Decidim::Civicrm::VerificationJob.perform_later(data[:user_id])
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decidim
   module Civicrm
     module Api
@@ -13,7 +15,7 @@ module Decidim
               state_province: json["state_province"],
               supplemental_address_1: json["supplemental_address_1"],
               supplemental_address_2: json["supplemental_address_2"],
-              supplemental_address_3: json["supplemental_address_3"],
+              supplemental_address_3: json["supplemental_address_3"]
             }
           end
         end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "digest/md5"
 
 module Decidim
@@ -33,17 +34,17 @@ module Decidim
       end
 
       def user_valid
-        return nil if response.blank?
-        if response["is_error"].present?
-          error_msg = response["error_message"]
-          error_code = response["error_code"]
+        return false if response.blank?
+        return true if response["is_error"].blank?
 
-          if error_code.present?
-            errors.add(:user, I18n.t("civicrm.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
-          else
-            errors.add(:user, error_msg)
-            errors.add(:user, I18n.t("civicrm.error", scope: "decidim.authorization_handlers"))
-          end
+        error_msg = response["error_message"]
+        error_code = response["error_code"]
+
+        if error_code.present?
+          errors.add(:user, I18n.t("civicrm.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
+        else
+          errors.add(:user, error_msg)
+          errors.add(:user, I18n.t("civicrm.error", scope: "decidim.authorization_handlers"))
         end
       end
 

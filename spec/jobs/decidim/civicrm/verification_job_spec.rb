@@ -2,13 +2,11 @@
 
 require "rails_helper"
 
-
 module Decidim
   module Civicrm
     describe VerificationJob do
-
       let!(:user) { create(:user) }
-      let!(:identity) { create(:identity, provider: 'civicrm', user: user) }
+      let!(:identity) { create(:identity, provider: "civicrm", user: user) }
 
       class TestRectifyPublisher < Rectify::Command
         include Wisper::Publisher
@@ -16,7 +14,7 @@ module Decidim
       end
       def stub_rectify_publisher(clazz, called_method, event_to_publish, *published_event_args)
         stub_const(clazz, Class.new(TestRectifyPublisher) do
-          define_method(called_method) do |*args|
+          define_method(called_method) do |*_args|
             publish(event_to_publish, *published_event_args)
           end
         end)
@@ -25,7 +23,7 @@ module Decidim
       context "when omniauth_registration event is notified" do
         context "when authorization is created with success" do
           it "notifies the user for the success" do
-            stub_rectify_publisher('Decidim::Verifications::AuthorizeUser', :call, :ok)
+            stub_rectify_publisher("Decidim::Verifications::AuthorizeUser", :call, :ok)
             expect(Decidim::EventsManager)
               .to receive(:publish)
               .with(
@@ -44,7 +42,7 @@ module Decidim
 
         context "when authorization creation fails" do
           it "notifies the user for the failure" do
-            stub_rectify_publisher('Decidim::Verifications::AuthorizeUser', :call, :invalid)
+            stub_rectify_publisher("Decidim::Verifications::AuthorizeUser", :call, :invalid)
             expect(Decidim::EventsManager)
               .to receive(:publish)
               .with(
