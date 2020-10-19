@@ -5,7 +5,7 @@ ca:
         state_eq:
           label: Label
     authorization_handlers:
-      civicrm_authorization_handler:
+      civicrm_handler:
         explanation: Autorització mitjançant el compte de CiViCRM
         fields:
           role: Rol d'usuària
