@@ -57,8 +57,8 @@ module Decidim
 
         return @response if defined?(@response)
 
-        @json = Civicrm::Api::Request.new.get_user(uid)
-        @response = Civicrm::Api::User.from_contact(@json, with_address: true)
+        @json = Decidim::Civicrm::Api::Request.new.get_user(uid)
+        @response = Decidim::Civicrm::Api::User.from_contact(@json, with_address: true)
       end
     end
   end
