@@ -31,6 +31,7 @@ module Decidim
           event: "decidim.verifications.civicrm.#{status}",
           event_class: notification_class,
           resource: user,
+          affected_users: [user],
           extra: {
             status: status,
             errors: handler.errors.full_messages

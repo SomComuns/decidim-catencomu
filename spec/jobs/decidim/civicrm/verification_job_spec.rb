@@ -30,6 +30,7 @@ module Decidim
                 event: "decidim.verifications.civicrm.ok",
                 event_class: Decidim::Civicrm::VerificationSuccessNotification,
                 resource: user,
+                affected_users: [user],
                 extra: {
                   status: :ok,
                   errors: []
@@ -49,6 +50,7 @@ module Decidim
                 event: "decidim.verifications.civicrm.invalid",
                 event_class: Decidim::Civicrm::VerificationInvalidNotification,
                 resource: user,
+                affected_users: [user],
                 extra: {
                   status: :invalid,
                   errors: []
