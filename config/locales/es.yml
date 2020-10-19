@@ -5,7 +5,7 @@ es:
         state_eq:
           label: Label
     authorization_handlers:
-      civicrm_handler:
+      civicrm:
         explanation: Autorización mediante la cuenta de CiViCRM
         fields:
           role: Rol de usuaria

@@ -22,15 +22,13 @@ module Decidim
 
       # Retrieves handler from Verification workflows registry.
       def retrieve_handler(user_id)
-        byebug
-        Decidim::AuthorizationHandler.handler_for('civicrm_handler', user: Decidim::User.find(user_id))
+        Decidim::AuthorizationHandler.handler_for('civicrm', user: Decidim::User.find(user_id))
       end
 
       def notify_user(user, status, handler)
-        byebug
         notification_class = status == :ok ? Decidim::Civicrm::VerificationSuccessNotification : Decidim::Civicrm::VerificationInvalidNotification
         Decidim::EventsManager.publish(
-          event: "decidim.verifications.civicrm_handler.#{status}",
+          event: "decidim.verifications.civicrm.#{status}",
           event_class: notification_class,
           resource: user,
           extra: {
