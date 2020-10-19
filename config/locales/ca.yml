@@ -26,6 +26,10 @@ ca:
             site: URL del servidor d'Omniauth
           enabled_by_default: Activat per defecte
     verifications:
+      authorizations:
+        first_login:
+          actions:
+            civicrm: Verifica't amb el compte de CiViCRM
       civicrm:
         errors:
           invalid_method: No us heu pogut verificar. El mètode de verificació OAuth2 no era "civicrm" tal com s'esperava.
