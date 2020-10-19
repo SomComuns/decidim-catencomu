@@ -23,6 +23,10 @@ module Decidim
         )
       end
 
+      def to_partial_path
+        "civicrm/form"
+      end
+
       private
 
       def organization
