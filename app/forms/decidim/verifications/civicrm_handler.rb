@@ -29,7 +29,7 @@ module Decidim
       end
 
       def uid
-        user&.identities.find_by(organization: organization, provider: PROVIDER_NAME)&.uid
+        user.identities.find_by(organization: organization, provider: PROVIDER_NAME).uid
       end
 
       def user_valid
