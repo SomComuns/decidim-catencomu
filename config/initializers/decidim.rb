@@ -127,15 +127,3 @@ end
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
-
-Decidim::Verifications.register_workflow(:civicrm) do |workflow|
-  workflow.form = "Decidim::Verifications::Civicrm"
-
-  workflow.options do |options|
-    options.attribute :role, type: :enum, choices: -> { Decidim::Civicrm::Api::User::ROLES.values.map(&:to_s) }
-  end
-end
-
-ActiveSupport::Notifications.subscribe(/^decidim\.user\.omniauth_registration/) do |_name, data|
-  Decidim::Civicrm::VerificationJob.perform_later(data[:user_id])
-end
