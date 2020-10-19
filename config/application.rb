@@ -1,6 +1,8 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails/all'
+require_relative "boot"
+
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -16,12 +18,12 @@ module Catencomu
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.eager_load_paths += %W( lib/civicrm_api/civicrm_api.rb )
+    config.eager_load_paths += %w(lib/civicrm_api/civicrm_api.rb)
   end
 end
 
-unless ENV['DISABLE_SENTRY']
+unless ENV["DISABLE_SENTRY"]
   Raven.configure do |config|
-    config.dsn = ENV['SENTRY_DSN']
+    config.dsn = ENV["SENTRY_DSN"]
   end
 end

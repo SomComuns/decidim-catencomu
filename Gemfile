@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.22-stable" }
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.22-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 # gem "decidim-consultations", DECIDIM_VERSION
@@ -12,9 +12,9 @@ gem "decidim", DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.4"
 gem "health_check"
+gem "sentry-raven"
 gem "sidekiq", "~> 6.0"
 gem "sidekiq-cron"
-gem "sentry-raven"
 
 gem "puma", "~> 4.3"
 gem "uglifier", "~> 4.1"
@@ -35,8 +35,6 @@ group :development do
   gem "web-console", "~> 3.5"
 end
 
-
 group :production do
   gem "fog-aws"
 end
-
