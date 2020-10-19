@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on:
   push:
@@ -8,25 +8,22 @@ on:
 
 env:
   RUBY_VERSION: 2.6.6
-
+  NODE_VERSION: 12.9.1
+    
 jobs:
-  build:
+  test:
+    name: Test
     runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:11
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        ports:
+          - 5432:5432
         env:
-          POSTGRES_PASSWORD: postgres
-    env:
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: localhost
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - uses: actions/checkout@v2
@@ -42,9 +39,15 @@ jobs:
         run: |
           bundle exec rake decidim:generate_external_test_app
           bundle exec rails db:create db:schema:load
+        env:
+          RAILS_ENV: test
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
 
       - name: Precompile assets
         run: bundle exec rake assets:precompile
+        env:
+          RAILS_ENV: test
 
       # - name: Setup Code Climate test-reporter
       #   run: |
@@ -54,6 +57,10 @@ jobs:
 
       - name: Run RSpec
         run: SIMPLECOV=1 CODECOV=1 bundle exec rake
+        env:
+          RAILS_ENV: test
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
 
       # - name: Publish code coverage
       #   run: |
