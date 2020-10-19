@@ -1,6 +1,8 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails/all'
+require_relative "boot"
+
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,8 +20,8 @@ module Catencomu
   end
 end
 
-unless ENV['DISABLE_SENTRY']
+unless ENV["DISABLE_SENTRY"]
   Raven.configure do |config|
-    config.dsn = ENV['SENTRY_DSN']
+    config.dsn = ENV["SENTRY_DSN"]
   end
 end
