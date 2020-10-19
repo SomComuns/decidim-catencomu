@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "digest/md5"
 
 class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
@@ -27,21 +28,21 @@ class CivicrmAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def uid
-    user&.identities.find_by(organization: organization, provider: PROVIDER_NAME)&.uid
+    user.identities.find_by(organization: organization, provider: PROVIDER_NAME).uid
   end
 
   def user_valid
-    return nil if response.blank?
-    if response["is_error"].present?
-      error_msg = response["error_message"]
-      error_code = response["error_code"]
+    return false if response.blank?
+    return true if response["is_error"].blank?
 
-      if error_code.present?
-        errors.add(:user, I18n.t("civicrm_authorization_handler.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
-      else
-        errors.add(:user, error_msg)
-        errors.add(:user, I18n.t("civicrm_authorization_handler.error", scope: "decidim.authorization_handlers"))
-      end
+    error_msg = response["error_message"]
+    error_code = response["error_code"]
+
+    if error_code.present?
+      errors.add(:user, I18n.t("civicrm_authorization_handler.error_codes.#{error_code}", scope: "decidim.authorization_handlers"))
+    else
+      errors.add(:user, error_msg)
+      errors.add(:user, I18n.t("civicrm_authorization_handler.error", scope: "decidim.authorization_handlers"))
     end
   end
 

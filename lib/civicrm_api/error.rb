@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CivicrmApi
   class Error < StandardError
     def initialize(detail = nil)

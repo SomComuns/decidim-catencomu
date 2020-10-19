@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CivicrmApi
   module Models
     module Address
@@ -12,7 +14,7 @@ module CivicrmApi
             state_province: json["state_province"],
             supplemental_address_1: json["supplemental_address_1"],
             supplemental_address_2: json["supplemental_address_2"],
-            supplemental_address_3: json["supplemental_address_3"],
+            supplemental_address_3: json["supplemental_address_3"]
           }
         end
       end
