@@ -2,14 +2,7 @@
 
 module Decidim
   module Civicrm
-    class VerificationInvalidNotification < Decidim::Events::SimpleEvent
-      def resource_path
-        "http"
-      end
-
-      def resource_url
-        "http"
-      end
+    class VerificationInvalidNotification < VerificationSuccessNotification
     end
   end
 end

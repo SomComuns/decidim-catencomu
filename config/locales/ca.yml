@@ -30,7 +30,8 @@ ca:
         first_login:
           actions:
             civicrm: Verifica't amb el compte de CiViCRM
-      civicrm:
+    events:
+      civicrm_verification:
         errors:
           invalid_method: No us heu pogut verificar. El mètode de verificació OAuth2 no era "civicrm" tal com s'esperava.
           invalid_status: No us heu pogut verificar. La verificació OAuth2 ha fallat.

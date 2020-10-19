@@ -28,13 +28,12 @@ module Decidim
       def notify_user(user, status, handler)
         notification_class = status == :ok ? Decidim::Civicrm::VerificationSuccessNotification : Decidim::Civicrm::VerificationInvalidNotification
         Decidim::EventsManager.publish(
-          event: "decidim.verifications.civicrm.#{status}",
+          event: "decidim.events.civicrm_verification.#{status}",
           event_class: notification_class,
           resource: user,
           affected_users: [user],
-          force_send: true,
           extra: {
-            status: status,
+            status: status.to_s,
             errors: handler.errors.full_messages
           }
         )
