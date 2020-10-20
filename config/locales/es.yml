@@ -12,6 +12,7 @@ es:
           role_choices:
             interested: Interesada
             inscribed: Inscrita
+            other: Otros
         name: CiViCRM
         error: Ha ocurrido un error a la hora de verificar la cuenta
         error_codes:
