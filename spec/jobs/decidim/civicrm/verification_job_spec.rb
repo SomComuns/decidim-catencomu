@@ -27,13 +27,12 @@ module Decidim
             expect(Decidim::EventsManager)
               .to receive(:publish)
               .with(
-                event: "decidim.verifications.civicrm.ok",
+                event: "decidim.events.civicrm_verification.ok",
                 event_class: Decidim::Civicrm::VerificationSuccessNotification,
                 resource: user,
                 affected_users: [user],
-                force_send: true,
                 extra: {
-                  status: :ok,
+                  status: "ok",
                   errors: []
                 }
               )
@@ -48,13 +47,12 @@ module Decidim
             expect(Decidim::EventsManager)
               .to receive(:publish)
               .with(
-                event: "decidim.verifications.civicrm.invalid",
+                event: "decidim.events.civicrm_verification.invalid",
                 event_class: Decidim::Civicrm::VerificationInvalidNotification,
                 resource: user,
                 affected_users: [user],
-                force_send: true,
                 extra: {
-                  status: :invalid,
+                  status: "invalid",
                   errors: []
                 }
               )
