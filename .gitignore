@@ -39,3 +39,6 @@ public/uploads
 
 # Ignore .rbenv-vars
 .rbenv-vars
+
+# Ignore .rspec-failures
+.rspec-failures

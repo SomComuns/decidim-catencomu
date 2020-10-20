@@ -5,7 +5,7 @@ es:
         state_eq:
           label: Label
     authorization_handlers:
-      civicrm_authorization_handler:
+      civicrm:
         explanation: Autorización mediante la cuenta de CiViCRM
         fields:
           role: Rol de usuaria
@@ -25,5 +25,20 @@ es:
             client_secret: Secreto de cliente
             site: URL del servidor de Omniauth
           enabled_by_default: Activado por defecto
+    events:
+      civicrm_verification:
+        errors:
+          invalid_method: No se os ha podido verificar. El método de verificación OAuth2 no era "civicrm" tal y como se esperaba.
+          invalid_status: No se os ha podido verificar. La verificación OAuth2 ha fallado.
+        invalid:
+          email_intro: La verificación con CiViCRM ha fallado.
+          email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma para comprobar el error que ha ocurrido.
+          email_subject: No se os ha podido verificar con CiViCRM.
+          notification_title: La verificación con CiViCRM ha fallado.
+        ok:
+          email_intro: Te has verificado correctamente mediante CiViCRM.
+          email_outro: A partir de ahora ya puedes participar en todas aquellas acciones que requieran autorización expresa mediante este método.
+          email_subject: Te has verificado mediante CiViCRM.
+          notification_title: Te has verificado mediante CiViCRM correctamente.
   forms:
     required_explanation: "* Los campos obligatorios están marcados con un asterisco"
