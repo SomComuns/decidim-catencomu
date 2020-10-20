@@ -17,7 +17,6 @@ module Decidim
 
         class << self
           def from_contact(json, with_address: false)
-            byebug
             {
               contact_id: json["contact_id"],
               email: json["email"],
