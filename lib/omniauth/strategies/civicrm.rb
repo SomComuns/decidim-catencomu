@@ -31,7 +31,7 @@ module OmniAuth
 
       def client
         options.client_options[:site] = options.site
-        
+
         locale_path_segment = "/#{request[:locale]}/"
 
         options.client_options[:authorize_url] = URI.join(options.site, locale_path_segment, "oauth2/authorize").to_s
