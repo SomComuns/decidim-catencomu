@@ -19,7 +19,14 @@ module Decidim
         end
 
         def get_contact(id)
-          response = get(entity: "Contact", contact_id: id, return: "roles")
+          params = {
+            :entity => "Contact",
+            :contact_id => id,
+            :return => "roles",
+            "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
+          }
+
+          response = get(params)
 
           raise Error, "Malformed response in get_contact: #{response.to_json}" unless response.has_key?("values")
 

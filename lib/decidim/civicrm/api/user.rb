@@ -7,14 +7,14 @@ module Decidim
         ROLES = { "6" => :interested, "7" => :inscribed }.freeze
 
         class << self
-          def from_contact(json, with_address: false)
+          def from_contact(json)
             {
               contact_id: json["contact_id"],
               email: json["email"],
               name: json["display_name"],
               nickname: json["name"],
-              role: main_role(json),
-              address: (Address.from_contact(json) if with_address)
+              role: parse_main_role(json),
+              regional_scope: parse_regional_scope(json)
             }
           end
 
@@ -26,7 +26,7 @@ module Decidim
             }
           end
 
-          def main_role(json)
+          def parse_main_role(json)
             roles = relevant_roles(json["roles"])
 
             return raise Error, "Too many relevant roles found for user with email #{json["email"]}" if roles.count > 1
@@ -43,6 +43,10 @@ module Decidim
             return [] if roles.blank?
 
             roles.map { |id, _name| ROLES[id] }.compact
+          end
+
+          def parse_regional_scope(json)
+            json.dig("api_Address_get", "values", 0, RegionalScope::FIELD_NAME)
           end
         end
       end
