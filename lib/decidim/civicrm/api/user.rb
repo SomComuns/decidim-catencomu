@@ -7,14 +7,13 @@ module Decidim
         ROLES = { "6" => :interested, "7" => :inscribed }.freeze
 
         class << self
-          def from_contact(json, with_address: false)
+          def from_contact(json)
             {
               contact_id: json["contact_id"],
               email: json["email"],
               name: json["display_name"],
               nickname: json["name"],
-              role: main_role(json),
-              address: (Address.from_contact(json) if with_address)
+              role: main_role(json)
             }
           end
 

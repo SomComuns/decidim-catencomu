@@ -12,8 +12,7 @@ module Decidim
       def metadata
         super.merge(
           contact_id: response[:contact_id],
-          role: response[:role],
-          address: response[:address]
+          role: response[:role]
         )
       end
 
@@ -58,7 +57,7 @@ module Decidim
         return @response if defined?(@response)
 
         @json = Decidim::Civicrm::Api::Request.new.get_user(uid)
-        @response = Decidim::Civicrm::Api::User.from_contact(@json, with_address: true)
+        @response = Decidim::Civicrm::Api::User.from_contact(@json)
       end
     end
   end
