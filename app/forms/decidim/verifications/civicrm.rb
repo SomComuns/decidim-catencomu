@@ -12,7 +12,8 @@ module Decidim
       def metadata
         super.merge(
           contact_id: response[:contact_id],
-          role: response[:role]
+          role: response[:role],
+          regional_scope: response[:regional_scope]
         )
       end
 
