@@ -8,6 +8,20 @@ es:
       civicrm:
         explanation: Autorización mediante la cuenta de CiViCRM
         fields:
+          regional_scope: Ámbito Territorial
+          regional_scope_choices:
+            AT07: "Alt Pirineu i Aran (AT07)"
+            AT011: "Baix Llobregat (AT011)"
+            AT012: "Barcelonès (AT012)"
+            AT03: "Camp de Tarragona (AT03)"
+            AT06: "Comarques Centrals (AT06)"
+            AT02: "Comarques Gironines (AT02)"
+            AT013: "Maresme (AT013)"
+            AT08: "Penedès (AT08)"
+            AT05: "Ponent (AT05)"
+            AT04: "Terres de l'Ebre (AT04)"
+            AT014: "Vallès Occidental (AT014)"
+            AT015: "Vallès Oriental (AT015)"
           role: Rol de usuaria
           role_choices:
             interested: Interesada

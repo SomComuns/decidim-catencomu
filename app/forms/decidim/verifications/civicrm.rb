@@ -10,10 +10,12 @@ module Decidim
       validate :user_valid
 
       def metadata
+        return super unless response
+
         super.merge(
           contact_id: response[:contact_id],
           role: response[:role],
-          address: response[:address]
+          regional_scope: response[:regional_scope]
         )
       end
 
@@ -34,7 +36,7 @@ module Decidim
       end
 
       def uid
-        user.identities.find_by(organization: organization, provider: PROVIDER_NAME).uid
+        user.identities.find_by(organization: organization, provider: PROVIDER_NAME)&.uid
       end
 
       def user_valid
@@ -58,7 +60,7 @@ module Decidim
         return @response if defined?(@response)
 
         @json = Decidim::Civicrm::Api::Request.new.get_user(uid)
-        @response = Decidim::Civicrm::Api::User.from_contact(@json, with_address: true)
+        @response = Decidim::Civicrm::Api::User.from_contact(@json)
       end
     end
   end
