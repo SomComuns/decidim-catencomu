@@ -11,6 +11,7 @@ module Decidim
 
       def metadata
         return super unless response
+
         super.merge(
           contact_id: response[:contact_id],
           role: response[:role],
