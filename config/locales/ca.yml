@@ -1,5 +1,8 @@
 ca:
   decidim:
+    account: 
+      show:
+        email_readonly_explanation: L'adreça de correu electrònic no es pot modificar
     admin:
       filters:
         state_eq:
