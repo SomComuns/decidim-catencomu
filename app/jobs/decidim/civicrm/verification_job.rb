@@ -6,7 +6,10 @@ module Decidim
       queue_as :default
 
       def perform(user_id)
-        handler = retrieve_handler(user_id)
+        user = Decidim::User.find(user_id)
+        return unless user.civicrm?
+
+        handler = retrieve_handler(user)
         Decidim::Verifications::AuthorizeUser.call(handler) do
           on(:ok) do
             notify_user(handler.user, :ok, handler)
@@ -21,8 +24,8 @@ module Decidim
       private
 
       # Retrieves handler from Verification workflows registry.
-      def retrieve_handler(user_id)
-        Decidim::AuthorizationHandler.handler_for("civicrm", user: Decidim::User.find(user_id))
+      def retrieve_handler(user)
+        Decidim::AuthorizationHandler.handler_for("civicrm", user: user)
       end
 
       def notify_user(user, status, handler)

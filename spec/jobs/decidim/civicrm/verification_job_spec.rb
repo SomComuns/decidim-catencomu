@@ -5,9 +5,6 @@ require "rails_helper"
 module Decidim
   module Civicrm
     describe VerificationJob do
-      let!(:user) { create(:user) }
-      let!(:identity) { create(:identity, provider: "civicrm", user: user) }
-
       class TestRectifyPublisher < Rectify::Command
         include Wisper::Publisher
         def initialize(*args); end
@@ -21,6 +18,19 @@ module Decidim
       end
 
       context "when omniauth_registration event is notified" do
+        let!(:user) { create(:user) }
+        let!(:identity) { create(:identity, provider: "civicrm", user: user) }
+  
+        context "when user does not have an identity for civicrm" do
+          let!(:identity) { create(:identity, provider: "none", user: user) }
+
+          it "does nothing" do
+            stub_rectify_publisher("Decidim::Verifications::AuthorizeUser", :call, :ok)
+            expect(Decidim::EventsManager).not_to receive(:publish)
+            VerificationJob.new.perform(user.id)
+          end
+        end
+
         context "when authorization is created with success" do
           it "notifies the user for the success" do
             stub_rectify_publisher("Decidim::Verifications::AuthorizeUser", :call, :ok)
