@@ -4,7 +4,7 @@ module Decidim
   module Civicrm
     module Api
       module User
-        ROLES = { "6" => :interested, "7" => :inscribed }.freeze
+        ROLES = { "7" => :inscribed }.freeze
 
         class << self
           def from_contact(json)
