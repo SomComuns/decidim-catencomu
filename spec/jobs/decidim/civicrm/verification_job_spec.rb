@@ -20,7 +20,7 @@ module Decidim
       context "when omniauth_registration event is notified" do
         let!(:user) { create(:user) }
         let!(:identity) { create(:identity, provider: "civicrm", user: user) }
-  
+
         context "when user does not have an identity for civicrm" do
           let!(:identity) { create(:identity, provider: "none", user: user) }
 
