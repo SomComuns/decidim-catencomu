@@ -14,7 +14,8 @@ module Decidim
               name: json["display_name"],
               nickname: json["name"],
               role: parse_main_role(json),
-              regional_scope: parse_regional_scope(json)
+              regional_scope: parse_regional_scope(json),
+              groups: json["groups"]
             }
           end
 
