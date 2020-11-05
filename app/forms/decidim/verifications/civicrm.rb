@@ -15,7 +15,8 @@ module Decidim
         super.merge(
           contact_id: response[:contact_id],
           role: response[:role],
-          regional_scope: response[:regional_scope]
+          regional_scope: response[:regional_scope],
+          groups: response[:groups]
         )
       end
 

@@ -33,7 +33,7 @@ module Decidim
           response["values"][id.to_s]
         end
 
-        def get_user(id, with_contact: true)
+        def get_user(id, with_contact: true, with_groups: true)
           response = get(entity: "User", id: id)
 
           raise Error, "Malformed response in get_user: #{response.to_json}" unless response.has_key?("values")
@@ -44,6 +44,30 @@ module Decidim
 
           @contact = get_contact(@user["contact_id"])
           @user.merge(@contact)
+          
+          return @user unless with_groups
+
+          @user.merge({ groups: groups_for(@user["contact_id"]) })
+        end
+
+        def groups_for(contact_id)
+          get_groups.values.map { |group| group["id"] if in_group?(contact_id, group["id"]) }.compact
+        end
+
+        def in_group?(contact_id, group_id)
+          response = get(entity: "Contact", json: { group: group_id, contact_id: contact_id, return: "id"})
+          
+          raise Error, "Malformed response in get_groups: #{response.to_json}" unless response.has_key?("values")
+
+          response["values"].count > 0
+        end
+
+        def get_groups
+          response = get(entity: "Group", json: { return: "id, name, title, description, group_type" })
+
+          raise Error, "Malformed response in get_groups: #{response.to_json}" unless response.has_key?("values")
+
+          response["values"]
         end
 
         private
