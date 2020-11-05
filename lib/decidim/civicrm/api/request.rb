@@ -59,7 +59,7 @@ module Decidim
 
           raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
 
-          response["values"].positive?
+          response["values"].count.positive?
         end
 
         def fetch_groups
