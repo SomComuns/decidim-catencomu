@@ -1,0 +1,6 @@
+ca:
+  decidim:
+    authorization_handlers:
+      civicrm_groups:
+        name: CiViCRM Groups Authentication
+        explanation: CiViCRM Groups Authentication
