@@ -13,6 +13,7 @@ es:
           not-found: No se ha encontrado la usuario en CiViCRM
         explanation: Autorización mediante la cuenta de CiViCRM
         fields:
+          cn_member: Miembro del Consejo Nacional
           regional_scope: Ámbito Territorial
           regional_scope_choices:
             AT011: Baix Llobregat (AT011)

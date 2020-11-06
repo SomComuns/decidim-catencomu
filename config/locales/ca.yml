@@ -16,6 +16,7 @@ ca:
           not-found: No s'ha trobat l'usuària a CiViCRM
         explanation: Autorització mitjançant el compte de CiViCRM
         fields:
+          cn_member: Membre del Consell Nacional
           regional_scope: Àmbit Territorial
           regional_scope_choices:
             AT011: Baix Llobregat (AT011)

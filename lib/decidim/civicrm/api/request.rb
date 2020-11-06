@@ -44,6 +44,16 @@ module Decidim
 
           @contact = get_contact(@user["contact_id"])
           @user.merge(@contact)
+          @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
+        end
+
+        def in_group?(id, group)
+          response = get(entity: "Contact", json: { group: group, contact_id: id, return: "id,display_name" } )
+
+          raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
+
+          return false unless response["values"].count.positive?
+          return response["values"].first["contact_id"] == id.to_s
         end
 
         private
