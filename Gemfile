@@ -10,7 +10,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 
-gem "decidim-direct_verifications", { git: "https://github.com/Platoniq/decidim-verifications-direct_verifications" }
+gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications"
 
 gem "bootsnap", "~> 1.4"
 gem "health_check"
