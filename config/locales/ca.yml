@@ -35,6 +35,9 @@ ca:
             inscribed: Inscrita
             interested: Interessada
         name: CiViCRM
+      direct_verifications:
+        name: Consell Nacional
+        explanation: Verificació directa per al Consell Nacional
     events:
       civicrm_verification:
         errors:
