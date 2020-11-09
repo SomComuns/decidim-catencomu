@@ -5,7 +5,7 @@ module Decidim
     module Api
       module User
         ROLES = { "7" => :inscribed }.freeze
-        CN_GROUP = "Consell_Nacional_8".freeze
+        CN_GROUP = "Consell_Nacional_8"
 
         class << self
           def from_contact(json)
