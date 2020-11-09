@@ -50,13 +50,22 @@ module Decidim
         end
 
         def in_group?(id, group)
-          response = get(entity: "Contact", json: { group: group, contact_id: id, return: "id,display_name" })
+          params = {
+            entity: "Contact",
+            contact_id: id,
+            json: {
+              group: group,
+              return: "id,display_name"
+            }
+          }
+
+          response = get(params)
 
           raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
 
           return false unless response["values"].count.positive?
 
-          response["values"].values.first["contact_id"] == id.to_s
+          response["values"].values.first["contact_id"]&.to_i == id.to_i
         end
 
         private
