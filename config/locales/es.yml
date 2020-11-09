@@ -68,5 +68,9 @@ es:
             first_login:
               actions:
                 civicrm: Verifícate con tu cuenta de Catalunya en Comú
+  devise:
+    shared:
+      links:
+        sign_in_with_provider: Iniciar sesión
   forms:
     required_explanation: "* Los campos obligatorios están marcados con un asterisco"

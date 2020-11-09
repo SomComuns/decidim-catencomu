@@ -70,5 +70,9 @@ ca:
         first_login:
           actions:
             civicrm: Verifica't amb el compte de Catalunya en Comú
+  devise:
+    shared:
+      links:
+        sign_in_with_provider: Iniciar sessió
   forms:
     required_explanation: "* Els camps obligatoris estan marcats amb un asterisc"
