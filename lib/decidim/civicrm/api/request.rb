@@ -54,7 +54,7 @@ module Decidim
 
           return false unless response["values"].count.positive?
 
-          response["values"].first["contact_id"] == id.to_s
+          response["values"].values.first["contact_id"] == id.to_s
         end
 
         private
