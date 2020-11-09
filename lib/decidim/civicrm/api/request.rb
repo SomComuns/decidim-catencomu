@@ -20,9 +20,9 @@ module Decidim
 
         def get_contact(id)
           params = {
-            :entity => "Contact",
-            :contact_id => id,
-            :json => {
+            entity: "Contact",
+            contact_id: id,
+            json: {
               :sequential => 1,
               :return => "roles",
               "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
