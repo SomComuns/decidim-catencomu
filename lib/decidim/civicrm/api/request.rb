@@ -65,7 +65,7 @@ module Decidim
 
           return false unless response["values"].count.positive?
 
-          response["values"].values.first["contact_id"]&.to_i == id.to_i
+          return "1" if response["values"].values.first["contact_id"]&.to_i == id.to_i
         end
 
         private
