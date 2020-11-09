@@ -10,8 +10,8 @@ es:
         error: Ha ocurrido un error a la hora de verificar la cuenta
         error_codes:
           '2001': Los parámetros enviados son incorrectos
-          not-found: No se ha encontrado la usuario en CiViCRM
-        explanation: Autorización mediante la cuenta de CiViCRM
+          not-found: No se ha encontrado la usuaria en Catalunya en Comú
+        explanation: Autorización mediante la cuenta de Catalunya en Comú
         fields:
           cn_member: Miembro del Consejo Nacional
           regional_scope: Ámbito Territorial
@@ -32,7 +32,7 @@ es:
           role_choices:
             inscribed: Inscrita
             interested: Interesada
-        name: CiViCRM
+        name: Catalunya en Comú
       direct_verifications:
         explanation: Verificación directa para el Consejo Nacional
         name: Consejo Nacional
@@ -44,17 +44,17 @@ es:
           invalid_status: No se os ha podido verificar. La verificación OAuth2 ha
             fallado.
         invalid:
-          email_intro: La verificación con CiViCRM ha fallado.
+          email_intro: La verificación con Catalunya en Comú ha fallado.
           email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma
             para comprobar el error que ha ocurrido.
-          email_subject: No se os ha podido verificar con CiViCRM.
-          notification_title: La verificación con CiViCRM ha fallado.
+          email_subject: No se os ha podido verificar con Catalunya en Comú.
+          notification_title: La verificación con Catalunya en Comú ha fallado.
         ok:
-          email_intro: Te has verificado correctamente mediante CiViCRM.
+          email_intro: Te has verificado correctamente con Catalunya en Comú.
           email_outro: A partir de ahora ya puedes participar en todas aquellas acciones
-            que requieran autorización expresa mediante este método.
-          email_subject: Te has verificado mediante CiViCRM.
-          notification_title: Te has verificado mediante CiViCRM correctamente.
+            que requieran la autorización de Catalunya en Comú.
+          email_subject: Te has verificado con Catalunya en Comú.
+          notification_title: Te has verificado correctamente con Catalunya en Comú.
     system:
       organizations:
         omniauth_settings:
@@ -63,5 +63,10 @@ es:
             client_secret: Secreto de cliente
             site: URL del servidor de Omniauth
           enabled_by_default: Activado por defecto
+        verifications:
+          authorizations:
+            first_login:
+              actions:
+                civicrm: Verifícate con tu cuenta de Catalunya en Comú
   forms:
     required_explanation: "* Los campos obligatorios están marcados con un asterisco"
