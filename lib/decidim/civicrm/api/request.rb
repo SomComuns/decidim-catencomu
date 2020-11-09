@@ -22,12 +22,14 @@ module Decidim
           params = {
             :entity => "Contact",
             :contact_id => id,
-            :return => "roles",
-            "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
+            :json => {
+              :sequential => 1,
+              :return => "roles",
+              "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
+            }
           }
 
           response = get(params)
-
           raise Error, "Malformed response in get_contact: #{response.to_json}" unless response.has_key?("values")
 
           response["values"][id.to_s]
