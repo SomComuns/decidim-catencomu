@@ -13,8 +13,8 @@ ca:
         error: Hi ha hagut un error a l'hora de verificar el compte
         error_codes:
           '2001': Els paràmetres enviats són incorrectes
-          not-found: No s'ha trobat l'usuària a CiViCRM
-        explanation: Autorització mitjançant el compte de CiViCRM
+          not-found: No s'ha trobat l'usuària de Catalunya en Comú
+        explanation: Autorització mitjançant el compte de Catalunya en Comú
         fields:
           cn_member: Membre del Consell Nacional
           regional_scope: Àmbit Territorial
@@ -35,7 +35,7 @@ ca:
           role_choices:
             inscribed: Inscrita
             interested: Interessada
-        name: CiViCRM
+        name: Catalunya en Comú
       direct_verifications:
         name: Consell Nacional
         explanation: Verificació directa per al Consell Nacional
@@ -46,17 +46,17 @@ ca:
             no era "civicrm" tal com s'esperava.
           invalid_status: No us heu pogut verificar. La verificació OAuth2 ha fallat.
         invalid:
-          email_intro: La verificació CiViCRM ha fallat.
+          email_intro: La verificació amb Catalunya en Comú ha fallat.
           email_outro: Si us plau, poseu-vos en contacte amb el suport de la vostra
             plataforma per comprovar l'error que s'ha produït.
-          email_subject: No us heu pogut verificar amb CiViCRM.
-          notification_title: La verificació CiViCRM ha fallat.
+          email_subject: No us heu pogut verificar amb Catalunya en Comú.
+          notification_title: La verificació Catalunya en Comú ha fallat.
         ok:
-          email_intro: Us heu verificat correctament amb CiViCRM.
+          email_intro: Us heu verificat correctament amb Catalunya en Comú.
           email_outro: Ara podeu realitzar totes les accions que requereixin l'autorització
-            de CiViCRM.
-          email_subject: Us heu verificat amb CiViCRM.
-          notification_title: Us heu verificat correctament amb CiViCRM.
+            de Catalunya en Comú.
+          email_subject: Us heu verificat amb Catalunya en Comú.
+          notification_title: Us heu verificat correctament amb Catalunya en Comú.
     system:
       organizations:
         omniauth_settings:
@@ -69,6 +69,6 @@ ca:
       authorizations:
         first_login:
           actions:
-            civicrm: Verifica't amb el compte de CiViCRM
+            civicrm: Verifica't amb el compte de Catalunya en Comú
   forms:
     required_explanation: "* Els camps obligatoris estan marcats amb un asterisc"
