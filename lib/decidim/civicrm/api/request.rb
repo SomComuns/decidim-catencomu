@@ -24,7 +24,7 @@ module Decidim
             contact_id: id,
             json: {
               :sequential => 1,
-              :return => "roles",
+              :return => "roles,display_name",
               "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
             }
           }
@@ -43,10 +43,9 @@ module Decidim
           @user = response["values"][id.to_s]
 
           return @user unless with_contact
-
           @contact = get_contact(@user["contact_id"])
-          @user.merge(@contact)
-          @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
+          @user = @user.merge(@contact)
+          @user = @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
         end
 
         def in_group?(id, group)
