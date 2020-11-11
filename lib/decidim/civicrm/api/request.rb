@@ -9,7 +9,7 @@ module Decidim
         end
 
         def get(extra_params = {})
-          response ||= Faraday.get config[:url] do |request|
+          response = Faraday.get config[:url] do |request|
             request.params = request_params.merge(extra_params)
           end
 
@@ -43,6 +43,7 @@ module Decidim
           @user = response["values"][id.to_s]
 
           return @user unless with_contact
+
           @contact = get_contact(@user["contact_id"])
           @user = @user.merge(@contact)
           @user = @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
@@ -64,7 +65,7 @@ module Decidim
           raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
 
           return false unless response["values"].count.positive?
-          
+
           contact_id = response["values"].values.first["contact_id"]
 
           contact_id.to_i == id.to_i ? "1" : false
