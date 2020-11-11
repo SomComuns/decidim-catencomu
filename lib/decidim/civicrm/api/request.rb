@@ -51,10 +51,11 @@ module Decidim
         def in_group?(id, group)
           params = {
             entity: "Contact",
-            contact_id: id,
             json: {
+              sequential: 1,
+              contact_id: id,
               group: group,
-              return: "id,display_name"
+              return: "id,display_name,group"
             }
           }
 
@@ -63,8 +64,10 @@ module Decidim
           raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
 
           return false unless response["values"].count.positive?
+          
+          contact_id = response["values"].values.first["contact_id"]
 
-          return "1" if response["values"].values.first["contact_id"]&.to_i == id.to_i
+          contact_id.to_i == id.to_i ? "1" : false
         end
 
         private
