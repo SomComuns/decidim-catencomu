@@ -4,10 +4,6 @@ module Decidim
   module Civicrm
     module Api
       class Request
-        def initialize(params = {})
-          @params = params
-        end
-
         def get(extra_params = {})
           response = Faraday.get config[:url] do |request|
             request.params = request_params.merge(extra_params)
@@ -26,21 +22,29 @@ module Decidim
               :sequential => 1,
               :return => "roles,display_name",
               "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
-            }
+            }.to_json
           }
 
           response = get(params)
           raise Error, "Malformed response in get_contact: #{response.to_json}" unless response.has_key?("values")
 
-          response["values"][id.to_s]
+          response["values"].first
         end
 
         def get_user(id, with_contact: true)
-          response = get(entity: "User", id: id)
+          params = {
+            entity: "User",
+            id: id,
+            json: {
+              sequential: 1
+            }.to_json
+          }
+
+          response = get(params)
 
           raise Error, "Malformed response in get_user: #{response.to_json}" unless response.has_key?("values")
 
-          @user = response["values"][id.to_s]
+          @user = response["values"].first
 
           return @user unless with_contact
 
@@ -57,7 +61,7 @@ module Decidim
               contact_id: id,
               group: group,
               return: "id,display_name,group"
-            }
+            }.to_json
           }
 
           response = get(params)
@@ -66,7 +70,7 @@ module Decidim
 
           return false unless response["values"].count.positive?
 
-          contact_id = response["values"].values.first["contact_id"]
+          contact_id = response["values"].first["contact_id"]
 
           contact_id.to_i == id.to_i ? "1" : false
         end
@@ -74,12 +78,11 @@ module Decidim
         private
 
         def request_params
-          @params.reverse_merge(
+          {
             action: "Get",
             api_key: config[:api_key],
-            key: config[:secret],
-            json: @params.fetch(:json, true)
-          )
+            key: config[:secret]
+          }
         end
 
         def config
