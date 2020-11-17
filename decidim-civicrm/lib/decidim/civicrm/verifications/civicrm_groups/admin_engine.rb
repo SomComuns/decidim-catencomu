@@ -12,13 +12,13 @@ module Decidim
           paths["db/migrate"] = nil
           paths["lib/tasks"] = nil
 
-          # routes do
-          #   resources :groups, only: :index do
-          #     get :refresh, on: :collection
-          #   end
+          routes do
+            resources :groups, only: :index do
+              get :refresh, on: :collection
+            end
 
-          #   root to: "groups#index"
-          # end
+            root to: "groups#index"
+          end
         end
       end
     end
