@@ -8,5 +8,14 @@ ca:
       verifications:
         civicrm_groups:
           admin:
-            index:
-              title: Grups
+            groups:
+              index:
+                title: Grups
+                id: ID
+                name: Nom
+                description: Descripció
+                visibility: Visibilitat
+                group_type: Tipus
+                is_active: Actiu
+                is_hidden: Amagat
+                is_reserved: Reservat

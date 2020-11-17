@@ -1,18 +1,39 @@
 <div class="card">
   <div class="card-divider">
     <h2 class="card-title">
-      <%= t("admin.index.title", scope: "decidim.civicrm.verifications.civicrm_groups") %>
+      <%= t(".title") %>
     </h2>
   </div>
   <div class="card-section">
-    <table>
-      <% groups.each do |group| %>
+    <table class="table-list">
+      <thead>
         <tr>
-          <td>
-            <%= group %>
-          </td>
+          <th><%= t(".id") %></th>
+          <th><%= t(".name") %></th>
+          <th><%= t(".description") %></th>
+          <th><%= t(".visibility") %></th>
+          <th><%= t(".group_type") %></th>
+          <th><%= t(".is_active") %></th>
+          <th><%= t(".is_hidden") %></th>
+          <th><%= t(".is_reserved") %></th>
+          <th></th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <% groups.each do |group| %>
+          <tr>
+            <td><%= group[:id] %></td>
+            <td><%= group[:name] %></td>
+            <td><%= group[:description] %></td>
+            <td><%= group[:visibility] %></td>
+            <td><%= group[:group_type] %></td>
+            <td><%= group[:is_active] %></td>
+            <td><%= group[:is_hidden] %></td>
+            <td><%= group[:is_reserved] %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
