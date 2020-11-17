@@ -5,14 +5,12 @@
     </h2>
   </div>
   <div class="card-section">
-    <table class="table-list">
+    <table class="table-list civicrm-groups">
       <thead>
         <tr>
           <th><%= t(".id") %></th>
           <th><%= t(".name") %></th>
           <th><%= t(".description") %></th>
-          <th><%= t(".visibility") %></th>
-          <th><%= t(".group_type") %></th>
           <th><%= t(".is_active") %></th>
           <th><%= t(".is_hidden") %></th>
           <th><%= t(".is_reserved") %></th>
@@ -23,13 +21,11 @@
         <% groups.each do |group| %>
           <tr>
             <td><%= group[:id] %></td>
-            <td><%= group[:name] %></td>
-            <td><%= group[:description] %></td>
-            <td><%= group[:visibility] %></td>
-            <td><%= group[:group_type] %></td>
-            <td><%= group[:is_active] %></td>
-            <td><%= group[:is_hidden] %></td>
-            <td><%= group[:is_reserved] %></td>
+            <td class="text-left"><%= group[:name] %></td>
+            <td class="text-left"><%= group[:description] %></td>
+            <td><%= icon(group[:is_active] ? "check" : "minus", class: "icon--small text-muted") %></td>
+            <td><%= icon(group[:is_hidden] ? "check" : "minus", class: "icon--small text-muted") %></td>
+            <td><%= icon(group[:is_reserved] ? "check" : "minus", class: "icon--small text-muted") %></td>
             <td></td>
           </tr>
         <% end %>
