@@ -55,11 +55,19 @@ module Decidim
         end
 
         def fetch_groups
-          response = get(entity: "Group", json: { return: "id, name, title, description, group_type" })
+          params = {
+            entity: "Group",
+            json: {
+              sequential: 1,
+              return: "id, name, title, description, group_type"
+            }.to_json
+          }
+
+          response = get(params)
 
           raise Error, "Malformed response in fetch_groups: #{response.to_json}" unless response.has_key?("values")
 
-          response["values"]
+          Group.parse_groups(response["values"])
         end
 
         def in_group?(id, group)
