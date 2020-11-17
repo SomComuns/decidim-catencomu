@@ -4,12 +4,8 @@ module Decidim
   module Civicrm
     module Api
       class Request
-        def initialize(params = {})
-          @params = params
-        end
-
         def get(extra_params = {})
-          response ||= Faraday.get config[:url] do |request|
+          response = Faraday.get config[:url] do |request|
             request.params = request_params.merge(extra_params)
           end
 
@@ -20,46 +16,42 @@ module Decidim
 
         def get_contact(id)
           params = {
-            :entity => "Contact",
-            :contact_id => id,
-            :return => "roles",
-            "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
+            entity: "Contact",
+            contact_id: id,
+            json: {
+              :sequential => 1,
+              :return => "roles,display_name",
+              "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
+            }.to_json
+          }
+
+          response = get(params)
+          raise Error, "Malformed response in get_contact: #{response.to_json}" unless response.has_key?("values")
+
+          response["values"].first
+        end
+
+        def get_user(id, with_contact: true)
+          params = {
+            entity: "User",
+            id: id,
+            json: {
+              sequential: 1
+            }.to_json
           }
 
           response = get(params)
 
-          raise Error, "Malformed response in get_contact: #{response.to_json}" unless response.has_key?("values")
-
-          response["values"][id.to_s]
-        end
-
-        def get_user(id, with_contact: true, with_groups: true)
-          response = get(entity: "User", id: id)
-
           raise Error, "Malformed response in get_user: #{response.to_json}" unless response.has_key?("values")
 
-          @user = response["values"][id.to_s]
+          @user = response["values"].first
 
           return @user unless with_contact
 
           @contact = get_contact(@user["contact_id"])
-          @user.merge(@contact)
 
-          return @user unless with_groups
-
-          @user.merge(groups: groups_for(@user["contact_id"]))
-        end
-
-        def groups_for(contact_id)
-          fetch_groups.values.map { |group| group["id"] if in_group?(contact_id, group["id"]) }.compact
-        end
-
-        def in_group?(contact_id, group_id)
-          response = get(entity: "Contact", json: { group: group_id, contact_id: contact_id, return: "id" })
-
-          raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
-
-          response["values"].count.positive?
+          @user = @user.merge(@contact)
+          @user = @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
         end
 
         def fetch_groups
@@ -70,15 +62,36 @@ module Decidim
           response["values"]
         end
 
+        def in_group?(id, group)
+          params = {
+            entity: "Contact",
+            json: {
+              sequential: 1,
+              contact_id: id,
+              group: group,
+              return: "id,display_name,group"
+            }.to_json
+          }
+
+          response = get(params)
+
+          raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
+
+          return false unless response["values"].count.positive?
+
+          contact_id = response["values"].first["contact_id"]
+
+          contact_id.to_i == id.to_i ? "1" : false
+        end
+
         private
 
         def request_params
-          @params.reverse_merge(
+          {
             action: "Get",
             api_key: config[:api_key],
-            key: config[:secret],
-            json: @params.fetch(:json, true)
-          )
+            key: config[:secret]
+          }
         end
 
         def config

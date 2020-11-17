@@ -4,7 +4,8 @@ module Decidim
   module Civicrm
     module Api
       module User
-        ROLES = { "6" => :interested, "7" => :inscribed }.freeze
+        ROLES = { "7" => :inscribed }.freeze
+        CN_GROUP = "Consell_Nacional_8"
 
         class << self
           def from_contact(json)
@@ -14,8 +15,8 @@ module Decidim
               name: json["display_name"],
               nickname: json["name"],
               role: parse_main_role(json),
-              regional_scope: parse_regional_scope(json),
-              groups: json["groups"]
+              cn_member: json[:cn_member],
+              regional_scope: parse_regional_scope(json)
             }
           end
 
