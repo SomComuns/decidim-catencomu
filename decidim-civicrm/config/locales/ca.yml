@@ -18,6 +18,6 @@ ca:
                 group_type: Tipus
                 is_active: Actiu
                 is_hidden: Amagat
-                is_reserved: Reserva
+                is_reserved: Reservat
                 "no": "No"
                 "yes": "Sí"
