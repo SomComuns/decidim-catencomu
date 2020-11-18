@@ -15,6 +15,12 @@ module Decidim
               enforce_permission_to :index, :authorization
             end
 
+            def refresh
+              enforce_permission_to :create, :authorization
+              
+              GroupVerificationJob.perform_later(params[:id])
+            end
+
             def authorization_handler(authorization_handler)
               @authorization_handler = authorization_handler.presence || :civicrm_groups
             end

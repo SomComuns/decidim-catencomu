@@ -14,7 +14,7 @@ module Decidim
 
           routes do
             resources :groups, only: :index do
-              get :refresh, on: :collection
+              get :refresh, on: :member
             end
 
             root to: "groups#index"
