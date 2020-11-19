@@ -84,7 +84,7 @@ module Decidim
 
           response = get(params)
 
-          raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
+          raise Error, "Malformed response in users_in_group: #{response.to_json}" unless response.has_key?("values")
 
           response["values"]
         end
