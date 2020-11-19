@@ -19,11 +19,11 @@ module Decidim
               enforce_permission_to :create, :authorization
 
               if params[:id].present?
-                Decidim::Civicrm::GroupVerificationJob.perform_later(params[:id], params[:name])
+                Decidim::Civicrm::GroupVerificationJob.perform_later(groups, params[:id], params[:name])
 
-                flash[:notice] = I18n.t("groups.update.success", group: params[:name], scope: "decidim.civicrm.verifications.groups.admin")
+                flash[:notice] = I18n.t("groups.update.success", group: params[:title], scope: "decidim.civicrm.verifications.groups.admin")
               else
-                flash[:alert] = I18n.t("groups.update.error", group: params[:name], scope: "decidim.civicrm.verifications.groups.admin")
+                flash[:alert] = I18n.t("groups.update.error", group: params[:title], scope: "decidim.civicrm.verifications.groups.admin")
               end
               redirect_to root_path
             end
@@ -36,10 +36,8 @@ module Decidim
             end
 
             def groups
-              if @groups.blank?
-                @groups = Decidim::Civicrm::Api::Request.new.fetch_groups
-                update_group_verification_options
-              end
+              @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
+              update_group_verification_options
 
               @groups
             rescue Decidim::Civicrm::Api::Error
@@ -50,17 +48,14 @@ module Decidim
             def update_group_verification_options
               fields_translations = {}
 
-              workflow = Decidim::Verifications.find_workflow_manifest("groups")
-              workflow.options do |options|
-                groups.each do |group|
-                  fields_translations[group[:name]] = group[:title]
-                  options.attribute group[:name].to_sym, type: :boolean, default: false
-                end
+              @groups.each do |group|
+                key = Decidim::Civicrm::Api::Group.name_to_key(group[:name])
+                fields_translations[key] = group[:title]
               end
 
               I18n.available_locales.each do |locale|
                 I18n.backend.store_translations(
-                  locale, decidim: { authorization_handlers: { groups: { fields: fields_translations } } }
+                  locale, decidim: { authorization_handlers: { groups: { fields: { group_choices: fields_translations } } } }
                 )
               end
             end

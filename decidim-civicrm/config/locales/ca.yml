@@ -4,6 +4,8 @@ ca:
       groups:
         name: CiViCRM Groups Authentication
         explanation: CiViCRM Groups Authentication
+        fields:
+          group: Grup
     civicrm:
       verifications:
         groups:
