@@ -78,7 +78,7 @@ module Decidim
               options: { limit: 0 },
               group: group,
               return: "id,display_name,group",
-              "api.User.get" => { "return" => "id" },
+              "api.User.get" => { "return" => "id" }
             }.to_json
           }
 

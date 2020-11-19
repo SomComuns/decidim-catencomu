@@ -50,12 +50,10 @@ module Decidim
             end
 
             def groups
-              begin
-                @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
-              rescue
-                flash.now[:alert] = I18n.t("groups.index.error", scope: "decidim.civicrm.verifications.civicrm_groups.admin")
-                @groups = []
-              end
+              @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
+            rescue StandardError
+              flash.now[:alert] = I18n.t("groups.index.error", scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+              @groups = []
             end
           end
         end
