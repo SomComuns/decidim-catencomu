@@ -9,25 +9,21 @@
       <table class="table-list civicrm-groups">
         <thead>
           <tr>
-            <th><%= t(".id") %></th>
+            <th><%= t(".group_title") %></th>
             <th><%= t(".name") %></th>
             <th><%= t(".description") %></th>
-            <th><%= t(".is_active") %></th>
-            <th><%= t(".is_hidden") %></th>
-            <th><%= t(".is_reserved") %></th>
+            <th><%= t(".visibility") %></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <% groups.each do |group| %>
             <tr>
-              <td><%= group[:id] %></td>
-              <td class="text-left"><%= group[:name] %></td>
-              <td class="text-left"><%= group[:description] %></td>
-              <td><%= icon(group[:is_active] ? "check" : "minus", class: "icon--small text-muted") %></td>
-              <td><%= icon(group[:is_hidden] ? "check" : "minus", class: "icon--small text-muted") %></td>
-              <td><%= icon(group[:is_reserved] ? "check" : "minus", class: "icon--small text-muted") %></td>
-              <td><%= icon_link_to "reload", group_path(id: group[:id], name: group[:name]), t(".update"), method: :post %></td>
+              <td><%= group[:title] %></td>
+              <td><%= group[:name] %></td>
+              <td><%= group[:description] %></td>
+              <td><%= group[:visibility] %></td>
+              <td><%= icon_link_to "reload", group_path(id: group[:id], name: group[:title]), t(".update"), method: :post %></td>
             </tr>
           <% end %>
         </tbody>

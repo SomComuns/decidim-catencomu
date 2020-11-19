@@ -59,7 +59,9 @@ module Decidim
             entity: "Group",
             json: {
               sequential: 1,
-              return: "id, name, title, description, group_type"
+              options: { limit: 0 },
+              return: "id, name, title, description, group_type, visibility",
+              is_active: true
             }.to_json
           }
 
