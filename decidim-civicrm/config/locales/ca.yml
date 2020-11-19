@@ -11,6 +11,7 @@ ca:
             groups:
               index:
                 title: Grups
+                group_title: Títol
                 id: ID
                 name: Nom
                 description: Descripció

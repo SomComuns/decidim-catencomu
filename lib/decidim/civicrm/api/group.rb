@@ -13,6 +13,7 @@ module Decidim
             {
               id: json["id"],
               name: json["name"],
+              title: json["title"],
               description: json["description"],
               visibility: json["visibility"],
               group_type: json["group_type"],
