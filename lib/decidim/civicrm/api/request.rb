@@ -70,6 +70,25 @@ module Decidim
           Group.parse_groups(response["values"])
         end
 
+        def users_in_group(group)
+          params = {
+            entity: "Contact",
+            json: {
+              sequential: 1,
+              options: { limit: 0 },
+              group: group,
+              return: "id,display_name,group",
+              "api.User.get" => { "return" => "id" },
+            }.to_json
+          }
+
+          response = get(params)
+
+          raise Error, "Malformed response in in_group?: #{response.to_json}" unless response.has_key?("values")
+
+          response["values"]
+        end
+
         def in_group?(id, group)
           params = {
             entity: "Contact",
