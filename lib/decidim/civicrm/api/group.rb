@@ -22,6 +22,10 @@ module Decidim
               is_reserved: json["is_reserved"]
             }
           end
+
+          def name_to_key(name)
+            name.to_s.downcase.to_sym
+          end
         end
       end
     end

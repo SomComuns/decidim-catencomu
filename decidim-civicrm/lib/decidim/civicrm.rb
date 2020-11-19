@@ -2,6 +2,7 @@
 
 require "decidim/civicrm/verifications/groups/admin"
 require "decidim/civicrm/verifications/groups/admin_engine"
+require "decidim/civicrm/verifications/groups/engine"
 require "decidim/civicrm/verifications/groups/workflow"
 
 module Decidim
