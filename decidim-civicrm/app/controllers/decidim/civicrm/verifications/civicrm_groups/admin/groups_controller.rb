@@ -15,10 +15,17 @@ module Decidim
               enforce_permission_to :index, :authorization
             end
 
-            def refresh
+            def update
               enforce_permission_to :create, :authorization
-              
-              GroupVerificationJob.perform_later(params[:id])
+
+              if params[:id].present?
+                Decidim::Civicrm::GroupVerificationJob.perform_later(params[:id])
+
+                flash[:notice] = I18n.t("groups.update.success", group: params[:name], scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+              else
+                flash[:alert] = I18n.t("groups.update.error", group: params[:name], scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+              end
+              redirect_to root_path
             end
 
             def authorization_handler(authorization_handler)
@@ -43,7 +50,12 @@ module Decidim
             end
 
             def groups
-              @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
+              begin
+                @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
+              rescue
+                flash.now[:alert] = I18n.t("groups.index.error", scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+                @groups = []
+              end
             end
           end
         end
