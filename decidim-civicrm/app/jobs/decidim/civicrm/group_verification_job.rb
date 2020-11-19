@@ -12,19 +12,21 @@ module Decidim
 
         Decidim::User.where(id: user_ids).find_each do |user|
           authorization = Decidim::Authorization.find_by(user: user, name: "groups")
-          authorization = Decidim.create!(
-            user: user,
-            name: "groups",
-            metadata: {},
-            unique_id: Digest::SHA512.hexdigest(
-              "#{uid}-#{Rails.application.secrets.secret_key_base}"
+          if authorization.blank?
+            authorization = Decidim.create!(
+              user: user,
+              name: "groups",
+              metadata: {},
+              unique_id: Digest::SHA512.hexdigest(
+                "#{uid}-#{Rails.application.secrets.secret_key_base}"
+              )
             )
-          ) if authorization.blank?
+          end
 
           metadata = authorization.metadata.merge(group_name => true)
 
           authorization.update!(metadata: metadata)
-          
+
           notify_user(user) if authorization.grant!
         end
       end
