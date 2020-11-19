@@ -1,12 +1,12 @@
 ca:
   decidim:
     authorization_handlers:
-      civicrm_groups:
+      groups:
         name: CiViCRM Groups Authentication
         explanation: CiViCRM Groups Authentication
     civicrm:
       verifications:
-        civicrm_groups:
+        groups:
           admin:
             groups:
               index:
