@@ -13,9 +13,7 @@ module Decidim
           paths["lib/tasks"] = nil
 
           routes do
-            resources :groups, only: :index do
-              get :refresh, on: :member
-            end
+            resources :groups, only: [:index, :update]
 
             root to: "groups#index"
           end

@@ -5,31 +5,35 @@
     </h2>
   </div>
   <div class="card-section">
-    <table class="table-list civicrm-groups">
-      <thead>
-        <tr>
-          <th><%= t(".id") %></th>
-          <th><%= t(".name") %></th>
-          <th><%= t(".description") %></th>
-          <th><%= t(".is_active") %></th>
-          <th><%= t(".is_hidden") %></th>
-          <th><%= t(".is_reserved") %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% groups.each do |group| %>
+    <% if groups.present? %>
+      <table class="table-list civicrm-groups">
+        <thead>
           <tr>
-            <td><%= group[:id] %></td>
-            <td class="text-left"><%= group[:name] %></td>
-            <td class="text-left"><%= group[:description] %></td>
-            <td><%= icon(group[:is_active] ? "check" : "minus", class: "icon--small text-muted") %></td>
-            <td><%= icon(group[:is_hidden] ? "check" : "minus", class: "icon--small text-muted") %></td>
-            <td><%= icon(group[:is_reserved] ? "check" : "minus", class: "icon--small text-muted") %></td>
-            <td></td>
+            <th><%= t(".id") %></th>
+            <th><%= t(".name") %></th>
+            <th><%= t(".description") %></th>
+            <th><%= t(".is_active") %></th>
+            <th><%= t(".is_hidden") %></th>
+            <th><%= t(".is_reserved") %></th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% groups.each do |group| %>
+            <tr>
+              <td><%= group[:id] %></td>
+              <td class="text-left"><%= group[:name] %></td>
+              <td class="text-left"><%= group[:description] %></td>
+              <td><%= icon(group[:is_active] ? "check" : "minus", class: "icon--small text-muted") %></td>
+              <td><%= icon(group[:is_hidden] ? "check" : "minus", class: "icon--small text-muted") %></td>
+              <td><%= icon(group[:is_reserved] ? "check" : "minus", class: "icon--small text-muted") %></td>
+              <td><%= icon_link_to "reload", group_path(id: group[:id], name: group[:name]), t(".update"), method: :post %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="alert"><%= t(".error") %></p>
+    <% end %>
   </div>
 </div>
