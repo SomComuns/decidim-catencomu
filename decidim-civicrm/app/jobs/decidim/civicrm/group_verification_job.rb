@@ -13,12 +13,12 @@ module Decidim
         Decidim::User.where(id: user_ids).find_each do |user|
           authorization = Decidim::Authorization.find_by(user: user, name: "groups")
           if authorization.blank?
-            authorization = Decidim.create!(
+            authorization = Decidim::Authorization.create!(
               user: user,
               name: "groups",
               metadata: {},
               unique_id: Digest::SHA512.hexdigest(
-                "#{uid}-#{Rails.application.secrets.secret_key_base}"
+                "#{user.id}-groups-#{Rails.application.secrets.secret_key_base}"
               )
             )
           end
