@@ -1,0 +1,5 @@
+en:
+  decidim:
+    authorization_handlers:
+      groups:
+        name: CiViCRM Groups Authentication
