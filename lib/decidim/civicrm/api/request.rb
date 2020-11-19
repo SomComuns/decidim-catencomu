@@ -49,8 +49,46 @@ module Decidim
           return @user unless with_contact
 
           @contact = get_contact(@user["contact_id"])
+
           @user = @user.merge(@contact)
           @user = @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
+        end
+
+        def fetch_groups
+          params = {
+            entity: "Group",
+            json: {
+              sequential: 1,
+              options: { limit: 0 },
+              return: "id, name, title, description, group_type, visibility",
+              is_active: true
+            }.to_json
+          }
+
+          response = get(params)
+
+          raise Error, "Malformed response in fetch_groups: #{response.to_json}" unless response.has_key?("values")
+
+          Group.parse_groups(response["values"])
+        end
+
+        def users_in_group(group)
+          params = {
+            entity: "Contact",
+            json: {
+              sequential: 1,
+              options: { limit: 0 },
+              group: group,
+              return: "id,display_name,group",
+              "api.User.get" => { "return" => "id" }
+            }.to_json
+          }
+
+          response = get(params)
+
+          raise Error, "Malformed response in users_in_group: #{response.to_json}" unless response.has_key?("values")
+
+          response["values"]
         end
 
         def in_group?(id, group)

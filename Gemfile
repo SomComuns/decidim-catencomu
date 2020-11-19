@@ -9,6 +9,7 @@ DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/
 gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
+gem "decidim-civicrm", path: "./decidim-civicrm"
 
 gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications"
 

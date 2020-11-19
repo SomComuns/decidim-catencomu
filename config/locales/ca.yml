@@ -36,6 +36,9 @@ ca:
             inscribed: Inscrita
             interested: Interessada
         name: Catalunya en Comú
+      groups:
+        name: Grups Intel·ligents Catalunya en Comú
+        explanation: Grups Intel·ligents Catalunya en Comú
       direct_verifications:
         name: Consell Nacional
         explanation: Verificació directa per al Consell Nacional

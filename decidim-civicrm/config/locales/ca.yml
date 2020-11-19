@@ -1,0 +1,31 @@
+ca:
+  decidim:
+    authorization_handlers:
+      groups:
+        name: CiViCRM Groups Authentication
+        explanation: CiViCRM Groups Authentication
+        fields:
+          group: Grup
+    civicrm:
+      verifications:
+        groups:
+          admin:
+            groups:
+              index:
+                title: Grups
+                group_title: Títol
+                id: ID
+                name: Nom
+                description: Descripció
+                visibility: Visibilitat
+                group_type: Tipus
+                is_active: Actiu
+                is_hidden: Amagat
+                is_reserved: Reservat
+                "no": "No"
+                "yes": "Sí"
+                update: Actualitza
+                error: No s'han pogut obtenir els grups per un error a l'API.
+              update:
+                success: S'han actualitzat les verificacions per les usuàries del grup %{group}
+                error: No s'han pogut actualitzat les verificacions per les usuàries del grup %{group}
