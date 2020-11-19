@@ -13,7 +13,7 @@ module Decidim
           paths["lib/tasks"] = nil
 
           routes do
-            resources :groups, only: [:index, :update]
+            post ":id", to: "groups#update", as: :group
 
             root to: "groups#index"
           end
