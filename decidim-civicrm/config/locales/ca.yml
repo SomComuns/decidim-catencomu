@@ -4,33 +4,6 @@ ca:
       groups:
         name: CiViCRM Groups Authentication
         explanation: CiViCRM Groups Authentication
-        fields:
-          Administrators: Administradors
-          Case_Resources: Recursos del cas
-          Info_Puntual_3: Info Puntual
-          Colaboraciones_en_proyectos_pun_4: Información general de Catalunya en Comú
-          Campa_as_electorales_5: Campañas electorales
-          Colaboraciones_en_proyectos_pun_6: Colaboraciones en acciones puntuales
-          Informaci_n_de_tu_asamblea_loca_7: Información de tu asamblea local
-          Consell_Nacional_8: Consell Nacional (Grup intel·ligent)
-          Regidors_Afins_9: Regidors Afins
-          C_rrec_institucionals_10: Càrrecs institucionals
-          Prove_dors_prova_11: Proveïdors prova
-          Alt_Pirineu_Aran_12: Alt Pirineu-Aran (Grup intel·ligent)
-          Llistes_Territorials_13: Llistes Territorials
-          Baix_Llobregat_14: Baix Llobregat (Grup intel·ligent)
-          Barcelon_s_15: Barcelonès
-          Camp_de_Tarragona_16: Camp de Tarragona
-          Comarques_Centrals_17: Comarques Centrals
-          Comarques_Gironines_18: Comarques Gironines
-          Maresme_19: Maresme
-          Pened_s_20: Penedès
-          Ponent_21: Ponent
-          Terres_de_l_Ebre_22: Terres de l'Ebre
-          Vall_s_Occidental_23: Vallès Occidental (Grup intel·ligent)
-          Vall_s_Oriental_24: Vallès Oriental
-          Inscrits_Verificats_25: Inscrits  Verificats
-          Colaboraciones_econ_micas_26: Colaboraciones económicas
     civicrm:
       verifications:
         groups:

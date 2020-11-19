@@ -19,27 +19,13 @@ module Decidim
               enforce_permission_to :create, :authorization
 
               if params[:id].present?
-                Decidim::Civicrm::GroupVerificationJob.perform_later(params[:id])
+                Decidim::Civicrm::GroupVerificationJob.perform_later(params[:id], params[:name])
 
                 flash[:notice] = I18n.t("groups.update.success", group: params[:name], scope: "decidim.civicrm.verifications.groups.admin")
               else
                 flash[:alert] = I18n.t("groups.update.error", group: params[:name], scope: "decidim.civicrm.verifications.groups.admin")
               end
               redirect_to root_path
-            end
-
-            def authorization_handler(authorization_handler)
-              @authorization_handler = authorization_handler.presence || :groups
-            end
-
-            def current_authorization_handler
-              authorization_handler(params[:authorization_handler])
-            end
-
-            def configured_workflows
-              return Decidim::Civicrm.config.manage_workflows if Decidim::Civicrm.config
-
-              ["groups"]
             end
 
             def workflows
@@ -62,11 +48,20 @@ module Decidim
             end
 
             def update_group_verification_options
+              fields_translations = {}
+
               workflow = Decidim::Verifications.find_workflow_manifest("groups")
               workflow.options do |options|
                 groups.each do |group|
+                  fields_translations[group[:name]] = group[:title]
                   options.attribute group[:name].to_sym, type: :boolean, default: false
                 end
+              end
+
+              I18n.available_locales.each do |locale|
+                I18n.backend.store_translations(
+                  locale, decidim: { authorization_handlers: { groups: { fields: fields_translations } } }
+                )
               end
             end
           end
