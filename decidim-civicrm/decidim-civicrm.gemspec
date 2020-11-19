@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["vera@platoniq.net", "ivan@platoniq.net"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/decidim/decidim-module-civicrm"
-  s.required_ruby_version = ">= 2.5"
+  s.required_ruby_version = ">= 2.6"
 
   s.name = "decidim-civicrm"
   s.summary = "A decidim civicrm module"
