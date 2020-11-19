@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 require "decidim/civicrm/verifications/civicrm_groups/engine"

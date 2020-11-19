@@ -13,7 +13,7 @@ module Decidim
 
           routes do
             resource :authorizations, only: [:new], as: :authorization
-            
+
             root to: "authorizations#new"
           end
         end
@@ -21,4 +21,3 @@ module Decidim
     end
   end
 end
-
