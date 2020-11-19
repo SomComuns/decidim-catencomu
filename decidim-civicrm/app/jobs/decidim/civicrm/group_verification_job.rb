@@ -29,7 +29,7 @@ module Decidim
 
       # Retrieves handler from Verification workflows registry.
       def retrieve_handler(user)
-        Decidim::AuthorizationHandler.handler_for("civicrm_groups", user: user)
+        Decidim::AuthorizationHandler.handler_for("groups", user: user)
       end
 
       def notify_user(user, status, handler)

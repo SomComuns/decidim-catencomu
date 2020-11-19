@@ -3,7 +3,7 @@
 module Decidim
   module Civicrm
     module Verifications
-      module CivicrmGroups
+      module Groups
         # This module contains all the domain logic associated to Decidim's
         # civicrm group authorization admin panel.
         module Admin

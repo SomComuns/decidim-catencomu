@@ -3,11 +3,11 @@
 module Decidim
   module Civicrm
     module Verifications
-      module CivicrmGroups
+      module Groups
         # This is an engine that implements the administration interface for
         # user authorization by civicrm group.
         class AdminEngine < ::Rails::Engine
-          isolate_namespace Decidim::Civicrm::Verifications::CivicrmGroups::Admin
+          isolate_namespace Decidim::Civicrm::Verifications::Groups::Admin
 
           paths["db/migrate"] = nil
           paths["lib/tasks"] = nil

@@ -3,7 +3,7 @@
 module Decidim
   module Civicrm
     module Verifications
-      module CivicrmGroups
+      module Groups
         module Admin
           class GroupsController < Decidim::Admin::ApplicationController
             include NeedsPermission
@@ -21,15 +21,15 @@ module Decidim
               if params[:id].present?
                 Decidim::Civicrm::GroupVerificationJob.perform_later(params[:id])
 
-                flash[:notice] = I18n.t("groups.update.success", group: params[:name], scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+                flash[:notice] = I18n.t("groups.update.success", group: params[:name], scope: "decidim.civicrm.verifications.groups.admin")
               else
-                flash[:alert] = I18n.t("groups.update.error", group: params[:name], scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+                flash[:alert] = I18n.t("groups.update.error", group: params[:name], scope: "decidim.civicrm.verifications.groups.admin")
               end
               redirect_to root_path
             end
 
             def authorization_handler(authorization_handler)
-              @authorization_handler = authorization_handler.presence || :civicrm_groups
+              @authorization_handler = authorization_handler.presence || :groups
             end
 
             def current_authorization_handler
@@ -39,7 +39,7 @@ module Decidim
             def configured_workflows
               return Decidim::Civicrm.config.manage_workflows if Decidim::Civicrm.config
 
-              ["civicrm_groups"]
+              ["groups"]
             end
 
             def workflows
@@ -52,7 +52,7 @@ module Decidim
             def groups
               @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
             rescue StandardError
-              flash.now[:alert] = I18n.t("groups.index.error", scope: "decidim.civicrm.verifications.civicrm_groups.admin")
+              flash.now[:alert] = I18n.t("groups.index.error", scope: "decidim.civicrm.verifications.groups.admin")
               @groups = []
             end
           end

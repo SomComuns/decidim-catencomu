@@ -36,7 +36,7 @@ ca:
             inscribed: Inscrita
             interested: Interessada
         name: Catalunya en Comú
-      civicrm_groups:
+      groups:
         name: Grups Intel·ligents Catalunya en Comú
         explanation: Grups Intel·ligents Catalunya en Comú
       direct_verifications:
