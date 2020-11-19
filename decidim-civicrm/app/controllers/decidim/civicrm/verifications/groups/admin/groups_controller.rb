@@ -50,10 +50,24 @@ module Decidim
             end
 
             def groups
-              @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
-            rescue StandardError
+              if @groups.blank?
+                @groups = Decidim::Civicrm::Api::Request.new.fetch_groups
+                update_group_verification_options
+              end
+
+              @groups
+            rescue Decidim::Civicrm::Api::Error
               flash.now[:alert] = I18n.t("groups.index.error", scope: "decidim.civicrm.verifications.groups.admin")
               @groups = []
+            end
+
+            def update_group_verification_options
+              workflow = Decidim::Verifications.find_workflow_manifest("groups")
+              workflow.options do |options|
+                groups.each do |group|
+                  options.attribute group[:name].to_sym, type: :boolean, default: false
+                end
+              end
             end
           end
         end
