@@ -19,7 +19,7 @@ module Decidim
               enforce_permission_to :create, :authorization
 
               if params[:id].present?
-                Decidim::Civicrm::GroupVerificationJob.perform_later(groups, params[:id], params[:name])
+                Decidim::Civicrm::GroupVerificationJob.perform_later(groups, params[:id], params[:name], current_organization.id)
 
                 flash[:notice] = I18n.t("groups.update.success", group: params[:title], scope: "decidim.civicrm.verifications.groups.admin")
               else
