@@ -41,7 +41,8 @@ module Decidim
       end
 
       def user_valid
-        return false if response.blank?
+        return errors.add(:user, I18n.t("civicrm.error_codes.not_found", scope: "decidim.authorization_handlers")) if response.blank?
+
         return true if response["is_error"].blank?
 
         error_msg = response["error_message"]
