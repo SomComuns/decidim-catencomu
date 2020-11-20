@@ -48,7 +48,7 @@ module Decidim
           end
 
           def parse_regional_scope(json)
-            json.dig("api_Address_get", "values", 0, RegionalScope::FIELD_NAME)
+            json.dig("api.Address.get", "values", 0, RegionalScope::FIELD_NAME)
           end
         end
       end
