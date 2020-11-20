@@ -13,7 +13,7 @@ module Decidim
           paths["lib/tasks"] = nil
 
           routes do
-            root to: "authorizations#index"
+            root to: "authorizations#new"
           end
         end
       end
