@@ -7,7 +7,7 @@ module Decidim
         module Admin
           class GroupsController < Decidim::Admin::ApplicationController
             include NeedsPermission
-            helper_method :workflows, :groups
+            helper_method :groups
 
             layout "decidim/admin/users"
 
@@ -26,13 +26,6 @@ module Decidim
                 flash[:alert] = I18n.t("groups.update.error", group: params[:title], scope: "decidim.civicrm.verifications.groups.admin")
               end
               redirect_to root_path
-            end
-
-            def workflows
-              workflows = configured_workflows & current_organization.available_authorizations.map.to_a
-              workflows.map do |a|
-                [t("#{a}.name", scope: "decidim.authorization_handlers"), a]
-              end
             end
 
             def groups
