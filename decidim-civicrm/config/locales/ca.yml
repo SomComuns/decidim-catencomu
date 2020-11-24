@@ -6,7 +6,7 @@ ca:
           help:
             - Permet verificar totes les usuàries pertanyents a un grup intel·ligent del CRM de Catalunya en Comú
             - Només es pot crear aquest tipus de verificació des de la part d'administració de la plataforma
-            - Les usuàries només poden estar verificades con un grup
+            - Les usuàries només poden estar verificades amb un grup
             - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven verificades amb un altre, aquest es reemplaçarà pel nou grup
       groups:
         name: Autorització de Grups CiViCRM
