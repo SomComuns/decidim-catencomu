@@ -1,6 +1,9 @@
 ---
 es:
   decidim:
+    account:
+      show:
+        email_readonly_explanation: La dirección de correo electrónico no se puede modificar
     admin:
       filters:
         state_eq:
@@ -33,6 +36,9 @@ es:
             inscribed: Inscrita
             interested: Interesada
         name: Catalunya en Comú
+      groups:
+        name: Grupos Inteligentes Catalunya en Comú
+        explanation: Grupos Inteligentes Catalunya en Comú
       direct_verifications:
         explanation: Verificación directa para el Consejo Nacional
         name: Consejo Nacional
@@ -41,8 +47,7 @@ es:
         errors:
           invalid_method: No se os ha podido verificar. El método de verificación
             OAuth2 no era "civicrm" tal y como se esperaba.
-          invalid_status: No se os ha podido verificar. La verificación OAuth2 ha
-            fallado.
+          invalid_status: No se os ha podido verificar. La verificación OAuth2 ha fallado.
         invalid:
           email_intro: La verificación con Catalunya en Comú ha fallado.
           email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma
@@ -63,11 +68,11 @@ es:
             client_secret: Secreto de cliente
             site: URL del servidor de Omniauth
           enabled_by_default: Activado por defecto
-        verifications:
-          authorizations:
-            first_login:
-              actions:
-                civicrm: Verifícate con tu cuenta de Catalunya en Comú
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            civicrm: Verifícate con tu cuenta de Catalunya en Comú
   devise:
     shared:
       links:
