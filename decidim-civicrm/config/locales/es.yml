@@ -1,0 +1,29 @@
+ca:
+  decidim:
+    authorization_handlers:
+      groups:
+        name: Autorización de Grupos CiViCRM
+        explanation: Autorización de Grupos CiViCRM
+        fields:
+          group: Grupo
+    civicrm:
+      verifications:
+        groups:
+          admin:
+            groups:
+              index:
+                title: Grupos
+                group_title: Título
+                id: ID
+                name: Nombre
+                description: Descripción
+                visibility: Visibilidad
+                group_type: Tipo
+                is_active: Activo
+                is_hidden: Escondido
+                is_reserved: Reservado
+                update: Actualiza
+                error: No se han podido obtener los grupos por un error en la API.
+              update:
+                success: Se han actualizado las verificaciones para las usuarias del grupo "%{group}"
+                error: No se han podido actualizar las verificaciones para las usuarias del grupo "%{group}"
