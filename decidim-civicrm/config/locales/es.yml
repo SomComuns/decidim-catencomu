@@ -1,6 +1,14 @@
-ca:
+es:
   decidim:
     authorization_handlers:
+      admin:
+        groups:
+          help:
+            - Permite verificar a todas las usuarias que pertenezcan a un grupo inteligente del CRM de Catalunya en Comú
+            - Sólo se puede crear este tipo de verificación desde la parte de administración de la plataforma
+            - Las usuarias sólo pueden estar verificadas con un grupo
+            - Cuando se actualiza la verificación de un grupo, si las usuarias estaban verificadas con otro, éste se reemplazará por el nuevo grupo
+      groups:
       groups:
         name: Autorización de Grupos CiViCRM
         explanation: Autorización de Grupos CiViCRM
