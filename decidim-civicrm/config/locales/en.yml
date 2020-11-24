@@ -1,5 +1,29 @@
-en:
+ca:
   decidim:
     authorization_handlers:
       groups:
-        name: CiViCRM Groups Authentication
+        name: CiViCRM Groups Authorization
+        explanation: CiViCRM Groups Authorization
+        fields:
+          group: Group
+    civicrm:
+      verifications:
+        groups:
+          admin:
+            groups:
+              index:
+                title: Groups
+                group_title: Title
+                id: ID
+                name: Name
+                description: Description
+                visibility: Visibility
+                group_type: Type
+                is_active: Active
+                is_hidden: Hidden
+                is_reserved: Reserved
+                update: Update
+                error: The groups could not be fetched due to an error in the API.
+              update:
+                success: The verifications for users in the group "%{group}" have been updated
+                error: The verifications for users in the group "%{group}" could not be updated
