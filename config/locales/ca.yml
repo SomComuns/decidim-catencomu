@@ -8,6 +8,10 @@ ca:
       filters:
         state_eq:
           label: Label
+    components:
+      proposals:
+        actions:
+          comment: Comentar
     authorization_handlers:
       civicrm:
         error: Hi ha hagut un error a l'hora de verificar el compte
