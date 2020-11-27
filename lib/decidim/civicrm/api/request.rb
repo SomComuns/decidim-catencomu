@@ -51,7 +51,6 @@ module Decidim
           @contact = get_contact(@user["contact_id"])
 
           @user = @user.merge(@contact)
-          @user = @user.merge(cn_member: in_group?(@user["contact_id"], User::CN_GROUP))
         end
 
         def fetch_groups
