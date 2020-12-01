@@ -20,7 +20,6 @@ ca:
           not-found: No s'ha trobat l'usuària de Catalunya en Comú
         explanation: Autorització mitjançant el compte de Catalunya en Comú
         fields:
-          cn_member: Membre del Consell Nacional
           regional_scope: Àmbit Territorial
           regional_scope_choices:
             AT011: Baix Llobregat (AT011)
