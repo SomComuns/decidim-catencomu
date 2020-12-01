@@ -42,3 +42,4 @@ public/uploads
 
 # Ignore .rspec-failures
 .rspec-failures
+.s3cfg
