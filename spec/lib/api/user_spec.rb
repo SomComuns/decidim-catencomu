@@ -13,7 +13,7 @@ describe "Decidim::Civicrm::Api::User", type: :class do
         "display_name" => "Sir Arthur Dent",
         "name" => "arthur_dent",
         "roles" => {
-          "7" => "inscribed",
+          "7" => "inscribed"
         },
         "api_Address_get" => {
           "values" => [
