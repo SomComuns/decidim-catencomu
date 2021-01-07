@@ -15,7 +15,7 @@ describe "Decidim::Civicrm::Api::User", type: :class do
         "roles" => {
           "7" => "inscribed"
         },
-        "api_Address_get" => {
+        "api.Address.get" => {
           "values" => [
             "custom_23" => "AT000"
           ]
