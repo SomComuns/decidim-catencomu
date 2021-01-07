@@ -1,36 +1,68 @@
+---
 es:
   decidim:
+    account:
+      show:
+        email_readonly_explanation: La dirección de correo electrónico no se puede modificar
     admin:
       filters:
         state_eq:
           label: Label
+    components:
+      proposals:
+        actions:
+          comment: Comentar
     authorization_handlers:
       civicrm:
-        explanation: Autorización mediante la cuenta de CiViCRM
+        error: Ha ocurrido un error a la hora de verificar la cuenta
+        error_codes:
+          '2001': Los parámetros enviados son incorrectos
+          not-found: No se ha encontrado la usuaria en Catalunya en Comú
+        explanation: Autorización mediante la cuenta de Catalunya en Comú
         fields:
           regional_scope: Ámbito Territorial
           regional_scope_choices:
-            AT07: "Alt Pirineu i Aran (AT07)"
-            AT011: "Baix Llobregat (AT011)"
-            AT012: "Barcelonès (AT012)"
-            AT03: "Camp de Tarragona (AT03)"
-            AT06: "Comarques Centrals (AT06)"
-            AT02: "Comarques Gironines (AT02)"
-            AT013: "Maresme (AT013)"
-            AT08: "Penedès (AT08)"
-            AT05: "Ponent (AT05)"
-            AT04: "Terres de l'Ebre (AT04)"
-            AT014: "Vallès Occidental (AT014)"
-            AT015: "Vallès Oriental (AT015)"
+            AT011: Baix Llobregat (AT011)
+            AT012: Barcelonès (AT012)
+            AT013: Maresme (AT013)
+            AT014: Vallès Occidental (AT014)
+            AT015: Vallès Oriental (AT015)
+            AT02: Comarques Gironines (AT02)
+            AT03: Camp de Tarragona (AT03)
+            AT04: Terres de l'Ebre (AT04)
+            AT05: Ponent (AT05)
+            AT06: Comarques Centrals (AT06)
+            AT07: Alt Pirineu i Aran (AT07)
+            AT08: Penedès (AT08)
           role: Rol de usuaria
           role_choices:
-            interested: Interesada
             inscribed: Inscrita
-        name: CiViCRM
-        error: Ha ocurrido un error a la hora de verificar la cuenta
-        error_codes:
-          'not-found': No se ha encontrado la usuario en CiViCRM
-          '2001': Los parámetros enviados son incorrectos
+            interested: Interesada
+        name: Catalunya en Comú
+      groups:
+        name: Grupos Inteligentes Catalunya en Comú
+        explanation: Grupos Inteligentes Catalunya en Comú
+      direct_verifications:
+        explanation: Verificación directa para el Consejo Nacional
+        name: Consejo Nacional
+    events:
+      civicrm_verification:
+        errors:
+          invalid_method: No se os ha podido verificar. El método de verificación
+            OAuth2 no era "civicrm" tal y como se esperaba.
+          invalid_status: No se os ha podido verificar. La verificación OAuth2 ha fallado.
+        invalid:
+          email_intro: La verificación con Catalunya en Comú ha fallado.
+          email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma
+            para comprobar el error que ha ocurrido.
+          email_subject: No se os ha podido verificar con Catalunya en Comú.
+          notification_title: La verificación con Catalunya en Comú ha fallado.
+        ok:
+          email_intro: Te has verificado correctamente con Catalunya en Comú.
+          email_outro: A partir de ahora ya puedes participar en todas aquellas acciones
+            que requieran la autorización de Catalunya en Comú.
+          email_subject: Te has verificado con Catalunya en Comú.
+          notification_title: Te has verificado correctamente con Catalunya en Comú.
     system:
       organizations:
         omniauth_settings:
@@ -39,20 +71,14 @@ es:
             client_secret: Secreto de cliente
             site: URL del servidor de Omniauth
           enabled_by_default: Activado por defecto
-    events:
-      civicrm_verification:
-        errors:
-          invalid_method: No se os ha podido verificar. El método de verificación OAuth2 no era "civicrm" tal y como se esperaba.
-          invalid_status: No se os ha podido verificar. La verificación OAuth2 ha fallado.
-        invalid:
-          email_intro: La verificación con CiViCRM ha fallado.
-          email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma para comprobar el error que ha ocurrido.
-          email_subject: No se os ha podido verificar con CiViCRM.
-          notification_title: La verificación con CiViCRM ha fallado.
-        ok:
-          email_intro: Te has verificado correctamente mediante CiViCRM.
-          email_outro: A partir de ahora ya puedes participar en todas aquellas acciones que requieran autorización expresa mediante este método.
-          email_subject: Te has verificado mediante CiViCRM.
-          notification_title: Te has verificado mediante CiViCRM correctamente.
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            civicrm: Verifícate con tu cuenta de Catalunya en Comú
+  devise:
+    shared:
+      links:
+        sign_in_with_provider: Iniciar sesión
   forms:
     required_explanation: "* Los campos obligatorios están marcados con un asterisco"

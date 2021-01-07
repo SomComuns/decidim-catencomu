@@ -5,6 +5,7 @@ module Decidim
     module Api
       module User
         ROLES = { "7" => :inscribed }.freeze
+        CN_GROUP = "Consell_Nacional_8"
 
         class << self
           def from_contact(json)
@@ -46,7 +47,7 @@ module Decidim
           end
 
           def parse_regional_scope(json)
-            json.dig("api_Address_get", "values", 0, RegionalScope::FIELD_NAME)
+            json.dig("api.Address.get", "values", 0, RegionalScope::FIELD_NAME)
           end
         end
       end
