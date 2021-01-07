@@ -10,7 +10,7 @@ Drupal has the oauth2-server module which implements the server logic so that ot
 
 To set up Decidim to work with this OAuth2 module, we must set up an OmniAuth strategy (see `lib/omniauth/strategies/civicrm.rb`). Which uses the following fields:
 
-- `uid` (which contains the unique user ID) is provided in the `raw_info` hash (returned by the `UserInfo` endpoint), inside the `sub` key 
+- `uid` (which contains the unique user ID) is provided in the `raw_info` hash (returned by the `UserInfo` endpoint), inside the `sub` key
 - `email` and `picture` (the user's profile picture) are also provided in the `raw_info` hash
 - With the given `uid`, a request is made to the CiViCRM API to obtain the `name` and `nickname` fields for the user (which are not present in the response from `UserInfo`)
 
@@ -39,17 +39,18 @@ This project uses the [REST interface for the CiViCRM API](https://docs.civicrm.
 Requests are all made to the same base url (https://www.example.org/path/to/civi/codebase/civicrm/extern/rest.php) and query parameters define the results a given request will return.
 
 ### Mandatory parameters
+
 - `entity`: the name of the object to be retrieved (e.g. `"User"`)
 - `action`: the name of the action (e.g. `"Get"`)
 - `api_key`: key to identify the client making the request
 - `key`: secret key paired to the `api_key`
 
 ### Additional parameters
-`json`: this can be passed either `1` or a json object to fine-tune the query, such as:
+
+- `json`: this can be passed either `1` or a json object to fine-tune the query, such as:
   - `sequential`: whether the results should be returned as an array (as opposed to a hash), to be passed `1`
   - `options`: additional options (use `"options": { "limit": 0 }` to include all results (default limit is 25))
   - `return`: a string with the fields we want to retrieve from the object, separated by commas (e.g `"roles,display_name"`)
-
 
 ### Example requests
 
@@ -262,7 +263,6 @@ json={
 }
 ```
 
-
 ### Setup current project to use CiViCRM API
 
 Load the following environment variables:
@@ -272,7 +272,6 @@ CIVICRM_VERIFICATION_URL=<REST API endpoint URL>
 CIVICRM_VERIFICATION_API_KEY=<CiViCRM API client key>
 CIVICRM_VERIFICATION_SECRET=<CiViCRM API secret key>
 ```
-
 
 ### Other links
 
