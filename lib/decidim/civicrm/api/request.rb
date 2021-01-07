@@ -19,9 +19,9 @@ module Decidim
             entity: "Contact",
             contact_id: id,
             json: {
-              :sequential => 1,
+              :sequential => 1, # Present results as array, not hash
               :return => "roles,display_name",
-              "api.Address.get" => { "return" => RegionalScope::FIELD_NAME }
+              "api.Address.get" => { "return" => RegionalScope::FIELD_NAME } # Return the id of the Contact's Regional Scope
             }.to_json
           }
 
@@ -36,7 +36,7 @@ module Decidim
             entity: "User",
             id: id,
             json: {
-              sequential: 1
+              sequential: 1 # Present results as array, not hash
             }.to_json
           }
 
@@ -57,10 +57,10 @@ module Decidim
           params = {
             entity: "Group",
             json: {
-              sequential: 1,
-              options: { limit: 0 },
+              sequential: 1, # Present results as array, not hash
+              options: { limit: 0 }, # Don't limit number of results
               return: "id, name, title, description, group_type, visibility",
-              is_active: true
+              is_active: true # Only return active groups
             }.to_json
           }
 
@@ -75,11 +75,11 @@ module Decidim
           params = {
             entity: "Contact",
             json: {
-              sequential: 1,
-              options: { limit: 0 },
-              group: group,
+              sequential: 1, # Present results as array, not hash
+              options: { limit: 0 }, # Don't limit number of results
+              group: group, # Group's "name" field value
               return: "id,display_name,group",
-              "api.User.get" => { "return" => "id" }
+              "api.User.get" => { "return" => "id" } # Return the Contact's related User ID
             }.to_json
           }
 
