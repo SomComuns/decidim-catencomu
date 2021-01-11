@@ -84,4 +84,7 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
       end
     end
   end
+
+  describe "#users_in_group" do
+  end
 end
