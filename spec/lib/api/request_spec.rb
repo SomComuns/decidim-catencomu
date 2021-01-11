@@ -86,5 +86,11 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
   end
 
   describe "#users_in_group" do
+    context "when request is successful" do
+      it "returns array with users in group" do
+        stub_users_in_group_valid_request
+        expect(subject.users_in_group("Administrators"))
+      end
+    end
   end
 end
