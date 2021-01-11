@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Restrict actions by CiViCRM verification", type: :system do
+describe "Restrict actions by CiviCRM verification", type: :system do
   let(:organization) { create(:organization) }
 
   let(:user) { create(:user) }
@@ -10,13 +10,6 @@ describe "Restrict actions by CiViCRM verification", type: :system do
   let(:participatory_process) { create :participatory_process, organization: organization }
   let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process, permissions: permissions }
   let!(:proposal) { create :proposal, component: proposals_component }
-
-  let(:permissions) do
-    {
-      vote_comment: authorization_options,
-      comment: authorization_options
-    }
-  end
 
   let(:options) { {} }
   let(:authorization_options) do
@@ -35,6 +28,8 @@ describe "Restrict actions by CiViCRM verification", type: :system do
   end
 
   shared_examples "comment on proposal" do
+    let(:permissions) { { comment: authorization_options } }
+
     shared_examples "cannot comment" do
       it "does not allow to comment" do
         visit_proposal
@@ -72,6 +67,48 @@ describe "Restrict actions by CiViCRM verification", type: :system do
         let!(:authorization) { nil }
 
         it_behaves_like "cannot comment"
+      end
+    end
+  end
+
+  shared_examples "vote comment on proposal" do # TODO once updated to 0.23
+    let(:permissions) { { vote_comment: authorization_options } }
+
+    let!(:comment) { create(:comment, commentable: proposal) }
+
+    shared_examples "cannot vote" do
+      it "does not allow to vote" do
+        visit_proposal
+        within "#comments" do
+          page.find(".comment__votes--up").click
+          expect(page).to have_selector(".comment__votes--up", text: /0/)
+        end
+      end
+    end
+
+    describe "comment on proposal" do
+      context "when user is authorized" do
+        let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
+
+        it "allows to vote" do
+          visit_proposal
+          within "#comments" do
+            page.find(".comment__votes--up").click
+            expect(page).to have_selector(".comment__votes--up", text: /1/)
+          end
+        end
+      end
+
+      context "when user is authorized with options different than required" do
+        let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: wrong_metadata) }
+
+        it_behaves_like "cannot vote"
+      end
+
+      context "when user is not authorized" do
+        let!(:authorization) { nil }
+
+        it_behaves_like "cannot vote"
       end
     end
   end
