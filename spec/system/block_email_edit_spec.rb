@@ -9,13 +9,6 @@ describe "Block email editing", type: :system do
     switch_to_host(organization.host)
   end
 
-  context "when signing up with oauth" do
-    it "cannot change email" do
-      visit decidim.user_civicrm_omniauth_callback_path
-      expect(page.find("#user_email")).to be_readonly
-    end
-  end
-
   context "when visiting account page" do
     let(:user) { create(:user, organization: organization) }
 
