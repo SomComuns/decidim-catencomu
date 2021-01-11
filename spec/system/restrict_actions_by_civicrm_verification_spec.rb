@@ -71,7 +71,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     end
   end
 
-  shared_examples "vote comment on proposal" do # TODO once updated to 0.23
+  shared_examples "vote comment on proposal" do # TODO: once updated to 0.23
     let(:permissions) { { vote_comment: authorization_options } }
 
     let!(:comment) { create(:comment, commentable: proposal) }
