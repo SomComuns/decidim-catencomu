@@ -83,6 +83,13 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
                                            ])
       end
     end
+
+    context "when response is malformed" do
+      it "raises an error" do
+        stub_groups_invalid_request
+        expect { subject.fetch_groups }.to raise_error Decidim::Civicrm::Api::Error
+      end
+    end
   end
 
   describe "#users_in_group" do
@@ -97,6 +104,13 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
         expect(response_user["display_name"]).to eq("Sir Arthur Dent")
         expect(response_user["id"]).to eq("9999")
         expect(response_user["api.User.get"]["values"][0]["id"]).to eq("42")
+      end
+    end
+
+    context "when response is malformed" do
+      it "raises an error" do
+        stub_users_in_group_invalid_request
+        expect { subject.users_in_group("Administrators") }.to raise_error Decidim::Civicrm::Api::Error
       end
     end
   end

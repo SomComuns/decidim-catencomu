@@ -3,30 +3,38 @@
 module CivicrmStubs
   ## User
   def stub_user_valid_request
-    stub_successful_request_for(user_request_url, file_fixture("user_valid_response.json"))
+    stub_request_for(user_request_url, file_fixture("user_valid_response.json"))
   end
 
   def stub_user_not_found_request
-    stub_successful_request_for(user_request_url, file_fixture("empty_response.json"))
+    stub_request_for(user_request_url, file_fixture("empty_response.json"))
   end
 
   def stub_user_invalid_request
-    stub_successful_request_for(user_request_url, file_fixture("error_response.json"))
+    stub_request_for(user_request_url, file_fixture("error_response.json"))
   end
 
   ## Contact
   def stub_contact_valid_request
-    stub_successful_request_for(contact_request_url, file_fixture("contact_valid_response.json"))
+    stub_request_for(contact_request_url, file_fixture("contact_valid_response.json"))
   end
 
   ## Groups
   def stub_groups_valid_request
-    stub_successful_request_for(groups_request_url, file_fixture("groups_valid_response.json"))
+    stub_request_for(groups_request_url, file_fixture("groups_valid_response.json"))
+  end
+
+  def stub_groups_invalid_request
+    stub_request_for(groups_request_url, file_fixture("error_response.json"))
   end
 
   ## Users in group
   def stub_users_in_group_valid_request
-    stub_successful_request_for(users_in_group_request_url, file_fixture("users_in_group_valid_response.json"))
+    stub_request_for(users_in_group_request_url, file_fixture("users_in_group_valid_response.json"))
+  end
+
+  def stub_users_in_group_invalid_request
+    stub_request_for(users_in_group_request_url, file_fixture("error_response.json"))
   end
 
   private
@@ -56,7 +64,7 @@ module CivicrmStubs
     }
   end
 
-  def stub_successful_request_for(url, body)
+  def stub_request_for(url, body)
     stub_request(:get, url)
       .with(
         headers: headers
