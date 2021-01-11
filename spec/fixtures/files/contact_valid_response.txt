@@ -1,0 +1,1 @@
+{"is_error":0,"version":3,"count":1,"id":9999,"values":[{"contact_id":"9999","display_name":"Sir Arthur Dent","id":"9999","api.Address.get":{"is_error":0,"version":3,"count":1,"id":888,"values":[{"id":"888","custom_23":"AT012"}]},"roles":{"2":"authenticateduser","3":"administrator"}}]}
