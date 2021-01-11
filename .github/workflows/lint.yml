@@ -35,3 +35,6 @@ jobs:
       - run: bundle exec mdl *.md
         name: Lint Markdown files
 
+      - run: ./.github/run_erblint.sh
+        name: Lint ERB files
+
