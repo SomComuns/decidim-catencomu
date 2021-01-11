@@ -44,7 +44,7 @@ module CivicrmStubs
   end
 
   def users_in_group_request_url
-    "https://api.base/?action=Get&api_key=api-key&entity=Group&json=%7B%22sequential%22:1,%22options%22:%7B%22limit%22:0%7D,%22return%22:%22id,%20name,%20title,%20description,%20group_type,%20visibility%22,%22is_active%22:true%7D&key=secret"
+    "https://api.base/?action=Get&api_key=api-key&entity=Contact&json=%7B%22sequential%22:1,%22options%22:%7B%22limit%22:0%7D,%22group%22:%22Administrators%22,%22return%22:%22id,display_name,group%22,%22api.User.get%22:%7B%22return%22:%22id%22%7D%7D&key=secret"
   end
 
   # This will change depending on your gems versions.

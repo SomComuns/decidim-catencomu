@@ -89,7 +89,14 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
     context "when request is successful" do
       it "returns array with users in group" do
         stub_users_in_group_valid_request
-        expect(subject.users_in_group("Administrators"))
+        response = subject.users_in_group("Administrators")
+        response_user = response.first
+
+        expect(response).to be_a Array
+        expect(response_user["contact_id"]).to eq("9999")
+        expect(response_user["display_name"]).to eq("Sir Arthur Dent")
+        expect(response_user["id"]).to eq("9999")
+        expect(response_user["api.User.get"]["values"][0]["id"]).to eq("42")
       end
     end
   end
