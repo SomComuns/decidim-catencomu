@@ -23,7 +23,7 @@ module CivicrmStubs
   def stub_groups_valid_request
     stub_successful_request_for(groups_request_url, file_fixture("groups_valid_response.json"))
   end
-  
+
   ## Users in group
   def stub_users_in_group_valid_request
     stub_successful_request_for(users_in_group_request_url, file_fixture("users_in_group_valid_response.json"))
@@ -58,12 +58,12 @@ module CivicrmStubs
 
   def stub_successful_request_for(url, body)
     stub_request(:get, url)
-        .with(
-          headers: headers
-        ).to_return(
-          status: 200,
-          body: body,
-          headers: {}
-        )
+      .with(
+        headers: headers
+      ).to_return(
+        status: 200,
+        body: body,
+        headers: {}
+      )
   end
 end
