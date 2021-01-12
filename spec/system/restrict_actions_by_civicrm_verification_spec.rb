@@ -5,7 +5,7 @@ require "rails_helper"
 describe "Restrict actions by CiviCRM verification", type: :system do
   let(:organization) { create(:organization) }
 
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :confirmed, organization: organization) }
 
   let(:participatory_process) { create :participatory_process, organization: organization }
   let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process, permissions: permissions }
@@ -25,6 +25,10 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     organization.save!
     switch_to_host(organization.host)
     login_as user, scope: :user
+  end
+
+  after do
+    expect_no_js_errors
   end
 
   shared_examples "comment on proposal" do
@@ -77,7 +81,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let!(:comment) { create(:comment, commentable: proposal) }
 
     shared_examples "cannot vote" do
-      it "does not allow to vote" do
+      it "does not allow to vote", :slow do
         visit_proposal
         within "#comments" do
           page.find(".comment__votes--up").click
@@ -90,7 +94,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
       context "when user is authorized" do
         let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
 
-        it "allows to vote" do
+        it "allows to vote", :slow do
           visit_proposal
           within "#comments" do
             page.find(".comment__votes--up").click
