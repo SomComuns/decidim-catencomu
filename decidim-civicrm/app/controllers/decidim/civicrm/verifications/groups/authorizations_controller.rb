@@ -6,7 +6,7 @@ module Decidim
       module Groups
         class AuthorizationsController < Decidim::ApplicationController
           def new
-            flash[:alert] = t("authorizations.new.no_action", scope: "decidim.direct_verifications.verification")
+            flash[:alert] = t("authorizations.new.no_action", scope: "decidim.groups.verification")
             redirect_to decidim_verifications.authorizations_path
           end
         end

@@ -4,20 +4,12 @@ es:
     account:
       show:
         email_readonly_explanation: La dirección de correo electrónico no se puede modificar
-    admin:
-      filters:
-        state_eq:
-          label: Label
-    components:
-      proposals:
-        actions:
-          comment: Comentar
     authorization_handlers:
       civicrm:
         error: Ha ocurrido un error a la hora de verificar la cuenta
         error_codes:
           '2001': Los parámetros enviados son incorrectos
-          not-found: No se ha encontrado la usuaria en Catalunya en Comú
+          not_found: No se ha encontrado la usuaria en Catalunya en Comú
         explanation: Autorización mediante la cuenta de Catalunya en Comú
         fields:
           regional_scope: Ámbito Territorial
@@ -39,28 +31,29 @@ es:
             inscribed: Inscrita
             interested: Interesada
         name: Catalunya en Comú
-      groups:
-        name: Grupos Inteligentes Catalunya en Comú
-        explanation: Grupos Inteligentes Catalunya en Comú
       direct_verifications:
         explanation: Verificación directa para el Consejo Nacional
         name: Consejo Nacional
+      groups:
+        explanation: Grupos Inteligentes Catalunya en Comú
+        name: Grupos Inteligentes Catalunya en Comú
+    components:
+      proposals:
+        actions:
+          comment: Comentar
     events:
       civicrm_verification:
         errors:
-          invalid_method: No se os ha podido verificar. El método de verificación
-            OAuth2 no era "civicrm" tal y como se esperaba.
+          invalid_method: No se os ha podido verificar. El método de verificación OAuth2 no era "civicrm" tal y como se esperaba.
           invalid_status: No se os ha podido verificar. La verificación OAuth2 ha fallado.
         invalid:
           email_intro: La verificación con Catalunya en Comú ha fallado.
-          email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma
-            para comprobar el error que ha ocurrido.
+          email_outro: Por favor, poneos en contacto con el soporte de vuestra plataforma para comprobar el error que ha ocurrido.
           email_subject: No se os ha podido verificar con Catalunya en Comú.
           notification_title: La verificación con Catalunya en Comú ha fallado.
         ok:
           email_intro: Te has verificado correctamente con Catalunya en Comú.
-          email_outro: A partir de ahora ya puedes participar en todas aquellas acciones
-            que requieran la autorización de Catalunya en Comú.
+          email_outro: A partir de ahora ya puedes participar en todas aquellas acciones que requieran la autorización de Catalunya en Comú.
           email_subject: Te has verificado con Catalunya en Comú.
           notification_title: Te has verificado correctamente con Catalunya en Comú.
     system:
