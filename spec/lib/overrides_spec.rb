@@ -9,7 +9,21 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      "/app/views/layouts/decidim/_main_footer.html.erb" => "995cddce875d4a8b49a9997526145799"
+      "/app/views/layouts/decidim/_main_footer.html.erb" => "995cddce875d4a8b49a9997526145799", # centered organization logo
+      "/app/views/decidim/account/show.html.erb" => "2e3c895104e03d7d092467a96f64703d", # blocks email editing
+      "/app/views/decidim/devise/omniauth_registrations/new.html.erb" => "d32cbe7f5a60e2892fe3c8cb33b16cda",  # blocks email editing
+    }
+  },
+  {
+    package: "decidim-participatory_processes",
+    files: {
+      "/app/views/layouts/decidim/_process_navigation.html.erb" => "e4d2322544d80ef4452aa61425034aa3",  # max items 7
+    }
+  },
+  {
+    package: "decidim-assemblies",
+    files: {
+      "/app/views/layouts/decidim/_assembly_navigation.html.erb" => "159f168bf1634937183cf5ca56b03a9d",  # max items 7
     }
   }
 ]
