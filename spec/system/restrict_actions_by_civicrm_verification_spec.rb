@@ -71,7 +71,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     end
   end
 
-  shared_examples "vote comment on proposal" do # TODO: once updated to 0.23
+  shared_examples "vote comment on proposal" do
     let(:permissions) { { vote_comment: authorization_options } }
 
     let!(:comment) { create(:comment, commentable: proposal) }
@@ -120,7 +120,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let(:wrong_metadata) { { "group" => "other_group_name" } }
 
     it_behaves_like "comment on proposal"
-    # it_behaves_like "vote comment on proposal"
+    it_behaves_like "vote comment on proposal"
   end
 
   describe "role verification" do
@@ -130,7 +130,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let(:wrong_metadata) { { "role" => "other_role_name" } }
 
     it_behaves_like "comment on proposal"
-    # it_behaves_like "vote comment on proposal"
+    it_behaves_like "vote comment on proposal"
   end
 
   describe "regional scope verification" do
@@ -140,11 +140,11 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let(:wrong_metadata) { { "regional_scope" => "other_regional_scope_id" } }
 
     it_behaves_like "comment on proposal"
-    # it_behaves_like "vote comment on proposal"
+    it_behaves_like "vote comment on proposal"
   end
 
   def visit_proposal
     page.visit main_component_path(proposals_component)
-    click_link proposal.title
+    click_link proposal.title["en"]
   end
 end
