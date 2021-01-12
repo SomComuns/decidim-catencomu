@@ -75,48 +75,6 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     end
   end
 
-  shared_examples "vote comment on proposal" do
-    let(:permissions) { { vote_comment: authorization_options } }
-
-    let!(:comment) { create(:comment, commentable: proposal) }
-
-    shared_examples "cannot vote" do
-      it "does not allow to vote", :slow do
-        visit_proposal
-        within "#comments" do
-          page.find(".comment__votes--up").click
-          expect(page).to have_selector(".comment__votes--up", text: /0/)
-        end
-      end
-    end
-
-    describe "comment on proposal" do
-      context "when user is authorized" do
-        let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
-
-        it "allows to vote", :slow do
-          visit_proposal
-          within "#comments" do
-            page.find(".comment__votes--up").click
-            expect(page).to have_selector(".comment__votes--up", text: /1/)
-          end
-        end
-      end
-
-      context "when user is authorized with options different than required" do
-        let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: wrong_metadata) }
-
-        it_behaves_like "cannot vote"
-      end
-
-      context "when user is not authorized" do
-        let!(:authorization) { nil }
-
-        it_behaves_like "cannot vote"
-      end
-    end
-  end
-
   describe "group verification" do
     let(:handler_name) { "groups" }
     let(:options) { { "group" => "group_name" } }
@@ -124,7 +82,6 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let(:wrong_metadata) { { "group" => "other_group_name" } }
 
     it_behaves_like "comment on proposal"
-    it_behaves_like "vote comment on proposal"
   end
 
   describe "role verification" do
@@ -134,7 +91,6 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let(:wrong_metadata) { { "role" => "other_role_name" } }
 
     it_behaves_like "comment on proposal"
-    it_behaves_like "vote comment on proposal"
   end
 
   describe "regional scope verification" do
@@ -144,7 +100,6 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     let(:wrong_metadata) { { "regional_scope" => "other_regional_scope_id" } }
 
     it_behaves_like "comment on proposal"
-    it_behaves_like "vote comment on proposal"
   end
 
   def visit_proposal
