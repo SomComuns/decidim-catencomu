@@ -9,7 +9,7 @@ es:
         error: Ha ocurrido un error a la hora de verificar la cuenta
         error_codes:
           '2001': Los parámetros enviados son incorrectos
-          not_found: No se ha encontrado la usuaria en Catalunya en Comú
+          'not-found': No se ha encontrado la usuaria en Catalunya en Comú
         explanation: Autorización mediante la cuenta de Catalunya en Comú
         fields:
           regional_scope: Ámbito Territorial
