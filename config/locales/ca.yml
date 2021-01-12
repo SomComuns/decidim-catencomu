@@ -9,7 +9,7 @@ ca:
         error: Hi ha hagut un error a l'hora de verificar el compte
         error_codes:
           '2001': Els paràmetres enviats són incorrectes
-          'not-found': No s'ha trobat l'usuària de Catalunya en Comú
+          not_found: No s'ha trobat l'usuària de Catalunya en Comú
         explanation: Autorització mitjançant el compte de Catalunya en Comú
         fields:
           regional_scope: Àmbit Territorial
