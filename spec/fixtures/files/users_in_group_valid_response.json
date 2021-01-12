@@ -1,0 +1,70 @@
+{
+  "is_error": 0,
+  "version": 3,
+  "count": 3,
+  "values": [
+    {
+      "contact_id": "9999",
+      "display_name": "Sir Arthur Dent",
+      "contact_is_deleted": "0",
+      "groups": ",2",
+      "id": "9999",
+      "api.User.get": {
+        "is_error": 0,
+        "version": 3,
+        "count": 1,
+        "id": 42,
+        "values": [
+          {
+            "id": "42",
+            "name": "arthur.dent",
+            "email": "arthurdent@example.com",
+            "contact_id": "9999"
+          }
+        ]
+      }
+    },
+    {
+      "contact_id": "777",
+      "display_name": " Zaphod Beeblebrox",
+      "contact_is_deleted": "0",
+      "groups": ",2",
+      "id": "777",
+      "api.User.get": {
+        "is_error": 0,
+        "version": 3,
+        "count": 1,
+        "id": 36,
+        "values": [
+          {
+            "id": "36",
+            "name": "i_am_zaphod",
+            "email": "zaphod_beeblebrox_1977@example.com",
+            "contact_id": "777"
+          }
+        ]
+      }
+    },
+    {
+      "contact_id": "6",
+      "display_name": "Marvin",
+      "contact_is_deleted": "0",
+      "groups": ",2",
+      "id": "6",
+      "api.User.get": {
+        "is_error": 0,
+        "version": 3,
+        "count": 1,
+        "id": 101,
+        "values": [
+          {
+            "id": "101",
+            "name": "marvin_sad",
+            "email": "marvin@whatever.net",
+            "contact_id": "6"
+          }
+        ]
+      }
+    }
+  ]
+}
