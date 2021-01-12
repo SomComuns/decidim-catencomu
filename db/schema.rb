@@ -599,6 +599,14 @@ ActiveRecord::Schema.define(version: 2021_01_12_131579) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "decidim_dummy_resources_nested_dummy_resources", force: :cascade do |t|
+    t.jsonb "translatable_text"
+    t.string "title"
+    t.bigint "dummy_resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "decidim_endorsements", force: :cascade do |t|
     t.string "resource_type"
     t.bigint "resource_id"
