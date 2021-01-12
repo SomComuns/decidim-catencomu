@@ -1,0 +1,26 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: ca
+
+## Reporting locale, default: en. Available: en, ru.
+# internal_locale: en
+
+data:
+  yaml:
+    write:
+      # do not wrap lines at 80 characters
+      line_width: -1
+
+# Find translate calls
+search:
+  ## If `strict` is `false`, guess usages such as t("categories.#{category}.title"). The default is `true`.
+  strict: false
+
+# This keys are core-translated already
+ignore_missing:
+  - decidim.pages.terms_and_conditions.form.*
+
+# Consider these keys used (modifications of the original translation from core)
+ignore_unused:
+  - decidim.account.show.email_readonly_explanation
