@@ -4,10 +4,6 @@ es:
     account:
       show:
         email_readonly_explanation: La dirección de correo electrónico no se puede modificar
-    admin:
-      filters:
-        state_eq:
-          label: Label
     authorization_handlers:
       civicrm:
         error: Ha ocurrido un error a la hora de verificar la cuenta
