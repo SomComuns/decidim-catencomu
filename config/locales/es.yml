@@ -75,8 +75,6 @@ es:
     shared:
       links:
         sign_in_with_provider: Iniciar sesión
-  forms:
-    required_explanation: "* Los campos obligatorios están marcados con un asterisco"
   layouts:
     decidim:
       user_profile:

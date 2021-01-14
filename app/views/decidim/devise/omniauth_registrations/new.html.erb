@@ -14,9 +14,7 @@
       <div class="card">
         <div class="card__content">
           <%= decidim_form_for(@form, namespace: "registration", as: resource_name, url: omniauth_registrations_path(resource_name), html: { class: "register-form new_user" }) do |f| %>
-            <div class="help-text help-text-form-required-fields">
-              <%= t("forms.required_explanation") %>
-            </div>
+            <%= form_required_explanation %>
 
             <div class="user-person">
               <div class="field">
