@@ -4,8 +4,8 @@
 <div class="row">
   <div class="callout secondary">
     <%= t("catencomu.account_callout") %>
-    <% if Rails.application.secrets.home_url.present? %>
-      <%= link_to Rails.application.secrets.home_url, target: :blank do %>
+    <% if translated_attribute(Rails.application.secrets.participacio_url).present? %>
+      <%= link_to translated_attribute(Rails.application.secrets.participacio_url), target: :blank do %>
         <%= t("catencomu.account_link") %>
         <%= icon "external-link", role: "img", "aria-hidden": true %>
       <% end %>

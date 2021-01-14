@@ -13,6 +13,6 @@ describe "Visit the account page", type: :system do
   end
 
   it "has a link to home_url " do
-    expect(page).to have_selector("[href=\"#{Rails.application.secrets.home_url}\"]")
+    expect(page).to have_selector("[href=\"#{Rails.application.secrets.participacio_url[I18n.locale]}\"]")
   end
 end
