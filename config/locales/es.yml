@@ -1,5 +1,7 @@
 ---
 es:
+  catencomu:
+    account_callout: Estos datos son exclusivamente para el espacio web de Comunitat, y no se sincronizan con las del espacio web de Participació.
   decidim:
     account:
       show:
