@@ -4,6 +4,12 @@
 <div class="row">
   <div class="callout secondary">
     <%= t("catencomu.account_callout") %>
+    <% if Rails.application.secrets.home_url.present? %>
+      <%= link_to Rails.application.secrets.home_url, target: :blank do %>
+        <%= t("catencomu.account_link") %>
+        <%= icon "external-link", role: "img", "aria-hidden": true %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -15,7 +21,7 @@
     </div>
 
     <div class="columns large-8 end">
-    
+
       <div class="help-text help-text-form-required-fields">
         <%= t("forms.required_explanation") %>
       </div>

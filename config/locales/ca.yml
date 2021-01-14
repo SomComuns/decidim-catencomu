@@ -2,6 +2,7 @@
 ca:
   catencomu:
     account_callout: Aquestes dades són exclusives per a l'espai web de Comunitat, i no se sincronitzen amb les de l'espai web de Participació.
+    account_link: Visita l'espai web de Participació.
   decidim:
     account:
       show:
