@@ -22,6 +22,8 @@ ignore_missing:
   - decidim.pages.terms_and_conditions.form.*
   - decidim.account.show.*
   - decidim.devise.omniauth_registrations.new.*
+  - decidim.devise.sessions.new.*
+  - devise.sessions.new.*
   - layouts.decidim.user_menu.profile
   - layouts.decidim.assembly_navigation.*
   - layouts.decidim.footer.download_open_data
