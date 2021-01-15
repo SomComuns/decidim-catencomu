@@ -1,5 +1,8 @@
 ---
 es:
+  catencomu:
+    account_callout: Estos datos son exclusivamente para el espacio web de Comunitat, y no se sincronizan con las del espacio web de Participació.
+    account_link: Visita el espacio web de Participació.
   decidim:
     account:
       show:
@@ -73,3 +76,7 @@ es:
     shared:
       links:
         sign_in_with_provider: Iniciar sesión
+  layouts:
+    decidim:
+      user_profile:
+        my_data: Datos de participación
