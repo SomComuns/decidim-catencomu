@@ -2,6 +2,18 @@
 <% content_for(:subtitle) { t("profile", scope: "layouts.decidim.user_menu") } %>
 
 <div class="row">
+  <div class="callout secondary">
+    <%= t("catencomu.account_callout") %>
+    <% if translated_attribute(Rails.application.secrets.participacio_url).present? %>
+      <%= link_to translated_attribute(Rails.application.secrets.participacio_url), target: :blank do %>
+        <%= t("catencomu.account_link") %>
+        <%= icon "external-link", role: "img", "aria-hidden": true %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
   <%= decidim_form_for(@account, url: account_path, method: :put, html: { autocomplete: "off" }) do |f| %>
     <input autocomplete="off" name="hidden" type="password" style="display:none;">
     <div class="columns large-4">

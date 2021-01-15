@@ -11,7 +11,8 @@ checksums = [
     files: {
       "/app/views/layouts/decidim/_main_footer.html.erb" => "995cddce875d4a8b49a9997526145799", # centered organization logo
       "/app/views/decidim/account/show.html.erb" => "2e3c895104e03d7d092467a96f64703d", # blocks email editing
-      "/app/views/decidim/devise/omniauth_registrations/new.html.erb" => "d32cbe7f5a60e2892fe3c8cb33b16cda" # blocks email editing
+      "/app/views/decidim/devise/omniauth_registrations/new.html.erb" => "d32cbe7f5a60e2892fe3c8cb33b16cda", # blocks email editing
+      "/app/views/decidim/devise/sessions/new.html.erb" => "1da8569a34bcd014ffb5323c96391837" # adds link to civicrm signup
     }
   },
   {
