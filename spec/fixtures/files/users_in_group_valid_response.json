@@ -9,7 +9,7 @@
       "contact_is_deleted": "0",
       "groups": ",2",
       "id": "9999",
-      "api.User.get": {
+      "api.Usercat.get": {
         "is_error": 0,
         "version": 3,
         "count": 1,
@@ -30,7 +30,7 @@
       "contact_is_deleted": "0",
       "groups": ",2",
       "id": "777",
-      "api.User.get": {
+      "api.Usercat.get": {
         "is_error": 0,
         "version": 3,
         "count": 1,
@@ -51,7 +51,7 @@
       "contact_is_deleted": "0",
       "groups": ",2",
       "id": "6",
-      "api.User.get": {
+      "api.Usercat.get": {
         "is_error": 0,
         "version": 3,
         "count": 1,

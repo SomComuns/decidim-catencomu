@@ -7,7 +7,7 @@ module Decidim
 
       def perform(groups, id, name, organization_id)
         civicrm_users = Decidim::Civicrm::Api::Request.new.users_in_group(id)
-        uids = civicrm_users.map { |user| user.dig("api.User.get", "values", 0, "id") }
+        uids = civicrm_users.map { |user| user.dig("api.Usercat.get", "values", 0, "id") }
         user_ids = Decidim::Identity.where(decidim_organization_id: organization_id, uid: uids).pluck(:decidim_user_id)
 
         Decidim::User.where(id: user_ids).find_each do |user|
