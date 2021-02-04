@@ -103,7 +103,7 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
         expect(response_user["contact_id"]).to eq("9999")
         expect(response_user["display_name"]).to eq("Sir Arthur Dent")
         expect(response_user["id"]).to eq("9999")
-        expect(response_user["api.User.get"]["values"][0]["id"]).to eq("42")
+        expect(response_user["api.Usercat.get"]["values"][0]["id"]).to eq("42")
       end
     end
 

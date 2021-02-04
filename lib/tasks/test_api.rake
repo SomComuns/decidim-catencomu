@@ -69,12 +69,12 @@ namespace :civicrm do
 
       # keys in user response
       random_user = users.sample
-      %w(contact_id display_name groups id api.User.get).each do |key|
+      %w(contact_id display_name groups id api.Usercat.get).each do |key|
         assert("#users_in_group > User key '#{key}'") { random_user.has_key? key }
       end
 
       # keys in user's nested contact response
-      contact = random_user["api.User.get"]["values"][0]
+      contact = random_user["api.Usercat.get"]["values"][0]
       %w(id name contact_id).each do |key|
         assert("#users_in_group > User > Contact key '#{key}'") { contact.has_key? key }
       end
