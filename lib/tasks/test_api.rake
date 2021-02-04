@@ -11,6 +11,14 @@ def assert(resource = "")
   raise AssertionError, "KO #{resource}"
 end
 
+def request
+  Decidim::Civicrm::Api::Request.new(
+    url: ENV["CIVICRM_VERIFICATION_URL"],
+    api_key: ENV["CIVICRM_VERIFICATION_API_KEY"],
+    key: ENV["CIVICRM_VERIFICATION_SECRET"]
+  )
+end
+
 namespace :civicrm do
   namespace :test do
     desc "Test API > All"
@@ -26,9 +34,7 @@ namespace :civicrm do
 
       assert("User ID") { user_id.present? }
 
-      @request = Decidim::Civicrm::Api::Request.new
-
-      user = @request.get_user(user_id, with_contact: true)
+      user = request.get_user(user_id, with_contact: true)
 
       assert("#get_user > User") { user.present? }
 
@@ -39,9 +45,7 @@ namespace :civicrm do
 
     desc "Test API > Fetch groups"
     task fetch_groups: :environment do
-      @request = Decidim::Civicrm::Api::Request.new
-
-      groups = @request.fetch_groups
+      groups = request.fetch_groups
 
       assert("#fetch_groups > Groups") { groups.present? }
 
@@ -58,10 +62,8 @@ namespace :civicrm do
 
       assert("Group name") { group_name.present? }
 
-      @request = Decidim::Civicrm::Api::Request.new
-
       # Test users in group
-      users = @request.users_in_group(group_name)
+      users = request.users_in_group(group_name)
 
       assert("#users_in_group > Users") { users.present? }
 
