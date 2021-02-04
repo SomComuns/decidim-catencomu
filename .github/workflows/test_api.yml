@@ -1,0 +1,39 @@
+name: Test api
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+env:
+  RUBY_VERSION: 2.6.6
+  NODE_VERSION: 12.9.1
+    
+jobs:
+  test-api:
+    environment: test
+    name: Test api
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Run rake api tests
+        run: bundle exec rake civicrm:test:all
+        env:
+          RAILS_ENV: test
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
+          CIVICRM_TEST_USER_ID: ${{ secrets.CIVICRM_TEST_USER_ID }}
+          CIVICRM_TEST_GROUP_NAME: ${{ secrets.CIVICRM_TEST_GROUP_NAME }}
+          CIVICRM_VERIFICATION_URL: ${{ secrets.CIVICRM_VERIFICATION_URL }}
+          CIVICRM_VERIFICATION_API_KEY: ${{ secrets.CIVICRM_VERIFICATION_API_KEY }}
+          CIVICRM_VERIFICATION_SECRET: ${{ secrets.CIVICRM_VERIFICATION_SECRET }}

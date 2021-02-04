@@ -4,9 +4,17 @@ module Decidim
   module Civicrm
     module Api
       class Request
+        def initialize(url: nil, api_key: nil, key: nil)
+          @url = url || config[:url]
+          @api_key = api_key || config[:api_key]
+          @key = key || config[:key]
+        end
+
         def get(extra_params = {})
-          response = Faraday.get config[:url] do |request|
+          response = Faraday.get @url do |request|
             request.params = request_params.merge(extra_params)
+            request.params[:key] = @key if @key.present?
+            request.params[:api_key] = @api_key if @api_key.present?
           end
 
           return raise Error, response.reason_phrase unless response.success?
@@ -79,7 +87,7 @@ module Decidim
               options: { limit: 0 }, # Don't limit number of results
               group: group, # Group's "name" field value
               return: "id,display_name,group",
-              "api.User.get" => { "return" => "id" } # Return the Contact's related User ID
+              "api.Usercat.get" => { "return" => "id" } # Return the Contact's related User ID
             }.to_json
           }
 
