@@ -79,7 +79,7 @@ module Decidim
               options: { limit: 0 }, # Don't limit number of results
               group: group, # Group's "name" field value
               return: "id,display_name,group",
-              "api.User.get" => { "return" => "id" } # Return the Contact's related User ID
+              "api.Usercat.get" => { "return" => "id" } # Return the Contact's related User ID
             }.to_json
           }
 
