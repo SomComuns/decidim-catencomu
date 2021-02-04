@@ -1,4 +1,4 @@
-name: Test
+name: Test api
 
 on:
   push:
@@ -11,9 +11,9 @@ env:
   NODE_VERSION: 12.9.1
     
 jobs:
-  test:
+  test-api:
     environment: test
-    name: Test
+    name: Test api
     runs-on: ubuntu-latest
     # services:
     #   postgres:
