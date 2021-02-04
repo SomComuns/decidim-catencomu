@@ -187,7 +187,7 @@ json={
   "options": { "limit": 0 },
   "return": "id,display_name,group",
   "group": "Another_Group",
-  "api.User.get": { "return": "id" }
+  "api.Usercat.get": { "return": "id" }
 }
 
 // response:
@@ -202,7 +202,7 @@ json={
       "contact_is_deleted": "0",
       "groups": ",2",
       "id": "9999",
-      "api.User.get": {
+      "api.Usercat.get": {
         "is_error": 0,
         "version": 3,
         "count": 1,
@@ -223,7 +223,7 @@ json={
       "contact_is_deleted": "0",
       "groups": ",2",
       "id": "777",
-      "api.User.get": {
+      "api.Usercat.get": {
         "is_error": 0,
         "version": 3,
         "count": 1,
@@ -244,7 +244,7 @@ json={
       "contact_is_deleted": "0",
       "groups": ",2",
       "id": "6",
-      "api.User.get": {
+      "api.Usercat.get": {
         "is_error": 0,
         "version": 3,
         "count": 1,
