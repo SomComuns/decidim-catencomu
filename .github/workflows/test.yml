@@ -68,6 +68,11 @@ jobs:
           RAILS_ENV: test
           DATABASE_USERNAME: postgres
           DATABASE_PASSWORD: postgres
+          CIVICRM_TEST_USER_ID: ${{ secrets.CIVICRM_TEST_USER_ID }}
+          CIVICRM_TEST_GROUP_NAME: ${{ secrets.CIVICRM_TEST_GROUP_NAME }}
+          CIVICRM_VERIFICATION_URL: ${{ secrets.CIVICRM_VERIFICATION_URL }}
+          CIVICRM_VERIFICATION_API_KEY: ${{ secrets.CIVICRM_VERIFICATION_API_KEY }}
+          CIVICRM_VERIFICATION_SECRET: ${{ secrets.CIVICRM_VERIFICATION_SECRET }}
 
       # - name: Publish code coverage
       #   run: |
