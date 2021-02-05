@@ -19,7 +19,8 @@ module Decidim
               group_type: json["group_type"],
               is_active: json["is_active"],
               is_hidden: json["is_hidden"],
-              is_reserved: json["is_reserved"]
+              is_reserved: json["is_reserved"],
+              count: json["api.Contact.GetCount"]
             }
           end
 

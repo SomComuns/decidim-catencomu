@@ -20,6 +20,7 @@ es:
           admin:
             groups:
               index:
+                count: Número de usuarias
                 title: Grupos
                 group_title: Título
                 id: ID

@@ -19,6 +19,7 @@ ca:
           admin:
             groups:
               index:
+                count: Nombre d'usuàries
                 title: Grups
                 group_title: Títol
                 id: ID
