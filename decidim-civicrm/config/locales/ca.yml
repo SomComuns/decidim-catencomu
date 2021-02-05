@@ -23,6 +23,7 @@ ca:
           admin:
             groups:
               index:
+                count: Nombre d'usuàries
                 description: Descripció
                 error: No s'han pogut obtenir els grups per un error a l'API.
                 group_title: Títol

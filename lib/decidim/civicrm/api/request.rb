@@ -68,7 +68,8 @@ module Decidim
               sequential: 1, # Present results as array, not hash
               options: { limit: 0 }, # Don't limit number of results
               return: "id, name, title, description, group_type, visibility",
-              is_active: true # Only return active groups
+              is_active: true, # Only return active groups,
+              "api.Contact.GetCount" => { "group": "$value.name" }
             }.to_json
           }
 

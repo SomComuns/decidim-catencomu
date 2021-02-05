@@ -1,36 +1,43 @@
+---
 en:
   decidim:
     authorization_handlers:
       admin:
         groups:
           help:
-            - Allows to verify all users belonging to an intelligent group from the Catalunya en Comú CRM
-            - This verification can only be created from the administration part of the platform
-            - Users can only be verified with one group at once
-            - When a group verification is updated, if its users were verified with another group, it will be replaced with the new one
+          - Allows to verify all users belonging to an intelligent group from the
+            Catalunya en Comú CRM
+          - This verification can only be created from the administration part of
+            the platform
+          - Users can only be verified with one group at once
+          - When a group verification is updated, if its users were verified with
+            another group, it will be replaced with the new one
       groups:
-        name: CiViCRM Groups Authorization
         explanation: CiViCRM Groups Authorization
         fields:
           group: Group
+        name: CiViCRM Groups Authorization
     civicrm:
       verifications:
         groups:
           admin:
             groups:
               index:
-                title: Groups
-                group_title: Title
-                id: ID
-                name: Name
+                count: User count
                 description: Description
-                visibility: Visibility
+                error: The groups could not be fetched due to an error in the API.
+                group_title: Title
                 group_type: Type
+                id: ID
                 is_active: Active
                 is_hidden: Hidden
                 is_reserved: Reserved
+                name: Name
+                title: Groups
                 update: Update
-                error: The groups could not be fetched due to an error in the API.
+                visibility: Visibility
               update:
-                success: The verifications for users in the group "%{group}" have been updated
-                error: The verifications for users in the group "%{group}" could not be updated
+                error: The verifications for users in the group "%{group}" could not
+                  be updated
+                success: The verifications for users in the group "%{group}" have
+                  been updated

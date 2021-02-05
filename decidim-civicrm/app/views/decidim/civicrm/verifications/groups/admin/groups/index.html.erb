@@ -18,6 +18,7 @@
             <th><%= t(".name") %></th>
             <th><%= t(".description") %></th>
             <th><%= t(".visibility") %></th>
+            <th><%= t(".count") %></th>
             <th></th>
           </tr>
         </thead>
@@ -28,6 +29,7 @@
               <td><%= group[:name] %></td>
               <td><%= group[:description] %></td>
               <td><%= group[:visibility] %></td>
+              <td><%= group[:count] %></td>
               <td><%= icon_link_to "reload", group_path(id: group[:id], name: group[:name], title: group[:title]), t(".update"), method: :post %></td>
             </tr>
           <% end %>

@@ -67,7 +67,8 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
                                                  "1"
                                                ],
                                                is_hidden: "0",
-                                               is_reserved: "0"
+                                               is_reserved: "0",
+                                               count: 3
                                              },
                                              {
                                                id: "2",
@@ -78,7 +79,8 @@ describe "Decidim::Civicrm::Api::Request", type: :class do
                                                visibility: "User and User Admin Only",
                                                group_type: "2",
                                                is_hidden: "0",
-                                               is_reserved: "0"
+                                               is_reserved: "0",
+                                               count: 1337
                                              }
                                            ])
       end
