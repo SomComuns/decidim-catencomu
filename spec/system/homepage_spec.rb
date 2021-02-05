@@ -13,12 +13,4 @@ describe "Visit the home page", type: :system, perform_enqueued: true do
     visit decidim.root_path
     expect(page).to have_content("Home")
   end
-
-  context "when clicking on the 'home' item in menu" do
-    it "loads the url defined in secrets.yml" do
-      visit decidim.root_path
-      click_link "Home"
-      expect(current_url).to match(Rails.application.secrets.home_url)
-    end
-  end
 end
