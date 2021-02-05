@@ -1,38 +1,47 @@
+---
 ca:
   decidim:
     authorization_handlers:
       admin:
         groups:
           help:
-            - Permet verificar totes les usuàries pertanyents a un grup intel·ligent del CRM de Catalunya en Comú
-            - Només es pot crear aquest tipus de verificació des de la part d'administració de la plataforma
-            - Les usuàries només poden estar verificades amb un grup
-            - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven verificades amb un altre, aquest es reemplaçarà pel nou grup
+          - Permet verificar totes les usuàries pertanyents a un grup intel·ligent
+            del CRM de Catalunya en Comú
+          - Només es pot crear aquest tipus de verificació des de la part d'administració
+            de la plataforma
+          - Les usuàries només poden estar verificades amb un grup
+          - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven
+            verificades amb un altre, aquest es reemplaçarà pel nou grup
       groups:
-        name: Autorització de Grups CiViCRM
         explanation: Autorització de Grups CiViCRM
         fields:
           group: Grup
+        name: Autorització de Grups CiViCRM
     civicrm:
       verifications:
         groups:
           admin:
             groups:
               index:
-                title: Grups
-                group_title: Títol
-                id: ID
-                name: Nom
                 description: Descripció
-                visibility: Visibilitat
+                error: No s'han pogut obtenir els grups per un error a l'API.
+                group_title: Títol
                 group_type: Tipus
+                id: ID
                 is_active: Actiu
                 is_hidden: Amagat
                 is_reserved: Reservat
+                name: Nom
+                title: Grups
                 update: Actualitza
-                error: No s'han pogut obtenir els grups per un error a l'API.
-                warning_1: "Les usuàries només poden estar autoritzades amb un grup intel·ligent a la vegada." 
-                warning_2: "Abans de realitzar una acció amb restriccions, cal refrescar el grup al qual es permet realitzar l'acció, per tal de garantir que totes les usuàries que hi pertanyen estan autoritzades." 
+                visibility: Visibilitat
+                warning_1: Les usuàries només poden estar autoritzades amb un grup
+                  intel·ligent a la vegada.
+                warning_2: Abans de realitzar una acció amb restriccions, cal refrescar
+                  el grup al qual es permet realitzar l'acció, per tal de garantir
+                  que totes les usuàries que hi pertanyen estan autoritzades.
               update:
-                success: S'han actualitzat les verificacions per les usuàries del grup "%{group}"
-                error: No s'han pogut actualitzat les verificacions per les usuàries del grup "%{group}"
+                error: No s'han pogut actualitzat les verificacions per les usuàries
+                  del grup "%{group}"
+                success: S'han actualitzat les verificacions per les usuàries del
+                  grup "%{group}"
