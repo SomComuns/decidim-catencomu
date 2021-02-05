@@ -28,6 +28,8 @@ module Decidim
               redirect_to root_path
             end
 
+            private
+
             def groups
               @groups ||= Decidim::Civicrm::Api::Request.new.fetch_groups
               update_group_verification_options

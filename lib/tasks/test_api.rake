@@ -51,7 +51,7 @@ namespace :civicrm do
 
       random_group = groups.sample
 
-      [:id, :name, :title, :description, :visibility, :group_type, :is_active, :is_hidden, :is_reserved].each do |key|
+      [:id, :name, :title, :description, :visibility, :group_type, :is_active, :is_hidden, :is_reserved, :count].each do |key|
         assert("#fetch_groups > Group key '#{key}'") { random_group.has_key? key }
       end
     end

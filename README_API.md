@@ -138,7 +138,8 @@ key=<secret>&
 entity=Group&
 json={
   "sequential":1,
-  "options": { "limit": 0 }
+  "options": { "limit": 0 },
+  "api.Contact.GetCount": { "group": "$value.name" }
 }
 
 // response:
@@ -158,7 +159,8 @@ json={
         "1"
       ],
       "is_hidden": "0",
-      "is_reserved": "0"
+      "is_reserved": "0",
+      "api.Contact.getcount": 3
     },
     {
       "id": "2",
@@ -169,7 +171,8 @@ json={
       "visibility": "User and User Admin Only",
       "group_type": "2",
       "is_hidden": "0",
-      "is_reserved": "0"
+      "is_reserved": "0",
+      "api.Contact.getcount": 1337
     }
   ]
 }

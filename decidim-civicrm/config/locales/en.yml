@@ -19,6 +19,7 @@ en:
           admin:
             groups:
               index:
+                count: User count
                 title: Groups
                 group_title: Title
                 id: ID

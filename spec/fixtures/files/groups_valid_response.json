@@ -14,7 +14,8 @@
         "1"
       ],
       "is_hidden": "0",
-      "is_reserved": "0"
+      "is_reserved": "0",
+      "api.Contact.GetCount": 3
     },
     {
       "id": "2",
@@ -25,7 +26,8 @@
       "visibility": "User and User Admin Only",
       "group_type": "2",
       "is_hidden": "0",
-      "is_reserved": "0"
+      "is_reserved": "0",
+      "api.Contact.GetCount": 1337
     }
   ]
 }
