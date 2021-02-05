@@ -88,7 +88,7 @@ namespace :civicrm do
       assert("#users_in_group > User key 'display_name' is string") { random_user["display_name"].is_a? String }
       assert("#users_in_group > User key 'id' is string") { random_user["id"].is_a? String }
       assert("#users_in_group > User key 'api.Usercat.get' is hash") { random_user["api.Usercat.get"].is_a? Hash }
-      
+
       # keys in user's nested contact response
       contact = random_user["api.Usercat.get"]["values"][0]
       %w(id name contact_id).each do |key|
