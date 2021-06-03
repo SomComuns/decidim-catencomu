@@ -131,7 +131,7 @@ module Decidim
         end
 
         def config
-          Rails.application.secrets.verifications.dig(:civicrm)
+          Rails.application.secrets.verifications[:civicrm]
         end
 
         attr_reader :response
