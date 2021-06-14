@@ -11,19 +11,11 @@ describe "Visit a proposal", type: :system, perform_enqueued: true do
   before do
     switch_to_host(organization.host)
     page.visit main_component_path(proposals_component)
-    click_link proposal.title["en"]
+    click_link proposal.title["ca"]
   end
 
   it "allows viewing a single proposal" do
-    expect(page).to have_content(proposal.title["en"])
-    expect(page).to have_content(strip_tags(proposal.body["en"]).strip)
-  end
-
-  context "when has markdown" do
-    let!(:proposal) { create :proposal, :official, body: "## title\n\n**bold**", component: proposals_component }
-
-    it "is a official proposal" do
-      expect(proposal.official?).to eq(true)
-    end
+    expect(page).to have_content(proposal.title["ca"])
+    expect(page).to have_content(strip_tags(proposal.body["ca"]).strip)
   end
 end
