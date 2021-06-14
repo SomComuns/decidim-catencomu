@@ -210,7 +210,7 @@ PATH
   remote: .
   specs:
     decidim-civicrm (0.24.3)
-      decidim-core (= 0.24.3)
+      decidim-core (~> 0.24.3)
 
 GEM
   remote: https://rubygems.org/
@@ -320,7 +320,7 @@ GEM
       actionpack (>= 3.0)
       cells (>= 4.1.6, < 5.0.0)
     charlock_holmes (0.7.7)
-    chef-utils (17.1.35)
+    chef-utils (17.2.29)
       concurrent-ruby
     childprocess (3.0.0)
     coercible (1.0.0)
@@ -332,7 +332,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     cookiejar (0.3.3)
     crack (0.4.5)
       rexml
@@ -369,7 +369,7 @@ GEM
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.5.1)
+    doorkeeper (5.5.2)
       railties (>= 5)
     doorkeeper-i18n (4.0.1)
     em-http-request (1.1.7)
@@ -455,7 +455,7 @@ GEM
     html_tokenizer (0.0.7)
     htmlentities (4.3.4)
     http-accept (1.7.0)
-    http-cookie (1.0.3)
+    http-cookie (1.0.4)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
     i18n (1.8.10)
@@ -546,7 +546,7 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.7)
     nobspw (0.6.2)
-    nokogiri (1.11.6)
+    nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     oauth (0.5.6)
@@ -663,7 +663,7 @@ GEM
       virtus (~> 1.0.5)
       wisper (>= 1.6.1)
     redcarpet (3.5.1)
-    redis (4.2.5)
+    redis (4.3.1)
     regexp_parser (2.1.1)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -817,7 +817,7 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    websocket-driver (0.7.4)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     wicked_pdf (1.4.0)
