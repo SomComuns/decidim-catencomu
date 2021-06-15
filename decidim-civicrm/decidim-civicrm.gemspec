@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["vera@platoniq.net", "ivan@platoniq.net"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/decidim/decidim-module-civicrm"
-  s.required_ruby_version = ">= 2.6"
+  s.required_ruby_version = ">= 2.7"
 
   s.name = "decidim-civicrm"
   s.summary = "A decidim civicrm module"
@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,lib}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
 
-  s.add_dependency "decidim-core", Decidim::Civicrm.version
+  s.add_dependency "decidim-core", "~> #{Decidim::Civicrm.version}"
 
-  s.add_development_dependency "decidim-admin", Decidim::Civicrm.version
-  s.add_development_dependency "decidim-dev", Decidim::Civicrm.version
+  s.add_development_dependency "decidim-admin", "~> #{Decidim::Civicrm.version}"
+  s.add_development_dependency "decidim-dev", "~> #{Decidim::Civicrm.version}"
 end
