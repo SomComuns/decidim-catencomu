@@ -15,7 +15,8 @@ def request
   Decidim::Civicrm::Api::Request.new(
     url: ENV["CIVICRM_VERIFICATION_URL"],
     api_key: ENV["CIVICRM_VERIFICATION_API_KEY"],
-    key: ENV["CIVICRM_VERIFICATION_SECRET"]
+    key: ENV["CIVICRM_VERIFICATION_SECRET"],
+    verify_ssl: false
   )
 end
 

@@ -4,14 +4,16 @@ module Decidim
   module Civicrm
     module Api
       class Request
-        def initialize(url: nil, api_key: nil, key: nil)
+        def initialize(url: nil, api_key: nil, key: nil, verify_ssl: true)
           @url = url || config[:url]
           @api_key = api_key || config[:api_key]
           @key = key || config[:key]
+          @verify_ssl = verify_ssl
+          @connection = Faraday.new(ssl: { verify: verify_ssl })
         end
 
         def get(extra_params = {})
-          response = Faraday.get @url do |request|
+          response = @connection.get @url do |request|
             request.params = request_params.merge(extra_params)
             request.params[:key] = @key if @key.present?
             request.params[:api_key] = @api_key if @api_key.present?
