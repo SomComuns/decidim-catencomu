@@ -4,7 +4,7 @@ module Decidim
   # This holds the decidim-civicrm version.
   module Civicrm
     def self.version
-      "0.23.1"
+      "0.24.3"
     end
   end
 end
