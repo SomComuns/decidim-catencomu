@@ -83,7 +83,7 @@ describe "Custom styles", type: :system do
 
       context "and page matches the scope" do
         before do
-          click_link "Processos"
+          click_link "Processes"
         end
 
         it_behaves_like "extra css is added"
