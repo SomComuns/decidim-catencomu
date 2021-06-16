@@ -31,11 +31,11 @@ class ParticipatoryProcessesScoper
     if requesting_default_processes?
       return redirect(ALTERNATIVE_NAMESPACE) if alternative_current_participatory_process?
 
-      exclude_alternative_participatory_processes_from_default_scope
+      exclude_alternative_participatory_processes_to_default_scope
     elsif requesting_alternative_processes?
       return redirect(DEFAULT_NAMESPACE) if normal_current_participatory_process?
 
-      exclude_normal_participatory_processes_from_default_scope
+      include_alternative_participatory_processes_to_default_scope
     end
 
     @app.call(env)
@@ -94,11 +94,11 @@ class ParticipatoryProcessesScoper
     @current_participatory_process && @current_participatory_process&.decidim_participatory_process_group_id.present?
   end
 
-  def exclude_alternative_participatory_processes_from_default_scope
+  def exclude_alternative_participatory_processes_to_default_scope
     Decidim::ParticipatoryProcess.scope_groups_mode(:exclude, request_namespace)
   end
 
-  def exclude_normal_participatory_processes_from_default_scope
+  def include_alternative_participatory_processes_to_default_scope
     Decidim::ParticipatoryProcess.scope_groups_mode(:include, request_namespace)
   end
 

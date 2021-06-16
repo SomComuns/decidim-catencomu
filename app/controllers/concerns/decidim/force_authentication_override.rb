@@ -13,7 +13,7 @@ module Decidim
         return true if unauthorized_paths.any? { |path| /^#{path}/.match?(request.path) }
 
         # allow homepage
-        return true if %w(/ /processes).include? request.path
+        return true if ["/", "/processes", "/#{ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE}"].include? request.path
 
         # allow process groups
         return true if %r{^/processes_groups}.match? request.path

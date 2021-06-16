@@ -8,6 +8,7 @@ Rails.application.config.to_prepare do
   # separate participatory processes in 2 menus (within or without a process group)
   Decidim::ParticipatoryProcess.include(Decidim::ParticipatoryProcessOverride)
   Decidim::ParticipatoryProcesses::ProcessFiltersCell.include(Decidim::ParticipatoryProcesses::ProcessFiltersCellOverride)
+  Decidim::FiltersHelper.include(Decidim::FiltersHelperOverride)
 end
 
 Rails.application.config.after_initialize do

@@ -5,8 +5,9 @@ require "rails_helper"
 describe "Free and private login areas", type: :system, perform_enqueued: true do
   let(:organization) { create :organization, force_users_to_authenticate_before_access_organization: closed }
   let(:closed) { true }
-  let!(:participatory_process) { create :participatory_process, organization: organization }
-  let!(:participatory_process_group) { create :participatory_process_group, :with_participatory_processes, organization: organization }
+  let!(:alternative_participatory_process) { create :participatory_process, organization: organization }
+  let!(:participatory_process_group) { create :participatory_process_group, organization: organization }
+  let!(:participatory_process) { create :participatory_process, organization: organization, participatory_process_group: participatory_process_group }
   let!(:consultation) { create :consultation, :published, organization: organization }
   let(:user) { nil }
 
@@ -28,6 +29,11 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
     it "allows visiting processes landing page" do
       visit decidim_participatory_processes.participatory_processes_path
       expect_participatory_processes
+    end
+
+    it "allows visiting alternatve processes landing page" do
+      visit global_processes_path
+      expect_alternative_participatory_processes
     end
 
     it "allows visiting a process group" do
@@ -57,9 +63,14 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
       expect_homepage
     end
 
-    it "allows visiting processes groups" do
+    it "allows visiting processes landing page" do
       visit decidim_participatory_processes.participatory_processes_path
       expect_participatory_processes
+    end
+
+    it "allows visiting alternatve processes landing page" do
+      visit global_processes_path
+      expect_alternative_participatory_processes
     end
 
     it "allows visiting a process" do
@@ -100,8 +111,13 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
   end
 
   def expect_participatory_processes
-    expect(page).to have_content(participatory_process.title["en"])
+    expect(page).to have_content(participatory_process_group.title["en"])
     expect(current_url).to match("/processes")
+  end
+
+  def expect_alternative_participatory_processes
+    expect(page).to have_content(alternative_participatory_process.title["en"])
+    expect(current_url).to match("/global_processes")
   end
 
   def expect_participatory_process
