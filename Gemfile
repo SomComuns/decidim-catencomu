@@ -12,8 +12,8 @@ gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-civicrm", path: "./decidim-civicrm"
 
 gem "decidim-decidim_awesome", git: "https://github.com/Platoniq/decidim-module-decidim_awesome"
-gem "decidim-navigation_maps", "~> 1.2.0"
 gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications"
+gem "decidim-navigation_maps", "~> 1.2.0"
 
 gem "bootsnap", "~> 1.4"
 gem "health_check"
