@@ -72,6 +72,8 @@ es:
         first_login:
           actions:
             civicrm: Verifícate con tu cuenta de Catalunya en Comú
+    scope_ungrouped_processes:
+      menu: Procesos globales
   devise:
     shared:
       links:
