@@ -57,7 +57,7 @@ describe "Participatory processes", type: :system do
       visit decidim.root_path
     end
 
-    it "shows the original processes menu" do
+    it "shows the grouped processes menu" do
       within ".main-nav" do
         expect(page).to have_link(text: "Processes", href: "/processes")
       end
@@ -70,7 +70,7 @@ describe "Participatory processes", type: :system do
       end
     end
 
-    context "and navigating to original processes" do
+    context "and navigating to groupd processes" do
       before do
         within ".main-nav" do
           click_link "Processes"
@@ -189,17 +189,17 @@ describe "Participatory processes", type: :system do
     end
   end
 
-  context "when accessing original processes with an alternative path" do
+  context "when accessing grouped processes with an alternative path" do
     before do
       visit "/global_processes/#{grouped_process.slug}"
     end
 
-    it "redirects to the original path" do
+    it "redirects to the grouped processes path" do
       expect(page).to have_current_path(decidim_participatory_processes.participatory_process_path(grouped_process.slug))
     end
   end
 
-  context "when accessing ungrouped processes with the original path" do
+  context "when accessing ungrouped processes with the grouped processes path" do
     before do
       visit "/processes/#{ungrouped_process.slug}"
     end
