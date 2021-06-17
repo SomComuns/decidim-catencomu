@@ -59,6 +59,8 @@ ca:
           email_outro: Ara podeu realitzar totes les accions que requereixin l'autorització de Catalunya en Comú.
           email_subject: Us heu verificat amb Catalunya en Comú.
           notification_title: Us heu verificat correctament amb Catalunya en Comú.
+    scope_ungrouped_processes:
+      menu: Processos globals
     system:
       organizations:
         omniauth_settings:
@@ -72,8 +74,6 @@ ca:
         first_login:
           actions:
             civicrm: Verifica't amb el compte de Catalunya en Comú
-    scope_ungrouped_processes:
-      menu: Processos globals
   devise:
     shared:
       links:
