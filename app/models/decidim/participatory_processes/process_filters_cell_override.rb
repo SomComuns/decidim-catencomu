@@ -20,7 +20,7 @@ module Decidim
 
         # use the alternate url for generating filters if we are scoped
         def current_participatory_processes_path(filter)
-          if Decidim::ParticipatoryProcess.scoped_groups_namespace != ParticipatoryProcessesScoper::DEFAULT_NAMESPACE
+          if Decidim::ParticipatoryProcess.scoped_groups_namespace == ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE
             return alternative_filter_link(Decidim::ParticipatoryProcess.scoped_groups_namespace, filter)
           end
 

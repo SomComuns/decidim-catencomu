@@ -12,7 +12,7 @@ Rails.application.config.to_prepare do
 end
 
 Rails.application.config.after_initialize do
-  # Creates a new menu next to Processes for grouped processes
+  # Creates a new menu next to Processes for ungrouped processes
   if Rails.application.secrets.scope_ungrouped_processes[:enabled]
     Decidim.menu :menu do |menu|
       path = ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE
