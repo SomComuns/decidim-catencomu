@@ -59,6 +59,8 @@ es:
           email_outro: A partir de ahora ya puedes participar en todas aquellas acciones que requieran la autorización de Catalunya en Comú.
           email_subject: Te has verificado con Catalunya en Comú.
           notification_title: Te has verificado correctamente con Catalunya en Comú.
+    scope_ungrouped_processes:
+      menu: Procesos globales
     system:
       organizations:
         omniauth_settings:
