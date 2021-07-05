@@ -211,6 +211,16 @@ GIT
       decidim-core (= 0.24.3)
 
 GIT
+  remote: https://github.com/Platoniq/decidim-module-alternative_landing
+  revision: 2511d5a18fcc2eb6960f4a8e766286d3917c2f80
+  branch: main
+  specs:
+    decidim-alternative_landing (0.2.1)
+      decidim-admin (= 0.24.3)
+      decidim-core (= 0.24.3)
+      redcarpet (~> 3.4)
+
+GIT
   remote: https://github.com/Platoniq/decidim-module-decidim_awesome
   revision: c7958746f67376da625c2daaef37a29963146a83
   specs:
@@ -904,6 +914,7 @@ DEPENDENCIES
   bootsnap (~> 1.4)
   byebug (~> 11.0)
   decidim!
+  decidim-alternative_landing!
   decidim-civicrm!
   decidim-consultations!
   decidim-decidim_awesome!
