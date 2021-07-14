@@ -18,12 +18,4 @@ describe "Visit a proposal", type: :system, perform_enqueued: true do
     expect(page).to have_content(proposal.title["en"])
     expect(page).to have_content(strip_tags(proposal.body["en"]).strip)
   end
-
-  context "when has markdown" do
-    let!(:proposal) { create :proposal, :official, body: "## title\n\n**bold**", component: proposals_component }
-
-    it "is a official proposal" do
-      expect(proposal.official?).to eq(true)
-    end
-  end
 end

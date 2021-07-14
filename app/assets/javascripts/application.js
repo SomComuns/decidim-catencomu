@@ -14,3 +14,4 @@
 //= require activestorage
 //= require_tree .
 //= require decidim
+//= require decidim/alternative_landing/alternative_landing

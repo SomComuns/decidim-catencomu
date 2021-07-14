@@ -40,7 +40,7 @@ module CivicrmStubs
   private
 
   def user_request_url
-    "https://api.base/?action=Get&api_key=api-key&entity=User&id=42&json=%7B%22sequential%22:1%7D&key=secret"
+    "https://api.base:443/?action=Get&api_key=api-key&entity=User&id=42&json=%7B%22sequential%22:1%7D&key=secret"
   end
 
   def contact_request_url
@@ -59,8 +59,8 @@ module CivicrmStubs
   def headers
     {
       "Accept" => "*/*",
-      "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-      "User-Agent" => "Faraday v1.3.0"
+      "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+      # "User-Agent" => "Faraday v1.4.2"
     }
   end
 

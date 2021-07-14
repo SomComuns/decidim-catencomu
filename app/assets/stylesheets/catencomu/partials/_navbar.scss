@@ -13,7 +13,7 @@
 
 	.main-nav__link {
 		a {
-			color: $navbar-fg;
+			color: transparentize($navbar-bg, 0.3);
 		}
 
 		&--active a {
