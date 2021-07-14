@@ -1,0 +1,49 @@
+<% add_decidim_meta_tags(title: t("participatory_processes.index.title", scope: "decidim")) %>
+
+<%
+edit_link(
+  decidim_admin_participatory_processes.participatory_processes_path,
+  :read,
+  :process_list
+)
+%>
+
+<%= participatory_space_wrapper do %>
+  <% if request.path.match? /^\/#{ParticipatoryProcessesScoper::DEFAULT_NAMESPACE}$/ %>
+    <section id="processes-description" class="section row">
+      <h1 class="section-heading"><%= t("catencomu.processes.title") %></h1>
+      <p class="description">
+        <%= t("catencomu.processes.description") %>
+      </p>
+    </section>
+
+    <% navigation_map = Decidim::ContentBlock.for_scope(:homepage, organization: current_organization).find_by(manifest_name: :navigation_map) %>
+    <% if navigation_map.present? %>
+      <section id="ambits-territorials" class="section row mb-m">
+        <%= cell navigation_map.manifest.cell, navigation_map %>
+      </section>
+    <% end %>
+  <% end %>
+
+  <% if promoted_collection.any? %>
+    <section id="highlighted-processes" class="row section">
+      <h1 class="section-heading"><%= t("participatory_processes.index.promoted_processes", scope: "layouts.decidim") %></h1>
+      <% promoted_collection.each do |promoted_item| %>
+        <%= render_highlighted_partial_for promoted_item %>
+      <% end %>
+    </section>
+  <% end %>
+
+  <section id="processes-grid" class="section row collapse">
+    <div class="processes-grid-order-by">
+      <%= render partial: "order_by_processes" %>
+    </div>
+    <%= render partial: "decidim/shared/participatory_space_filters/show" %>
+    <p class="loading"><%= t(".loading") %></p>
+    <div class="row small-up-1 medium-up-2 large-up-3 card-grid">
+      <%= render(collection) %>
+    </div>
+  </section>
+<% end %>
+<%= javascript_include_tag "decidim/participatory_processes/filters" %>
+<%= javascript_include_tag "decidim/filters" %>
