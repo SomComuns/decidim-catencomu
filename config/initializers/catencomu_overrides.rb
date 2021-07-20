@@ -2,7 +2,8 @@
 
 # check application.rb to see the middleware initialization
 
-Rails.application.config.to_prepare do
+# not using "to_prepare" to ensure Decidim original modules are ready to be instantiated by any other plugin (awesome in this case)
+Rails.application.config.before_initialize do
   # tweak authentication for closed organizations
   Decidim::ForceAuthentication.include(Decidim::ForceAuthenticationOverride)
   # separate participatory processes in 2 menus (within or without a process group)
@@ -34,3 +35,7 @@ Rails.application.config.after_initialize do
     end
   end
 end
+
+# Decidim::DecidimAwesome.configure do |config|
+#   config.scoped_admins = :disabled
+# end
