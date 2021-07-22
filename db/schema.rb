@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_082924) do
+ActiveRecord::Schema.define(version: 2021_07_22_141934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -379,6 +379,27 @@ ActiveRecord::Schema.define(version: 2021_06_16_082924) do
     t.index ["decidim_category_id"], name: "index_decidim_categorizations_on_decidim_category_id"
   end
 
+  create_table "decidim_civicrm_participatory_process_group_assignments", force: :cascade do |t|
+    t.bigint "decidim_organization_id", null: false
+    t.bigint "decidim_participatory_process_id", null: false
+    t.integer "civicrm_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["civicrm_group_id"], name: "participatory_process_group_assignment_group"
+    t.index ["decidim_organization_id"], name: "participatory_process_group_assignment_organization"
+    t.index ["decidim_participatory_process_id"], name: "participatory_process_group_assignment_process"
+  end
+
+  create_table "decidim_civicrm_user_group_assignments", force: :cascade do |t|
+    t.bigint "decidim_user_id", null: false
+    t.integer "civicrm_group_id", null: false
+    t.jsonb "data", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["civicrm_group_id"], name: "civicrm_user_group_assignments_group"
+    t.index ["decidim_user_id"], name: "civicrm_user_group_assignments_user"
+  end
+
   create_table "decidim_coauthorships", force: :cascade do |t|
     t.bigint "decidim_author_id", null: false
     t.bigint "decidim_user_group_id"
@@ -608,6 +629,17 @@ ActiveRecord::Schema.define(version: 2021_06_16_082924) do
     t.index ["decidim_user_group_id"], name: "index_decidim_endorsements_on_decidim_user_group_id"
     t.index ["resource_type", "resource_id", "decidim_author_type", "decidim_author_id", "decidim_user_group_id"], name: "idx_endorsements_rsrcs_and_authors", unique: true
     t.index ["resource_type", "resource_id"], name: "index_decidim_endorsements_on_resource_type_and_resource_id"
+  end
+
+  create_table "decidim_features", id: :serial, force: :cascade do |t|
+    t.string "manifest_name"
+    t.jsonb "name"
+    t.integer "decidim_participatory_process_id"
+    t.jsonb "settings", default: {}
+    t.integer "weight", default: 0
+    t.jsonb "permissions"
+    t.datetime "published_at"
+    t.index ["decidim_participatory_process_id"], name: "index_decidim_features_on_decidim_participatory_process_id"
   end
 
   create_table "decidim_follows", force: :cascade do |t|
@@ -1462,6 +1494,20 @@ ActiveRecord::Schema.define(version: 2021_06_16_082924) do
     t.index ["role", "decidim_user_group_id"], name: "decidim_group_membership_one_creator_per_group", unique: true, where: "((role)::text = 'creator'::text)"
   end
 
+  create_table "decidim_user_groups", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "document_number", null: false
+    t.string "phone", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.datetime "verified_at"
+    t.datetime "rejected_at"
+    t.integer "decidim_organization_id", null: false
+    t.index ["decidim_organization_id", "document_number"], name: "index_decidim_user_groups_document_number_on_organization_id", unique: true
+    t.index ["decidim_organization_id", "name"], name: "index_decidim_user_groups_names_on_organization_id", unique: true
+  end
+
   create_table "decidim_user_moderations", force: :cascade do |t|
     t.bigint "decidim_user_id"
     t.integer "report_count", default: 0, null: false
@@ -1646,6 +1692,9 @@ ActiveRecord::Schema.define(version: 2021_06_16_082924) do
   add_foreign_key "decidim_budgets_orders", "decidim_budgets_budgets"
   add_foreign_key "decidim_budgets_projects", "decidim_budgets_budgets"
   add_foreign_key "decidim_categorizations", "decidim_categories"
+  add_foreign_key "decidim_civicrm_participatory_process_group_assignments", "decidim_organizations"
+  add_foreign_key "decidim_civicrm_participatory_process_group_assignments", "decidim_participatory_processes"
+  add_foreign_key "decidim_civicrm_user_group_assignments", "decidim_users"
   add_foreign_key "decidim_consultations_response_groups", "decidim_consultations_questions", column: "decidim_consultations_questions_id"
   add_foreign_key "decidim_consultations_responses", "decidim_consultations_questions", column: "decidim_consultations_questions_id"
   add_foreign_key "decidim_consultations_responses", "decidim_consultations_response_groups"
