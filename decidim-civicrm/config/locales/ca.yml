@@ -1,36 +1,67 @@
+---
 ca:
+  activemodel:
+    attributes:
+      participatory_process_group_assignment:
+        civicrm_group_id: Grup de Civicrm
+        decidim_participatory_process_id: Procés participatiu
   decidim:
     authorization_handlers:
       admin:
         groups:
           help:
-            - Permet verificar totes les usuàries pertanyents a un grup intel·ligent del CRM de Catalunya en Comú
-            - Només es pot crear aquest tipus de verificació des de la part d'administració de la plataforma
-            - Les usuàries només poden estar verificades amb un grup
-            - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven verificades amb un altre, aquest es reemplaçarà pel nou grup
+          - Permet verificar totes les usuàries pertanyents a un grup intel·ligent
+            del CRM de Catalunya en Comú
+          - Només es pot crear aquest tipus de verificació des de la part d'administració
+            de la plataforma
+          - Les usuàries només poden estar verificades amb un grup
+          - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven
+            verificades amb un altre, aquest es reemplaçarà pel nou grup
       groups:
-        name: Autorització de Grups CiViCRM
         explanation: Autorització de Grups CiViCRM
         fields:
           group: Grup
+        name: Autorització de Grups CiViCRM
     civicrm:
       verifications:
         groups:
           admin:
             groups:
               index:
-                title: Grups
-                group_title: Títol
-                id: ID
-                name: Nom
                 description: Descripció
-                visibility: Visibilitat
+                error: No s'han pogut obtenir els grups per un error a l'API.
+                group_title: Títol
                 group_type: Tipus
+                id: ID
                 is_active: Actiu
                 is_hidden: Amagat
                 is_reserved: Reservat
+                name: Nom
+                participatory_process_group_assignments: Assignar grups a processos participatius
+                title: Grups
                 update: Actualitza
-                error: No s'han pogut obtenir els grups per un error a l'API.
+                visibility: Visibilitat
               update:
-                success: S'han actualitzat les verificacions per les usuàries del grup "%{group}"
-                error: No s'han pogut actualitzat les verificacions per les usuàries del grup "%{group}"
+                error: No s'han pogut actualitzat les verificacions per les usuàries
+                  del grup "%{group}"
+                success: S'han actualitzat les verificacions per les usuàries del
+                  grup "%{group}"
+            participatory_process_group_assignments:
+              index:
+                confirm_destroy: Vols eliminar l'assignació?
+                destroy: Eliminar assignació
+                empty: No hi ha assignacions
+                group_title: Grup de Civicrm
+                name: Assignació de grup a procés participatiu
+                new: Nova assignació
+                participatory_process: Procés participatiu
+                title: Assignar grups a processos participatius
+                updated_at: Última actualització
+              new:
+                create: Crear nova assignació
+                title: Nova assignació
+              create:
+                success: todo!!!
+                invalid: todo!!!
+              destroy: 
+                success: todo!!!

@@ -13,6 +13,8 @@ module Decidim
           paths["lib/tasks"] = nil
 
           routes do
+            resources :participatory_process_group_assignments, except: [:show, :edit, :update]
+
             post ":id", to: "groups#update", as: :group
 
             root to: "groups#index"
