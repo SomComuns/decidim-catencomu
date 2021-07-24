@@ -49,12 +49,13 @@ ca:
                   grup "%{group}"
             participatory_process_group_assignments:
               create:
-                invalid: todo!!!
-                success: todo!!!
+                invalid: No s'ha pogut crear l'assignació
+                success: S'ha creat l'assignació
               destroy:
-                success: todo!!!
+                success: S'ha eliminat l'assignació
               index:
                 confirm_destroy: Vols eliminar l'assignació?
+                created_at: Data de creació
                 destroy: Eliminar assignació
                 empty: No hi ha assignacions
                 group_title: Grup intel·ligent
@@ -62,10 +63,12 @@ ca:
                 new: Nova assignació
                 participatory_process: Procés participatiu
                 title: Assignar grups a processos participatius
-                updated_at: Darrera actualització
+                update_participants: Actualitzar participants privades
               new:
                 create: Crear nova assignació
                 title: Nova assignació
+              update_participants:
+                sucess: S'ha iniciat el procés d'actualització
     groups:
       verification:
         authorizations:

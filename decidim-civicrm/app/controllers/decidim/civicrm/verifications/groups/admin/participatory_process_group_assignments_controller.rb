@@ -10,17 +10,13 @@ module Decidim
 
             helper_method :assignments, :assignment, :groups
 
-            def index
-              # enforce_permission_to :show, :participatory_process_group_assignment
-            end
+            def index; end
 
             def new
-              # enforce_permission_to :create, :participatory_process_group_assignment
               @form = form(Decidim::Civicrm::Verifications::Groups::Admin::ParticipatoryProcessGroupAssignmentForm).instance
             end
 
             def create
-              # enforce_permission_to :create, :participatory_process_group_assignment
               @form = form(Decidim::Civicrm::Verifications::Groups::Admin::ParticipatoryProcessGroupAssignmentForm).from_params(params)
 
               CreateParticipatoryProcessGroupAssignment.call(@form) do
@@ -37,8 +33,6 @@ module Decidim
             end
 
             def destroy
-              # enforce_permission_to :destroy, :participatory_process_group_assignment
-
               DestroyParticipatoryProcessGroupAssignment.call(assignment, current_user) do
                 on(:ok) do
                   flash[:notice] = I18n.t("participatory_process_group_assignments.destroy.success", scope: "decidim.civicrm.verifications.groups.admin")
@@ -46,6 +40,14 @@ module Decidim
                   redirect_to participatory_process_group_assignments_path
                 end
               end
+            end
+
+            def update_participants
+              Decidim::Civicrm::UpdateCivicrmGroupsJob.perform_later(current_organization.id)
+
+              flash[:notice] = I18n.t("participatory_process_group_assignments.update_participants.success", scope: "decidim.civicrm.verifications.groups.admin")
+
+              redirect_to participatory_process_group_assignments_path
             end
 
             private

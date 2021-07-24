@@ -5,6 +5,7 @@
 
       <div class="button--title">
         <%= link_to t(".new"), new_participatory_process_group_assignment_path, class: "button tiny" %>
+        <%= link_to t(".update_participants"), update_participants_path, method: :post, class: "button tiny" %>
       </div>
     </h2>
   </div>
@@ -13,18 +14,18 @@
       <table class="table-list civicrm-groups">
         <thead>
           <tr>
-            <th><%= t(".group_title") %></th>
             <th><%= t(".participatory_process") %></th>
-            <th><%= t(".updated_at") %></th>
+            <th><%= t(".group_title") %></th>
+            <th><%= t(".created_at") %></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <% assignments.each do |assignment| %>
             <tr>
-              <td><%= groups.find { |group| group[:id].to_i == assignment.civicrm_group_id }[:title] %></td>
               <td><%= link_to translated_attribute(assignment.participatory_process.title), decidim_admin_participatory_processes.edit_participatory_process_path(assignment.participatory_process), target: :blank %></td>
-              <td><%= l assignment.updated_at, format: :decidim_short %></td>
+              <td><%= groups.find { |group| group[:id].to_i == assignment.civicrm_group_id }[:title] %></td>
+              <td><%= l assignment.created_at, format: :decidim_short %></td>
               <td>
                 <%# if allowed_to? :destroy, :participatory_process_group_assignment, participatory_process_group_assignment: assignment %>
                   <%= icon_link_to "circle-x", participatory_process_group_assignment_path(assignment), t(".destroy"), class: "action-icon--remove", method: :delete, data: { confirm: t(".confirm_destroy", name: t(".name")) } %>

@@ -14,6 +14,7 @@ module Decidim
 
           routes do
             resources :participatory_process_group_assignments, except: [:show, :edit, :update]
+            post "participatory_process_group_assignments/update_participants", to: "participatory_process_group_assignments#update_participants", as: :update_participants
 
             post ":id", to: "groups#update", as: :group
 

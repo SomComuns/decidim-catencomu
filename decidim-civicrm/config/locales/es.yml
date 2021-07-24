@@ -49,12 +49,13 @@ es:
                   grupo "%{group}"
             participatory_process_group_assignments:
               create:
-                invalid: todo!!!
-                success: todo!!!
+                invalid: No se ha podido crear la asignación
+                success: Se ha creado la asignación
               destroy:
-                success: todo!!!
+                success: Se ha eliminado la asignación
               index:
                 confirm_destroy: "¿Quieres eliminar la asignación?"
+                created_at: Fecha de creación
                 destroy: Eliminar la asignación
                 empty: No hay asignaciones
                 group_title: Grupo inteligente
@@ -62,10 +63,12 @@ es:
                 new: Nueva asignación
                 participatory_process: Proceso participativo
                 title: Asignar grupos a procesos participativos
-                updated_at: Última actualitzación
+                update_participants: Actualizar participantes privadas
               new:
                 create: Crear nueva asignación
                 title: Nueva asignación
+              update_participants:
+                sucess: Se ha iniciado el proceso de actualización
     groups:
       verification:
         authorizations:

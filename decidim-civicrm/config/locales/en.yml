@@ -49,12 +49,13 @@ en:
                   been updated
             participatory_process_group_assignments:
               create:
-                invalid: todo!!!
-                success: todo!!!
+                invalid: The assignment could not be created
+                success: The assignment has been created
               destroy:
-                success: todo!!!
+                success: The assignment has been deleted
               index:
                 confirm_destroy: Do you want to delete the assignment?
+                created_at: Creation date
                 destroy: Delete assignment
                 empty: There are no assignments
                 group_title: Intelligent group
@@ -62,10 +63,12 @@ en:
                 new: Nova assignació
                 participatory_process: Participatory process
                 title: Assign group to participatory process
-                updated_at: Last updated
+                update_participants: Update private participants
               new:
                 create: Create new assignment
                 title: New assignment
+              update_participants:
+                sucess: The update process has started
     groups:
       verification:
         authorizations:
