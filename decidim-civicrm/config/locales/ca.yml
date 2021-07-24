@@ -3,7 +3,7 @@ ca:
   activemodel:
     attributes:
       participatory_process_group_assignment:
-        civicrm_group_id: Grup de Civicrm
+        civicrm_group_id: Grup intel·ligent
         decidim_participatory_process_id: Procés participatiu
   decidim:
     authorization_handlers:
@@ -37,7 +37,8 @@ ca:
                 is_hidden: Amagat
                 is_reserved: Reservat
                 name: Nom
-                participatory_process_group_assignments: Assignar grups a processos participatius
+                participatory_process_group_assignments: Assignar grups a processos
+                  participatius
                 title: Grups
                 update: Actualitza
                 visibility: Visibilitat
@@ -47,21 +48,26 @@ ca:
                 success: S'han actualitzat les verificacions per les usuàries del
                   grup "%{group}"
             participatory_process_group_assignments:
+              create:
+                invalid: todo!!!
+                success: todo!!!
+              destroy:
+                success: todo!!!
               index:
                 confirm_destroy: Vols eliminar l'assignació?
                 destroy: Eliminar assignació
                 empty: No hi ha assignacions
-                group_title: Grup de Civicrm
+                group_title: Grup intel·ligent
                 name: Assignació de grup a procés participatiu
                 new: Nova assignació
                 participatory_process: Procés participatiu
                 title: Assignar grups a processos participatius
-                updated_at: Última actualització
+                updated_at: Darrera actualització
               new:
                 create: Crear nova assignació
                 title: Nova assignació
-              create:
-                success: todo!!!
-                invalid: todo!!!
-              destroy: 
-                success: todo!!!
+    groups:
+      verification:
+        authorizations:
+          new:
+            no_action: No action

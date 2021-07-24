@@ -1,37 +1,73 @@
+---
 es:
+  activemodel:
+    attributes:
+      participatory_process_group_assignment:
+        civicrm_group_id: Grupo inteligente
+        decidim_participatory_process_id: Proceso participativo
   decidim:
     authorization_handlers:
       admin:
         groups:
           help:
-            - Permite verificar a todas las usuarias que pertenezcan a un grupo inteligente del CRM de Catalunya en Comú
-            - Sólo se puede crear este tipo de verificación desde la parte de administración de la plataforma
-            - Las usuarias sólo pueden estar verificadas con un grupo
-            - Cuando se actualiza la verificación de un grupo, si las usuarias estaban verificadas con otro, éste se reemplazará por el nuevo grupo
+          - Permite verificar a todas las usuarias que pertenezcan a un grupo inteligente
+            del CRM de Catalunya en Comú
+          - Sólo se puede crear este tipo de verificación desde la parte de administración
+            de la plataforma
+          - Las usuarias sólo pueden estar verificadas con un grupo
+          - Cuando se actualiza la verificación de un grupo, si las usuarias estaban
+            verificadas con otro, éste se reemplazará por el nuevo grupo
       groups:
-      groups:
-        name: Autorización de Grupos CiViCRM
         explanation: Autorización de Grupos CiViCRM
         fields:
           group: Grupo
+        name: Autorización de Grupos CiViCRM
     civicrm:
       verifications:
         groups:
           admin:
             groups:
               index:
-                title: Grupos
-                group_title: Título
-                id: ID
-                name: Nombre
                 description: Descripción
-                visibility: Visibilidad
+                error: No se han podido obtener los grupos por un error en la API.
+                group_title: Título
                 group_type: Tipo
+                id: ID
                 is_active: Activo
                 is_hidden: Escondido
                 is_reserved: Reservado
+                name: Nombre
+                participatory_process_group_assignments: Asignar grupos a procesos
+                  participativos
+                title: Grupos
                 update: Actualiza
-                error: No se han podido obtener los grupos por un error en la API.
+                visibility: Visibilidad
               update:
-                success: Se han actualizado las verificaciones para las usuarias del grupo "%{group}"
-                error: No se han podido actualizar las verificaciones para las usuarias del grupo "%{group}"
+                error: No se han podido actualizar las verificaciones para las usuarias
+                  del grupo "%{group}"
+                success: Se han actualizado las verificaciones para las usuarias del
+                  grupo "%{group}"
+            participatory_process_group_assignments:
+              create:
+                invalid: todo!!!
+                success: todo!!!
+              destroy:
+                success: todo!!!
+              index:
+                confirm_destroy: "¿Quieres eliminar la asignación?"
+                destroy: Eliminar la asignación
+                empty: No hay asignaciones
+                group_title: Grupo inteligente
+                name: Asignación de grupo a proceso participativo
+                new: Nueva asignación
+                participatory_process: Proceso participativo
+                title: Asignar grupos a procesos participativos
+                updated_at: Última actualitzación
+              new:
+                create: Crear nueva asignación
+                title: Nueva asignación
+    groups:
+      verification:
+        authorizations:
+          new:
+            no_action: No action
