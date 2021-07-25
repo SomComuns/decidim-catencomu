@@ -177,7 +177,7 @@ namespace :civicrm do
   # invoke with 'bundle exec rake "civicrm:create_private_process_for_group[1]"'
 
   desc "Create private participatory processes for Civicrm Groups"
-  task :create_private_process_for_group, [:organization_id] => :environment do |_t, args|
+  task :create_private_process_for_groups, [:organization_id] => :environment do |_t, args|
     organization = Decidim::Organization.find(args[:organization_id])
     participatory_process_group = Decidim::ParticipatoryProcessGroup.find_by(organization: organization)
 
@@ -204,5 +204,10 @@ namespace :civicrm do
         )
       end
     end
+  end
+
+  desc "Update private process participants from assigned civirm groups"
+  task :update_private_participants, [:organization_id] => :environment do |_t, args|
+    UpdateCivicrmGroupsJob.perform_later(args[:organization_id])
   end
 end
