@@ -1,5 +1,10 @@
 ---
 ca:
+  activemodel:
+    attributes:
+      participatory_process_group_assignment:
+        civicrm_group_id: Grup intel·ligent
+        decidim_participatory_process_id: Procés participatiu
   decidim:
     authorization_handlers:
       admin:
@@ -33,16 +38,46 @@ ca:
                 is_hidden: Amagat
                 is_reserved: Reservat
                 name: Nom
+                participatory_process_group_assignments: Asignar grupos a procesos
+                  participativos
                 title: Grups
                 update: Actualitza
                 visibility: Visibilitat
-                warning_1: Les usuàries només poden estar autoritzades amb un grup
-                  intel·ligent a la vegada.
-                warning_2: Abans de realitzar una acció amb restriccions, cal refrescar
-                  el grup al qual es permet realitzar l'acció, per tal de garantir
-                  que totes les usuàries que hi pertanyen estan autoritzades.
+                warning_1: Las usuarias solo pueden estar autorizadas con un grupo
+                  inteligente a la vez.
+                warning_2: Antes de realizar una acción con restricciones, hace falta
+                  refrescar el grupo al cual se le permite realizar la acción, para
+                  garantizar que todas las usuarias que pertenecen a ese grupo estan
+                  autorizadas.
               update:
                 error: No s'han pogut actualitzat les verificacions per les usuàries
-                  del grup "%{group}"
                 success: S'han actualitzat les verificacions per les usuàries del
                   grup "%{group}"
+            participatory_process_group_assignments:
+              create:
+                invalid: No s'ha pogut crear l'assignació
+                success: S'ha creat l'assignació
+              destroy:
+                success: S'ha eliminat l'assignació
+              index:
+                confirm_destroy: Vols eliminar l'assignació?
+                created_at: Data de creació
+                destroy: Eliminar assignació
+                empty: No hi ha assignacions
+                group_title: Grup intel·ligent
+                name: Assignació de grup a procés participatiu
+                new: Nova assignació
+                participatory_process: Procés participatiu
+                title: Assignar grups a processos participatius
+                update_participants: Actualitzar participants privades
+              new:
+                create: Crear nova assignació
+                title: Nova assignació
+              update_participants:
+                success: Success
+                sucess: S'ha iniciat el procés d'actualització
+    groups:
+      verification:
+        authorizations:
+          new:
+            no_action: No action

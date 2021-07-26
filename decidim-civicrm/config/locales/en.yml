@@ -1,5 +1,10 @@
 ---
 en:
+  activemodel:
+    attributes:
+      participatory_process_group_assignment:
+        civicrm_group_id: Intelligent group
+        decidim_participatory_process_id: Participatory process
   decidim:
     authorization_handlers:
       admin:
@@ -33,11 +38,47 @@ en:
                 is_hidden: Hidden
                 is_reserved: Reserved
                 name: Name
+                participatory_process_group_assignments: Asignar grupos a procesos
+                  participativos
                 title: Groups
                 update: Update
                 visibility: Visibility
+                warning_1: Las usuarias solo pueden estar autorizadas con un grupo
+                  inteligente a la vez.
+                warning_2: Antes de realizar una acción con restricciones, hace falta
+                  refrescar el grupo al cual se le permite realizar la acción, para
+                  garantizar que todas las usuarias que pertenecen a ese grupo estan
+                  autorizadas.
               update:
                 error: The verifications for users in the group "%{group}" could not
                   be updated
                 success: The verifications for users in the group "%{group}" have
                   been updated
+            participatory_process_group_assignments:
+              create:
+                invalid: The assignment could not be created
+                success: The assignment has been created
+              destroy:
+                success: The assignment has been deleted
+              index:
+                confirm_destroy: Do you want to delete the assignment?
+                created_at: Creation date
+                destroy: Delete assignment
+                empty: There are no assignments
+                group_title: Intelligent group
+                name: Participatory process group assignments
+                new: Nova assignació
+                participatory_process: Participatory process
+                title: Assign group to participatory process
+                update_participants: Update private participants
+              new:
+                create: Create new assignment
+                title: New assignment
+              update_participants:
+                success: Success
+                sucess: The update process has started
+    groups:
+      verification:
+        authorizations:
+          new:
+            no_action: No action

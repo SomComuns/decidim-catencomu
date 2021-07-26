@@ -9,7 +9,6 @@ module Decidim
         class Engine < ::Rails::Engine
           isolate_namespace Decidim::Civicrm::Verifications::Groups
 
-          paths["db/migrate"] = nil
           paths["lib/tasks"] = nil
 
           routes do

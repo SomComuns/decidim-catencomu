@@ -1,5 +1,10 @@
 ---
 es:
+  activemodel:
+    attributes:
+      participatory_process_group_assignment:
+        civicrm_group_id: Grupo inteligente
+        decidim_participatory_process_id: Proceso participativo
   decidim:
     authorization_handlers:
       admin:
@@ -25,7 +30,7 @@ es:
               index:
                 count: Número de usuarias
                 description: Descripción
-                error: No s'han pogut obtenir els grups per un error a l'API.
+                error: No se han podido obtener los grupos por un error en la API.
                 group_title: Título
                 group_type: Tipo
                 id: ID
@@ -33,6 +38,8 @@ es:
                 is_hidden: Escondido
                 is_reserved: Reservado
                 name: Nombre
+                participatory_process_group_assignments: Asignar grupos a procesos
+                  participativos
                 title: Grupos
                 update: Actualiza
                 visibility: Visibilidad
@@ -47,3 +54,31 @@ es:
                   del grupo "%{group}"
                 success: Se han actualizado las verificaciones para las usuarias del
                   grupo "%{group}"
+            participatory_process_group_assignments:
+              create:
+                invalid: The assignment could not be created
+                success: The assignment has been created
+              destroy:
+                success: The assignment has been deleted
+              index:
+                confirm_destroy: Do you want to delete the assignment?
+                created_at: Creation date
+                destroy: Delete assignment
+                empty: There are no assignments
+                group_title: Intelligent group
+                name: Participatory process group assignments
+                new: Nova assignació
+                participatory_process: Participatory process
+                title: Assign group to participatory process
+                update_participants: Update private participants
+              new:
+                create: Create new assignment
+                title: New assignment
+              update_participants:
+                success: Success
+                sucess: The update process has started
+    groups:
+      verification:
+        authorizations:
+          new:
+            no_action: No action
