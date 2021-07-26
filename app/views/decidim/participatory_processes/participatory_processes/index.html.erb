@@ -11,10 +11,14 @@ edit_link(
 <%= participatory_space_wrapper do %>
   <% if request.path.match? /^\/#{ParticipatoryProcessesScoper::DEFAULT_NAMESPACE}$/ %>
     <section id="processes-description" class="section row">
-      <h1 class="section-heading"><%= t("catencomu.processes.title") %></h1>
-      <p class="description">
-        <%= t("catencomu.processes.description") %>
-      </p>
+      <div class="row">
+        <div class="columns small-12 large-9">
+          <h1 class="section-heading"><%= t("catencomu.processes.title") %></h1>
+          <p class="description">
+            <%= t("catencomu.processes.description") %>
+          </p>
+        </div>
+      </div>
     </section>
 
     <% navigation_map = Decidim::ContentBlock.for_scope(:homepage, organization: current_organization).find_by(manifest_name: :navigation_map) %>
