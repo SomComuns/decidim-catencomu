@@ -47,3 +47,5 @@ group :production do
   gem "sidekiq", "~> 6.0"
   gem "sidekiq-cron"
 end
+
+gem "whenever", require: false
