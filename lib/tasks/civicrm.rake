@@ -13,7 +13,7 @@ GROUPS = {
     executiva: {
       id: 142,
       name: "Executiva_Alt_Pirineu_i_Aran_142",
-      title: "Direcció Executiva de l'Alt Pirineu i Aran",
+      title: "Executiva de l'Alt Pirineu i Aran",
       ref: "AT-E-APA"
     }
   },
@@ -27,7 +27,7 @@ GROUPS = {
     executiva: {
       id: 138,
       name: "Executiva_Baix_Llobregat_138",
-      title: "Direcció Executiva del Baix Llobregat",
+      title: "Executiva del Baix Llobregat",
       ref: "AT-E-BL"
     }
   },
@@ -41,7 +41,7 @@ GROUPS = {
     executiva: {
       id: 146,
       name: "Executiva_Barcelon_s_146",
-      title: "Direcció Executiva del Barcelonès",
+      title: "Executiva del Barcelonès",
       ref: "AT-E-B"
     }
   },
@@ -55,7 +55,7 @@ GROUPS = {
     executiva: {
       id: 147,
       name: "Executiva_Camp_de_Tarragona_147",
-      title: "Direcció Executiva del Camp de Tarragona",
+      title: "Executiva del Camp de Tarragona",
       ref: "AT-E-CT"
     }
   },
@@ -69,7 +69,7 @@ GROUPS = {
     executiva: {
       id: 139,
       name: "Executiva_Catalunya_Central_139",
-      title: "Direcció Executiva de les Comarques Centrals",
+      title: "Executiva de les Comarques Centrals",
       ref: "AT-E-CC"
     }
   },
@@ -83,7 +83,7 @@ GROUPS = {
     executiva: {
       id: 145,
       name: "Executiva_Comarques_Gironines_145",
-      title: "Direcció Executiva de les Comarques Gironines",
+      title: "Executiva de les Comarques Gironines",
       ref: "AT-E-CG"
     }
   },
@@ -97,7 +97,7 @@ GROUPS = {
     executiva: {
       id: 149,
       name: "Executiva_Maresme_149",
-      title: "Direcció Executiva del Maresme",
+      title: "Executiva del Maresme",
       ref: "AT-E-M"
     }
   },
@@ -111,7 +111,7 @@ GROUPS = {
     executiva: {
       id: 144,
       name: "Executiva_Pened_s_144",
-      title: "Direcció Executiva del Penedès",
+      title: "Executiva del Penedès",
       ref: "AT-E-P"
     }
   },
@@ -125,7 +125,7 @@ GROUPS = {
     executiva: {
       id: 143,
       name: "Executiva_Terres_de_Lleida_143",
-      title: "Direcció Executiva de les Terres de Ponent",
+      title: "Executiva de les Terres de Ponent",
       ref: "AT-E-L"
     }
   },
@@ -139,7 +139,7 @@ GROUPS = {
     executiva: {
       id: 148,
       name: "Executiva_Terres_de_l_Ebre_148",
-      title: "Direcció Executiva de les Terres de l'Ebre",
+      title: "Executiva de les Terres de l'Ebre",
       ref: "AT-E-E"
     }
   },
@@ -153,7 +153,7 @@ GROUPS = {
     executiva: {
       id: 140,
       name: "Executiva_Vall_s_Occidental_140",
-      title: "Direcció Executiva del Vallès Occidental",
+      title: "Executiva del Vallès Occidental",
       ref: "AT-E-VOC"
     }
   },
@@ -167,7 +167,7 @@ GROUPS = {
     executiva: {
       id: 141,
       name: "Executiva_Vall_s_Oriental_141",
-      title: "Direcció Executiva del Vallès Oriental",
+      title: "Executiva del Vallès Oriental",
       ref: "AT-E-VOR"
     }
   }
