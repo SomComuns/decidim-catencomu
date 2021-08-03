@@ -3,6 +3,9 @@ es:
   catencomu:
     account_callout: Estos datos son exclusivamente para el espacio web de Comunitat, y no se sincronizan con las del espacio web de Participació.
     account_link: Visita el espacio web de Participació.
+    processes:
+      description: Descripción de los ámbitos territoriales
+      title: Ámbitos Territoriales
   decidim:
     account:
       show:
@@ -59,6 +62,9 @@ es:
           email_outro: A partir de ahora ya puedes participar en todas aquellas acciones que requieran la autorización de Catalunya en Comú.
           email_subject: Te has verificado con Catalunya en Comú.
           notification_title: Te has verificado correctamente con Catalunya en Comú.
+    navigation_maps:
+      content_blocks:
+        name: Mapa interactivo (Ámbitos Territoriales)
     scope_ungrouped_processes:
       menu: Procesos globales
     system:
