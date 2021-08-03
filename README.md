@@ -22,3 +22,19 @@ user.save!
 6. Fill the rest of the form and submit it.
 
 You're good to go!
+
+## Applied hacks & customizations
+
+This Decidim application comes with a bunch of customizations, some of them done via some initializer or monkey patching. Other with external plugins.
+
+### Plugins
+
+- [Alternative Landing](https://github.com/Platoniq/decidim-module-alternative_landing): Better content blocks for Decidim's homepage and process groups landing page
+- [Decidim Awesome](https://github.com/Platoniq/decidim-module-decidim_awesome):	Usability and UX tweaks for Decidim. This plugin allows the administrators to expand the possibilities of Decidim beyond some existing limitations. All tweaks are provided in a optional fashion with granular permissions that let the administrator to choose exactly where to apply those mods. Some tweaks can be applied to any assembly, other in an specific participatory process or even in type of component only.
+- [Direct Verifications](https://github.com/Platoniq/decidim-verifications-direct_verifications):	A Decidim that provides a verification method called Direct verification. Works only on the admin side, final users do not intervene in the verification process.
+- [Navigation Maps](https://github.com/Platoniq/decidim-catencomu/blob/9f89837a2acf227da17c61db0df0b06a01113d36/README.md#L35):	Allows to map processes to image parts using maps.
+- [CiviCRM Client](https://github.com/EFForg/ruby-civicrm): Ruby client for CiviCRM REST interface
+
+### Customizations
+
+#### Login page
