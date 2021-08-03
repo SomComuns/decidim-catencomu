@@ -22,6 +22,6 @@
 # Learn more: http://github.com/javan/whenever
 
 # every 1.day do
-  # rake "civicrm:update_private_participants[1]" # parameter '1' is the organization_id
-  # rake "civicrm:update_private_participants[2]" # parameter '2' is the organization_id
+# rake "civicrm:update_private_participants[1]" # parameter '1' is the organization_id
+# rake "civicrm:update_private_participants[2]" # parameter '2' is the organization_id
 # end
