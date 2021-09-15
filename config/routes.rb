@@ -33,4 +33,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  mount Managers::Admin::AdminEngine => "/admin/managers"
 end

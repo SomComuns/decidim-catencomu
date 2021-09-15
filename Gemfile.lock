@@ -240,6 +240,13 @@ GIT
       decidim-core (>= 0.22.0)
 
 PATH
+  remote: catcomu-managers
+  specs:
+    catcomu-managers (0.1.0)
+      decidim-admin (~> 0.24.3)
+      decidim-core (~> 0.24.3)
+
+PATH
   remote: decidim-civicrm
   specs:
     decidim-civicrm (0.24.3)
@@ -921,6 +928,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (~> 1.4)
   byebug (~> 11.0)
+  catcomu-managers!
   decidim!
   decidim-alternative_landing!
   decidim-civicrm!
@@ -951,4 +959,4 @@ RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.2.19
+   2.2.25
