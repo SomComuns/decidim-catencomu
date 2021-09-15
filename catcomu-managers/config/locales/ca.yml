@@ -1,0 +1,7 @@
+ca:
+  managers:
+    admin:
+      scoped_admins:
+        index:
+          user_not_scoped: Ho sentim, el teu usuari no està acotat a un grup de processos!
+          group_processes: Processos participatius en aquest grup
