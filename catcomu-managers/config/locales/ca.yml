@@ -1,0 +1,20 @@
+---
+ca:
+  activemodel:
+    errors:
+      models:
+        participatory_process:
+          attributes:
+            participatory_process_group_id:
+              user_not_admin_in_group: No pots canviar el grup del process si no n'ets administrador
+  catcomu:
+    managers:
+      admin:
+        scoped_admins:
+          index:
+            edit: Edita aquest grup
+            group_processes: Processos participatius en aquest grup
+            user_not_scoped: Ho sentim, el teu usuari no està acotat a un grup de processos!
+          new_process_form:
+            send: Envia
+            title: Crea un nou proces participatiu

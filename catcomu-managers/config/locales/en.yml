@@ -1,0 +1,20 @@
+---
+ca:
+  activemodel:
+    errors:
+      models:
+        participatory_process:
+          attributes:
+            participatory_process_group_id:
+              user_not_admin_in_group: Can't change group if you are not administrator
+  catcomu:
+    managers:
+      admin:
+        scoped_admins:
+          index:
+            edit: Edit this group
+            group_processes: Participative processes in this group
+            user_not_scoped: Sorry, your user is not scoped into a group of processes!
+          new_process_form:
+            send: Send
+            title: Create a new participative process
