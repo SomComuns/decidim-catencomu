@@ -10,6 +10,10 @@ locales: [ca, es]
 # internal_locale: en
 
 data:
+  read:
+    - config/locales/%{locale}.yml
+    - catcomu-managers/config/locales/%{locale}.yml
+    - decidim-civicrm/config/locales/%{locale}.yml
   yaml:
     write:
       # do not wrap lines at 80 characters

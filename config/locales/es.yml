@@ -40,9 +40,6 @@ es:
       direct_verifications:
         explanation: Verificación directa para el Consejo Nacional
         name: Consejo Nacional
-      groups:
-        explanation: Grupos Inteligentes Catalunya en Comú
-        name: Grupos Inteligentes Catalunya en Comú
     components:
       proposals:
         actions:

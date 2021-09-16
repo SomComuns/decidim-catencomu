@@ -34,5 +34,5 @@ Rails.application.routes.draw do
     end
   end
 
-  mount Managers::Admin::AdminEngine => "/admin/managers"
+  mount Catcomu::Managers::Admin::AdminEngine => "/admin/managers"
 end
