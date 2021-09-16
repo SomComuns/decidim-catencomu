@@ -27,6 +27,18 @@ describe "Scoped admins", type: :system do
   end
 
   before do
+    # ErrorController is only called when in production mode, so we simulated it
+    # otherwise admin redirections do not work
+    unless ENV["SHOW_EXCEPTIONS"]
+      allow(Rails.application).to \
+        receive(:env_config).with(no_args).and_wrap_original do |m, *|
+          m.call.merge(
+            "action_dispatch.show_exceptions" => true,
+            "action_dispatch.show_detailed_exceptions" => false
+          )
+        end
+    end
+
     switch_to_host(organization.host)
     login_as user, scope: :user
   end
@@ -84,5 +96,25 @@ describe "Scoped admins", type: :system do
     select another_participatory_process_group.title["en"], from: :participatory_process_participatory_process_group_id
     find("*[type=submit]").click
     expect(page).to have_admin_callout("There was a problem updating this participatory process.")
+  end
+
+  context "when user is not scoped" do
+    let(:scoped_admins) do
+      {}
+    end
+
+    it "user has no admin access" do
+      visit decidim_admin.root_path
+
+      expect(page).to have_content("The page you're looking for can't be found")
+    end
+
+    it "has not actions in managers module" do
+      visit catcomu_managers_admin.scoped_admins_path
+
+      expect(page).to have_content("Sorry, your user is not scoped into a group of processes!")
+      expect(page).not_to have_content(participatory_process.title["en"])
+      expect(page).not_to have_content(another_participatory_process.title["en"])
+    end
   end
 end
