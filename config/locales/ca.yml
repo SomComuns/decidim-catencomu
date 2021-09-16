@@ -40,9 +40,6 @@ ca:
       direct_verifications:
         explanation: Verificació directa per al Consell Nacional
         name: Consell Nacional
-      groups:
-        explanation: Permet verificar totes les usuàries pertanyents a un grup intel·ligent del CRM de Catalunya en Comú
-        name: Grups Intel·ligents Catalunya en Comú
     components:
       proposals:
         actions:

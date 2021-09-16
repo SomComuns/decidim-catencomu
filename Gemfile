@@ -10,6 +10,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "main"
 gem "decidim-consultations", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
+gem "catcomu-managers", path: "./catcomu-managers"
 gem "decidim-civicrm", path: "./decidim-civicrm"
 
 gem "decidim-decidim_awesome", git: "https://github.com/Platoniq/decidim-module-decidim_awesome", branch: "main"

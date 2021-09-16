@@ -10,13 +10,10 @@ ca:
       admin:
         groups:
           help:
-          - Permet verificar totes les usuàries pertanyents a un grup intel·ligent
-            del CRM de Catalunya en Comú
-          - Només es pot crear aquest tipus de verificació des de la part d'administració
-            de la plataforma
+          - Permet verificar totes les usuàries pertanyents a un grup intel·ligent del CRM de Catalunya en Comú
+          - Només es pot crear aquest tipus de verificació des de la part d'administració de la plataforma
           - Les usuàries només poden estar verificades amb un grup
-          - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven
-            verificades amb un altre, aquest es reemplaçarà pel nou grup
+          - Quan s'actualitza la verificació d'un grup, si les usuàries n'estaven verificades amb un altre, aquest es reemplaçarà pel nou grup
       groups:
         explanation: Autorització de Grups CiViCRM
         fields:
@@ -37,16 +34,13 @@ ca:
                 is_hidden: Amagat
                 is_reserved: Reservat
                 name: Nom
-                participatory_process_group_assignments: Assignar grups a processos
-                  participatius
+                participatory_process_group_assignments: Assignar grups a processos participatius
                 title: Grups
                 update: Actualitza
                 visibility: Visibilitat
               update:
-                error: No s'han pogut actualitzat les verificacions per les usuàries
-                  del grup "%{group}"
-                success: S'han actualitzat les verificacions per les usuàries del
-                  grup "%{group}"
+                error: No s'han pogut actualitzat les verificacions per les usuàries del grup "%{group}"
+                success: S'han actualitzat les verificacions per les usuàries del grup "%{group}"
             participatory_process_group_assignments:
               create:
                 invalid: No s'ha pogut crear l'assignació
