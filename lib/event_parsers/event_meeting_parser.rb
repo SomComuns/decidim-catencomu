@@ -6,9 +6,11 @@ module EventParsers
       @resource = meeting
       @resource_type = "Decidim::Meetings::Meeting"
       @resource_id = @resource.id
+      @entity = "Event"
+      @action = "create"
     end
 
-    def data
+    def json
       {
         start_date: @resource.start_time.strftime("%Y%m%d"),
         title: title,

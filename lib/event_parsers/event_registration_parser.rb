@@ -5,9 +5,11 @@ module EventParsers
     def initialize(registration)
       @resource = registration
       @resource_type = :registration
+      @entity = "Participant"
+      @action = "create"
     end
 
-    def data
+    def json
       {
         "event_id": nil,
         "contact_id": nil
