@@ -10,8 +10,6 @@ Rails.application.config.before_initialize do
   Decidim::ParticipatoryProcess.include(Decidim::ParticipatoryProcessOverride)
   Decidim::ParticipatoryProcesses::ProcessFiltersCell.include(Decidim::ParticipatoryProcesses::ProcessFiltersCellOverride)
   Decidim::FiltersHelper.include(Decidim::FiltersHelperOverride)
-  # send events when creating assemblies
-  Decidim::Assemblies::Admin::CreateAssembly.include(Decidim::Assemblies::Admin::CreateAssemblyOverride)
 end
 
 Rails.application.config.after_initialize do

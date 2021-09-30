@@ -24,6 +24,18 @@ module Decidim
           JSON.parse(response.body).to_h
         end
 
+        def post(extra_params = {})
+          response = @connection.post @url do |request|
+            request.params = request_params.merge(extra_params)
+            request.params[:key] = @key if @key.present?
+            request.params[:api_key] = @api_key if @api_key.present?
+          end
+
+          return raise Error, response.reason_phrase unless response.success?
+
+          JSON.parse(response.body).to_h
+        end
+
         def get_contact(id)
           params = {
             entity: "Contact",
