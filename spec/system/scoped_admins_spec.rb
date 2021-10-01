@@ -98,6 +98,24 @@ describe "Scoped admins", type: :system do
     expect(page).to have_admin_callout("There was a problem updating this participatory process.")
   end
 
+  context "when user is admin" do
+    let(:user) { create(:user, :admin, :confirmed, organization: organization) }
+
+    it "can change the group of the process" do
+      visit catcomu_managers_admin.scoped_admins_path
+      click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+
+      fill_in_i18n(
+        :participatory_process_title,
+        "#participatory_process-title-tabs",
+        en: "Edited participatory_process"
+      )
+      select another_participatory_process_group.title["en"], from: :participatory_process_participatory_process_group_id
+      find("*[type=submit]").click
+      expect(page).to have_admin_callout("Participatory process successfully updated.")
+    end
+  end
+
   context "when user is not scoped" do
     let(:scoped_admins) do
       {}
