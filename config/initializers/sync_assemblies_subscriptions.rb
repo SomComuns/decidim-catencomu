@@ -19,8 +19,12 @@ Decidim::EventsManager.subscribe(/^decidim\.events\./) do |event_name, data|
     service = EventSyncService.new(parser)
 
     if service.publish
-      Rails.logger.info "Published event ##{data[:resource].id} [#{event_name}] to CiviCRM API with UID #{service.result["id"]}"
-      # TODO: save model Assign
+      Rails.logger.info "Published event ##{data[:resource].id} [#{event_name}] with CiviCRM UID #{service.result["id"]}"
+      begin
+        parser.save!(service.result)
+      rescue StandardError => e
+        Rails.logger.error "Error saving model ##{data[:resource].id} with CiviCRM UID #{service.result["id"]} [#{e.message}]"
+      end
     else
       Rails.logger.error "Error publishing event ##{data[:resource].id} [#{event_name}] to CiviCRM API #{service.result}"
     end

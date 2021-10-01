@@ -1677,16 +1677,13 @@ ActiveRecord::Schema.define(version: 2021_09_30_074912) do
   end
 
   create_table "registration_event_assignments", force: :cascade do |t|
-    t.bigint "decidim_user_id", null: false
-    t.bigint "decidim_meeting_id", null: false
+    t.bigint "decidim_meetings_registration_id", null: false
     t.integer "registration_id", null: false
     t.jsonb "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["decidim_meeting_id"], name: "index_registration_event_assignments_on_decidim_meeting_id"
-    t.index ["decidim_user_id", "decidim_meeting_id", "registration_id"], name: "registration_event_assignment_unique", unique: true
-    t.index ["decidim_user_id"], name: "index_registration_event_assignments_on_decidim_user_id"
-    t.index ["registration_id"], name: "index_registration_event_assignments_on_registration_id"
+    t.index ["decidim_meetings_registration_id", "registration_id"], name: "registration_event_assignment_unique", unique: true
+    t.index ["decidim_meetings_registration_id"], name: "decidim_meeting_registration_assignment"
   end
 
   create_table "versions", force: :cascade do |t|

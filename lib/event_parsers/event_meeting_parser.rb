@@ -8,6 +8,7 @@ module EventParsers
       @resource_id = @resource.id
       @entity = "Event"
       @action = "create"
+      @model_class = MeetingEventAssignment
     end
 
     def json
@@ -16,6 +17,14 @@ module EventParsers
         title: title,
         template_id: 2
       }
+    end
+
+    def save!(result)
+      @model_class.create!({
+        event_id: result["id"],
+        meeting: @resource,
+        data: result
+      })
     end
 
     private

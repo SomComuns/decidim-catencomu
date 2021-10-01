@@ -2,7 +2,7 @@
 
 module EventParsers
   class EventBaseParser
-    attr_reader :errors, :resource, :resource_id, :resource_type, :entity, :action
+    attr_reader :errors, :resource, :resource_id, :resource_type, :entity, :action, :model_class
 
     def data
       {
@@ -18,6 +18,14 @@ module EventParsers
       @errors[:resource_id] = "Resouce is missing" if @resource_id.blank?
 
       @errors.blank?
+    end
+
+    def json
+      raise NotImplementedError
+    end
+
+    def save!(result)
+      raise NotImplementedError
     end
   end
 end
