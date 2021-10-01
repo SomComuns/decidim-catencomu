@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_082029) do
+ActiveRecord::Schema.define(version: 2021_09_30_074912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -617,56 +617,6 @@ ActiveRecord::Schema.define(version: 2021_09_16_082029) do
     t.index ["endorsements_count"], name: "idx_decidim_debates_debates_on_endorsemnts_count"
   end
 
-  create_table "decidim_dummy_resources_coauthorable_dummy_resources", force: :cascade do |t|
-    t.jsonb "translatable_text"
-    t.string "title"
-    t.string "body"
-    t.text "address"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "published_at"
-    t.integer "coauthorships_count", default: 0, null: false
-    t.integer "endorsements_count", default: 0, null: false
-    t.integer "comments_count", default: 0, null: false
-    t.bigint "decidim_component_id"
-    t.bigint "decidim_category_id"
-    t.bigint "decidim_scope_id"
-    t.string "reference"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "decidim_dummy_resources_dummy_resources", force: :cascade do |t|
-    t.jsonb "translatable_text"
-    t.jsonb "title"
-    t.string "body"
-    t.text "address"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "published_at"
-    t.integer "coauthorships_count", default: 0, null: false
-    t.integer "endorsements_count", default: 0, null: false
-    t.integer "comments_count", default: 0, null: false
-    t.integer "follows_count", default: 0, null: false
-    t.bigint "decidim_component_id"
-    t.integer "decidim_author_id"
-    t.string "decidim_author_type"
-    t.integer "decidim_user_group_id"
-    t.bigint "decidim_category_id"
-    t.bigint "decidim_scope_id"
-    t.string "reference"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "decidim_dummy_resources_nested_dummy_resources", force: :cascade do |t|
-    t.jsonb "translatable_text"
-    t.string "title"
-    t.bigint "dummy_resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "decidim_endorsements", force: :cascade do |t|
     t.string "resource_type"
     t.bigint "resource_id"
@@ -679,6 +629,17 @@ ActiveRecord::Schema.define(version: 2021_09_16_082029) do
     t.index ["decidim_user_group_id"], name: "index_decidim_endorsements_on_decidim_user_group_id"
     t.index ["resource_type", "resource_id", "decidim_author_type", "decidim_author_id", "decidim_user_group_id"], name: "idx_endorsements_rsrcs_and_authors", unique: true
     t.index ["resource_type", "resource_id"], name: "index_decidim_endorsements_on_resource_type_and_resource_id"
+  end
+
+  create_table "decidim_features", id: :serial, force: :cascade do |t|
+    t.string "manifest_name"
+    t.jsonb "name"
+    t.integer "decidim_participatory_process_id"
+    t.jsonb "settings", default: {}
+    t.integer "weight", default: 0
+    t.jsonb "permissions"
+    t.datetime "published_at"
+    t.index ["decidim_participatory_process_id"], name: "index_decidim_features_on_decidim_participatory_process_id"
   end
 
   create_table "decidim_follows", force: :cascade do |t|
@@ -1533,6 +1494,20 @@ ActiveRecord::Schema.define(version: 2021_09_16_082029) do
     t.index ["role", "decidim_user_group_id"], name: "decidim_group_membership_one_creator_per_group", unique: true, where: "((role)::text = 'creator'::text)"
   end
 
+  create_table "decidim_user_groups", id: :serial, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "document_number", null: false
+    t.string "phone", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.datetime "verified_at"
+    t.datetime "rejected_at"
+    t.integer "decidim_organization_id", null: false
+    t.index ["decidim_organization_id", "document_number"], name: "index_decidim_user_groups_document_number_on_organization_id", unique: true
+    t.index ["decidim_organization_id", "name"], name: "index_decidim_user_groups_names_on_organization_id", unique: true
+  end
+
   create_table "decidim_user_moderations", force: :cascade do |t|
     t.bigint "decidim_user_id"
     t.integer "report_count", default: 0, null: false
@@ -1643,6 +1618,16 @@ ActiveRecord::Schema.define(version: 2021_09_16_082029) do
     t.index ["decidim_organization_id"], name: "index_verifications_csv_census_to_organization"
   end
 
+  create_table "meeting_event_assignments", force: :cascade do |t|
+    t.bigint "decidim_meeting_id", null: false
+    t.integer "event_id", null: false
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_meeting_id", "event_id"], name: "meetings_event_assignment_unique", unique: true
+    t.index ["decidim_meeting_id"], name: "index_meeting_event_assignments_on_decidim_meeting_id"
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.bigint "application_id", null: false
@@ -1689,6 +1674,16 @@ ActiveRecord::Schema.define(version: 2021_09_16_082029) do
     t.boolean "confidential", default: true, null: false
     t.index ["decidim_organization_id"], name: "index_oauth_applications_on_decidim_organization_id"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "registration_event_assignments", force: :cascade do |t|
+    t.bigint "decidim_meetings_registration_id", null: false
+    t.integer "registration_id", null: false
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_meetings_registration_id", "registration_id"], name: "registration_event_assignment_unique", unique: true
+    t.index ["decidim_meetings_registration_id"], name: "decidim_meeting_registration_assignment"
   end
 
   create_table "versions", force: :cascade do |t|
