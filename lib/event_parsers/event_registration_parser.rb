@@ -18,7 +18,7 @@ module EventParsers
       }
     end
 
-    def save!(result)
+    def save!
       @model_class.create!({
                              registration_id: result["id"],
                              registration: @resource,
@@ -26,17 +26,25 @@ module EventParsers
                            })
     end
 
+    def valid?
+      super
+      @errors[:contact_id] = "Contact id is missing" if contact_id.blank?
+      @errors.blank?
+    end
+
     private
 
     def event_id
-      MeetingEventAssignment.find_by(meeting: @resource.meeting)&.event_id
+      @event_id ||= MeetingEventAssignment.find_by(meeting: @resource.meeting)&.event_id
     end
 
     def contact_id
+      return @contact_id if @contact_id
+
       authorization = Decidim::Authorization.find_by(user: @resource.user, name: "civicrm")
       return unless authorization
 
-      authorization.metadata["contact_id"]
+      @contact_id = authorization.metadata["contact_id"]
     end
   end
 end

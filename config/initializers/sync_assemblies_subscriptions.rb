@@ -12,6 +12,7 @@ Decidim::EventsManager.subscribe(/^decidim\.events\./) do |event_name, data|
            end
 
   if parser
+    parser.result = service.result
     unless parser.valid?
       Rails.logger.error "Parser invalid. Not publishing event ##{data[:resource].id} [#{event_name}] to CiviCRM API: #{parser.errors.values}"
       next
@@ -21,7 +22,7 @@ Decidim::EventsManager.subscribe(/^decidim\.events\./) do |event_name, data|
     if service.publish
       Rails.logger.info "Published event ##{data[:resource].id} [#{event_name}] with CiviCRM UID #{service.result["id"]}"
       begin
-        parser.save!(service.result)
+        parser.save!
       rescue StandardError => e
         Rails.logger.error "Error saving model ##{data[:resource].id} with CiviCRM UID #{service.result["id"]} [#{e.message}]"
       end

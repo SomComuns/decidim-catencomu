@@ -19,7 +19,7 @@ module EventParsers
       }
     end
 
-    def save!(result)
+    def save!
       @model_class.create!({
                              event_id: result["id"],
                              meeting: @resource,
@@ -30,8 +30,8 @@ module EventParsers
     private
 
     def title
-      meeting_title = @resource.title["ca"] || @resource.title["es"]
-      space_title = @resource.participatory_space.title["ca"] || @resource.participatory_space.title["es"]
+      meeting_title = @resource.title["ca"] || @resource.title["es"] || @resource.title["en"]
+      space_title = @resource.participatory_space.title["ca"] || @resource.participatory_space.title["es"] || @resource.title["en"]
       "#{space_title}: #{meeting_title}"
     end
   end
