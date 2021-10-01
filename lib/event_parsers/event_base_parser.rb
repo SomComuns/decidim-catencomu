@@ -17,7 +17,6 @@ module EventParsers
       @errors = {}
       @errors[:resource] = "Resouce is missing" if @resource.blank?
       @errors[:resource_id] = "Resouce id is missing" if @resource_id.blank?
-      @errors[:result] = "Result id is missing" if result.blank? || result["id"].blank?
 
       @errors.blank?
     end

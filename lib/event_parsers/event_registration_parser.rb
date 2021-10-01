@@ -28,6 +28,7 @@ module EventParsers
 
     def valid?
       super
+      @errors[:event_id] = "Event id is missing" if event_id.blank?
       @errors[:contact_id] = "Contact id is missing" if contact_id.blank?
       @errors.blank?
     end
