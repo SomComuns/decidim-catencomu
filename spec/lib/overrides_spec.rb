@@ -36,8 +36,7 @@ checksums = [
   {
     package: "decidim-assemblies",
     files: {
-      "/app/views/layouts/decidim/_assembly_navigation.html.erb" => "159f168bf1634937183cf5ca56b03a9d",
-      "/app/commands/decidim/assemblies/admin/create_assembly.rb" => "593205be7cde977539975ab3c908b89a"
+      "/app/views/layouts/decidim/_assembly_navigation.html.erb" => "159f168bf1634937183cf5ca56b03a9d"
     }
   }
 ]
