@@ -54,10 +54,6 @@ describe EventParsers::EventRegistrationParser, type: :class do
       }
     end
 
-    it "is invalid" do
-      expect(subject.valid?).to eq(false)
-    end
-
     it "don't save data" do
       expect { subject.save! }.to raise_error StandardError
       expect(RegistrationEventAssignment.count).to eq(0)
