@@ -24,7 +24,7 @@ checksums = [
     files: {
       # views
       "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "db2daca02aa91c31bbccc365d6cc05ee", # processes index page
-      "/app/views/layouts/decidim/_process_navigation.html.erb" => "e4d2322544d80ef4452aa61425034aa3", # max items 7
+      "/app/views/layouts/decidim/_process_navigation.html.erb" => "e4d2322544d80ef4452aa61425034aa3",
       # models
       "/app/models/decidim/participatory_process.rb" => "fa9173ec063bdf1e24740873d71ee903",
       # cells
@@ -36,7 +36,7 @@ checksums = [
   {
     package: "decidim-assemblies",
     files: {
-      "/app/views/layouts/decidim/_assembly_navigation.html.erb" => "159f168bf1634937183cf5ca56b03a9d" # max items 7
+      "/app/views/layouts/decidim/_assembly_navigation.html.erb" => "159f168bf1634937183cf5ca56b03a9d"
     }
   }
 ]
