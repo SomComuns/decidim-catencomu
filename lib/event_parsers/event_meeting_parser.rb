@@ -21,10 +21,10 @@ module EventParsers
 
     def save!(result)
       @model_class.create!({
-        event_id: result["id"],
-        meeting: @resource,
-        data: result
-      })
+                             event_id: result["id"],
+                             meeting: @resource,
+                             data: result
+                           })
     end
 
     private

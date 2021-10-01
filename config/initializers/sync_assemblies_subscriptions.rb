@@ -8,16 +8,16 @@ Decidim::EventsManager.subscribe(/^decidim\.events\./) do |event_name, data|
            when "decidim.events.meetings.meeting_created"
              EventParsers::EventMeetingParser.new(data[:resource])
            when "decidim.events.meetings.meeting_registration_confirmed"
-             EventParsers::EventRegistrationParser.new(data[:resource])
+             EventParsers::EventRegistrationParser.new(Decidim::Meetings::Registration.find_by(user: data[:affected_users]&.first, meeting: data[:resource]))
            end
+
   if parser
     unless parser.valid?
-      Rails.logger.error "Not publishing event ##{data[:resource].id} [#{event_name}] to CiviCRM API: #{parser.errors.values}"
-      break
+      Rails.logger.error "Parser invalid. Not publishing event ##{data[:resource].id} [#{event_name}] to CiviCRM API: #{parser.errors.values}"
+      next
     end
 
     service = EventSyncService.new(parser)
-
     if service.publish
       Rails.logger.info "Published event ##{data[:resource].id} [#{event_name}] with CiviCRM UID #{service.result["id"]}"
       begin

@@ -5,6 +5,7 @@ module EventParsers
     def initialize(registration)
       @resource = registration
       @resource_type = :registration
+      @resource_id = @resource.id
       @entity = "Participant"
       @action = "create"
       @model_class = RegistrationEventAssignment
@@ -19,10 +20,10 @@ module EventParsers
 
     def save!(result)
       @model_class.create!({
-        registration_id: result["id"],
-        registration: @resource,
-        data: result
-      })
+                             registration_id: result["id"],
+                             registration: @resource,
+                             data: result
+                           })
     end
 
     private
@@ -32,7 +33,7 @@ module EventParsers
     end
 
     def contact_id
-      authorization = Decidim::Authorization.find_by(user: @resource.user)
+      authorization = Decidim::Authorization.find_by(user: @resource.user, name: "civicrm")
       return unless authorization
 
       authorization.metadata["contact_id"]
