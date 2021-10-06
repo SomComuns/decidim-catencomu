@@ -13,10 +13,15 @@ module Decidim
         Decidim::User.where(id: user_ids).find_each do |user|
           authorization = Decidim::Authorization.find_by(user: user, name: "groups")
 
-          authorization = Decidim::Authorization.create!(default_attributes(user, groups)) if authorization.blank?
+          authorization = Decidim::Authorization.create!(default_attributes(user)) if authorization.blank?
 
           key = Decidim::Civicrm::Api::Group.name_to_key(name)
-          metadata = authorization.metadata.merge(group: key)
+          metadata = authorization.metadata
+
+          groups = metadata["groups"] || []
+          groups << key
+
+          metadata["groups"] = groups.uniq
 
           authorization.update!(metadata: metadata)
 
@@ -38,19 +43,15 @@ module Decidim
         )
       end
 
-      def default_attributes(user, groups)
+      def default_attributes(user)
         {
           user: user,
           name: "groups",
-          metadata: default_metadata(groups),
+          metadata: { groups: [] },
           unique_id: Digest::SHA512.hexdigest(
             "#{user.id}-groups-#{Rails.application.secrets.secret_key_base}"
           )
         }
-      end
-
-      def default_metadata(_groups)
-        { group: nil }
       end
     end
   end
