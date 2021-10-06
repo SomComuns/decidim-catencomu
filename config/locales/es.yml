@@ -44,6 +44,7 @@ es:
       proposals:
         actions:
           comment: Comentar
+          vote_comment: Votar comentario
     events:
       civicrm_verification:
         errors:
