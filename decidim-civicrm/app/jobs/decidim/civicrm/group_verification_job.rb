@@ -5,9 +5,10 @@ module Decidim
     class GroupVerificationJob < ApplicationJob
       queue_as :default
 
-      def perform(groups, id, name, organization_id)
+      def perform(id, name, organization_id)
         civicrm_users = Decidim::Civicrm::Api::Request.new.users_in_group(id)
         uids = civicrm_users.map { |user| user.dig("api.Usercat.get", "values", 0, "id") }
+
         user_ids = Decidim::Identity.where(decidim_organization_id: organization_id, provider: "civicrm", uid: uids).pluck(:decidim_user_id)
 
         Decidim::User.where(id: user_ids).find_each do |user|
@@ -15,15 +16,11 @@ module Decidim
 
           authorization = Decidim::Authorization.create!(default_attributes(user)) if authorization.blank?
 
-          key = Decidim::Civicrm::Api::Group.name_to_key(name)
-          metadata = authorization.metadata
+          key = Decidim::Civicrm::Api::Group.name_to_key(name).to_s
 
-          groups = metadata["groups"] || []
-          groups << key
+          user_groups = authorization.metadata["groups"] || []
 
-          metadata["groups"] = groups.uniq
-
-          authorization.update!(metadata: metadata)
+          authorization.update!(metadata: { groups: (user_groups << key).uniq })
 
           notify_user(user) if authorization.grant!
         end
