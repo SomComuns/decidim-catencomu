@@ -78,8 +78,8 @@ describe "Restrict actions by CiviCRM verification", type: :system do
   describe "group verification" do
     let(:handler_name) { "groups" }
     let(:options) { { "group" => "group_name" } }
-    let(:metadata) { { "group" => "group_name" } }
-    let(:wrong_metadata) { { "group" => "other_group_name" } }
+    let(:metadata) { { "groups" => ["group_name"] } }
+    let(:wrong_metadata) { { "groups" => ["other_group_name"] } }
 
     it_behaves_like "comment on proposal"
   end
