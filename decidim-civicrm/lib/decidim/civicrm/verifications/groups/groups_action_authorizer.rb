@@ -13,7 +13,7 @@ module Decidim
             return [status_code, { fields: { "groups": "..." } }] if groups.blank?
             return [:ok, {}] if belongs_to_group?
 
-            [:incomplete, {}]
+            [status_code, {}]
           end
 
           private
