@@ -18,17 +18,24 @@ module OmniAuth
       end
 
       info do
+        # typical response:
+        # {"id"=>"23101", "name"=>"test111@platoniq.net", "email"=>"test111@platoniq.net", "contact_id"=>"23101", "display_name"=>"test test", "api.Address.get"=>{"is_error"=>0, "version"=>3, "count"=>0, "values"=>[]}, "roles"=>{"2"=>"authenticated user", "3"=>"administrator"}}
         json = Decidim::Civicrm::Api::Request.new.get_user(uid)
+        # typical response:
+        # {:contact_id=>"23101", :email=>"test111@platoniq.net", :name=>"test test", :nickname=>"test111@platoniq.net", :role=>nil, :regional_scope=>nil}
         user = Decidim::Civicrm::Api::User.from_contact(json)
 
         {
           name: user[:name],
           nickname: user[:nickname],
           email: raw_info["email"],
-          image: raw_info["picture"]
+          image: raw_info["picture"],
+          contact_id: user[:contact_id],
+          role: user[:role],
+          regional_scope: user[:regional_scope]
         }
       end
-
+      
       def client
         options.client_options[:site] = options.site
 

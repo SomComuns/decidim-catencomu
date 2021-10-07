@@ -6,6 +6,7 @@ module Decidim
       module Groups
         class GroupsActionAuthorizer < Decidim::Verifications::DefaultActionAuthorizer
           def authorize
+            byebug
             return [:missing, { action: :authorize }] if authorization.blank?
 
             status_code = :unauthorized

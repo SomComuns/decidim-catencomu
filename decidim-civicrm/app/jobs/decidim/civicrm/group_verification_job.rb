@@ -5,8 +5,8 @@ module Decidim
     class GroupVerificationJob < ApplicationJob
       queue_as :default
 
-      def perform(id, name, organization_id)
-        civicrm_users = Decidim::Civicrm::Api::Request.new.users_in_group(id)
+      def perform(group_id, name, organization_id)
+        civicrm_users = Decidim::Civicrm::Api::Request.new.users_in_group(group_id)
         uids = civicrm_users.map { |user| user.dig("api.Usercat.get", "values", 0, "id") }
 
         user_ids = Decidim::Identity.where(decidim_organization_id: organization_id, provider: "civicrm", uid: uids).pluck(:decidim_user_id)
@@ -22,7 +22,7 @@ module Decidim
 
           authorization.update!(metadata: { groups: (user_groups << key).uniq })
 
-          notify_user(user) if authorization.grant!
+          # notify_user(user) if authorization.grant!
         end
       end
 

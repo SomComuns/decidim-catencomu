@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 ruby RUBY_VERSION
-DECIDIM_VERSION = { git: "https://github.com/Platoniq/decidim", branch: "temp/0.24" }.freeze
+DECIDIM_VERSION = "0.24.3"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-civicrm", path: "."

@@ -3,12 +3,11 @@
 module Decidim
   module Civicrm
     class VerificationJob < ApplicationJob
-      include ::ApplicationHelper
-
       queue_as :default
 
       def perform(user_id)
         user = Decidim::User.find(user_id)
+        byebug
         return unless civicrm_user?(user)
 
         handler = retrieve_handler(user)
@@ -24,6 +23,10 @@ module Decidim
       end
 
       private
+      
+      def civicrm_user?(user)
+        user.identities.find_by(provider: Decidim::Civicrm::Verifications::Civicrm::PROVIDER_NAME).present?
+      end
 
       # Retrieves handler from Verification workflows registry.
       def retrieve_handler(user)

@@ -36,10 +36,10 @@ module Decidim
           JSON.parse(response.body).to_h
         end
 
-        def get_contact(id)
+        def get_contact(contact_id)
           params = {
             entity: "Contact",
-            contact_id: id,
+            contact_id: contact_id,
             json: {
               :sequential => 1, # Present results as array, not hash
               :return => "roles,display_name",
@@ -53,10 +53,10 @@ module Decidim
           response["values"].first
         end
 
-        def get_user(id, with_contact: true)
+        def get_user(uid, with_contact: true)
           params = {
             entity: "User",
-            id: id,
+            id: uid,
             json: {
               sequential: 1 # Present results as array, not hash
             }.to_json
@@ -76,6 +76,8 @@ module Decidim
         end
 
         def fetch_groups
+          return @fetch_groups if @fetch_groups
+
           params = {
             entity: "Group",
             json: {
@@ -90,16 +92,16 @@ module Decidim
 
           raise Error, "Malformed response in fetch_groups: #{response.to_json}" unless response.has_key?("values")
 
-          Group.parse_groups(response["values"])
+          @fetch_groups = Group.parse_groups(response["values"])
         end
 
-        def users_in_group(group)
+        def users_in_group(group_id)
           params = {
             entity: "Contact",
             json: {
               sequential: 1, # Present results as array, not hash
               options: { limit: 0 }, # Don't limit number of results
-              group: group, # Group's "name" field value
+              group: group_id, # Group's "name" field value
               return: "id,display_name,group",
               "api.Usercat.get" => { "return" => "id" } # Return the Contact's related User ID
             }.to_json
@@ -112,13 +114,13 @@ module Decidim
           response["values"]
         end
 
-        def in_group?(id, group)
+        def in_group?(contact_id, group_id)
           params = {
             entity: "Contact",
             json: {
               sequential: 1,
-              contact_id: id,
-              group: group,
+              contact_id: contact_id,
+              group: group_id,
               return: "id,display_name,group"
             }.to_json
           }
@@ -131,7 +133,15 @@ module Decidim
 
           contact_id = response["values"].first["contact_id"]
 
-          contact_id.to_i == id.to_i ? "1" : false
+          contact_id.to_i == contact_id.to_i ? "1" : false
+        end
+
+        # not very efficient (todo: cache this)
+        # at least until we have a direct call to obtain all groups for a user
+        def user_groups(contact_id)
+          fetch_groups.filter do |group|
+            in_group?(contact_id, group[:id])
+          end
         end
 
         private
