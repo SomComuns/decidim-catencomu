@@ -90,7 +90,8 @@ class EventSyncService
   attr_reader :result, :parser
 
   def publish
-    @result = Decidim::Civicrm::Api::Request.new.post(parser.data)
+    request = Decidim::Civicrm::Api::Request.post(parser.data)
+    @result = request.response
     @result["is_error"] == 1 ? nil : @result
   rescue StandardError => e
     @result["exception"] = e.message
