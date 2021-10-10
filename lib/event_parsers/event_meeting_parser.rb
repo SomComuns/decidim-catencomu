@@ -14,6 +14,7 @@ module EventParsers
     def json
       {
         start_date: @resource.start_time.strftime("%Y%m%d"),
+        end_date: @resource.start_time.strftime("%Y%m%d"),
         title: title,
         template_id: 2
       }
