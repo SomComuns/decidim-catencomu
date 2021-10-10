@@ -222,7 +222,7 @@ GIT
 
 GIT
   remote: https://github.com/Platoniq/decidim-module-civicrm
-  revision: c1d21438707b8285b6f5802090466cc557f8526f
+  revision: 7987b56723d5683ed7bda9383d133b408c454caf
   branch: main
   specs:
     decidim-civicrm (0.3)
