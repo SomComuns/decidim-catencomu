@@ -1,4 +1,0 @@
-<div class="row column">
-  <%= form.select :decidim_participatory_process_id, Decidim::ParticipatoryProcess.where(organization: current_organization).where.not(decidim_participatory_process_group_id: nil).pluck(:id, :title).map { |attributes| [translated_attribute(attributes.last), attributes.first ]} %>
-  <%= form.select :civicrm_group_id, groups.map { |group| [group[:title], group[:id]] } %>
-</div>

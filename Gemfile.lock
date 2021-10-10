@@ -221,6 +221,16 @@ GIT
       redcarpet (~> 3.4)
 
 GIT
+  remote: https://github.com/Platoniq/decidim-module-civicrm
+  revision: c1d21438707b8285b6f5802090466cc557f8526f
+  branch: main
+  specs:
+    decidim-civicrm (0.3)
+      decidim-admin (~> 0.3)
+      decidim-core (~> 0.3)
+      decidim-verifications (~> 0.3)
+
+GIT
   remote: https://github.com/Platoniq/decidim-module-decidim_awesome
   revision: 3df1e5a39684907fbec164fc5ccc3d3911f20e52
   branch: main
@@ -244,12 +254,6 @@ PATH
   specs:
     catcomu-managers (0.1.0)
       decidim-admin (~> 0.24.3)
-      decidim-core (~> 0.24.3)
-
-PATH
-  remote: decidim-civicrm
-  specs:
-    decidim-civicrm (0.24.3)
       decidim-core (~> 0.24.3)
 
 GEM
@@ -414,7 +418,7 @@ GEM
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.5.3)
+    doorkeeper (5.5.4)
       railties (>= 5)
     doorkeeper-i18n (4.0.1)
     em-http-request (1.1.7)
@@ -445,7 +449,7 @@ GEM
       rest-client (>= 1.6)
     eventmachine (1.2.7)
     eventmachine_httpserver (0.2.1)
-    excon (0.86.0)
+    excon (0.87.0)
     execjs (2.8.1)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
@@ -555,7 +559,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-tmpl-rails (1.1.0)
       rails (>= 3.1.0)
-    jwt (2.2.3)
+    jwt (2.3.0)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
