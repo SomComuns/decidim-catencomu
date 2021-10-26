@@ -9,6 +9,7 @@ describe EventParsers::EventMeetingParser, type: :class do
   let(:json) do
     {
       start_date: meeting.start_time.strftime("%Y%m%d"),
+      end_date: meeting.end_time.strftime("%Y%m%d"),
       title: "#{meeting.participatory_space.title["ca"]}: #{meeting.title["ca"]}",
       template_id: 2
     }
