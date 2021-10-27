@@ -18,7 +18,7 @@ describe "Block email editing", type: :system do
     end
 
     context "when user is a civicrm user" do
-      let!(:identity) { create(:identity, user: user, provider: Decidim::Verifications::Civicrm::OMNIAUTH_PROVIDER_NAME) }
+      let!(:identity) { create(:identity, user: user, provider: Decidim::Civicrm::OMNIAUTH_PROVIDER_NAME) }
 
       it "cannot change email" do
         visit decidim.account_path
