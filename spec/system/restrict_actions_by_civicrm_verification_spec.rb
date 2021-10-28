@@ -12,6 +12,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
   let!(:proposal) { create :proposal, component: proposals_component }
 
   let(:options) { {} }
+  let(:permissions) { { comment: authorization_options } }
   let(:authorization_options) do
     {
       authorization_handlers: {
@@ -31,34 +32,36 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     expect_no_js_errors
   end
 
-  shared_examples "comment on proposal" do
-    let(:permissions) { { comment: authorization_options } }
+  shared_examples "can comment" do
+    it "allows to comment" do
+      visit_proposal
+      within "#comments" do
+        expect(page).to have_selector "textarea"
+        fill_in "Comment", with: "A very thoughtful comment"
+        expect(page).to have_button "Send"
+      end
+    end
+  end
 
-    shared_examples "cannot comment" do
-      it "does not allow to comment" do
-        visit_proposal
-        within "#comments" do
-          expect(page).not_to have_button "Send"
+  shared_examples "cannot comment" do
+    it "does not allow to comment" do
+      visit_proposal
+      within "#comments" do
+        expect(page).not_to have_button "Send"
 
-          within ".callout.warning" do
-            expect(page).to have_selector "[data-open=authorizationModal]"
-          end
+        within ".callout.warning" do
+          expect(page).to have_selector "[data-open=authorizationModal]"
         end
       end
     end
+  end
 
+  shared_examples "comment on proposal" do
     describe "comment on proposal" do
       context "when user is authorized" do
         let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
 
-        it "allows to comment" do
-          visit_proposal
-          within "#comments" do
-            expect(page).to have_selector "textarea"
-            fill_in "Comment", with: "A very thoughtful comment"
-            expect(page).to have_button "Send"
-          end
-        end
+        it_behaves_like "can comment"
       end
 
       context "when user is authorized with options different than required" do
@@ -75,32 +78,35 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     end
   end
 
-  describe "group verification" do
-    let(:handler_name) { "groups" }
-    let(:options) { { "group" => "group_name" } }
-    let(:metadata) { { "groups" => ["group_name"] } }
-    let(:wrong_metadata) { { "groups" => ["other_group_name"] } }
-
-    it_behaves_like "comment on proposal"
-  end
-
-  describe "role verification" do
+  describe "civicrm verification" do
     let(:handler_name) { "civicrm" }
-    let(:options) { { "role" => "role_name" } }
-    let(:metadata) { { "role" => "role_name" } }
-    let(:wrong_metadata) { { "role" => "other_role_name" } }
+
+    it_behaves_like "cannot comment"
+
+    context "when user is authorized" do
+      let!(:authorization) { create(:authorization, user: user, name: handler_name) }
+
+      it_behaves_like "can comment"
+    end
+  end
+
+  describe "civicrm_groups verification" do
+    let(:handler_name) { "civicrm_groups" }
+    let(:options) { { "groups" => "1,5,9" } }
+    let(:metadata) { { "group_ids" => [5, 9] } }
+    let(:wrong_metadata) { { "group_ids" => [3, 4] } }
 
     it_behaves_like "comment on proposal"
   end
 
-  describe "regional scope verification" do
-    let(:handler_name) { "civicrm" }
-    let(:options) { { "regional_scope" => "regional_scope_id" } }
-    let(:metadata) { { "regional_scope" => "regional_scope_id" } }
-    let(:wrong_metadata) { { "regional_scope" => "other_regional_scope_id" } }
+  # describe "role verification" do
+  #   let(:handler_name) { "civicrm" }
+  #   let(:options) { { "role" => "role_name" } }
+  #   let(:metadata) { { "role" => "role_name" } }
+  #   let(:wrong_metadata) { { "role" => "other_role_name" } }
 
-    it_behaves_like "comment on proposal"
-  end
+  #   it_behaves_like "comment on proposal"
+  # end
 
   def visit_proposal
     page.visit main_component_path(proposals_component)

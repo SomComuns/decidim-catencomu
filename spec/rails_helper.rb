@@ -13,12 +13,6 @@ require "letter_opener_web"
 
 ENV["ENGINE_ROOT"] = File.dirname(__dir__)
 
-require "support/civicrm_stubs"
-
 Decidim::Dev.dummy_app_path = File.expand_path(File.join(__dir__, ".."))
 
 require "decidim/dev/test/base_spec_helper"
-
-RSpec.configure do |config|
-  config.include CivicrmStubs
-end

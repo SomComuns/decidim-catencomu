@@ -20,4 +20,10 @@ Decidim::Civicrm.configure do |config|
 
   # array with civirm group ids that will automatically (cron based) syncronize contact memberships
   config.auto_sync_groups = Rails.application.secrets.dig(:civicrm, :auto_sync_groups)
+
+  config.auto_sync_meetings_event_attributes do
+    {
+      template_id: 2
+    }
+  end
 end

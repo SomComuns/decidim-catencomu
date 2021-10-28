@@ -65,4 +65,7 @@ Rails.application.configure do
 
   # No precompilation on demand on first request
   config.assets.check_precompiled_asset = false
+
+  # Specify active_job sidekiq adapter
+  config.active_job.queue_adapter = :inline
 end
