@@ -13,7 +13,7 @@ gem "decidim-consultations", DECIDIM_VERSION
 gem "catcomu-managers", path: "./catcomu-managers"
 gem "decidim-civicrm", git: "https://github.com/Platoniq/decidim-module-civicrm", branch: "main"
 
-gem "decidim-decidim_awesome", git: "https://github.com/Platoniq/decidim-module-decidim_awesome", branch: "main"
+gem "decidim-decidim_awesome", "~> 0.7.2"
 gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications"
 gem "decidim-navigation_maps", "~> 1.2.0"
 

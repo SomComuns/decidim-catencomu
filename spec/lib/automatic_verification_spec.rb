@@ -21,7 +21,7 @@ describe "Automatic verification after oauth sign up" do
           avatar_url: "http://www.example.com/foo.jpg",
           raw_data: {}
         )
-      end.to have_enqueued_job(Decidim::Civicrm::VerificationJob)
+      end.to have_enqueued_job(Decidim::Civicrm::OmniauthContactSyncJob)
     end
   end
 end

@@ -5,7 +5,7 @@ require "decidim/proposals/test/factories"
 require "decidim/meetings/test/factories"
 
 describe "Restrict actions by CiviCRM groups verification", type: :system do
-  let(:handler_name) { "groups" }
+  let(:handler_name) { "civicrm_groups" }
   let(:manifest_name) { "proposals" }
   let(:options) { {} }
   let(:authorization_options) do
@@ -17,7 +17,7 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
   end
 
   let!(:organization) do
-    create(:organization, available_authorizations: %w(groups))
+    create(:organization, available_authorizations: %w(civicrm_groups))
   end
 
   let(:participatory_space) do
@@ -55,9 +55,9 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
   end
 
   describe "Group Verification" do
-    let(:options) { { "group" => "group_1" } }
-    let(:metadata) { { "groups" => %w(group_1 group_2) } }
-    let(:wrong_metadata) { { "groups" => %w(group_2 group_3) } }
+    let(:options) { { "groups" => "1,5" } }
+    let(:metadata) { { "group_ids" => [1, 2] } }
+    let(:wrong_metadata) { { "group_ids" => [2, 3] } }
 
     context "when user is authorized" do
       let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
