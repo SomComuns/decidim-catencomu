@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_152801) do
+ActiveRecord::Schema.define(version: 2021_10_27_103038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -393,6 +393,36 @@ ActiveRecord::Schema.define(version: 2021_10_26_152801) do
     t.index ["decidim_user_id"], name: "index_civicrm_contacts_on_decidim_user_id"
   end
 
+  create_table "decidim_civicrm_event_meetings", force: :cascade do |t|
+    t.bigint "decidim_meeting_id", null: false
+    t.bigint "decidim_organization_id", null: false
+    t.integer "civicrm_registrations_count", default: 0
+    t.integer "civicrm_event_id"
+    t.jsonb "extra", default: {}
+    t.jsonb "data"
+    t.boolean "removable", default: false
+    t.boolean "marked_for_deletion", default: false
+    t.boolean "redirect_active", default: false, null: false
+    t.string "redirect_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_meeting_id"], name: "index_civicrm_event_meetings_unique", unique: true
+    t.index ["decidim_organization_id"], name: "index_civicrm_event_meetings_organization"
+  end
+
+  create_table "decidim_civicrm_event_registrations", force: :cascade do |t|
+    t.bigint "event_meeting_id", null: false
+    t.bigint "decidim_meeting_registration_id"
+    t.integer "civicrm_event_registration_id", null: false
+    t.jsonb "extra", default: {}
+    t.jsonb "data"
+    t.boolean "marked_for_deletion", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_meeting_registration_id"], name: "index_civicrm_event_meeting_registration_unique"
+    t.index ["event_meeting_id"], name: "index_decidim_civicrm_event_registrations_on_event_id"
+  end
+
   create_table "decidim_civicrm_group_memberships", force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "contact_id"
@@ -431,17 +461,6 @@ ActiveRecord::Schema.define(version: 2021_10_26_152801) do
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id", "civicrm_group_id"], name: "index_unique_civicrm_group_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_civicrm_groups_on_decidim_organization_id"
-  end
-
-  create_table "decidim_civicrm_meeting_redirections", force: :cascade do |t|
-    t.bigint "decidim_meeting_id", null: false
-    t.bigint "decidim_organization_id", null: false
-    t.boolean "active", null: false
-    t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_meeting_id"], name: "index_civicrm_meetings_redirections_unique", unique: true
-    t.index ["decidim_organization_id"], name: "index_civicrm_meetings_redirections_organization"
   end
 
   create_table "decidim_coauthorships", force: :cascade do |t|
@@ -1758,6 +1777,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_152801) do
   add_foreign_key "decidim_categorizations", "decidim_categories"
   add_foreign_key "decidim_civicrm_contacts", "decidim_organizations"
   add_foreign_key "decidim_civicrm_contacts", "decidim_users"
+  add_foreign_key "decidim_civicrm_event_registrations", "decidim_civicrm_event_meetings", column: "event_meeting_id"
+  add_foreign_key "decidim_civicrm_event_registrations", "decidim_meetings_registrations", column: "decidim_meeting_registration_id"
   add_foreign_key "decidim_civicrm_group_memberships", "decidim_civicrm_contacts", column: "contact_id"
   add_foreign_key "decidim_civicrm_group_memberships", "decidim_civicrm_groups", column: "group_id"
   add_foreign_key "decidim_civicrm_group_participatory_spaces", "decidim_civicrm_groups", column: "group_id"
