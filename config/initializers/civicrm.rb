@@ -26,6 +26,6 @@ Decidim::Civicrm.configure do |config|
       template_id: 2
     }
   end
-  
+
   config.send_meeting_registration_notifications = false
 end

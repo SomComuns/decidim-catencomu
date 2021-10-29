@@ -38,6 +38,12 @@ checksums = [
     files: {
       "/app/views/layouts/decidim/_assembly_navigation.html.erb" => "159f168bf1634937183cf5ca56b03a9d"
     }
+  },
+  {
+    package: "decidim-meetings",
+    files: {
+      "/app/cells/decidim/meetings/join_meeting_button/show.erb" => "017650c3737e89d7f5512a47278c81ed"
+    }
   }
 ]
 
