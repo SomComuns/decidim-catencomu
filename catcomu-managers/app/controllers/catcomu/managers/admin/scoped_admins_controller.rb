@@ -34,7 +34,7 @@ module Catcomu
         def process_form(group = nil)
           attrs = params
           attrs.merge!({ participatory_process_group_id: group.id }) if group
-          attrs.merge!({ scopes_enabled: false })
+          attrs.merge!({ scopes_enabled: false, private_space: true })
           form(Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessForm).from_params(attrs)
         end
 
