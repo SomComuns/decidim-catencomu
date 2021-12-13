@@ -18,7 +18,12 @@ module Catcomu
 
         # some overrides
         config.to_prepare do
-          Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessForm.include(Catcomu::Managers::ParticipatoryProcessFormOverride)
+          Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessForm.include(Catcomu::Managers::Admin::ParticipatoryProcessFormOverride)
+          Decidim::Admin::ApplicationController.include(Catcomu::Managers::Admin::NeedsMenuSnippets)
+        end
+
+        initializer "catcomu_managers.assets" do |app|
+          app.config.assets.precompile += %w(catcomu_managers_admin_manifest.css)
         end
 
         initializer "catcomu.admin_menus" do

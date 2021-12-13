@@ -7,6 +7,11 @@ module Catcomu
         include Managers::Admin::ApplicationHelper
         helper Managers::Admin::ApplicationHelper
         helper_method :processes_for_group, :process_form
+        # this module is accessible to non-admin users (as processes Awesome scoped_admins)
+        # in order to draw the Decidim standard menu, we need to manually set the current user as (pseudo)admin when accessing this controller
+        before_action do
+          Decidim::User.awesome_admins_for_current_scope = [current_user.id] if current_user
+        end
 
         def index; end
 
