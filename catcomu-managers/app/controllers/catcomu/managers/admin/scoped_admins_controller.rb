@@ -45,7 +45,7 @@ module Catcomu
 
         def processes_for_group(group)
           group.participatory_processes.each do |process|
-            next if current_user.admin?
+            next if current_user.attributes["admin"]
 
             fix_participatory_processes_membership(process)
           end
