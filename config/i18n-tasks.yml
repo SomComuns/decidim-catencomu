@@ -22,6 +22,7 @@ data:
     - "<%= %x[bundle info decidim-core --path].chomp %>/config/locales/%{locale}.yml"
     - "<%= %x[bundle info decidim-participatory_processes --path].chomp %>/config/locales/%{locale}.yml"
     - "<%= %x[bundle info decidim-assemblies --path].chomp %>/config/locales/%{locale}.yml"
+    - "<%= %x[bundle info decidim-meetings --path].chomp %>/config/locales/%{locale}.yml"
 
 
 
