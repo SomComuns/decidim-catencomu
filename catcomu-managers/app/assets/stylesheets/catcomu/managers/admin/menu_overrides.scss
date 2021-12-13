@@ -1,0 +1,22 @@
+.main-nav {
+	li > {
+		a[href^="/admin/moderations"] {
+			display: none;
+		}
+		a[href^="/admin/newsletters"] {
+			display: none;
+		}
+		a[href^="/admin/users"] {
+			display: none;
+		}
+		a[href^="/admin/organization"] {
+			display: none;
+		}
+		a[href^="/admin/static_pages"] {
+			display: none;
+		}
+		a[href^="/admin/logs"] {
+			display: none;
+		}
+	}
+}
