@@ -12,9 +12,14 @@
   	  </div>
       <div class="card-section">
         <h3><%= t ".group_processes" %></h3>
+        <p><%= t ".civicrm_group_desc" %></p>
+        
+        <%= render partial: "civicrm_sync", locals: {group: group } if superadmin? %>
+
         <table class="table-list">
           <thead>
             <tr>
+              <th></th>
               <th>
                 <%= t("models.participatory_process.fields.created_at", scope: "decidim.admin") %>
               </th>
@@ -24,10 +29,12 @@
               <th>
                 <%= t("models.participatory_process.fields.private", scope: "decidim.admin") %>
               </th>
+              <th>
+                <%= t(".civicrm_group") %>
+              </th>
               <th class="table-list__actions">
                 <%= t("models.participatory_process.fields.published", scope: "decidim.admin") %>
               </th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +56,9 @@
                     <strong class="text-alert"><%= t("participatory_processes.index.not_published", scope: "decidim.admin") %></strong>
                   <% end %>
                 </td>
+                <td>
+                  <%= civicrm_groups_for_process(process).map {|g| g.group.title }.join(", ") %>
+                </td>
                 <td table-list__actions>
                   <% if current_user.admin? || user_process_admin?(current_user, process) %>
                     <%= icon_link_to "pencil", decidim_admin_participatory_processes.edit_participatory_process_path(process), t("actions.configure", scope: "decidim.admin"), class: "action-icon--new" %>
@@ -59,6 +69,7 @@
             <% end %>
           </tbody>
         </table>
+
         <%= decidim_form_for(@form || process_form(group), url: "#{new_process_scoped_admins_path}#form-#{group.id}", method: :post) do |f| %>
           <%= render partial: "new_process_form", locals: { form: f, group: group } %>
         <% end %>

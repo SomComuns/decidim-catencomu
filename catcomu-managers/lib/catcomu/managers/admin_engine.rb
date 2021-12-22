@@ -12,6 +12,7 @@ module Catcomu
         routes do
           resources :scoped_admins do
             post "new_process", on: :collection
+            post "set_sync_groups", on: :collection
           end
           root to: "scoped_admins#index"
         end

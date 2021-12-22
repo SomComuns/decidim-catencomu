@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_103038) do
+ActiveRecord::Schema.define(version: 2021_12_22_125750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+
+  create_table "catcomu_managers_group_configs", force: :cascade do |t|
+    t.bigint "decidim_participatory_process_group_id"
+    t.bigint "civicrm_default_group_id"
+    t.bigint "civicrm_executive_group_id"
+    t.jsonb "admins", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["civicrm_default_group_id"], name: "decidim_civicrm_default_group_civicrm_managers_config"
+    t.index ["civicrm_executive_group_id"], name: "decidim_civicrm_executive_group_civicrm_managers_config"
+    t.index ["decidim_participatory_process_group_id"], name: "decidim_participatory_process_group_civicrm_managers_config"
+  end
 
   create_table "decidim_accountability_results", id: :serial, force: :cascade do |t|
     t.jsonb "title"
@@ -388,6 +400,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_103038) do
     t.boolean "marked_for_deletion", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "membership_types"
     t.index ["decidim_organization_id", "civicrm_contact_id"], name: "index_unique_civicrm_contact_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_civicrm_contacts_on_decidim_organization_id"
     t.index ["decidim_user_id"], name: "index_civicrm_contacts_on_decidim_user_id"
@@ -461,6 +474,16 @@ ActiveRecord::Schema.define(version: 2021_10_27_103038) do
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id", "civicrm_group_id"], name: "index_unique_civicrm_group_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_civicrm_groups_on_decidim_organization_id"
+  end
+
+  create_table "decidim_civicrm_membership_types", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.integer "civicrm_membership_type_id", null: false
+    t.string "name", null: false
+    t.boolean "marked_for_deletion", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "index_decidim_civicrm_membership_types_on_organization"
   end
 
   create_table "decidim_coauthorships", force: :cascade do |t|
@@ -1761,6 +1784,8 @@ ActiveRecord::Schema.define(version: 2021_10_27_103038) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
+  add_foreign_key "catcomu_managers_group_configs", "decidim_civicrm_groups", column: "civicrm_default_group_id"
+  add_foreign_key "catcomu_managers_group_configs", "decidim_civicrm_groups", column: "civicrm_executive_group_id"
   add_foreign_key "decidim_area_types", "decidim_organizations"
   add_foreign_key "decidim_areas", "decidim_area_types", column: "area_type_id"
   add_foreign_key "decidim_areas", "decidim_organizations"
@@ -1783,6 +1808,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_103038) do
   add_foreign_key "decidim_civicrm_group_memberships", "decidim_civicrm_groups", column: "group_id"
   add_foreign_key "decidim_civicrm_group_participatory_spaces", "decidim_civicrm_groups", column: "group_id"
   add_foreign_key "decidim_civicrm_groups", "decidim_organizations"
+  add_foreign_key "decidim_civicrm_membership_types", "decidim_organizations"
   add_foreign_key "decidim_consultations_response_groups", "decidim_consultations_questions", column: "decidim_consultations_questions_id"
   add_foreign_key "decidim_consultations_responses", "decidim_consultations_questions", column: "decidim_consultations_questions_id"
   add_foreign_key "decidim_consultations_responses", "decidim_consultations_response_groups"
