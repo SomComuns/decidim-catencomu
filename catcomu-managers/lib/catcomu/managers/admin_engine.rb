@@ -24,7 +24,7 @@ module Catcomu
         end
 
         initializer "catcomu_managers.assets" do |app|
-          app.config.assets.precompile += %w(catcomu_managers_admin_manifest.css)
+          app.config.assets.precompile += %w(catcomu_managers_admin_manifest.css catcomu_managers_admin_manifest.js)
         end
 
         initializer "catcomu.admin_menus" do

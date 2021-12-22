@@ -16,7 +16,7 @@
         
         <%= render partial: "civicrm_sync", locals: {group: group } if superadmin? %>
 
-        <table class="table-list">
+        <table class="table-list managers-processes-list">
           <thead>
             <tr>
               <th></th>
@@ -39,7 +39,7 @@
           </thead>
           <tbody>
             <% processes_for_group(group).each do |process| %>
-              <tr>
+              <tr data-participatory_process_id="<%= process.id %>">
                 <td><%= translated_attribute process.title %></td>
                 <td><%= l process.created_at, format: :short %></td>
                 <td class="table-list__state">
@@ -57,7 +57,7 @@
                   <% end %>
                 </td>
                 <td>
-                  <%= civicrm_groups_for_process(process).map {|g| g.group.title }.join(", ") %>
+                  <%= render partial: "sync_groups", locals: { group: group, process: process } %>
                 </td>
                 <td table-list__actions>
                   <% if current_user.admin? || user_process_admin?(current_user, process) %>
@@ -78,3 +78,6 @@
 	<% end %>
   </div>
 </div>
+
+<%= stylesheet_link_tag "catcomu/managers/admin/managers" %>
+<%= javascript_include_tag "catcomu/managers/admin/managers" %>

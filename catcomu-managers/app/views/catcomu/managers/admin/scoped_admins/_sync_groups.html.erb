@@ -1,0 +1,8 @@
+<div class="civicrm-sync-group">
+	<% civicrm_groups_for_process(process).each do |civicrm_group| %>
+	  <%= select_tag :civicrm_group, options_for_select(civicrm_groups_for_group(group), civicrm_group.id), class: "civicrm-sync-group-select", disabled: true %>
+	  <%= link_to "#", class: "civicrm-sync-group-edit" do %>
+	 	  <%= icon "pencil", role: "img", "aria-hidden": true %>
+		<% end %>
+	<% end %>
+</div>

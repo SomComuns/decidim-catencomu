@@ -15,6 +15,12 @@ module Catcomu
 
         def index; end
 
+        def create
+          link = Decidim::Civicrm::GroupParticipatorySpace.find_or_initialize_by(participatory_space: params[:participatory_process_id])
+          link.group_id = params[:civicrm_group_id]
+          link.save!
+        end
+
         def new_process
           return if current_user_process_groups.blank?
 
@@ -37,7 +43,7 @@ module Catcomu
         def set_sync_groups
           @sync_form = form(CivicrmSyncForm).from_params(params)
           if superadmin?
-            config = Catcomu::Managers::GroupConfig.find_or_initialize_by(participatory_process_group: @sync_form.participatory_process_group)
+            config = GroupConfig.find_or_initialize_by(participatory_process_group: @sync_form.participatory_process_group)
             config.civicrm_default_group = @sync_form.civicrm_default_group
             config.civicrm_executive_group = @sync_form.civicrm_executive_group
             config.save!
@@ -57,10 +63,10 @@ module Catcomu
         end
 
         def sync_form(group = nil)
-          attrs = params
+          attrs = {}
           if group
             attrs.merge!({ decidim_participatory_process_group_id: group.id })
-            config = Catcomu::Managers::GroupConfig.find_by(participatory_process_group: group)
+            config = GroupConfig.find_by(participatory_process_group: group)
             attrs.merge!({ civicrm_default_group_id: config.civicrm_default_group_id, civicrm_executive_group_id: config.civicrm_executive_group_id }) if config
           end
           form(CivicrmSyncForm).from_params(attrs)
@@ -71,6 +77,13 @@ module Catcomu
             next if superadmin?
 
             fix_participatory_processes_membership(process)
+            # fix civicrm private sync
+            link = Decidim::Civicrm::GroupParticipatorySpace.find_or_initialize_by(participatory_space: process)
+            civicrm_group = GroupConfig.find_by(participatory_process_group: group)&.civicrm_default_group
+            if link.group.blank? && civicrm_group.present?
+              link.group = civicrm_group
+              link.save!
+            end
           end
         end
 
@@ -81,12 +94,17 @@ module Catcomu
         end
 
         def civicrm_groups_for_process(processes)
-          Decidim::Civicrm::GroupParticipatorySpace.where(participatory_space: processes)
+          Decidim::Civicrm::GroupParticipatorySpace.where(participatory_space: processes)&.map(&:group)
         end
 
         def civicrm_groups_for_group(group)
-          all_processes = Decidim::ParticipatoryProcess.where(participatory_process_group: group)
-          civicrm_groups_for_process(all_processes)
+          config = GroupConfig.find_by(participatory_process_group: group)
+          return {} unless config
+
+          {
+            config.civicrm_default_group.title => config.civicrm_default_group.id,
+            config.civicrm_executive_group.title => config.civicrm_executive_group.id
+          }
         end
 
         def superadmin?
