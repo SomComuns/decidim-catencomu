@@ -74,9 +74,6 @@ module Catcomu
 
         def processes_for_group(group)
           group.participatory_processes.each do |process|
-            next if superadmin?
-
-            fix_participatory_processes_membership(process)
             # fix civicrm private sync
             link = Decidim::Civicrm::GroupParticipatorySpace.find_or_initialize_by(participatory_space: process)
             civicrm_group = GroupConfig.find_by(participatory_process_group: group)&.civicrm_default_group
@@ -84,6 +81,9 @@ module Catcomu
               link.group = civicrm_group
               link.save!
             end
+            next if superadmin?
+
+            fix_participatory_processes_membership(process)
           end
         end
 
