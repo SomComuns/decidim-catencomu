@@ -5,11 +5,17 @@ module Catcomu
     module Admin
       # Custom helpers, scoped to the admin panel.
       module ApplicationHelper
+        def superadmin?
+          current_user.attributes["admin"]
+        end
+
         def user_process_admin?(user, process)
           process.user_roles("admin")&.pluck(:decidim_user_id)&.include?(user.id)
         end
 
         def current_user_process_groups
+          return Decidim::ParticipatoryProcessGroup.where(organization: current_organization) if superadmin?
+
           process_groups_scoped_admins[current_user.id]&.filter_map do |group_id|
             group = Decidim::ParticipatoryProcessGroup.find(group_id)
             next unless group

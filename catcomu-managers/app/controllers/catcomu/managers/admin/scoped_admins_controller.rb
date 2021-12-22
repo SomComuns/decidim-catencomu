@@ -6,7 +6,7 @@ module Catcomu
       class ScopedAdminsController < Decidim::Admin::ApplicationController
         include Managers::Admin::ApplicationHelper
         helper Managers::Admin::ApplicationHelper
-        helper_method :processes_for_group, :process_form, :civicrm_groups_for_process, :civicrm_groups_for_group, :superadmin?, :civicrm_groups_list, :sync_form
+        helper_method :processes_for_group, :process_form, :civicrm_groups_for_process, :civicrm_groups_for_group, :civicrm_groups_list, :sync_form
         # this module is accessible to non-admin users (as processes Awesome scoped_admins)
         # in order to draw the Decidim standard menu, we need to manually set the current user as (pseudo)admin when accessing this controller
         before_action do
@@ -105,10 +105,6 @@ module Catcomu
             config.civicrm_default_group.title => config.civicrm_default_group.id,
             config.civicrm_executive_group.title => config.civicrm_executive_group.id
           }
-        end
-
-        def superadmin?
-          current_user.attributes["admin"]
         end
 
         def fix_participatory_processes_membership(process)

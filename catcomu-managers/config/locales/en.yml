@@ -1,31 +1,31 @@
 ---
 en:
   activemodel:
+    attributes:
+      config:
+        civicrm_default_group_id: Default Sync Group
+        civicrm_executive_group_id: Executive Sync Group
     errors:
       models:
         participatory_process:
           attributes:
             participatory_process_group_id:
               user_not_admin_in_group: Can't change group if you are not administrator
-    attributes:
-      config:
-        civicrm_default_group_id: Default Sync Group
-        civicrm_executive_group_id: Executive Sync Group
   catcomu:
     managers:
       admin:
         scoped_admins:
           index:
-            edit: Edit this group
-            group_processes: Participative processes in this group
-            user_not_scoped: Sorry, your user is not scoped into a group of processes!
             civicrm_group: Grup del CiVICRM
             civicrm_group_desc: Els grups del CiviCRM serveixen per sincronitzar els membres d'aquell grup amb el proces participatiu. Això aplica als processos privats (als processos públics tothom hi té accés).
+            edit: Edit this group
+            group_processes: Participative processes in this group
             superadmin_only: Only super-admins can modify this
+            user_not_scoped: Sorry, your user is not scoped into a group of processes!
           new_process_form:
             send: Send
             title: Create a new participative process
           sync_civicrm:
-            title: Grups inteligents del CiVICRM sincronitzats amb tots aquests processos
             description: Tots els usuaris llistats en aquests grups seran sincronitzats
             send: Save defaults
+            title: Grups inteligents del CiVICRM sincronitzats amb tots aquests processos
