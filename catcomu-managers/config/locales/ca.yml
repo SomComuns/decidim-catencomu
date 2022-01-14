@@ -18,7 +18,7 @@ ca:
           civicrm_sync_desc: "Cada administradora territorial pot crear processos privats on només hi té accés un grup d'usuàries del CiviCRM corresponents a l'executiva o les inscrites.\nConfigura aquí els grups del CiViCRM que corresponen a aquest àmbit territorial.\n\U0001F449 Aquest apartat només és visible per a super-administradores.\n"
           index:
             civicrm_group: Grup del CiViCRM
-            civicrm_group_desc: "Des d’aquí pots accedir a la configuració i visualització dels processos, i crear-ne de nous.\nEls grups del CiviCRM serveixen per sincronitzar els membres d'aquell grup amb el procés participatiu. Això només aplica als processos privats (als processos públics tot membre de Catalunya en Comú hi té accés).\n\U0001F449 Per a més informació, tens a la teva disposició el manual d’administració de decidim per administradores d’àmbit territorial.\n"
+            civicrm_group_desc: "Des d'aquí pots accedir a la configuració i visualització dels processos, i crear-ne de nous.\nEls grups del CiviCRM serveixen per sincronitzar els membres d'aquell grup amb el procés participatiu. Això només aplica als processos privats (als processos públics tot membre de Catalunya en Comú hi té accés).\n\U0001F449 Per a més informació, tens a la teva disposició el manual d'administració de decidim per administradores d'àmbit territorial.\n"
             edit: Edita aquest grup
             group_processes: Llistat dels processos de l’àmbit territorial
             superadmin_only: Només les super-administradores poden modificar aquesta secció
