@@ -1,28 +1,25 @@
 <div class="content">
   <div class="row">
-  	<%= t ".user_not_scoped" if current_user_process_groups.blank? %>
+    <%= t ".user_not_scoped" if current_user_process_groups.blank? %>
 
-	<% current_user_process_groups&.each do |group| %>
-	  <div class="card with-overflow">
-  	  <div class="card-divider">
-  	    <h2 class="card-title">
-    			<%= translated_attribute group.title %>
+  <% current_user_process_groups&.each do |group| %>
+    <div class="card with-overflow">
+      <div class="card-divider">
+        <h2 class="card-title">
+          <%= translated_attribute group.title %>
            <%= link_to t(".edit"), decidim_admin_participatory_processes.edit_participatory_process_group_path(group), class: "button tiny button--title new" %>
-    		</h2>
-  	  </div>
+        </h2>
+      </div>
       <div class="card-section">
         <h3><%= t ".group_processes" %></h3>
-        <p><%= t ".civicrm_group_desc" %></p>
-        
+        <p class="info-help"><%= t ".civicrm_group_desc" %></p>
+
         <%= render partial: "civicrm_sync", locals: {group: group } if superadmin? %>
 
         <table class="table-list managers-processes-list">
           <thead>
             <tr>
-              <th></th>
-              <th>
-                <%= t("models.participatory_process.fields.created_at", scope: "decidim.admin") %>
-              </th>
+              <th><%= t("models.participatory_process.name", scope: "decidim.admin") %></th>
               <th>
                 <%= t("models.participatory_process.fields.created_at", scope: "decidim.admin") %>
               </th>
@@ -30,11 +27,12 @@
                 <%= t("models.participatory_process.fields.private", scope: "decidim.admin") %>
               </th>
               <th>
-                <%= t(".civicrm_group") %>
-              </th>
-              <th class="table-list__actions">
                 <%= t("models.participatory_process.fields.published", scope: "decidim.admin") %>
               </th>
+              <th>
+                <%= t(".civicrm_group") %>
+              </th>
+              <th class="table-list__actions"></th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +73,7 @@
         <% end %>
       </div>
     </div>
-	<% end %>
+  <% end %>
   </div>
 </div>
 
