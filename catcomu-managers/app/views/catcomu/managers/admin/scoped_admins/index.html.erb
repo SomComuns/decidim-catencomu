@@ -12,7 +12,7 @@
       </div>
       <div class="card-section">
         <h3><%= t ".group_processes" %></h3>
-        <p class="info-help"><%= t(".civicrm_group_desc", manual: icon(:document) %></p>
+        <p class="info-help"><%= t(".civicrm_group_desc", manual: icon_link_to(:document, Catcomu::Managers.config.manual_link, "manual", class: "action-icon action-icon")).html_safe %></p>
 
         <%= render partial: "civicrm_sync", locals: {group: group } if superadmin? %>
 
