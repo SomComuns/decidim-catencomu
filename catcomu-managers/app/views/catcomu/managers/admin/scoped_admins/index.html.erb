@@ -12,7 +12,7 @@
       </div>
       <div class="card-section">
         <h3><%= t ".group_processes" %></h3>
-        <p class="info-help"><%= t ".civicrm_group_desc" %></p>
+        <p class="info-help"><%= t(".civicrm_group_desc", manual: icon(:document) %></p>
 
         <%= render partial: "civicrm_sync", locals: {group: group } if superadmin? %>
 
