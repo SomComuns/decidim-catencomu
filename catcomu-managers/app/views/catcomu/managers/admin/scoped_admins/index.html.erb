@@ -1,7 +1,7 @@
 <div class="content">
   <div class="row">
     <%= t ".user_not_scoped" if current_user_process_groups.blank? %>
-<%console%>
+
   <% current_user_process_groups&.each do |group| %>
     <div class="card with-overflow">
       <div class="card-divider">
@@ -13,13 +13,12 @@
       <div class="card-section">
         <h3><%= t ".group_processes" %></h3>
         <p class="info-help"><%= t(".civicrm_group_desc", contact_data: raw(Catcomu::Managers.config.contact_data),
-                                                          manual: icon_link_to(:document, 
-                                                                               Catcomu::Managers.config.manual_link, 
-                                                                               "manual", 
-                                                                               class: "action-icon action-icon")).html_safe 
-                              %></p>
+                                                          manual: icon_link_to(:document,
+                                                                               Catcomu::Managers.config.manual_link,
+                                                                               "manual",
+                                                                               class: "action-icon action-icon")).html_safe %></p>
 
-        <%= render partial: "civicrm_sync", locals: {group: group } if superadmin? %>
+        <%= render partial: "civicrm_sync", locals: { group: group } if superadmin? %>
 
         <table class="table-list managers-processes-list">
           <thead>
