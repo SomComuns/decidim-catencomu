@@ -5,3 +5,8 @@ metrics_job:
   class: "MetricsGenerationWorker"
   queue: metrics
 
+sync_civicrm_job:
+  cron: "3 3 * * *"
+  class: "SyncCivicrmWorker"
+  queue: default
+

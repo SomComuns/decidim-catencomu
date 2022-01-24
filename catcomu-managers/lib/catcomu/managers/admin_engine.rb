@@ -12,6 +12,7 @@ module Catcomu
         routes do
           resources :scoped_admins do
             post "new_process", on: :collection
+            post "set_sync_groups", on: :collection
           end
           root to: "scoped_admins#index"
         end
@@ -23,7 +24,7 @@ module Catcomu
         end
 
         initializer "catcomu_managers.assets" do |app|
-          app.config.assets.precompile += %w(catcomu_managers_admin_manifest.css)
+          app.config.assets.precompile += %w(catcomu_managers_admin_manifest.css catcomu_managers_admin_manifest.js)
         end
 
         initializer "catcomu.admin_menus" do

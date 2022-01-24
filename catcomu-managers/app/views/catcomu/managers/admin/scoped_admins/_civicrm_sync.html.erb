@@ -1,0 +1,20 @@
+<div class="card-divider civicrm-sync-form" id="sync-form-<%= group.id %>">
+  <div class="card-section">
+    <p class="info-help"><%= t("civicrm_sync_desc", scope: "catcomu.managers.admin.scoped_admins") %></p>
+
+    <%= decidim_form_for(sync_form(group), url: "#{set_sync_groups_scoped_admins_path}#sync-form-#{group.id}", method: :post) do |f| %>
+
+      <%= f.hidden_field :decidim_participatory_process_group_id %>
+
+      <div class="row column">
+        <%= f.select :civicrm_default_group_id, civicrm_groups_list %>
+      </div>
+      <div class="row column">
+        <%= f.select :civicrm_executive_group_id, civicrm_groups_list %>
+      </div>
+      <div class="row column">
+        <%= f.submit t("sync_civicrm.send", scope: "catcomu.managers.admin.scoped_admins") %>
+      </div>
+    <% end %>
+  </div>
+</div>
