@@ -1,4 +1,5 @@
 @mixin gradient-background($start, $end) {
   background: $start;
-	background: linear-gradient(90deg, $start 0%, $end 100%);
+  // deactivate gradient for now
+	// background: linear-gradient(90deg, $start 0%, $end 100%);
 }
