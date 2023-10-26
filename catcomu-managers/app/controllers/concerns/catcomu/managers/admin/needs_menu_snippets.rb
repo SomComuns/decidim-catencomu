@@ -19,7 +19,7 @@ module Catcomu
           @snippets = Decidim::Snippets.new
           return @snippets if current_user && current_user.attributes["admin"]
 
-          @snippets.add(:managers_menu, ActionController::Base.helpers.stylesheet_link_tag("catcomu/managers/admin/menu_overrides.css"))
+          @snippets.add(:managers_menu, ActionController::Base.helpers.stylesheet_pack_tag("decidim_admin_catcomu_managers_menu_overrides"))
 
           managers_menu_spaces.each do |space, visible|
             @snippets.add(:managers_menu, "<style>.main-nav li > a[href^=\"/admin/#{space}\"] {display: #{visible ? "block" : "none"}}</style>")

@@ -12,4 +12,6 @@ exclude_rule "no-inline-html"
 
 exclude_rule "ol-prefix"
 
+exclude_rule "ul-indent"
+
 rule "no-trailing-punctuation", punctuation: ".,;:!"

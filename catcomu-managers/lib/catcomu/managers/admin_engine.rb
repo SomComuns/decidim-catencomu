@@ -23,19 +23,20 @@ module Catcomu
           Decidim::Admin::ApplicationController.include(Catcomu::Managers::Admin::NeedsMenuSnippets)
         end
 
-        initializer "catcomu_managers.assets" do |app|
-          app.config.assets.precompile += %w(catcomu_managers_admin_manifest.css catcomu_managers_admin_manifest.js)
-        end
-
         initializer "catcomu.admin_menus" do
           Decidim.menu :admin_menu do |menu|
-            menu.item I18n.t("menu.managers", scope: "decidim.admin", default: "Managers"),
-                      catcomu_managers_admin.root_path,
-                      icon_name: "fork",
-                      position: 1,
-                      active: is_active_link?(catcomu_managers_admin.root_path, :inclusive),
-                      if: defined?(current_user)
+            menu.add_item :catcomu_managers,
+                          I18n.t("menu.managers", scope: "decidim.admin", default: "Managers"),
+                          catcomu_managers_admin.root_path,
+                          icon_name: "fork",
+                          position: 1,
+                          active: is_active_link?(catcomu_managers_admin.root_path, :inclusive),
+                          if: defined?(current_user)
           end
+        end
+
+        initializer "catcomu_managers.webpacker.assets_path" do
+          Decidim.register_assets_path File.expand_path("app/packs", root)
         end
       end
     end
