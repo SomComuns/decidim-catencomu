@@ -17,8 +17,8 @@ if Rails.application.secrets.aws_access_key_id.present?
     config.fog_provider = "fog/aws"
     config.fog_credentials = {
       provider: "AWS",
-      aws_access_key_id: Rails.application.secrets.aws_access_key_id,
-      aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      aws_access_key_id: Rails.application.secrets.dig(:aws, :access_key_id),
+      aws_secret_access_key: Rails.application.secrets.dig(:aws, :secret_access_key),
       region: "eu-west-1",
       host: "s3.eu-west-1.amazonaws.com"
       # endpoint:              'https://s3.example.com:8080'

@@ -21,11 +21,11 @@
     </div>
     <%= render partial: "layouts/decidim/social_media_links" %>
   </div>
-    <% if current_organization.official_img_footer? %>
+    <% if current_organization.official_img_footer.attached? %>
     <div class="row">
       <div class="large-2 large-centered medium-2 medium-centered">
       <%= link_to current_organization.official_url, class: "main-footer__badge" do %>
-        <%= image_tag current_organization.official_img_footer.url.to_s , alt: current_organization.name %>
+        <%= image_tag current_organization.attached_uploader(:official_img_footer).path, alt: current_organization.name %>
       <% end %>
       </div>
     </div>
