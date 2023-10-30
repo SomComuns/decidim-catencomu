@@ -37,9 +37,9 @@ GIT
       decidim-core (>= 0.25.0)
 
 PATH
-  remote: catcomu-managers
+  remote: decidim-module-catcomu_managers
   specs:
-    catcomu-managers (0.2.0)
+    decidim-catcomu_managers (0.2.0)
       decidim-admin (~> 0.26.8)
       decidim-core (~> 0.26.8)
 
@@ -904,9 +904,9 @@ DEPENDENCIES
   aws-sdk-s3
   bootsnap (~> 1.11.0)
   byebug (~> 11.0)
-  catcomu-managers!
   decidim (= 0.26.8)
   decidim-alternative_landing!
+  decidim-catcomu_managers!
   decidim-civicrm!
   decidim-consultations (= 0.26.8)
   decidim-decidim_awesome (~> 0.8.3)
