@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe "Visit the home page", type: :system, perform_enqueued: true do
-  let(:organization) { create :organization }
+  let(:organization) { create :organization, external_domain_whitelist: %w(home.url registration.url) }
 
   before do
     switch_to_host(organization.host)
