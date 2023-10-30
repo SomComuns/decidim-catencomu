@@ -3,18 +3,19 @@
 
 .main-footer {
   @include gradient-background($catencomu-red, $catencomu-lilac);
-  
+
   a {
     color: $link-color;
   }
+
   .main-footer__badge {
     position: unset;
   }
 }
 
-.mini-footer{
+.mini-footer {
   @include gradient-background($catencomu-red, $catencomu-lilac);
-  
+
   a {
     color: $link-color;
   }

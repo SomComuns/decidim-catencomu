@@ -29,6 +29,18 @@
   "browserslist": [
     "extends @decidim/browserslist-config"
   ],
+  "scripts": {
+    "lint": "eslint -c .eslintrc.json --ext .js app/packs/src decidim-module-catcomu_managers/app/packs/src",
+    "lint-fix": "eslint -c .eslintrc.json --ext .js app/packs/src decidim-module-catcomu_managers/app/packs/src --fix",
+    "stylelint": "stylelint \"{decidim-module-catcomu_managers/,}app/packs/stylesheets/**/*.scss\"",
+    "stylelint-fix": "stylelint \"{decidim-module-catcomu_managers/,}app/packs/stylesheets/**/*.scss\" --fix"
+  },
+  "stylelint": {
+    "extends": "@decidim/stylelint-config",
+    "rules": {
+      "block-opening-brace-space-before": "always"
+    }
+  },
   "devDependencies": {
     "@decidim/dev": "^0.26.8",
     "@decidim/eslint-config": "^0.26.8",

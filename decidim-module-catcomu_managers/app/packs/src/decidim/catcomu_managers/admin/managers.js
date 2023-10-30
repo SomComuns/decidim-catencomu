@@ -1,11 +1,12 @@
 $(() => {
-  $(".civicrm-sync-group-edit").on("click", (e) => {
-    e.preventDefault();
-    $(e.delegateTarget).prev().attr("disabled", false);
+  $(".civicrm-sync-group-edit").on("click", (event) => {
+    event.preventDefault();
+    $(event.delegateTarget).prev().attr("disabled", false);
   });
   
-  $(".civicrm-sync-group-select").on("change", (e) => {
-    let $select = $(e.delegateTarget);
+  $(".civicrm-sync-group-select").on("change", (event) => {
+    let $select = $(event.delegateTarget);
+    /* eslint-disable camelcase */
     $.ajax({
       url: "/admin/managers/scoped_admins",
       data: {

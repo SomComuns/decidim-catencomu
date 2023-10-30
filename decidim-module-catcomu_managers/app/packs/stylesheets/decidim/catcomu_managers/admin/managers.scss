@@ -1,10 +1,12 @@
 .civicrm-sync-group {
   display: flex;
   align-items: baseline;
+
   &-select {
     margin-right: 4px;
     margin-bottom: 0;
   }
+
   &-edit {
     visibility: hidden;
   }
