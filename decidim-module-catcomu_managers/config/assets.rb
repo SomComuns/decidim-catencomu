@@ -19,6 +19,5 @@ Decidim::Webpacker.register_path("#{base_path}/app/packs")
 # SCSS files within the entrypoints, they become available for inclusion using
 # `stylesheet_pack_tag`.
 Decidim::Webpacker.register_entrypoints(
-  decidim_admin_catcomu_managers: "#{base_path}/app/packs/entrypoints/decidim_admin_catcomu_managers.js",
-  decidim_admin_catcomu_managers_menu_overrides: "#{base_path}/app/packs/entrypoints/decidim_admin_catcomu_managers_menu_overrides.scss"
+  decidim_admin_catcomu_managers: "#{base_path}/app/packs/entrypoints/decidim_admin_catcomu_managers.js"
 )
