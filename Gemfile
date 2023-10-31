@@ -9,7 +9,7 @@ DECIDIM_VERSION = "0.26.8"
 gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 
-gem "catcomu-managers", path: "./catcomu-managers"
+gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 
 gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.26-stable"
 gem "decidim-civicrm", git: "https://github.com/Platoniq/decidim-module-civicrm", branch: "release/0.26-stable"

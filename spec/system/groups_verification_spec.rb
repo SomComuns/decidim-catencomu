@@ -26,7 +26,7 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
 
   let!(:user) { create(:user, :confirmed, organization: organization) }
 
-  let!(:meeting) { create(:meeting, component: meetings_component, registrations_enabled: true) }
+  let!(:meeting) { create(:meeting, :published, component: meetings_component, registrations_enabled: true) }
 
   let!(:meetings_component) do
     create(

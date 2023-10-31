@@ -1,1 +1,0 @@
-import "entrypoints/decidim_admin_catcomu_managers_menu_overrides.scss"

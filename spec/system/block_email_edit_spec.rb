@@ -10,7 +10,7 @@ describe "Block email editing", type: :system do
   end
 
   context "when visiting account page" do
-    let(:user) { create(:user, organization: organization) }
+    let(:user) { create(:user, :confirmed, organization: organization) }
 
     before do
       switch_to_host(organization.host)
