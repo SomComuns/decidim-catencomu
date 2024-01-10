@@ -23,6 +23,8 @@
 
 /node_modules
 /yarn-error.log
+yarn-debug.log*
+.yarn-integrity
 
 /public/assets
 .byebug_history
@@ -43,3 +45,7 @@ public/uploads
 # Ignore .rspec-failures
 .rspec-failures
 .s3cfg
+
+/public/decidim-packs
+/public/packs
+/public/packs-test

@@ -20,18 +20,19 @@ Rails.application.config.after_initialize do
       key = Rails.application.secrets.scope_ungrouped_processes[:key] || path
       position = Rails.application.secrets.scope_ungrouped_processes[:position_in_menu]
 
-      menu.item I18n.t(key, scope: "decidim.scope_ungrouped_processes"),
-                Rails.application.routes.url_helpers.send("#{path}_path"),
-                position: position,
-                if: (
-                  Decidim::ParticipatoryProcess
-                  .unscoped
-                  .where(organization: current_organization)
-                  .where.not(decidim_participatory_process_group_id: nil)
-                  .published
-                  .any?
-                ),
-                active: :inclusive
+      menu.add_item :ungrouped_participatory_processes,
+                    I18n.t(key, scope: "decidim.scope_ungrouped_processes"),
+                    Rails.application.routes.url_helpers.send("#{path}_path"),
+                    position: position,
+                    if: (
+                      Decidim::ParticipatoryProcess
+                      .unscoped
+                      .where(organization: current_organization)
+                      .where.not(decidim_participatory_process_group_id: nil)
+                      .published
+                      .any?
+                    ),
+                    active: :inclusive
     end
   end
 end

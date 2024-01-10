@@ -5,7 +5,7 @@ require "rails_helper"
 describe "Scoped admins", type: :system do
   let(:organization) { create(:organization) }
 
-  let(:user) { create(:user, :confirmed, organization: organization) }
+  let(:user) { create(:user, :confirmed, :admin_terms_accepted, organization: organization) }
 
   let!(:participatory_process) { create :participatory_process, participatory_process_group: participatory_process_group, organization: organization }
   let!(:another_participatory_process) { create :participatory_process, organization: organization }
@@ -49,27 +49,27 @@ describe "Scoped admins", type: :system do
   end
 
   it "has access to managers module" do
-    visit catcomu_managers_admin.scoped_admins_path
+    visit decidim_catcomu_managers_admin.scoped_admins_path
 
     expect(page).to have_content("Participative processes in this group")
   end
 
   it "can edit the group" do
-    visit catcomu_managers_admin.scoped_admins_path
+    visit decidim_catcomu_managers_admin.scoped_admins_path
     click_link "Edit this group"
 
     expect(page).to have_content("Edit process group")
   end
 
   it "does not show other processes" do
-    visit catcomu_managers_admin.scoped_admins_path
+    visit decidim_catcomu_managers_admin.scoped_admins_path
 
     expect(page).to have_content(participatory_process.title["en"])
     expect(page).not_to have_content(another_participatory_process.title["en"])
   end
 
   it "can edit the processes" do
-    visit catcomu_managers_admin.scoped_admins_path
+    visit decidim_catcomu_managers_admin.scoped_admins_path
     click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
 
     expect(page).to have_content("General Information")
@@ -85,7 +85,7 @@ describe "Scoped admins", type: :system do
   end
 
   it "cannot change the group of the process" do
-    visit catcomu_managers_admin.scoped_admins_path
+    visit decidim_catcomu_managers_admin.scoped_admins_path
     click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
 
     fill_in_i18n(
@@ -102,7 +102,7 @@ describe "Scoped admins", type: :system do
     let(:user) { create(:user, :admin, :confirmed, organization: organization) }
 
     it "can change the group of the process" do
-      visit catcomu_managers_admin.scoped_admins_path
+      visit decidim_catcomu_managers_admin.scoped_admins_path
       click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
 
       fill_in_i18n(
@@ -128,7 +128,7 @@ describe "Scoped admins", type: :system do
     end
 
     it "has not actions in managers module" do
-      visit catcomu_managers_admin.scoped_admins_path
+      visit decidim_catcomu_managers_admin.scoped_admins_path
 
       expect(page).to have_content("Sorry, your user is not scoped into a group of processes!")
       expect(page).not_to have_content(participatory_process.title["en"])

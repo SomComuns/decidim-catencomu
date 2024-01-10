@@ -1,0 +1,39 @@
+<%= javascript_pack_tag "decidim_consultations" %>
+
+<%= form.hidden_field :participatory_process_group_id %>
+
+<div class="accordion" data-deep-link="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="600" data-allow-all-closed="true" data-accordion>
+  <div class="card accordion-item" data-accordion-item>
+    <a href="#form-<%= group.id %>" class="card-divider accordion-title primary">
+      <h2 class="card-title"><%= t(".title") %></h2>
+    </a>
+
+    <div class="card-section accordion-content" data-tab-content id="form-<%= group.id %>" style="background-color: white;">
+      <div class="row column">
+        <%= form.translated :text_field, :title, autofocus: true %>
+      </div>
+
+      <div class="row column">
+        <%= form.translated :text_field, :subtitle %>
+      </div>
+
+      <div class="row column">
+        <%= form.text_field :slug %>
+        <p class="help-text">
+          <%== t("slug_help", url: decidim_form_slug_url(:processes, form.object.slug), scope: "decidim.participatory_processes.admin.participatory_processes.form") %>
+        </p>
+      </div>
+
+      <div class="row column">
+        <%= form.translated :editor, :short_description, lines: 5 %>
+      </div>
+
+      <div class="row column">
+        <%= form.translated :editor, :description, toolbar: :full, lines: 15 %>
+      </div>
+      <div class="row column">
+        <%= form.submit t(".send") %>
+      </div>
+    </div>
+  </div>
+</div>
