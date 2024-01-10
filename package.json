@@ -5,7 +5,7 @@
     "@decidim/browserslist-config": "^0.26.8",
     "@decidim/core": "^0.26.8",
     "@decidim/elections": "^0.26.8",
-    "@decidim/webpacker": "^0.26.8",
+    "@decidim/webpacker": "^0.28.0",
     "@fullcalendar/core": "^6.0.2",
     "@fullcalendar/daygrid": "^6.0.2",
     "@fullcalendar/timegrid": "^6.0.2",
