@@ -1,0 +1,44 @@
+@import "variables";
+@import "foundation-sites/scss/foundation";
+@import "../utils/mixins";
+
+.title-bar {
+  @include gradient-background($catencomu-red, $catencomu-lilac);
+
+  padding: 1.5rem .5rem;
+}
+
+.navbar {
+  @include gradient-background($catencomu-red, $catencomu-lilac);
+
+  font-family: 'Montserrat Bold', sans-serif;
+
+  .main-nav__link {
+    a {
+      color: transparentize($navbar-bg, .3);
+    }
+
+    &--active a {
+      color: $navbar-bg;
+    }
+  }
+}
+
+.topbar_ {
+  &_search {
+    input,
+    input:focus {
+      background-color: $navbar-bg;
+      color: $navbar-fg-hover;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: $navbar-fg-hover;
+    }
+
+    svg {
+      color: $navbar-fg-hover;
+    }
+  }
+}
