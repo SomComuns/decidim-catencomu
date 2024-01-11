@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
   config.enable_processing = !Rails.env.test?
 end
 
-if Rails.application.secrets.aws_access_key_id.present?
+if Rails.application.secrets.dig(:aws, :access_key_id).present?
   require "carrierwave/storage/fog"
 
   CarrierWave.configure do |config|
