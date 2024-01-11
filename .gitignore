@@ -49,3 +49,5 @@ public/uploads
 /public/decidim-packs
 /public/packs
 /public/packs-test
+.rubocop-https*
+public/sw.js*

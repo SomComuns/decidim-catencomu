@@ -9,8 +9,8 @@ describe "Participatory processes", type: :system do
     create(
       :participatory_process,
       :active,
-      scope: scope_1,
-      area: area_1,
+      scope: first_scope,
+      area: first_area,
       organization: organization
     )
   end
@@ -18,8 +18,8 @@ describe "Participatory processes", type: :system do
     create(
       :participatory_process,
       :past,
-      scope: scope_2,
-      area: area_2,
+      scope: second_scope,
+      area: second_area,
       organization: organization
     )
   end
@@ -27,8 +27,8 @@ describe "Participatory processes", type: :system do
     create(
       :participatory_process,
       :active,
-      scope: scope_1,
-      area: area_1,
+      scope: first_scope,
+      area: first_area,
       organization: organization,
       participatory_process_group: process_group
     )
@@ -37,16 +37,16 @@ describe "Participatory processes", type: :system do
     create(
       :participatory_process,
       :past,
-      scope: scope_2,
-      area: area_2,
+      scope: second_scope,
+      area: second_area,
       organization: organization,
       participatory_process_group: process_group
     )
   end
-  let!(:scope_1) { create(:scope, organization: organization) }
-  let!(:scope_2) { create(:scope, organization: organization) }
-  let!(:area_1) { create(:area, organization: organization) }
-  let!(:area_2) { create(:area, organization: organization) }
+  let!(:first_scope) { create(:scope, organization: organization) }
+  let!(:second_scope) { create(:scope, organization: organization) }
+  let!(:first_area) { create(:area, organization: organization) }
+  let!(:second_area) { create(:area, organization: organization) }
 
   before do
     switch_to_host(organization.host)
@@ -150,7 +150,7 @@ describe "Participatory processes", type: :system do
             click_link "Select a scope"
           end
           within "#data_picker-modal" do
-            click_link translated(scope_1.name)
+            click_link translated(first_scope.name)
             click_link "Select"
           end
         end
@@ -171,7 +171,7 @@ describe "Participatory processes", type: :system do
         before do
           within "#participatory-space-filters" do
             select "Select an area"
-            select translated(area_1.name)
+            select translated(first_area.name)
           end
         end
 

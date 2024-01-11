@@ -2,7 +2,7 @@
 
 module Decidim
   module CatcomuManagers
-    VERSION = "0.2.0"
-    DECIDIM_VERSION = "0.26.8"
+    VERSION = "0.3.0"
+    DECIDIM_VERSION = "0.27.5"
   end
 end

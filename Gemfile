@@ -4,18 +4,18 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = "0.26.8"
+DECIDIM_VERSION = "0.27.5"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 
 gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 
-gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.26-stable"
-gem "decidim-civicrm", git: "https://github.com/Platoniq/decidim-module-civicrm", branch: "release/0.26-stable"
-gem "decidim-decidim_awesome", "~> 0.8.3"
-gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications", branch: "release/0.26-stable"
-gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "release/0.26-stable"
+gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing"
+gem "decidim-civicrm", git: "https://github.com/Platoniq/decidim-module-civicrm"
+gem "decidim-decidim_awesome", "~> 0.10.2"
+gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications"
+gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps"
 
 gem "bootsnap", "~> 1.11.0"
 gem "health_check"

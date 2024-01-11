@@ -12,7 +12,7 @@ describe "Visit the account page", type: :system do
     visit decidim.account_path
   end
 
-  it "has a link to home_url " do
+  it "has a link to home_url" do
     expect(page).to have_selector("[href=\"#{Rails.application.secrets.participacio_url[I18n.locale]}\"]")
   end
 end
