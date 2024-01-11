@@ -2,15 +2,6 @@
 
 # check application.rb to see the middleware initialization
 
-# not using "to_prepare" to ensure Decidim original modules are ready to be instantiated by any other plugin (awesome in this case)
-Rails.application.config.before_initialize do
-  # tweak authentication for closed organizations
-  Decidim::ForceAuthentication.include(Decidim::ForceAuthenticationOverride)
-  # separate participatory processes in 2 menus (within or without a process group)
-  Decidim::ParticipatoryProcesses::ProcessFiltersCell.include(Decidim::ParticipatoryProcesses::ProcessFiltersCellOverride)
-  Decidim::FiltersHelper.include(Decidim::FiltersHelperOverride)
-end
-
 Rails.application.config.after_initialize do
   # Creates a new menu next to Processes for ungrouped processes
   if Rails.application.secrets.scope_ungrouped_processes[:enabled]
