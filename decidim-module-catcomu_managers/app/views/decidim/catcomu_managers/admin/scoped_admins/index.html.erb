@@ -81,4 +81,6 @@
   </div>
 </div>
 
-<%= javascript_pack_tag "decidim_admin_catcomu_managers" %>
+<% content_for :js_content do %>
+  <%= javascript_pack_tag "decidim_admin_catcomu_managers" %>
+<% end %>
