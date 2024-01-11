@@ -7,7 +7,6 @@ Rails.application.config.before_initialize do
   # tweak authentication for closed organizations
   Decidim::ForceAuthentication.include(Decidim::ForceAuthenticationOverride)
   # separate participatory processes in 2 menus (within or without a process group)
-  Decidim::ParticipatoryProcess.include(Decidim::ParticipatoryProcessOverride)
   Decidim::ParticipatoryProcesses::ProcessFiltersCell.include(Decidim::ParticipatoryProcesses::ProcessFiltersCellOverride)
   Decidim::FiltersHelper.include(Decidim::FiltersHelperOverride)
 end
