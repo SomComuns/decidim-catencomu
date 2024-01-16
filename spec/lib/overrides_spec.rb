@@ -9,12 +9,12 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      "/app/views/layouts/decidim/_main_footer.html.erb" => "976208c3244dabbfad9c4c24642895fa", # centered organization logo
-      "/app/views/decidim/account/show.html.erb" => "db0e241a908e8d72cbd5815a09286e66", # blocks email editing
-      "/app/views/decidim/devise/omniauth_registrations/new.html.erb" => "d32cbe7f5a60e2892fe3c8cb33b16cda", # blocks email editing
-      "/app/views/decidim/devise/sessions/new.html.erb" => "1da8569a34bcd014ffb5323c96391837", # adds link to civicrm signup
+      "/app/views/layouts/decidim/_main_footer.html.erb" => "4b19823c90e8473f03b5e9257c506b3e", # centered organization logo
+      "/app/views/decidim/account/show.html.erb" => "567f47fd001a0222943579d9ebfe5f3a", # blocks email editing
+      "/app/views/decidim/devise/omniauth_registrations/new.html.erb" => "81d19863520eb70fd228deec786e739a", # blocks email editing
+      "/app/views/decidim/devise/sessions/new.html.erb" => "9d090fc9e565ded80a9330d4e36e495c", # adds link to civicrm signup
       # concerns
-      "/app/controllers/concerns/decidim/force_authentication.rb" => "a74eaaada6356543efc1e4e85619dcab",
+      "/app/controllers/concerns/decidim/force_authentication.rb" => "c1fa7a3c6d014c3d47985536a16ee243",
       # helpers
       "/app/helpers/decidim/filters_helper.rb" => "23b62d7deb2b1fc48b01e33a549c812c"
     }
@@ -23,12 +23,12 @@ checksums = [
     package: "decidim-participatory_processes",
     files: {
       # views
-      "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "fc7fec67b9fb9d24b492aad9404c1cc2", # processes index page
+      "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "2101e198c970bd632f24e8be725d1b82", # processes index page
       "/app/views/layouts/decidim/_process_navigation.html.erb" => "e4d2322544d80ef4452aa61425034aa3",
       # models
-      "/app/models/decidim/participatory_process.rb" => "a20f46b5f0fa44c5f033d5a3152efa92",
+      "/app/models/decidim/participatory_process.rb" => "46c871ef5eb357768c97b3dbc69514a0",
       # cells
-      "/app/cells/decidim/participatory_processes/process_filters_cell.rb" => "832200340aea29f8ef6bdd578367a8b2",
+      "/app/cells/decidim/participatory_processes/process_filters_cell.rb" => "cd83acfcd8865c5fe1dbcf8deb5bf319",
       # routes definition
       "/lib/decidim/participatory_processes/engine.rb" => "3a1013d23aea78e381c9a6935e68f309"
     }
@@ -42,7 +42,7 @@ checksums = [
   {
     package: "decidim-meetings",
     files: {
-      "/app/cells/decidim/meetings/join_meeting_button/show.erb" => "7d85622f4dd6c7a262ab59c53a6aaedf"
+      "/app/cells/decidim/meetings/join_meeting_button/show.erb" => "66ee99695217f75939deed77f6f88159"
     }
   }
 ]

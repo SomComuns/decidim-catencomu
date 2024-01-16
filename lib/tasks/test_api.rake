@@ -13,9 +13,9 @@ end
 
 def request
   Decidim::Civicrm::Api::Request.new(
-    url: ENV["CIVICRM_VERIFICATION_URL"],
-    api_key: ENV["CIVICRM_VERIFICATION_API_KEY"],
-    key: ENV["CIVICRM_VERIFICATION_SECRET"],
+    url: ENV.fetch("CIVICRM_VERIFICATION_URL", nil),
+    api_key: ENV.fetch("CIVICRM_VERIFICATION_API_KEY", nil),
+    key: ENV.fetch("CIVICRM_VERIFICATION_SECRET", nil),
     verify_ssl: false
   )
 end
@@ -31,7 +31,7 @@ namespace :civicrm do
 
     desc "Test API > Get user"
     task get_user: :environment do
-      user_id = ENV["CIVICRM_TEST_USER_ID"]
+      user_id = ENV.fetch("CIVICRM_TEST_USER_ID", nil)
 
       assert("User ID") { user_id.present? }
 
@@ -59,7 +59,7 @@ namespace :civicrm do
 
     desc "Test API > Users in group"
     task users_in_group: :environment do
-      group_name = ENV["CIVICRM_TEST_GROUP_NAME"]
+      group_name = ENV.fetch("CIVICRM_TEST_GROUP_NAME", nil)
 
       assert("Group name") { group_name.present? }
 
