@@ -45,7 +45,7 @@ describe "Scoped admins", type: :system do
 
   it "user has admin access" do
     visit decidim_admin.root_path
-    expect(page).to have_content("Welcome to the Decidim Admin Panel.")
+    expect(page).to have_content("Welcome to the Admin Panel.")
   end
 
   it "has access to managers module" do

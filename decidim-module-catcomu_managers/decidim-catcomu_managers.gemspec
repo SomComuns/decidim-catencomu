@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Decidim Awesome Scoped admins Manager."
   spec.description = "Allows extra operations with scoped admins by decidim awesome"
   spec.license = "AGPL-3.0"
-  spec.required_ruby_version = ">= 2.7"
+  spec.required_ruby_version = ">= 3.0"
 
   spec.files = Dir["{app,config,db,lib}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
 

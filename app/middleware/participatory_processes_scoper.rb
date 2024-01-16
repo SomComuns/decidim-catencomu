@@ -75,7 +75,7 @@ class ParticipatoryProcessesScoper
   end
 
   def out_of_scope?
-    !scope_groups? || request_slug && @current_participatory_process.blank?
+    !scope_groups? || (request_slug && @current_participatory_process.blank?)
   end
 
   def requesting_default_processes?

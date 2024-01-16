@@ -42,9 +42,9 @@ module Decidim
           menu.remove_item(:edit_organization)
           menu.remove_item(:logs)
 
-          managers_menu_spaces = Decidim.participatory_space_manifests.map do |manifest|
+          managers_menu_spaces = Decidim.participatory_space_manifests.to_h do |manifest|
             [manifest.name.to_s, "#{manifest.model_class_name}UserRole".safe_constantize&.exists?(user: current_user)]
-          end.to_h
+          end
 
           # add awesome scoped parts too
           (Decidim::DecidimAwesome::AwesomeConfig.find_by(organization: current_organization, var: "scoped_admins")&.value || []).each do |key, user_ids|
