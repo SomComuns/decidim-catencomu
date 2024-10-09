@@ -23,7 +23,9 @@
     "jsrender": "^1.0.9",
     "jsviews": "^1.0.13",
     "leaflet.featuregroup.subgroup": "^1.0.2",
-    "select2": "^4.1.0-rc.0"
+    "select2": "^4.1.0-rc.0",
+    "webpack": "^5.95.0",
+    "yarn": "^1.22.22"
   },
   "version": "0.1.0",
   "browserslist": [
