@@ -33,6 +33,7 @@ group :development, :test do
   gem "rubocop-faker"
 
   gem "decidim-dev", DECIDIM_VERSION
+  gem "rubocop-ast", "~> 1.31", ">= 1.31.2"
 end
 
 group :development do

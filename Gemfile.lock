@@ -957,6 +957,7 @@ DEPENDENCIES
   listen (~> 3.1)
   puma (>= 5.0.0)
   rspec
+  rubocop-ast (~> 1.31, >= 1.31.2)
   rubocop-faker
   sentry-rails
   sentry-ruby

@@ -16,7 +16,7 @@ env:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     services:
       postgres:
         image: postgres:11
@@ -38,7 +38,7 @@ jobs:
 
       - uses: nanasess/setup-chromedriver@v2
         with:
-          chromedriver-version: 129.0.6668.71
+          chromedriver-version: 119.0.6045.105
 
       - name: Setup & create Database
         run: |
