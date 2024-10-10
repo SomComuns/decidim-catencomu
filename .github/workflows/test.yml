@@ -27,6 +27,9 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
+      - name: Set Chrome Version
+        run: echo "CHROME_VERSION=119.0.6045.105" >> $GITHUB_ENV
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
@@ -38,7 +41,8 @@ jobs:
 
       - uses: nanasess/setup-chromedriver@v2
         with:
-          chromedriver-version: 129.0.6668.71
+          chromedriver-version: 119.0.6045.105
+
 
       - name: Setup & create Database
         run: |
