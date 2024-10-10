@@ -30,10 +30,10 @@ gem "rspec"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-  gem "rubocop-faker"
-
   gem "decidim-dev", DECIDIM_VERSION
+  gem "parser", "3.3.0.4"
   gem "rubocop-ast", "1.31.2"
+  gem "rubocop-faker"
 end
 
 group :development do
