@@ -37,13 +37,21 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
 
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: ${{ env.CHROME_VERSION }}
-
       - uses: nanasess/setup-chromedriver@v2
         with:
           chromedriver-version: ${{ env.CHROME_VERSION }}
+
+      - name: List Chrome
+        shell: "bash"
+        run: apt list --installed | grep chrome
+
+      - name: Remove Chrome
+        shell: "bash"
+        run: sudo apt remove google-chrome-stable
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: ${{ env.CHROME_VERSION }}
 
       - name: Setup & create Database
         run: |
