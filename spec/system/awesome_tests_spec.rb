@@ -30,7 +30,7 @@ describe "Custom styles", type: :system do
   end
 
   shared_examples "no extra css is added" do
-    it "css is no present" do
+    it "css is not present" do
       expect(page.body).not_to have_content("body {background: red;}")
     end
 
