@@ -944,7 +944,6 @@ DEPENDENCIES
   decidim-catcomu_managers!
   decidim-civicrm!
   decidim-consultations (= 0.27.5)
-  decidim-core (= 0.27.5)
   decidim-decidim_awesome (~> 0.10.2)
   decidim-dev (= 0.27.5)
   decidim-direct_verifications!
@@ -964,7 +963,7 @@ DEPENDENCIES
   sentry-ruby
   sidekiq (~> 6.0)
   sidekiq-cron
-  spring (= 4.0)
+  spring
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)
   web-console
