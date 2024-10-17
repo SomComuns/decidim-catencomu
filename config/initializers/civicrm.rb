@@ -5,7 +5,8 @@ Decidim::Civicrm.configure do |config|
   config.api = {
     key: Rails.application.secrets.dig(:civicrm, :api, :key),
     secret: Rails.application.secrets.dig(:civicrm, :api, :secret),
-    url: Rails.application.secrets.dig(:civicrm, :api, :url)
+    url: Rails.application.secrets.dig(:civicrm, :api, :url),
+    version: Rails.application.secrets.dig(:civicrm, :api, :version)
   }
 
   # Configure omniauth secrets
