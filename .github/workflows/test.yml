@@ -53,18 +53,6 @@ jobs:
         with:
           chrome-version: ${{ env.CHROME_VERSION }}
 
-      - name: List Chrome
-        shell: "bash"
-        run: apt list --installed | grep chrome
-
-      - name: Remove Chrome
-        shell: "bash"
-        run: sudo apt remove google-chrome-stable
-
-      - uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 119.0.6045.105
-
       - name: Setup & create Database
         run: |
           bundle exec rails db:create db:schema:load
