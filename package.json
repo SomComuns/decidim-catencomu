@@ -38,6 +38,7 @@
     "formBuilder": "^3.6.1",
     "graphiql": "^3.8.3",
     "highlight.js": "^11.4.0",
+    "inline-attacher": "^0.0.8",
     "inscrybmde": "^1.11.6",
     "jquery-form": "^4.3.0",
     "jquery-ui": "^1.13.0",
