@@ -34,6 +34,8 @@ yarn-debug.log*
 
 # Ignore public uploads
 public/uploads
+tailwind.config.js
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
