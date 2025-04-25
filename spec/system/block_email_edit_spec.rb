@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Block email editing", type: :system do
+describe "Block_email_editing" do
   let(:organization) { create(:organization) }
 
   before do
@@ -10,7 +10,7 @@ describe "Block email editing", type: :system do
   end
 
   context "when visiting account page" do
-    let(:user) { create(:user, :confirmed, organization: organization) }
+    let(:user) { create(:user, :confirmed, organization:) }
 
     before do
       switch_to_host(organization.host)
@@ -18,18 +18,18 @@ describe "Block email editing", type: :system do
     end
 
     context "when user is a civicrm user" do
-      let!(:identity) { create(:identity, user: user, provider: Decidim::Civicrm::OMNIAUTH_PROVIDER_NAME) }
+      let!(:identity) { create(:identity, user:, provider: Decidim::Civicrm::OMNIAUTH_PROVIDER_NAME) }
 
       it "cannot change email" do
         visit decidim.account_path
-        expect(page.find("#user_email")).to be_readonly
+        expect(page.find_by_id("user_email")).to be_readonly
       end
     end
 
     context "when user is not a civicrm user" do
       it "can change email" do
         visit decidim.account_path
-        expect(page.find("#user_email")).not_to be_readonly
+        expect(page.find_by_id("user_email")).not_to be_readonly
       end
     end
   end

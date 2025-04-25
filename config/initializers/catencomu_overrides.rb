@@ -13,7 +13,7 @@ Rails.application.config.after_initialize do
       menu.add_item :ungrouped_participatory_processes,
                     I18n.t(key, scope: "decidim.scope_ungrouped_processes"),
                     Rails.application.routes.url_helpers.send("#{path}_path"),
-                    position: position,
+                    position:,
                     if: (
                       Decidim::ParticipatoryProcess
                       .unscoped

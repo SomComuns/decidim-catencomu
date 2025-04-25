@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Visit the home page", type: :system, perform_enqueued: true do
+describe "Visit_the_homepage", perform_enqueued: true do
   let(:organization) { create :organization, external_domain_whitelist: %w(home.url registration.url) }
 
   before do
@@ -17,7 +17,7 @@ describe "Visit the home page", type: :system, perform_enqueued: true do
   context "when clicking on the 'home' item in menu" do
     it "loads the url defined in secrets.yml" do
       visit decidim.root_path
-      click_link "Home"
+      click_on "Home"
       expect(current_url).to match(Rails.application.secrets.home_url)
     end
   end

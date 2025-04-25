@@ -4,7 +4,7 @@ require "rails_helper"
 require "decidim/proposals/test/factories"
 require "decidim/meetings/test/factories"
 
-describe "Restrict actions by CiviCRM groups verification", type: :system do
+describe "Restrict_actions_by_CiviCRM_groups_verification" do
   let(:handler_name) { "civicrm_groups" }
   let(:manifest_name) { "proposals" }
   let(:options) { {} }
@@ -21,10 +21,10 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
   end
 
   let(:participatory_space) do
-    create(:participatory_process, :with_steps, organization: organization)
+    create(:participatory_process, :with_steps, organization:)
   end
 
-  let!(:user) { create(:user, :confirmed, organization: organization) }
+  let!(:user) { create(:user, :confirmed, organization:) }
 
   let!(:meeting) { create(:meeting, :published, component: meetings_component, registrations_enabled: true) }
 
@@ -33,7 +33,7 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
       :meeting_component,
       manifest: Decidim.find_component_manifest("meetings"),
       manifest_name: :meetings,
-      participatory_space: participatory_space,
+      participatory_space:,
       permissions: { join: authorization_options }
     )
   end
@@ -44,7 +44,7 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
       :with_creation_enabled,
       manifest: Decidim.find_component_manifest("proposals"),
       manifest_name: :proposals,
-      participatory_space: participatory_space,
+      participatory_space:,
       permissions: { create: authorization_options }
     )
   end
@@ -60,37 +60,37 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
     let(:wrong_metadata) { { "group_ids" => [2, 3] } }
 
     context "when user is authorized" do
-      let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
+      let!(:authorization) { create(:authorization, user:, name: handler_name, metadata:) }
 
       it "allows to join a meeting" do
         visit_and_join_meeting
 
-        expect(page).not_to have_content "Authorization required"
-        expect(page).not_to have_content "Not authorized"
+        expect(page).to have_no_content "Authorization required"
+        expect(page).to have_no_content "Not authorized"
         expect(page).to have_button "Submit"
       end
 
       it "allows to create a proposal" do
         visit_and_create_proposal
-        expect(page).not_to have_content "Not authorized"
-        expect(page).not_to have_content "Authorization required"
-        expect(page).to have_selector ".new_proposal"
+        expect(page).to have_no_content "Not authorized"
+        expect(page).to have_no_content "Authorization required"
+        expect(page).to have_css ".new_proposal"
       end
     end
 
     context "when user is authorized with wrong metadata" do
-      let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: wrong_metadata) }
+      let!(:authorization) { create(:authorization, user:, name: handler_name, metadata: wrong_metadata) }
 
       it "does not allow to join a meeting" do
         visit_and_join_meeting
         expect(page).to have_content "Not authorized"
-        expect(page).not_to have_button "Submit"
+        expect(page).to have_no_button "Submit"
       end
 
       it "does not allow to create a proposal" do
         visit_and_create_proposal
         expect(page).to have_content "Not authorized"
-        expect(page).not_to have_selector ".new_proposal"
+        expect(page).to have_no_css ".new_proposal"
       end
     end
 
@@ -100,24 +100,24 @@ describe "Restrict actions by CiviCRM groups verification", type: :system do
       it "does not allow to join a meeting" do
         visit_and_join_meeting
         expect(page).to have_content "Authorization required"
-        expect(page).not_to have_button "Submit"
+        expect(page).to have_no_button "Submit"
       end
 
       it "does not allow to create a proposal" do
         visit_and_create_proposal
         expect(page).to have_content "Authorization required"
-        expect(page).not_to have_selector ".new_proposal"
+        expect(page).to have_no_css ".new_proposal"
       end
     end
   end
 
   def visit_and_join_meeting
     page.visit resource_locator(meeting).path
-    click_link "Join meeting"
+    click_on "Join meeting"
   end
 
   def visit_and_create_proposal
     page.visit main_component_path(proposals_component)
-    click_link "New proposal"
+    click_on "New proposal"
   end
 end

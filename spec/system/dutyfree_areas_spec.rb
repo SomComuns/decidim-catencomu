@@ -2,18 +2,18 @@
 
 require "rails_helper"
 
-describe "Free and private login areas", type: :system, perform_enqueued: true do
+describe "Free_and_private_login_areas", perform_enqueued: true do
   let(:organization) { create :organization, force_users_to_authenticate_before_access_organization: closed }
   let(:closed) { true }
-  let!(:alternative_participatory_process) { create :participatory_process, organization: organization }
-  let!(:participatory_process_group) { create :participatory_process_group, organization: organization }
-  let!(:participatory_process) { create :participatory_process, organization: organization, participatory_process_group: participatory_process_group }
-  let!(:consultation) { create :consultation, :published, organization: organization }
+  let!(:alternative_participatory_process) { create :participatory_process, organization: }
+  let!(:participatory_process_group) { create :participatory_process_group, organization: }
+  let!(:participatory_process) { create :participatory_process, organization:, participatory_process_group: }
+  let!(:consultation) { create :consultation, :published, organization: }
   let(:user) { nil }
 
   before do
-    create :content_block, organization: organization, scope_name: :homepage, manifest_name: :hero
-    create :content_block, organization: organization, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title
+    create :content_block, organization:, scope_name: :homepage, manifest_name: :hero
+    create :content_block, organization:, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title
 
     login_as user, scope: :user if user
 
@@ -88,7 +88,7 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
     it_behaves_like "can visit duty free areas"
 
     context "and user is logged" do
-      let(:user) { create :user, :confirmed, organization: organization }
+      let(:user) { create :user, :confirmed, organization: }
 
       it_behaves_like "can visit everything"
     end

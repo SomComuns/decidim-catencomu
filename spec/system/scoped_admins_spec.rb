@@ -2,18 +2,18 @@
 
 require "rails_helper"
 
-describe "Scoped admins", type: :system do
+describe "Scoped_admins" do
   let(:organization) { create(:organization) }
 
-  let(:user) { create(:user, :confirmed, :admin_terms_accepted, organization: organization) }
+  let(:user) { create(:user, :confirmed, :admin_terms_accepted, organization:) }
 
-  let!(:participatory_process) { create :participatory_process, participatory_process_group: participatory_process_group, organization: organization }
-  let!(:another_participatory_process) { create :participatory_process, organization: organization }
-  let!(:participatory_process_group) { create :participatory_process_group, organization: organization }
-  let!(:another_participatory_process_group) { create :participatory_process_group, organization: organization }
-  let!(:config) { create :awesome_config, organization: organization, var: :scoped_admins, value: scoped_admins }
-  let(:config_helper) { create :awesome_config, organization: organization, var: :scoped_admin_bar }
-  let!(:helper_constraint) { create :config_constraint, awesome_config: config_helper, settings: settings }
+  let!(:participatory_process) { create :participatory_process, participatory_process_group:, organization: }
+  let!(:another_participatory_process) { create :participatory_process, organization: }
+  let!(:participatory_process_group) { create :participatory_process_group, organization: }
+  let!(:another_participatory_process_group) { create :participatory_process_group, organization: }
+  let!(:config) { create :awesome_config, organization:, var: :scoped_admins, value: scoped_admins }
+  let(:config_helper) { create :awesome_config, organization:, var: :scoped_admin_bar }
+  let!(:helper_constraint) { create :config_constraint, awesome_config: config_helper, settings: }
   let(:scoped_admins) do
     {
       "bar" => [user.id.to_s]
@@ -56,7 +56,7 @@ describe "Scoped admins", type: :system do
 
   it "can edit the group" do
     visit decidim_catcomu_managers_admin.scoped_admins_path
-    click_link "Edit this group"
+    click_on "Edit this group"
 
     expect(page).to have_content("Edit process group")
   end
@@ -65,12 +65,12 @@ describe "Scoped admins", type: :system do
     visit decidim_catcomu_managers_admin.scoped_admins_path
 
     expect(page).to have_content(participatory_process.title["en"])
-    expect(page).not_to have_content(another_participatory_process.title["en"])
+    expect(page).to have_no_content(another_participatory_process.title["en"])
   end
 
   it "can edit the processes" do
     visit decidim_catcomu_managers_admin.scoped_admins_path
-    click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+    click_on href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
 
     expect(page).to have_content("General Information")
     expect(page).to have_content("Short description")
@@ -86,7 +86,7 @@ describe "Scoped admins", type: :system do
 
   it "cannot change the group of the process" do
     visit decidim_catcomu_managers_admin.scoped_admins_path
-    click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+    click_on href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
 
     fill_in_i18n(
       :participatory_process_title,
@@ -99,11 +99,11 @@ describe "Scoped admins", type: :system do
   end
 
   context "when user is admin" do
-    let(:user) { create(:user, :admin, :confirmed, organization: organization) }
+    let(:user) { create(:user, :admin, :confirmed, organization:) }
 
     it "can change the group of the process" do
       visit decidim_catcomu_managers_admin.scoped_admins_path
-      click_link href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+      click_on href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
 
       fill_in_i18n(
         :participatory_process_title,
@@ -131,8 +131,8 @@ describe "Scoped admins", type: :system do
       visit decidim_catcomu_managers_admin.scoped_admins_path
 
       expect(page).to have_content("Sorry, your user is not scoped into a group of processes!")
-      expect(page).not_to have_content(participatory_process.title["en"])
-      expect(page).not_to have_content(another_participatory_process.title["en"])
+      expect(page).to have_no_content(participatory_process.title["en"])
+      expect(page).to have_no_content(another_participatory_process.title["en"])
     end
   end
 end

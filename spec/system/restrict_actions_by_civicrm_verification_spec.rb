@@ -2,13 +2,13 @@
 
 require "rails_helper"
 
-describe "Restrict actions by CiviCRM verification", type: :system do
+describe "Restrict_actions_y_CiviCRM_verification" do
   let(:organization) { create(:organization) }
 
-  let(:user) { create(:user, :confirmed, organization: organization) }
+  let(:user) { create(:user, :confirmed, organization:) }
 
-  let(:participatory_process) { create :participatory_process, organization: organization }
-  let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process, permissions: permissions }
+  let(:participatory_process) { create :participatory_process, organization: }
+  let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process, permissions: }
   let!(:proposal) { create :proposal, component: proposals_component }
 
   let(:options) { {} }
@@ -36,7 +36,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     it "allows to comment" do
       visit_proposal
       within "#comments" do
-        expect(page).to have_selector "textarea"
+        expect(page).to have_css "textarea"
         fill_in "Comment", with: "A very thoughtful comment"
         expect(page).to have_button "Send"
       end
@@ -47,10 +47,10 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     it "does not allow to comment" do
       visit_proposal
       within "#comments" do
-        expect(page).not_to have_button "Send"
+        expect(page).to have_no_button "Send"
 
         within ".callout.warning" do
-          expect(page).to have_selector "[data-open=authorizationModal]"
+          expect(page).to have_css "[data-open=authorizationModal]"
         end
       end
     end
@@ -59,13 +59,13 @@ describe "Restrict actions by CiviCRM verification", type: :system do
   shared_examples "comment on proposal" do
     describe "comment on proposal" do
       context "when user is authorized" do
-        let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: metadata) }
+        let!(:authorization) { create(:authorization, user:, name: handler_name, metadata:) }
 
         it_behaves_like "can comment"
       end
 
       context "when user is authorized with options different than required" do
-        let!(:authorization) { create(:authorization, user: user, name: handler_name, metadata: wrong_metadata) }
+        let!(:authorization) { create(:authorization, user:, name: handler_name, metadata: wrong_metadata) }
 
         it_behaves_like "cannot comment"
       end
@@ -84,7 +84,7 @@ describe "Restrict actions by CiviCRM verification", type: :system do
     it_behaves_like "cannot comment"
 
     context "when user is authorized" do
-      let!(:authorization) { create(:authorization, user: user, name: handler_name) }
+      let!(:authorization) { create(:authorization, user:, name: handler_name) }
 
       it_behaves_like "can comment"
     end
@@ -110,6 +110,6 @@ describe "Restrict actions by CiviCRM verification", type: :system do
 
   def visit_proposal
     page.visit main_component_path(proposals_component)
-    click_link proposal.title["en"]
+    click_on proposal.title["en"]
   end
 end

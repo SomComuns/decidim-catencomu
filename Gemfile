@@ -19,13 +19,13 @@ gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-m
 gem "bootsnap", "~> 1.7"
 gem "health_check"
 gem "puma", "~> 6.2"
-gem "uglifier", "~> 4.1"
 gem "rubocop", "~> 1.65"
+gem "uglifier", "~> 4.1"
 
 group :development, :test do
-  gem "faker", "~> 3.2"
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
+  gem "faker", "~> 3.2"
   gem "rubocop-faker"
 end
 

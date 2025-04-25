@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # content will be differentiatied automatically by scoping selectively all SQL queries depending if a process is in a group or not
   if Rails.application.secrets.scope_ungrouped_processes[:enabled]
     path = ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE
-    resources path, only: [:index, :show], param: :slug, path: path, controller: "decidim/participatory_processes/participatory_processes" do
+    resources path, only: [:index, :show], param: :slug, path:, controller: "decidim/participatory_processes/participatory_processes" do
       get "all-metrics", on: :member
       resources :participatory_process_steps, only: [:index], path: "steps"
       resource :widget, only: :show, path: "embed"
