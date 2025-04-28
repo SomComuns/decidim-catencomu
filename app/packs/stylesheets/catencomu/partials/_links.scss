@@ -20,8 +20,18 @@
 
 .global-accountability .row.column .card--accountability .card__content ul a,
 .global-accountability .row.columns .card--accountability .card__content ul a,
-.global-accountability .row.column .card--accountability .badge-card__content ul a,
-.global-accountability .row.columns .card--accountability .badge-card__content ul a {
+.global-accountability
+  .row.column
+  .card--accountability
+  .badge-card__content
+  ul
+  a,
+.global-accountability
+  .row.columns
+  .card--accountability
+  .badge-card__content
+  ul
+  a {
   color: var(--secondary);
 }
 

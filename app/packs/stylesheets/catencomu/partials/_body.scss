@@ -1,23 +1,21 @@
 @font-face {
-  font-family: 'Montserrat Regular';
-  src:
-    url('fonts/Montserrat-Regular.woff2') format('woff2'),
-    url('fonts/Montserrat-Regular.woff') format('woff'),
-    url('fonts/Montserrat-Regular.ttf') format('truetype');
+  font-family: "Montserrat Regular";
+  src: url("fonts/Montserrat-Regular.woff2") format("woff2"),
+    url("fonts/Montserrat-Regular.woff") format("woff"),
+    url("fonts/Montserrat-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Montserrat Bold';
-  src:
-    url('fonts/Montserrat-Bold.woff2') format('woff2'),
-    url('fonts/Montserrat-Bold.woff') format('woff'),
-    url('fonts/Montserrat-Bold.ttf') format('truetype');
+  font-family: "Montserrat Bold";
+  src: url("fonts/Montserrat-Bold.woff2") format("woff2"),
+    url("fonts/Montserrat-Bold.woff") format("woff"),
+    url("fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'Montserrat Regular', sans-serif;
+  font-family: "Montserrat Regular", sans-serif;
 }
 
 h1,
@@ -32,7 +30,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: 'Montserrat Bold', sans-serif;
+  font-family: "Montserrat Bold", sans-serif;
   font-style: normal;
   font-weight: normal;
   color: inherit;

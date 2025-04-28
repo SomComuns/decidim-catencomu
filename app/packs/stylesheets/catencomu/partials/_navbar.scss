@@ -5,17 +5,17 @@
 .title-bar {
   @include gradient-background($catencomu-red, $catencomu-lilac);
 
-  padding: 1.5rem .5rem;
+  padding: 1.5rem 0.5rem;
 }
 
 .navbar {
   @include gradient-background($catencomu-red, $catencomu-lilac);
 
-  font-family: 'Montserrat Bold', sans-serif;
+  font-family: "Montserrat Bold", sans-serif;
 
   .main-nav__link {
     a {
-      color: transparentize($navbar-bg, .3);
+      color: transparentize($navbar-bg, 0.3);
     }
 
     &--active a {
