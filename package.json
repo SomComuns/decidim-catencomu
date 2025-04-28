@@ -2,7 +2,7 @@
   "name": "app",
   "private": true,
   "engines": {
-    "node": ">=18.17.1",
+    "node": "18.17.1",
     "npm": ">=9.6.7"
   },
   "scripts": {
@@ -49,13 +49,8 @@
     "tom-select": "^2.2.2"
   },
   "version": "0.1.0",
+  "prettier": "@decidim/prettier-config",
   "devDependencies": {
-    "@babel/eslint-parser": "^7.26.8",
-    "@babel/plugin-transform-classes": "^7.25.9",
-    "@babel/plugin-transform-regenerator": "^7.25.9",
-    "@babel/plugin-transform-runtime": "^7.26.9",
-    "@babel/preset-env": "^7.26.9",
-    "@babel/preset-react": "^7.26.3",
     "@decidim/dev": "^0.29.2",
     "@decidim/eslint-config": "^0.29.2",
     "@decidim/prettier-config": "^0.29.2",
