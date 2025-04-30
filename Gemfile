@@ -4,13 +4,14 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = "0.29.2"
+DECIDIM_VERSION = "0.29.3"
 
 gem "decidim", DECIDIM_VERSION
 
 gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 
 gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "main"
+gem "decidim-calendar", github: "decidim-ice/decidim-module-calendar", branch: "main"
 gem "decidim-civicrm", git: "https://github.com/openpoke/decidim-module-civicrm", branch: "main"
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "main"
 gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "main"
