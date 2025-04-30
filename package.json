@@ -26,10 +26,9 @@
   "dependencies": {
     "@decidim/browserslist-config": "^0.29.3",
     "@decidim/core": "^0.29.3",
-    "@decidim/webpacker": "^0.29.3",
-    "@fullcalendar/core": "^6.0.2",
-    "@fullcalendar/daygrid": "^6.0.2",
-    "@fullcalendar/timegrid": "^6.0.2",
+    "@fullcalendar/interaction": "^6.1.17",
+    "@fullcalendar/list": "^6.1.17",
+    "@fullcalendar/timegrid": "^6.1.17",
     "@geoman-io/leaflet-geoman-free": "^2.15.0",
     "codemirror": "^5.65.0",
     "europa": "^4.0.0",
