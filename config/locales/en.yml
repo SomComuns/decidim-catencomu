@@ -1,5 +1,9 @@
 ---
 en:
   decidim:
+    calendar:
+      calendar:
+        calendar_modal:
+          export_calendar: Export calendar
     scope_ungrouped_processes:
       menu: Global processes
