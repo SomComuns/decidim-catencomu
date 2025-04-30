@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "decidim-admin", "~> #{Decidim::CatcomuManagers::DECIDIM_VERSION}"
   spec.add_dependency "decidim-core", "~> #{Decidim::CatcomuManagers::DECIDIM_VERSION}"
 
-  # rubocop:disable Gemspec/DevelopmentDependencies
   spec.add_development_dependency "decidim-dev", "~> #{Decidim::CatcomuManagers::DECIDIM_VERSION}"
   # rubocop:enable Gemspec/DevelopmentDependencies
 end
