@@ -1,7 +1,3 @@
-<% content_for :js_content do %>
-  <%= javascript_pack_tag "decidim_consultations" %>
-<% end %>
-
 <%= form.hidden_field :participatory_process_group_id %>
 
 <div class="accordion" data-deep-link="true" data-deep-link-smudge="true" data-deep-link-smudge-delay="600" data-allow-all-closed="true" data-accordion>
@@ -22,7 +18,7 @@
       <div class="row column">
         <%= form.text_field :slug %>
         <p class="help-text">
-          <%== t("slug_help", url: decidim_form_slug_url(:processes, form.object.slug), scope: "decidim.participatory_processes.admin.participatory_processes.form") %>
+          <%#== t("slug_help", url: decidim_form_slug_url(:processes, form.object.slug), scope: "decidim.participatory_processes.admin.participatory_processes.form") %>
         </p>
       </div>
 

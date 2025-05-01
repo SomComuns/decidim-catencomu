@@ -19,15 +19,13 @@ gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-m
 
 gem "bootsnap", "~> 1.7"
 gem "health_check"
-gem "puma", "~> 6.2"
-gem "rubocop", "~> 1.65"
-gem "uglifier", "~> 4.1"
+gem "puma", "> 6.2"
+gem "deface"
 
 group :development, :test do
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
   gem "faker", "~> 3.2"
-  gem "rubocop-faker"
 end
 
 group :development do
@@ -38,11 +36,8 @@ end
 
 group :production do
   gem "aws-sdk-s3", require: false
-  gem "fog-aws" # to remove once images migrated
   gem "sentry-rails"
   gem "sentry-ruby"
-  gem "sidekiq", "~> 6.0"
+  gem "sidekiq"
   gem "sidekiq-cron"
 end
-
-gem "whenever", require: false
