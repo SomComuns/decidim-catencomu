@@ -1,9 +1,7 @@
-@import "variables";
-
 .card__link {
-  color: $card-link;
+  @apply text-cardlink;
 
   &:hover {
-    color: $card-link-hover;
+    @apply text-cardlinkhover;
   }
 }

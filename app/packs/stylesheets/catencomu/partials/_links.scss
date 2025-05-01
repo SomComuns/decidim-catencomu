@@ -1,21 +1,19 @@
-@import "variables";
-
 /* fix color variables */
 .cookie-warning a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .button.hollow.secondary:hover,
 .button.hollow.secondary:focus {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .floating-helper__text {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .floating-helper__icon {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .global-accountability .row.column .card--accountability .card__content ul a,
@@ -32,130 +30,130 @@
   .badge-card__content
   ul
   a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .topbar__dropmenu .is-dropdown-submenu li a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .svg-icon-path {
-  color: var(--secondary) !important;
+  @apply text-secondary;
 }
 
 html a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .card__link,
 .card__link:hover {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .card__text a:hover {
-  color: $body-font-color;
+  @apply text-bodyfontcolor;
 }
 
 .author-data .author__name {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .process_stats .process_stats-item .icon {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 #profile-tabs.tabs .tabs-title a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .floating-helper__icon-big {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .link,
 .link-alt {
-  color: var(--secondary);
+  @apply text-secondary;
 
   &:hover {
-    color: $body-font-color;
+    @apply text-bodyfontcolor;
   }
 }
 
 .side-panel__tabs .tabs-title.is-active > [role="tab"],
 .side-panel__tabs .tabs-title.is-active > a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .side-panel__tabs .tabs-title > [role="tab"]:hover,
 .side-panel__tabs .tabs-title > a:hover {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .opinion-toggle--meh:hover {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .opinion-toggle--meh:focus {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .opinion-toggle--meh.is-active {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .floating-helper__content-close {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .button.secondary {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .floating-helper__content {
-  border-top: 5px solid var(--secondary);
+  @apply border-t-[5px] border-solid border-secondary;
 }
 
 .pagination .current {
-  background: var(--secondary);
+  @apply bg-secondary;
 }
 
 .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
-  border-color: var(--secondary) transparent transparent;
+  @apply border-t-secondary border-r-transparent border-b-transparent border-l-secondary border;
 }
 
 .dropdown.menu .is-active > a {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .collapsible-list .collapsible-list__see-more {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 /* fix colors variables secondary darker  */
 a:focus {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 a:hover {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .author__name:hover {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .author-data a:hover {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .author-data button:hover {
-  color: var(--secondary);
+  @apply text-secondary;
 }
 
 .button.secondary:hover {
-  background-color: var(--secondary);
+  @apply bg-secondary;
 }
 
 .card--list__icon {
-  fill: var(--secondary);
+  @apply fill-current;
 }
