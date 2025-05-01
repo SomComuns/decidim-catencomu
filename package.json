@@ -56,6 +56,7 @@
     "@decidim/eslint-config": "^0.29.3",
     "@decidim/prettier-config": "^0.29.3",
     "@decidim/stylelint-config": "^0.29.3",
+    "sass": "^1.87.0",
     "sass-embedded": "~1.63.6"
   },
   "browserslist": [
