@@ -18,9 +18,9 @@ gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-
 gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer", branch: "upgrade/decidim_0.29"
 
 gem "bootsnap", "~> 1.7"
+gem "deface"
 gem "health_check"
 gem "puma", "> 6.2"
-gem "deface"
 
 group :development, :test do
   gem "byebug", platform: :mri
