@@ -1,13 +1,15 @@
 <%= form.hidden_field :participatory_process_group_id %>
 
-<div data-component="accordion" id="participatory_process_group-accordion">
-  <button id="trigger" data-controls="panel" class="button button__sm button__secondary">
-    <h2 class="card-title"><%= t(".title") %></h2>
-  </button>
+<div class="form__wrapper">
+  <div class="card" data-component="accordion" id="participatory_process_group-accordion">
+    <div class="card-divider">
+      <button id="trigger" data-controls="panel-participatory_process_group" class="button button__lg button__secondary">
+        <h2><%= t(".title") %></h2>
+      </button>
+    </div>
 
-  <div id="panel" aria-hidden="true">
-    <div class="item__edit-form mt-8" id="form-<%= group.id %>">
-      <div class="form__wrapper">
+    <div id="panel-participatory_process_group" aria-hidden="true" class="card-section">
+      <div class="item__edit-form mt-8" id="form-<%= group.id %>">
         <div class="row column">
           <%= form.translated :text_field, :title, autofocus: true %>
         </div>
