@@ -8,7 +8,6 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
   let!(:alternative_participatory_process) { create :participatory_process, organization: }
   let!(:participatory_process_group) { create :participatory_process_group, organization: }
   let!(:participatory_process) { create :participatory_process, organization:, participatory_process_group: }
-  let!(:consultation) { create :consultation, :published, organization: }
   let(:user) { nil }
 
   before do
@@ -45,16 +44,6 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
       visit decidim_participatory_processes.participatory_process_path(participatory_process.slug)
       expect_sign_in
     end
-
-    it "forbids visiting consultations" do
-      visit decidim_consultations.consultations_path
-      expect_sign_in
-    end
-
-    it "forbids visiting a consultation" do
-      visit decidim_consultations.consultation_path(consultation.slug)
-      expect_sign_in
-    end
   end
 
   shared_examples "can visit everything" do
@@ -77,11 +66,6 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
       visit decidim_participatory_processes.participatory_process_path(participatory_process.slug)
       expect_participatory_process
     end
-
-    it "allows visiting a consultation" do
-      visit decidim_consultations.consultations_path
-      expect_consultations
-    end
   end
 
   context "when organization is closed" do
@@ -101,7 +85,7 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
   end
 
   def expect_homepage
-    expect(page).to have_content("Welcome to #{organization.name}")
+    expect(page).to have_content("Welcome to #{translated(organization.name)}")
     expect(current_url).to match("/")
   end
 
@@ -128,10 +112,5 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
   def expect_participatory_process_group
     expect(page).to have_content(participatory_process_group.title["en"])
     expect(current_url).to match("/processes_groups/#{participatory_process_group.id}")
-  end
-
-  def expect_consultations
-    expect(page).to have_content(consultation.title["en"])
-    expect(current_url).to match("/consultations")
   end
 end

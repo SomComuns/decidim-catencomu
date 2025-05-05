@@ -67,7 +67,6 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
 
         expect(page).to have_no_content "Authorization required"
         expect(page).to have_no_content "Not authorized"
-        expect(page).to have_button "Submit"
       end
 
       it "allows to create a proposal" do
@@ -113,7 +112,7 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
 
   def visit_and_join_meeting
     page.visit resource_locator(meeting).path
-    click_on "Join meeting"
+    click_on "Register"
   end
 
   def visit_and_create_proposal

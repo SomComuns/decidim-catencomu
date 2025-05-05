@@ -45,7 +45,7 @@ describe "Scoped_admins" do
 
   it "user has admin access" do
     visit decidim_admin.root_path
-    expect(page).to have_content("Welcome to the Admin Panel.")
+    expect(page).to have_content("Dashboard")
   end
 
   it "has access to managers module" do
@@ -70,7 +70,9 @@ describe "Scoped_admins" do
 
   it "can edit the processes" do
     visit decidim_catcomu_managers_admin.scoped_admins_path
-    click_on href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+    within "tr", text: translated(participatory_process.title) do
+      click_on "Configure"
+    end
 
     expect(page).to have_content("General Information")
     expect(page).to have_content("Short description")
@@ -80,13 +82,15 @@ describe "Scoped_admins" do
       "#participatory_process-title-tabs",
       en: "Edited participatory_process"
     )
-    find("*[type=submit]").click
+    click_on "Update"
     expect(page).to have_admin_callout("successfully")
   end
 
   it "cannot change the group of the process" do
     visit decidim_catcomu_managers_admin.scoped_admins_path
-    click_on href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+    within "tr", text: translated(participatory_process.title) do
+      click_on "Configure"
+    end
 
     fill_in_i18n(
       :participatory_process_title,
@@ -94,7 +98,7 @@ describe "Scoped_admins" do
       en: "Edited participatory_process"
     )
     select another_participatory_process_group.title["en"], from: :participatory_process_participatory_process_group_id
-    find("*[type=submit]").click
+    click_on "Update"
     expect(page).to have_admin_callout("There was a problem updating this participatory process.")
   end
 
@@ -103,7 +107,9 @@ describe "Scoped_admins" do
 
     it "can change the group of the process" do
       visit decidim_catcomu_managers_admin.scoped_admins_path
-      click_on href: "/admin/participatory_processes/#{participatory_process.slug}/edit"
+      within "tr", text: translated(participatory_process.title) do
+        click_on "Configure"
+      end
 
       fill_in_i18n(
         :participatory_process_title,
@@ -111,7 +117,7 @@ describe "Scoped_admins" do
         en: "Edited participatory_process"
       )
       select another_participatory_process_group.title["en"], from: :participatory_process_participatory_process_group_id
-      find("*[type=submit]").click
+      click_on "Update"
       expect(page).to have_admin_callout("Participatory process successfully updated.")
     end
   end
@@ -124,7 +130,7 @@ describe "Scoped_admins" do
     it "user has no admin access" do
       visit decidim_admin.root_path
 
-      expect(page).to have_content("The page you're looking for can't be found")
+      expect(page).to have_content("The page you are looking for cannot be found")
     end
 
     it "has not actions in managers module" do

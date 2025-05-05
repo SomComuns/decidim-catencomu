@@ -38,7 +38,7 @@ describe "Restrict_actions_y_CiviCRM_verification" do
       within "#comments" do
         expect(page).to have_css "textarea"
         fill_in "Comment", with: "A very thoughtful comment"
-        expect(page).to have_button "Send"
+        expect(page).to have_button "Publish comment"
       end
     end
   end
@@ -49,8 +49,8 @@ describe "Restrict_actions_y_CiviCRM_verification" do
       within "#comments" do
         expect(page).to have_no_button "Send"
 
-        within ".callout.warning" do
-          expect(page).to have_css "[data-open=authorizationModal]"
+        within ".flash.warning" do
+          expect(page).to have_css "[data-dialog-open=authorizationModal]"
         end
       end
     end
