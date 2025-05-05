@@ -4,6 +4,7 @@
   <div class="card" data-component="accordion" id="participatory_process_group-accordion">
     <div class="card-divider">
       <button id="trigger" data-controls="panel-participatory_process_group" class="button button__lg button__secondary">
+        <%= icon "arrow-right-s-line" %>
         <h2><%= t(".title") %></h2>
       </button>
     </div>
@@ -11,15 +12,15 @@
     <div id="panel-participatory_process_group" aria-hidden="true" class="card-section">
       <div class="item__edit-form mt-8" id="form-<%= group.id %>">
         <div class="row column">
-          <%= form.translated :text_field, :title, autofocus: true %>
+          <%= form.translated :text_field, :title, autofocus: true, class: "bg-gray-5" %>
         </div>
 
         <div class="row column">
-          <%= form.translated :text_field, :subtitle %>
+          <%= form.translated :text_field, :subtitle, class: "bg-gray-5" %>
         </div>
 
         <div class="row column">
-          <%= form.text_field :slug %>
+          <%= form.text_field :slug, class: "bg-gray-5" %>
           <p class="help-text">
             <%#== t("slug_help", url: decidim_form_slug_url(:processes, form.object.slug), scope: "decidim.participatory_processes.admin.participatory_processes.form") %>
           </p>

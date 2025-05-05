@@ -16,7 +16,8 @@ checksums = [
       "/app/controllers/concerns/decidim/force_authentication.rb" => "fb182e6efdbc34a9d2b75aa4df06faa1",
       # helpers
       "/app/helpers/decidim/filters_helper.rb" => "d487fd31753012253aea7aa5fb6acfc3",
-      "/app/views/layouts/decidim/header/_main.html.erb" => "69acfdeade5dab8cd73e1d19f37fef2c" # add language chooser to header
+      "/app/views/layouts/decidim/header/_main.html.erb" => "69acfdeade5dab8cd73e1d19f37fef2c", # add language chooser to header
+      "/app/views/layouts/decidim/footer/_main.html.erb" => "b22323d9508fa8a14bd669d665a04634" # add logo to footer
     }
   },
   {
