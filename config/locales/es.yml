@@ -89,5 +89,7 @@ es:
         sign_in_with_provider: Iniciar sesión
   layouts:
     decidim:
+      footer:
+        catencomu_logo: Comunitat Catalunya en Comú
       user_profile:
         my_data: Datos de participación

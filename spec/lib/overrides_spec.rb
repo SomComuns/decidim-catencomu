@@ -10,7 +10,6 @@ checksums = [
     package: "decidim-core",
     files: {
       "/app/views/decidim/account/show.html.erb" => "f13218e2358a2d611996c2a197c0de25", # blocks email editing
-      "/app/views/decidim/devise/omniauth_registrations/new.html.erb" => "49f44efcd7ae6f87c04b309733ff28f6", # blocks email editing
       "/app/views/decidim/devise/sessions/new.html.erb" => "a8fe60cd10c1636822c252d5488a979d", # adds link to civicrm signup
       # concerns
       "/app/controllers/concerns/decidim/force_authentication.rb" => "fb182e6efdbc34a9d2b75aa4df06faa1",
