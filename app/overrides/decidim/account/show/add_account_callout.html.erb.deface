@@ -1,0 +1,13 @@
+<!-- insert_after "erb[silent]:contains('content_for(:subtitle)')" -->
+
+<div class="row">
+  <div class="callout secondary">
+    <%= t("catencomu.account_callout") %>
+    <% if translated_attribute(Rails.application.secrets.participacio_url).present? %>
+      <%= link_to translated_attribute(Rails.application.secrets.participacio_url), target: :blank do %>
+        <%= t("catencomu.account_link") %>
+        <%= icon "external-link", role: "img", "aria-hidden": true %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

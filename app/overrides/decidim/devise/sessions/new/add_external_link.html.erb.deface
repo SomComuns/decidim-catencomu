@@ -1,0 +1,10 @@
+<!-- insert_before "erb[silent]:contains('else')" -->
+
+<% elsif translated_attribute(Rails.application.secrets.registration_url).present? %>
+  <p>
+    <%= t(".are_you_new?") %>
+    <%= link_to translated_attribute(Rails.application.secrets.registration_url), target: :blank do %>
+      <%= t(".register") %>
+      <%= icon "external-link", role: "img", "aria-hidden": true %>
+    <% end %>
+  </p>
