@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe "Visit_the_account_page" do
-  let(:organization) { create :organization, users_registration_mode: "disabled", external_domain_whitelist: %w(home.url registration.url) }
+  let(:organization) { create :organization, users_registration_mode: "disabled", external_domain_allowlist: %w(home.url registration.url) }
   let(:user) { create :user, organization: }
 
   before do
