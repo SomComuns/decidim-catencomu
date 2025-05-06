@@ -4,14 +4,13 @@ require "sidekiq/web"
 require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-
   mount Decidim::Core::Engine => "/"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # recreates the /processes route for /any-alternative, reusing the same controllers
   # content will be differentiatied automatically by scoping selectively all SQL queries depending if a process is in a group or not

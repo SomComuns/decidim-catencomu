@@ -3,6 +3,7 @@
 require_relative "boot"
 
 require "decidim/rails"
+
 # Add the frameworks used by your app that are not loaded by Decidim.
 require "action_cable/engine"
 # require "action_mailbox/engine"
@@ -33,14 +34,4 @@ module Catencomu
       Rails.backtrace_cleaner.add_silencer { |line| line =~ %r{app/middleware} }
     end
   end
-end
-
-# Fix undefined method `has_one_attached' for #<Class:> (NoMethodError)
-# This exception is raised when using Active Storage methods on initializers (override classes such as Decidim::ParticipatoryProcess with them)
-# @see https://stackoverflow.com/questions/55213386/undefined-method-has-one-attached-for-class-nomethoderror-using-ubuntu
-require "active_storage/attached"
-ActiveSupport.on_load(:active_record) do
-  include ActiveStorage::Reflection::ActiveRecordExtensions
-  ActiveRecord::Reflection.singleton_class.prepend(ActiveStorage::Reflection::ReflectionExtension)
-  include ActiveStorage::Attached::Model
 end

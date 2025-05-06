@@ -29,7 +29,7 @@ GIT
 GIT
   remote: https://github.com/decidim-ice/decidim-module-calendar.git
   revision: 2a577525500c5580be9867d65b384b9f88bc5ef5
-  branch: main
+  branch: release/0.29-stable
   specs:
     decidim-calendar (0.29.0)
       decidim-admin (>= 0.29.2, < 0.30)
@@ -45,6 +45,68 @@ GIT
       decidim-core (>= 0.29.1, < 0.30)
       deface (>= 1.5)
       sassc (~> 2.3)
+
+GIT
+  remote: https://github.com/decidim/decidim.git
+  revision: a69465aea5456911c945bb39a5d2ef28dc17eaab
+  branch: release/0.29-stable
+  specs:
+    decidim (0.29.3)
+      decidim-accountability (= 0.29.3)
+      decidim-admin (= 0.29.3)
+      decidim-api (= 0.29.3)
+      decidim-assemblies (= 0.29.3)
+      decidim-blogs (= 0.29.3)
+      decidim-budgets (= 0.29.3)
+      decidim-comments (= 0.29.3)
+      decidim-core (= 0.29.3)
+      decidim-debates (= 0.29.3)
+      decidim-forms (= 0.29.3)
+      decidim-generators (= 0.29.3)
+      decidim-meetings (= 0.29.3)
+      decidim-pages (= 0.29.3)
+      decidim-participatory_processes (= 0.29.3)
+      decidim-proposals (= 0.29.3)
+      decidim-sortitions (= 0.29.3)
+      decidim-surveys (= 0.29.3)
+      decidim-system (= 0.29.3)
+      decidim-verifications (= 0.29.3)
+    decidim-dev (0.29.3)
+      bullet (~> 7.1.6)
+      byebug (~> 11.0)
+      capybara (~> 3.39)
+      decidim (= 0.29.3)
+      erb_lint (~> 0.4.0)
+      factory_bot_rails (~> 6.2)
+      faker (~> 3.2)
+      i18n-tasks (~> 1.0)
+      nokogiri (~> 1.16, >= 1.16.2)
+      parallel_tests (~> 4.2)
+      puma (~> 6.2, >= 6.3.1)
+      rails-controller-testing (~> 1.0)
+      rspec (~> 3.12)
+      rspec-cells (~> 0.3.7)
+      rspec-html-matchers (~> 0.10)
+      rspec-rails (~> 6.0)
+      rspec-retry (~> 0.6.2)
+      rspec_junit_formatter (~> 0.6.0)
+      rubocop (~> 1.65.0)
+      rubocop-capybara (~> 2.21)
+      rubocop-factory_bot (~> 2.26)
+      rubocop-faker (~> 1.1)
+      rubocop-performance (~> 1.21)
+      rubocop-rails (~> 2.25)
+      rubocop-rspec (~> 3.0)
+      rubocop-rspec_rails (~> 2.30)
+      rubocop-rubycw (~> 0.1)
+      selenium-webdriver (~> 4.9)
+      simplecov (~> 0.22.0)
+      simplecov-cobertura (~> 2.1.0)
+      spring (~> 4.0)
+      spring-watcher-listen (~> 2.0)
+      w3c_rspec_validators (~> 0.3.0)
+      webmock (~> 3.18)
+      wisper-rspec (~> 1.0)
 
 GIT
   remote: https://github.com/openpoke/decidim-module-civicrm
@@ -173,6 +235,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    brakeman (6.2.2)
+      racc
     browser (2.7.1)
     builder (3.3.0)
     bullet (7.1.6)
@@ -220,26 +284,6 @@ GEM
     date_validator (0.12.0)
       activemodel (>= 3)
       activesupport (>= 3)
-    decidim (0.29.3)
-      decidim-accountability (= 0.29.3)
-      decidim-admin (= 0.29.3)
-      decidim-api (= 0.29.3)
-      decidim-assemblies (= 0.29.3)
-      decidim-blogs (= 0.29.3)
-      decidim-budgets (= 0.29.3)
-      decidim-comments (= 0.29.3)
-      decidim-core (= 0.29.3)
-      decidim-debates (= 0.29.3)
-      decidim-forms (= 0.29.3)
-      decidim-generators (= 0.29.3)
-      decidim-meetings (= 0.29.3)
-      decidim-pages (= 0.29.3)
-      decidim-participatory_processes (= 0.29.3)
-      decidim-proposals (= 0.29.3)
-      decidim-sortitions (= 0.29.3)
-      decidim-surveys (= 0.29.3)
-      decidim-system (= 0.29.3)
-      decidim-verifications (= 0.29.3)
     decidim-accountability (0.29.3)
       decidim-comments (= 0.29.3)
       decidim-core (= 0.29.3)
@@ -320,42 +364,6 @@ GEM
     decidim-debates (0.29.3)
       decidim-comments (= 0.29.3)
       decidim-core (= 0.29.3)
-    decidim-dev (0.29.3)
-      bullet (~> 7.1.6)
-      byebug (~> 11.0)
-      capybara (~> 3.39)
-      decidim (= 0.29.3)
-      erb_lint (~> 0.4.0)
-      factory_bot_rails (~> 6.2)
-      faker (~> 3.2)
-      i18n-tasks (~> 1.0)
-      nokogiri (~> 1.16, >= 1.16.2)
-      parallel_tests (~> 4.2)
-      puma (~> 6.2, >= 6.3.1)
-      rails-controller-testing (~> 1.0)
-      rspec (~> 3.12)
-      rspec-cells (~> 0.3.7)
-      rspec-html-matchers (~> 0.10)
-      rspec-rails (~> 6.0)
-      rspec-retry (~> 0.6.2)
-      rspec_junit_formatter (~> 0.6.0)
-      rubocop (~> 1.65.0)
-      rubocop-capybara (~> 2.21)
-      rubocop-factory_bot (~> 2.26)
-      rubocop-faker (~> 1.1)
-      rubocop-performance (~> 1.21)
-      rubocop-rails (~> 2.25)
-      rubocop-rspec (~> 3.0)
-      rubocop-rspec_rails (~> 2.30)
-      rubocop-rubycw (~> 0.1)
-      selenium-webdriver (~> 4.9)
-      simplecov (~> 0.22.0)
-      simplecov-cobertura (~> 2.1.0)
-      spring (~> 4.0)
-      spring-watcher-listen (~> 2.0)
-      w3c_rspec_validators (~> 0.3.0)
-      webmock (~> 3.18)
-      wisper-rspec (~> 1.0)
     decidim-forms (0.29.3)
       decidim-core (= 0.29.3)
       wicked_pdf (~> 2.1)
@@ -934,22 +942,22 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3
   bootsnap (~> 1.7)
-  byebug
-  decidim (= 0.29.3)
+  brakeman (~> 6.1)
+  byebug (~> 11.0)
+  decidim!
   decidim-alternative_landing!
   decidim-calendar!
   decidim-catcomu_managers!
   decidim-civicrm!
   decidim-decidim_awesome!
-  decidim-dev (= 0.29.3)
+  decidim-dev!
   decidim-navigation_maps!
   decidim-term_customizer!
   deface
-  faker (~> 3.2)
   health_check
   letter_opener_web
   listen
-  puma (> 6.2)
+  puma (> 6.3.1)
   sentry-rails
   sentry-ruby
   sidekiq
