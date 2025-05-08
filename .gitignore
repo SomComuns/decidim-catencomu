@@ -38,6 +38,7 @@
 .env
 .envrc
 .rbenv-vars
+.rubocop-*
 
 # Ignore the files and folders generated through Webpack
 /public/decidim-packs
