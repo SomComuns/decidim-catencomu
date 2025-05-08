@@ -12,13 +12,9 @@
         </div>
 
         <h3><%= t ".group_processes" %></h3>
-        <p class="help-text"><%= t(".civicrm_group_desc", contact_data: raw(Decidim::CatcomuManagers.config.contact_data),
-                                                      manual: icon_link_to("admin-line",
-                                                      Decidim::CatcomuManagers.config.manual_link,
-                                                      "manual",
-                                                      class: "action-icon action-icon")).html_safe %></p>
+        <p class="help-text"><%= t(".civicrm_group_desc", contact_data: raw(Decidim::CatcomuManagers.config.contact_data), manual: icon_link_to("admin-line",Decidim::CatcomuManagers.config.manual_link, "manual", class: "action-icon action-icon")).html_safe %></p>
 
-        <%= render partial: "civicrm_sync", locals: { group: group } if superadmin? %>
+        <%= render partial: "civicrm_sync", locals: { group: } if superadmin? %>
 
         <div class="table-scroll mb-8">
           <table class="table-list managers-processes-list">
@@ -60,7 +56,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= render partial: "sync_groups", locals: { group: group, process: process } %>
+                    <%= render partial: "sync_groups", locals: { group:, process: } %>
                   </td>
                   <td table-list__actions>
                     <% if current_user.admin? || user_process_admin?(current_user, process) %>
@@ -75,7 +71,7 @@
         </div>
 
           <%= decidim_form_for(@form || process_form(group), url: "#{new_process_scoped_admins_path}#form-#{group.id}", method: :post) do |f| %>
-            <%= render partial: "new_process_form", locals: { form: f, group: group } %>
+            <%= render partial: "new_process_form", locals: { form: f, group: } %>
           <% end %>
       </div>
     <% end %>

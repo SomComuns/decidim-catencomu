@@ -55,3 +55,4 @@ tailwind.config.js
 .rspec-failures
 coverage/*
 .byebug*
+.rubocop-https
