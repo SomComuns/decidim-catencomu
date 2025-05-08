@@ -1,20 +1,27 @@
-<div class="content">
-  <div class="row">
-    <%= t ".user_not_scoped" if current_user_process_groups.blank? %>
+<% append_javascript_pack_tag "decidim_admin_catcomu_managers" %>
+<style>
+  .layout-content__container {
+    padding: 0;
+  }
+</style>
+<p><%= t ".user_not_scoped" if current_user_process_groups.blank? %></p>
 
-    <% current_user_process_groups&.each do |group| %>
-      <div class="card mb-8">
-        <div class="item_show__header">
-          <h2 class="item_show__header-title">
-            <%= translated_attribute group.title %>
-              <%= link_to t(".edit"), decidim_admin_participatory_processes.edit_participatory_process_group_path(group), class: "button button__sm button__secondary" %>
-          </h2>
-        </div>
+<% current_user_process_groups&.each do |group| %>
+  <div class="item_show__wrapper">
+    <div class="item_show__header">
+      <h2 class="item_show__header-title">
+        <%= translated_attribute group.title %>
+        <%= link_to t(".edit"), decidim_admin_participatory_processes.edit_participatory_process_group_path(group), class: "button button__sm button__secondary" %>
+      </h2>
+    </div>
 
+    <div class="item__edit-form">
+      <div class="card p-4">
         <h3><%= t ".group_processes" %></h3>
-        <p class="help-text"><%= t(".civicrm_group_desc", contact_data: raw(Decidim::CatcomuManagers.config.contact_data), manual: icon_link_to("admin-line",Decidim::CatcomuManagers.config.manual_link, "manual", class: "action-icon action-icon")).html_safe %></p>
+        <div class="help-text"><%= t(".civicrm_group_desc_html", contact_data: raw(Decidim::CatcomuManagers.config.contact_data),
+                                                      manual_url:Decidim::CatcomuManagers.config.manual_link) %></div>
 
-        <%= render partial: "civicrm_sync", locals: { group: } if superadmin? %>
+        <%= render partial: "civicrm_sync", locals: { group: group } if superadmin? %>
 
         <div class="table-scroll mb-8">
           <table class="table-list managers-processes-list">
@@ -56,7 +63,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= render partial: "sync_groups", locals: { group:, process: } %>
+                    <%= render partial: "sync_groups", locals: { group: group, process: process } %>
                   </td>
                   <td table-list__actions>
                     <% if current_user.admin? || user_process_admin?(current_user, process) %>
@@ -70,14 +77,10 @@
           </table>
         </div>
 
-          <%= decidim_form_for(@form || process_form(group), url: "#{new_process_scoped_admins_path}#form-#{group.id}", method: :post) do |f| %>
-            <%= render partial: "new_process_form", locals: { form: f, group: } %>
-          <% end %>
+        <%= decidim_form_for(@form || process_form(group), url: "#{new_process_scoped_admins_path}#form-#{group.id}", method: :post) do |f| %>
+          <%= render partial: "new_process_form", locals: { form: f, group: group } %>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
-
-<% content_for :js_content do %>
-  <%#= javascript_pack_tag "decidim_admin_catcomu_managers" %>
 <% end %>
