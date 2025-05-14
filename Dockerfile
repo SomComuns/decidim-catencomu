@@ -22,6 +22,9 @@ COPY ./package-lock.json /app/package-lock.json
 COPY ./package.json /app/package.json
 COPY ./Gemfile /app/Gemfile
 COPY ./Gemfile.lock /app/Gemfile.lock
+# Custom modules
+COPY ./decidim-module-catcomu_managers /app/decidim-module-catcomu_managers
+
 
 RUN gem install bundler:$(grep -A 1 'BUNDLED WITH' Gemfile.lock | tail -n 1 | xargs) && \
     bundle config --local without 'development test' && \
