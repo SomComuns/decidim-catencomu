@@ -5,10 +5,11 @@
 Rails.application.config.after_initialize do
   # Creates a new menu next to Processes for ungrouped processes
   if Rails.application.secrets.scope_ungrouped_processes[:enabled]
-    Decidim.menu :menu do |menu|
+
+    def add_menu_item(menu, position = nil)
       path = ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE
       key = Rails.application.secrets.scope_ungrouped_processes[:key] || path
-      position = Rails.application.secrets.scope_ungrouped_processes[:position_in_menu]
+      position = Rails.application.secrets.scope_ungrouped_processes[:position_in_menu] if position.nil?
 
       menu.add_item :ungrouped_participatory_processes,
                     I18n.t(key, scope: "decidim.scope_ungrouped_processes"),
@@ -23,6 +24,12 @@ Rails.application.config.after_initialize do
                       .any?
                     ),
                     active: :inclusive
+    end
+    Decidim.menu :menu do |menu|
+      add_menu_item(menu)
+    end
+    Decidim.menu :home_content_block_menu do |menu|
+      add_menu_item(menu, 20)
     end
   end
 end
