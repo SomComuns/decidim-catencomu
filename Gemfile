@@ -16,7 +16,7 @@ gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-modu
 gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "main"
 gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer", branch: "upgrade/decidim_0.29"
 
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3", "1.160"
 gem "bootsnap", "~> 1.7"
 gem "deface"
 gem "health_check"

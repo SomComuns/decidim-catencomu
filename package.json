@@ -6,13 +6,9 @@
     "lint": "eslint -c .eslintrc.json --ext .js app/packs/",
     "lint-fix": "eslint -c .eslintrc.json --ext .js app/packs/ --fix",
     "stylelint": "stylelint **/*.scss",
-    "stylelint-fix": "stylelint **/*.scss --fix"
-  },
-  "stylelint": {
-    "extends": "@decidim/stylelint-config"
-  },
-  "eslintConfig": {
-    "extends": "@decidim/eslint-config"
+    "stylelint-fix": "stylelint **/*.scss --fix",
+    "prettier": "prettier --check '**/*.scss'",
+    "prettify": "prettier --write '**/*.scss'"
   },
   "dependencies": {
     "@decidim/browserslist-config": "file:packages/browserslist-config",
