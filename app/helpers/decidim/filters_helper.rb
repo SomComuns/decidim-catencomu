@@ -13,12 +13,13 @@ module Decidim
     #
     # Returns the filter resource form wrapped in a div
     def filter_form_for(filter, url = detect_url, html_options = {})
+      url = detect_url if url == "/processes"
       content_tag :div, class: "filters" do
         form_for(
           filter,
           namespace: filter_form_namespace,
           builder: FilterFormBuilder,
-          url: url,
+          url:,
           as: :filter,
           method: :get,
           remote: true,

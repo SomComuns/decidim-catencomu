@@ -1,31 +1,27 @@
 .civicrm-sync-group {
-  display: flex;
-  align-items: baseline;
+  @apply flex items-baseline;
 
   &-select {
-    margin-right: 4px;
-    margin-bottom: 0;
+    @apply mr-[4px] mb-0;
   }
 
   &-edit {
-    visibility: hidden;
+    @apply invisible;
   }
 }
 
 .civicrm-sync-form {
-  border-radius: 5px;
-  background-color: #fff4ee;
-  border: 1px solid #444;
+  @apply rounded-[5px] bg-background-6 border border-solid border-gray-6;
 }
 
 .managers-processes-list {
   tr:hover {
     .civicrm-sync-group-edit {
-      visibility: visible;
+      @apply visible;
     }
   }
 }
 
 .info-help {
-  white-space: pre-line;
+  @apply whitespace-pre-line;
 }

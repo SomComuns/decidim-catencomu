@@ -1,5 +1,16 @@
 ---
 en:
+  catencomu:
+    login:
+      sign_in_civicrm: Iniciar sessió amb CiviCRM
   decidim:
+    calendar:
+      calendar:
+        calendar_modal:
+          export_calendar: Export calendar
     scope_ungrouped_processes:
       menu: Global processes
+  layouts:
+    decidim:
+      footer:
+        catencomu_logo: Comunitat Catalunya en Comú

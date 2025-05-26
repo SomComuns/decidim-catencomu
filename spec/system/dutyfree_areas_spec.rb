@@ -2,18 +2,17 @@
 
 require "rails_helper"
 
-describe "Free and private login areas", type: :system, perform_enqueued: true do
+describe "Free_and_private_login_areas", perform_enqueued: true do
   let(:organization) { create :organization, force_users_to_authenticate_before_access_organization: closed }
   let(:closed) { true }
-  let!(:alternative_participatory_process) { create :participatory_process, organization: organization }
-  let!(:participatory_process_group) { create :participatory_process_group, organization: organization }
-  let!(:participatory_process) { create :participatory_process, organization: organization, participatory_process_group: participatory_process_group }
-  let!(:consultation) { create :consultation, :published, organization: organization }
+  let!(:alternative_participatory_process) { create :participatory_process, organization: }
+  let!(:participatory_process_group) { create :participatory_process_group, organization: }
+  let!(:participatory_process) { create :participatory_process, organization:, participatory_process_group: }
   let(:user) { nil }
 
   before do
-    create :content_block, organization: organization, scope_name: :homepage, manifest_name: :hero
-    create :content_block, organization: organization, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title
+    create :content_block, organization:, scope_name: :homepage, manifest_name: :hero
+    create :content_block, organization:, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title
 
     login_as user, scope: :user if user
 
@@ -45,16 +44,6 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
       visit decidim_participatory_processes.participatory_process_path(participatory_process.slug)
       expect_sign_in
     end
-
-    it "forbids visiting consultations" do
-      visit decidim_consultations.consultations_path
-      expect_sign_in
-    end
-
-    it "forbids visiting a consultation" do
-      visit decidim_consultations.consultation_path(consultation.slug)
-      expect_sign_in
-    end
   end
 
   shared_examples "can visit everything" do
@@ -77,18 +66,13 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
       visit decidim_participatory_processes.participatory_process_path(participatory_process.slug)
       expect_participatory_process
     end
-
-    it "allows visiting a consultation" do
-      visit decidim_consultations.consultations_path
-      expect_consultations
-    end
   end
 
   context "when organization is closed" do
     it_behaves_like "can visit duty free areas"
 
     context "and user is logged" do
-      let(:user) { create :user, :confirmed, organization: organization }
+      let(:user) { create :user, :confirmed, organization: }
 
       it_behaves_like "can visit everything"
     end
@@ -101,12 +85,12 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
   end
 
   def expect_homepage
-    expect(page).to have_content("Welcome to #{organization.name}")
+    expect(page).to have_content("Welcome to #{translated(organization.name)}")
     expect(current_url).to match("/")
   end
 
   def expect_sign_in
-    expect(page).to have_content("Please, login with your account before access")
+    expect(page).to have_content("Please, log in with your account before access")
     expect(current_url).to match("/users/sign_in")
   end
 
@@ -128,10 +112,5 @@ describe "Free and private login areas", type: :system, perform_enqueued: true d
   def expect_participatory_process_group
     expect(page).to have_content(participatory_process_group.title["en"])
     expect(current_url).to match("/processes_groups/#{participatory_process_group.id}")
-  end
-
-  def expect_consultations
-    expect(page).to have_content(consultation.title["en"])
-    expect(current_url).to match("/consultations")
   end
 end

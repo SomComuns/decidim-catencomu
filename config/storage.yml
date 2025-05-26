@@ -6,13 +6,17 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-# Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: <%= Rails.application.secrets.dig(:s3, :access_key_id) %>
-  secret_access_key: <%= Rails.application.secrets.dig(:s3, :secret_access_key) %>
-  region: eu-west-1
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
   bucket: <%= ENV.fetch("AWS_BUCKET_NAME", "comunitat") %>
+  <%= "region: #{ENV["AWS_REGION"]}" if ENV["AWS_REGION"] %>
+  <%= "endpoint: #{ENV["AWS_ENDPOINT"]}" if ENV["AWS_ENDPOINT"] %>
+  #signature_version: "v4"
+  #public: <%= Decidim::Env.new("STORAGE_PUBLIC_LINKS").to_boolean_string %>
+  # request_checksum_calculation: "when_required"
+  # response_checksum_validation: "when_required"
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:

@@ -24,30 +24,33 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
-  # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
+  # Compress CSS using a preprocessor.
+  #
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.asset_host = ENV["RAILS_ASSET_HOST"] if ENV["RAILS_ASSET_HOST"].present?
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
+  # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options)
-  config.active_storage.service = :amazon
+  # Store uploaded files on the local file system (see config/storage.yml for options).
+  config.active_storage.service = Rails.application.secrets.dig(:storage, :provider) || :local
 
-  # Mount Action Cable outside main process or domain
+  # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = 'wss://example.com/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+  # config.action_cable.url = "wss://example.com/cable"
+  # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
   config.ssl_options = { redirect: { exclude: ->(request) { request.path =~ /health_check/ } } }
 
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
+  # Include generic and useful information about system operation, but avoid logging too much
+  # information to avoid inadvertent exposure of personally identifiable information (PII).
+  config.log_level = %w(debug info warn error fatal).include?(ENV["RAILS_LOG_LEVEL"]) ? ENV["RAILS_LOG_LEVEL"] : :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
@@ -55,8 +58,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
+  # Use a real queuing backend for Active Job (and separate queues per environment).
+  config.active_job.queue_adapter = ENV["QUEUE_ADAPTER"] if ENV["QUEUE_ADAPTER"].present?
   # config.active_job.queue_name_prefix = "catencomu_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
@@ -69,11 +72,11 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
-  # Send deprecation notices to registered listeners.
-  config.active_support.deprecation = :notify
+  # Don't log any deprecations.
+  config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.smtp_address,
     port: Rails.application.secrets.smtp_port,
@@ -86,18 +89,22 @@ Rails.application.configure do
   }
 
   # Use a different logger for distributed setups.
-  # require 'syslog/logger'
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  # require "syslog/logger"
+  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
+    if ENV["DISABLE_SEMANTIC_LOGGER"].present? || !defined?(SemanticLogger)
+      logger = ActiveSupport::Logger.new($stdout)
+      logger.formatter = config.log_formatter
+      config.logger = ActiveSupport::TaggedLogging.new(logger)
+    else
+      $stdout.sync = true
+      config.rails_semantic_logger.add_file_appender = false
+      config.semantic_logger.add_appender(io: $stdout, formatter: config.rails_semantic_logger.format)
+    end
   end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # Specify active_job sidekiq adapter
-  config.active_job.queue_adapter = :sidekiq
+  config.deface.enabled = ENV["DB_ADAPTER"].blank? || ENV.fetch("DB_ADAPTER", nil) == "postgresql" if config.respond_to?(:deface)
 end

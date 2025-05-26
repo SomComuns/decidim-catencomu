@@ -46,7 +46,7 @@ module Decidim
             with_area: get_filter(:with_area),
             with_type: filter_with_type ? get_filter(:with_type) : nil
           },
-          current_user: current_user
+          current_user:
         ).result
 
         query.published.visible_for(current_user)
