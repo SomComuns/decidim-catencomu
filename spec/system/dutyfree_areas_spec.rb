@@ -90,7 +90,7 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
   end
 
   def expect_sign_in
-    expect(page).to have_content("Please, login with your account before access")
+    expect(page).to have_content("Please, log in with your account before access")
     expect(current_url).to match("/users/sign_in")
   end
 

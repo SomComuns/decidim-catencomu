@@ -3,6 +3,7 @@ en:
   catencomu:
     login:
       sign_in_civicrm: Iniciar sessió amb CiviCRM
+  decidim:
     calendar:
       calendar:
         calendar_modal:

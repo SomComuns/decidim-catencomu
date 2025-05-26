@@ -4,6 +4,8 @@ require "rails_helper"
 
 describe "Participatory_processes" do
   let!(:organization) { create(:organization) }
+  let!(:global_menu) { create(:content_block, organization:, scope_name: :homepage, manifest_name: :global_menu) }
+
   let!(:process_group) { create :participatory_process_group, organization: }
   let!(:ungrouped_process) do
     create(
@@ -58,21 +60,26 @@ describe "Participatory_processes" do
     end
 
     it "shows the grouped processes menu" do
-      within ".main-nav" do
+      within "#home__menu" do
+        expect(page).to have_link(text: "Processes", href: "/processes")
+      end
+      within ".main-footer" do
         expect(page).to have_link(text: "Processes", href: "/processes")
       end
     end
 
     it "shows the extra configured menu" do
-      within ".main-nav" do
-        expect(page).to have_content("Global processes")
-        expect(page).to have_link(href: "/global_processes")
+      within "#home__menu" do
+        expect(page).to have_link(text: "Global processes", href: "/global_processes")
+      end
+      within ".main-footer" do
+        expect(page).to have_link(text: "Global processes", href: "/global_processes")
       end
     end
 
-    context "and navigating to groupd processes" do
+    context "and navigating to grouped processes" do
       before do
-        within ".main-nav" do
+        within "#home__menu" do
           click_on "Processes"
         end
       end
@@ -109,7 +116,7 @@ describe "Participatory_processes" do
 
     context "and navigating to ungrouped processes" do
       before do
-        within ".main-nav" do
+        within "#home__menu" do
           click_on "Global processes"
         end
       end
@@ -127,8 +134,8 @@ describe "Participatory_processes" do
 
       context "when filtering by time" do
         before do
-          within ".order-by__tabs" do
-            click_on "Past"
+          within "#panel-dropdown-menu-date" do
+            choose "Past"
           end
         end
 
@@ -146,12 +153,8 @@ describe "Participatory_processes" do
 
       context "when filtering by scope" do
         before do
-          within "#participatory-space-filters" do
-            click_on "Select a scope"
-          end
-          within "#data_picker-modal" do
-            click_on translated(first_scope.name)
-            click_on "Select"
+          within "#panel-dropdown-menu-scope" do
+            check translated(first_scope.name)
           end
         end
 
@@ -169,9 +172,8 @@ describe "Participatory_processes" do
 
       context "when filtering by area" do
         before do
-          within "#participatory-space-filters" do
-            select "Select an area"
-            select translated(first_area.name)
+          within "#panel-dropdown-menu-area" do
+            check translated(first_area.name)
           end
         end
 

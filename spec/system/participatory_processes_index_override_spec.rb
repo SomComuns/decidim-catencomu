@@ -37,7 +37,7 @@ describe "Participatory_processes_index_override" do
     it "shows the custom title and description" do
       within "#processes-description" do
         within ".section-heading" do
-          expect(page).to have_content(I18n.t("catencomu.processes.title").upcase)
+          expect(page).to have_content(I18n.t("catencomu.processes.title"))
         end
         within ".description" do
           expect(page).to have_content(I18n.t("catencomu.processes.description"))

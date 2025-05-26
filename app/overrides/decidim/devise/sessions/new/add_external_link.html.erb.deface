@@ -4,7 +4,6 @@
   <p>
     <%= t("decidim.devise.sessions.new.are_you_new?") %>
     <%= link_to translated_attribute(Rails.application.secrets.registration_url), target: :blank do %>
-      <%= t("decidim.devise.sessions.new.register") %>
-      <%= icon "external-link", role: "img", "aria-hidden": true %>
+      <%= t("decidim.devise.sessions.new.register") %> <%= icon "external-link-line", role: "img", class: "inline-block", "aria-hidden": true %>
     <% end %>
   </p>

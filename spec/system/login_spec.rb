@@ -9,7 +9,9 @@ describe "Visit_the_account_page" do
   before do
     switch_to_host(organization.host)
     visit decidim.root_path
-    click_on "Sign In"
+    within "#main-bar" do
+      click_on "Log in"
+    end
   end
 
   context "when sign_up is disabled" do
