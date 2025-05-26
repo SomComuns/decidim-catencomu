@@ -12,12 +12,14 @@ Gem::Specification.new do |spec|
   spec.summary = "Decidim Awesome Scoped admins Manager."
   spec.description = "Allows extra operations with scoped admins by decidim awesome"
   spec.license = "AGPL-3.0"
-  spec.required_ruby_version = ">= 3.0"
+  spec.required_ruby_version = ">= 3.2"
 
   spec.files = Dir["{app,config,db,lib}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
 
   spec.add_dependency "decidim-admin", "~> #{Decidim::CatcomuManagers::DECIDIM_VERSION}"
   spec.add_dependency "decidim-core", "~> #{Decidim::CatcomuManagers::DECIDIM_VERSION}"
 
+  # rubocop:disable Gemspec/DevelopmentDependencies
   spec.add_development_dependency "decidim-dev", "~> #{Decidim::CatcomuManagers::DECIDIM_VERSION}"
+  # rubocop:enable Gemspec/DevelopmentDependencies
 end

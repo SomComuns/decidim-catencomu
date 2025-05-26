@@ -1,0 +1,13 @@
+<!-- insert_before "erb[loud]:contains('decidim_form_for(@account')" -->
+
+<div class="row">
+  <div class="callout secondary">
+    <%= t("catencomu.account_callout") %>
+    <% if translated_attribute(Rails.application.secrets.participacio_url).present? %>
+      <%= link_to translated_attribute(Rails.application.secrets.participacio_url), target: :blank do %>
+        <%= t("catencomu.account_link") %>
+        <%= icon "external-link-line", role: "img", "aria-hidden": true, class: "inline-block" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

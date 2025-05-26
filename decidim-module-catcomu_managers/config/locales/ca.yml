@@ -10,19 +10,33 @@ ca:
         participatory_process:
           attributes:
             participatory_process_group_id:
-              user_not_admin_in_group: No pots canviar el grup del process si no n'ets administradora
+              user_not_admin_in_group: No pots canviar el grup del process si no n'ets
+                administradora
   decidim:
     catcomu_managers:
       admin:
         scoped_admins:
-          civicrm_sync_desc: "Cada administradora territorial pot crear processos privats on només hi té accés un grup d'usuàries del CiviCRM corresponents a l'executiva o les inscrites.\nConfigura aquí els grups del CiViCRM que corresponen a aquest àmbit territorial.\n\U0001F449 Aquest apartat només és visible per a super-administradores.\n"
+          civicrm_sync_desc: "Cada administradora territorial pot crear processos
+            privats on només hi té accés un grup d'usuàries del CiviCRM corresponents
+            a l'executiva o les inscrites.\nConfigura aquí els grups del CiViCRM que
+            corresponen a aquest àmbit territorial.\n👉 Aquest apartat només
+            és visible per a super-administradores.\n"
           index:
             civicrm_group: Grup del CiViCRM
-            civicrm_group_desc: "Des d'aquí pots accedir a la configuració i visualització dels processos, i crear-ne de nous.\nEls grups del CiviCRM serveixen per sincronitzar els membres d'aquell grup amb el procés participatiu. Això només aplica als processos privats (als processos públics tot membre de Catalunya en Comú hi té accés).\n\U0001F449 Per a més informació, tens a la teva disposició el manual d'administració de decidim per administradores d'àmbit territorial: %{manual}\n\U0001F465 Contacte equip de superadmins:\n%{contact_data}"
+            civicrm_group_desc_html: "<p>Des d'aquí pots accedir a la configuració
+              i visualització dels processos, i crear-ne de nous.</p><p>Els grups
+              del CiviCRM serveixen per sincronitzar els membres d'aquell grup amb
+              el procés participatiu. Això només aplica als processos privats (als
+              processos públics tot membre de Catalunya en Comú hi té accés).</p><p>👉
+              Per a més informació, tens a la teva disposició el <a href=\"%{manual_url}\">manual
+              d'administració de decidim per administradores d'àmbit territorial</a><br><br>&#128101;
+              Contacte equip de superadmins:</p><p>%{contact_data}</p>"
             edit: Edita aquest grup
-            group_processes: Llistat dels processos de l’àmbit territorial
-            superadmin_only: Només les super-administradores poden modificar aquesta secció
-            user_not_scoped: Ho sentim, el teu usuari no està acotat a un grup de processos!
+            group_processes: Llistat dels processos de l'àmbit territorial
+            superadmin_only: Només les super-administradores poden modificar aquesta
+              secció
+            user_not_scoped: Ho sentim, el teu usuari no està acotat a un grup de
+              processos!
           new_process_form:
             send: Envia
             title: Crea un nou proces participatiu

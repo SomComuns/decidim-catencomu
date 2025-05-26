@@ -2,19 +2,21 @@
 
 require "rails_helper"
 
-describe "Visit the account page", type: :system do
-  let(:organization) { create :organization, users_registration_mode: "disabled", external_domain_whitelist: %w(home.url registration.url) }
-  let(:user) { create :user, organization: organization }
+describe "Visit_the_account_page" do
+  let(:organization) { create :organization, users_registration_mode: "disabled", external_domain_allowlist: %w(home.url registration.url) }
+  let(:user) { create :user, organization: }
 
   before do
     switch_to_host(organization.host)
     visit decidim.root_path
-    click_link "Sign In"
+    within "#main-bar" do
+      click_on "Log in"
+    end
   end
 
   context "when sign_up is disabled" do
     it "has an external link to registration_url defined in secrets.yml" do
-      expect(page).to have_selector("[href=\"#{Rails.application.secrets.registration_url[I18n.locale]}\"]")
+      expect(page).to have_css("[href=\"#{Rails.application.secrets.registration_url[I18n.locale]}\"]")
     end
   end
 end

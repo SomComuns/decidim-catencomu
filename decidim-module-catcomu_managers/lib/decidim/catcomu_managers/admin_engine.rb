@@ -27,7 +27,7 @@ module Decidim
           menu.add_item :catcomu_managers,
                         I18n.t("menu.managers", scope: "decidim.admin", default: "Managers"),
                         decidim_catcomu_managers_admin.root_path,
-                        icon_name: "fork",
+                        icon_name: "admin-line",
                         position: 1,
                         active: is_active_link?(decidim_catcomu_managers_admin.root_path, :inclusive),
                         if: defined?(current_user)
@@ -64,6 +64,7 @@ module Decidim
       end
 
       initializer "decidim_catcomu_managers.webpacker.assets_path" do
+        Decidim.icons.register(name: "admin-line", icon: "admin-line", category: "system", description: "", engine: :core)
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
     end

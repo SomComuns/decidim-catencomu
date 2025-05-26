@@ -7,20 +7,20 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 3.0.6
-  NODE_VERSION: 16.20.2
+  RUBY_VERSION: 3.2.8
+  NODE_VERSION: 18.17.1
   RAILS_ENV: test
   DATABASE_USERNAME: postgres
   DATABASE_PASSWORD: postgres
-  CHROME_VERSION: 119.0.6045.105
+  CHROME_VERSION: 126.0.6478.182
 
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11
+        image: postgres:14
         ports:
           - 5432:5432
         env:
@@ -28,9 +28,12 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
+
+      - run: |
+          sudo apt-get update; sudo apt-get -f install wkhtmltopdf imagemagick
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -66,3 +69,5 @@ jobs:
 
       - name: Run RSpec
         run: SIMPLECOV=1 CODECOV=1 bundle exec rspec
+        env:
+          CIVICRM_CLIENT_ID: oauth2_decidim

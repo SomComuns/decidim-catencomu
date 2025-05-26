@@ -2,16 +2,18 @@
 
 require "rails_helper"
 
-describe "Participatory processes", type: :system do
+describe "Participatory_processes" do
   let!(:organization) { create(:organization) }
-  let!(:process_group) { create :participatory_process_group, organization: organization }
+  let!(:global_menu) { create(:content_block, organization:, scope_name: :homepage, manifest_name: :global_menu) }
+
+  let!(:process_group) { create :participatory_process_group, organization: }
   let!(:ungrouped_process) do
     create(
       :participatory_process,
       :active,
       scope: first_scope,
       area: first_area,
-      organization: organization
+      organization:
     )
   end
   let!(:ungrouped_process_old) do
@@ -20,7 +22,7 @@ describe "Participatory processes", type: :system do
       :past,
       scope: second_scope,
       area: second_area,
-      organization: organization
+      organization:
     )
   end
   let!(:grouped_process) do
@@ -29,7 +31,7 @@ describe "Participatory processes", type: :system do
       :active,
       scope: first_scope,
       area: first_area,
-      organization: organization,
+      organization:,
       participatory_process_group: process_group
     )
   end
@@ -39,14 +41,14 @@ describe "Participatory processes", type: :system do
       :past,
       scope: second_scope,
       area: second_area,
-      organization: organization,
+      organization:,
       participatory_process_group: process_group
     )
   end
-  let!(:first_scope) { create(:scope, organization: organization) }
-  let!(:second_scope) { create(:scope, organization: organization) }
-  let!(:first_area) { create(:area, organization: organization) }
-  let!(:second_area) { create(:area, organization: organization) }
+  let!(:first_scope) { create(:scope, organization:) }
+  let!(:second_scope) { create(:scope, organization:) }
+  let!(:first_area) { create(:area, organization:) }
+  let!(:second_area) { create(:area, organization:) }
 
   before do
     switch_to_host(organization.host)
@@ -58,29 +60,34 @@ describe "Participatory processes", type: :system do
     end
 
     it "shows the grouped processes menu" do
-      within ".main-nav" do
+      within "#home__menu" do
+        expect(page).to have_link(text: "Processes", href: "/processes")
+      end
+      within ".main-footer" do
         expect(page).to have_link(text: "Processes", href: "/processes")
       end
     end
 
     it "shows the extra configured menu" do
-      within ".main-nav" do
-        expect(page).to have_content("Global processes")
-        expect(page).to have_link(href: "/global_processes")
+      within "#home__menu" do
+        expect(page).to have_link(text: "Global processes", href: "/global_processes")
+      end
+      within ".main-footer" do
+        expect(page).to have_link(text: "Global processes", href: "/global_processes")
       end
     end
 
-    context "and navigating to groupd processes" do
+    context "and navigating to grouped processes" do
       before do
-        within ".main-nav" do
-          click_link "Processes"
+        within "#home__menu" do
+          click_on "Processes"
         end
       end
 
       it "shows grouped processes" do
         within "#processes-grid" do
           expect(page).to have_content(process_group.title["en"])
-          expect(page).not_to have_content(ungrouped_process.title["en"])
+          expect(page).to have_no_content(ungrouped_process.title["en"])
         end
       end
 
@@ -97,7 +104,7 @@ describe "Participatory processes", type: :system do
       # this filter is never shown in scoped processes
       # it "show grouped processes when filtering" do
       #   within ".order-by__tabs" do
-      #     click_link "Past"
+      #     click_on "Past"
       #   end
 
       #   expect(page).to have_content(grouped_process_old.title["en"])
@@ -109,15 +116,15 @@ describe "Participatory processes", type: :system do
 
     context "and navigating to ungrouped processes" do
       before do
-        within ".main-nav" do
-          click_link "Global processes"
+        within "#home__menu" do
+          click_on "Global processes"
         end
       end
 
       it "shows ungrouped processes" do
         within "#processes-grid" do
           expect(page).to have_content(ungrouped_process.title["en"])
-          expect(page).not_to have_content(grouped_process.title["en"])
+          expect(page).to have_no_content(grouped_process.title["en"])
         end
       end
 
@@ -127,16 +134,16 @@ describe "Participatory processes", type: :system do
 
       context "when filtering by time" do
         before do
-          within ".order-by__tabs" do
-            click_link "Past"
+          within "#panel-dropdown-menu-date" do
+            choose "Past"
           end
         end
 
         it "show ungrouped processes when filtering" do
           expect(page).to have_content(ungrouped_process_old.title["en"])
-          expect(page).not_to have_content(ungrouped_process.title["en"])
-          expect(page).not_to have_content(grouped_process.title["en"])
-          expect(page).not_to have_content(grouped_process_old.title["en"])
+          expect(page).to have_no_content(ungrouped_process.title["en"])
+          expect(page).to have_no_content(grouped_process.title["en"])
+          expect(page).to have_no_content(grouped_process_old.title["en"])
         end
 
         it "has the alternative path" do
@@ -146,20 +153,16 @@ describe "Participatory processes", type: :system do
 
       context "when filtering by scope" do
         before do
-          within "#participatory-space-filters" do
-            click_link "Select a scope"
-          end
-          within "#data_picker-modal" do
-            click_link translated(first_scope.name)
-            click_link "Select"
+          within "#panel-dropdown-menu-scope" do
+            check translated(first_scope.name)
           end
         end
 
         it "show ungrouped processes when filtering" do
           expect(page).to have_content(ungrouped_process.title["en"])
-          expect(page).not_to have_content(ungrouped_process_old.title["en"])
-          expect(page).not_to have_content(grouped_process.title["en"])
-          expect(page).not_to have_content(grouped_process_old.title["en"])
+          expect(page).to have_no_content(ungrouped_process_old.title["en"])
+          expect(page).to have_no_content(grouped_process.title["en"])
+          expect(page).to have_no_content(grouped_process_old.title["en"])
         end
 
         it "has the alternative path" do
@@ -169,17 +172,16 @@ describe "Participatory processes", type: :system do
 
       context "when filtering by area" do
         before do
-          within "#participatory-space-filters" do
-            select "Select an area"
-            select translated(first_area.name)
+          within "#panel-dropdown-menu-area" do
+            check translated(first_area.name)
           end
         end
 
         it "show ungrouped processes when filtering" do
           expect(page).to have_content(ungrouped_process.title["en"])
-          expect(page).not_to have_content(ungrouped_process_old.title["en"])
-          expect(page).not_to have_content(grouped_process.title["en"])
-          expect(page).not_to have_content(grouped_process_old.title["en"])
+          expect(page).to have_no_content(ungrouped_process_old.title["en"])
+          expect(page).to have_no_content(grouped_process.title["en"])
+          expect(page).to have_no_content(grouped_process_old.title["en"])
         end
 
         it "has the alternative path" do

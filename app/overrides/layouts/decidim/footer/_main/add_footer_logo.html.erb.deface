@@ -1,0 +1,11 @@
+<!-- insert_after ".main-footer__down" -->
+
+<div class="main-footer-down-first">
+  <div class="row py-4">
+    <div class="column">
+      <a href="https://catalunyaencomu.cat/<%= I18n.locale %>">
+        <%= image_pack_tag("media/images/catcomu_logo_blanc.png", alt: t("layouts.decidim.footer.catencomu_logo")  ) %>
+      </a>
+    </div>
+  </div>
+</div>

@@ -48,7 +48,7 @@ module Decidim
         end
 
         def awesome_config_var(var)
-          Decidim::DecidimAwesome::AwesomeConfig.find_by(organization: current_organization, var: var)
+          Decidim::DecidimAwesome::AwesomeConfig.find_by(organization: current_organization, var:)
         end
       end
     end

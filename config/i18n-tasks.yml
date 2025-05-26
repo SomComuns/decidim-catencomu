@@ -41,8 +41,6 @@ ignore_unused:
   - decidim.authorization_handlers.civicrm.fields.role
   - decidim.authorization_handlers.civicrm.fields.role_choices.*
   - decidim.authorization_handlers.civicrm.name
-  - decidim.authorization_handlers.direct_verifications.explanation
-  - decidim.authorization_handlers.direct_verifications.name
   - decidim.authorization_handlers.groups.explanation
   - decidim.authorization_handlers.groups.name
   - decidim.components.proposals.actions.comment

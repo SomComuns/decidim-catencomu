@@ -4,50 +4,40 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = "0.27.5"
-
+DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.29-stable" }.freeze
 gem "decidim", DECIDIM_VERSION
-gem "decidim-consultations", DECIDIM_VERSION
 
 gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 
-gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.27-stable"
-gem "decidim-civicrm", git: "https://github.com/Platoniq/decidim-module-civicrm"
-gem "decidim-decidim_awesome", "~> 0.10.2"
-gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications"
-gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "release/0.27-stable"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
+gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "main"
+gem "decidim-calendar", github: "decidim-ice/decidim-module-calendar", branch: "release/0.29-stable"
+gem "decidim-civicrm", git: "https://github.com/openpoke/decidim-module-civicrm", branch: "main"
+gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "main"
+gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "main"
+gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer", branch: "upgrade/decidim_0.29"
 
-gem "bootsnap", "~> 1.11.0"
+gem "aws-sdk-s3", "1.160"
+gem "bootsnap", "~> 1.7"
+gem "deface"
 gem "health_check"
-
-gem "puma", ">= 5.0.0"
-gem "uglifier", "~> 4.1"
-
-gem "faker", "~> 2.14"
-gem "rspec"
+gem "puma", "> 6.3.1"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
+
+  gem "brakeman", "~> 6.1"
   gem "decidim-dev", DECIDIM_VERSION
-  gem "rubocop-faker"
 end
 
 group :development do
-  gem "letter_opener_web", "~> 1.3"
-  gem "listen", "~> 3.1"
-  gem "spring"
-  gem "spring-watcher-listen", "~> 2.0"
+  gem "letter_opener_web"
+  gem "listen"
   gem "web-console"
 end
 
 group :production do
-  gem "aws-sdk-s3", require: false
-  gem "fog-aws" # to remove once images migrated
   gem "sentry-rails"
   gem "sentry-ruby"
-  gem "sidekiq", "~> 6.0"
+  gem "sidekiq"
   gem "sidekiq-cron"
 end
-
-gem "whenever", require: false

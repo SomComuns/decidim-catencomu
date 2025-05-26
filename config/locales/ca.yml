@@ -3,6 +3,8 @@ ca:
   catencomu:
     account_callout: Aquestes dades són exclusives per a l'espai web de Comunitat, i no se sincronitzen amb les de l'espai web de Participació.
     account_link: Visita l'espai web de Participació.
+    login:
+      sign_in_civicrm: Iniciar sessió amb CiviCRM
     processes:
       description: Descripció dels àmbits territorials
       title: Àmbits Territorials
@@ -37,19 +39,8 @@ ca:
             inscribed: Inscrita
             interested: Interessada
         name: Catalunya en Comú
-      direct_verifications:
-        explanation: Verificació directa per al Consell Nacional
-        name: Consell Nacional
-    components:
-      proposals:
-        actions:
-          comment: Comentar
-          vote_comment: Votar comentari
     events:
       civicrm_verification:
-        errors:
-          invalid_method: No us heu pogut verificar. El mètode de verificació OAuth2 no era "civicrm" tal com s'esperava.
-          invalid_status: No us heu pogut verificar. La verificació OAuth2 ha fallat.
         invalid:
           email_intro: La verificació amb Catalunya en Comú ha fallat.
           email_outro: Si us plau, poseu-vos en contacte amb el suport de la vostra plataforma per comprovar l'error que s'ha produït.
@@ -83,11 +74,9 @@ ca:
         first_login:
           actions:
             civicrm: Verifica't amb el compte de Catalunya en Comú
-  devise:
-    shared:
-      links:
-        sign_in_with_provider: Iniciar sessió
   layouts:
     decidim:
+      footer:
+        catencomu_logo: Comunitat Catalunya en Comú
       user_profile:
         my_data: Dades de participació

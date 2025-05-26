@@ -8,12 +8,12 @@ describe ParticipatoryProcessesScoper do
   let(:host) { "city.domain.org" }
   let(:middleware) { described_class.new(app) }
   let(:path) { "some_path" }
-  let!(:organization) { create(:organization, host: host) }
-  let!(:process_group) { create :participatory_process_group, organization: organization }
+  let!(:organization) { create(:organization, host:) }
+  let!(:process_group) { create :participatory_process_group, organization: }
   let!(:other_organization) { create(:organization, host: "another.host.org") }
   let!(:external_process) { create(:participatory_process, slug: "external-slug", organization: other_organization) }
-  let!(:alternative_process) { create(:participatory_process, slug: "alternative-slug", organization: organization) }
-  let!(:normal_process) { create(:participatory_process, slug: "normal-slug", organization: organization, participatory_process_group: process_group) }
+  let!(:alternative_process) { create(:participatory_process, slug: "alternative-slug", organization:) }
+  let!(:normal_process) { create(:participatory_process, slug: "normal-slug", organization:, participatory_process_group: process_group) }
 
   let(:route) { "global_processes" }
   let(:enabled) { true }

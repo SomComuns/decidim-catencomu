@@ -7,4 +7,17 @@
 //
 // By default this is empty.
 
-@import "stylesheets/catencomu";
+// $primary: $catencomu-red;
+// $primary-rgb: $catencomu-red-rgb;
+// $secondary: $catencomu-lilac;
+// $secondary-rgb: $catencomu-lilac-rgb;
+// $success: #6eeb83;
+// $success-rgb: 110, 235, 131;
+// $warning: #f46036;
+// $warning-rgb: 244, 96, 54;
+// $alert: #ee3138;
+// $alert-rgb: 239, 45, 86;
+
+@import "stylesheets/catencomu/body";
+@import "stylesheets/catencomu/language_override";
+@import "stylesheets/catencomu/global_menu";
