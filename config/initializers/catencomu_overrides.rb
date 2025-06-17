@@ -49,6 +49,36 @@ Rails.application.config.to_prepare do
       url_for
     end
   end
+
+  Decidim::ParticipatoryProcess.class_eval do
+    class << self
+      attr_accessor :scoped_groups_mode, :scoped_groups_namespace
+
+      def scope_groups_mode(mode, namespace)
+        self.scoped_groups_mode = mode
+        self.scoped_groups_namespace = namespace
+      end
+
+      # control the default scope for querying participatory processes in ActiveRecord
+      def default_scope
+        case scoped_groups_mode
+        when :exclude
+          where.not(decidim_participatory_process_group_id: nil)
+        when :include
+          where(decidim_participatory_process_group_id: nil)
+        end
+      end
+    end
+  end
+
+  # override the render method to set the scope groups mode to nil
+  # This is because the "merge" method from rails fails to merge with and id if a default scope is set that checks for "not null"
+  Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
+    def render(*args)
+      Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
+      super
+    end
+  end
 end
 
 Rails.application.config.after_initialize do
