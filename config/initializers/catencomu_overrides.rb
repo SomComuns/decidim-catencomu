@@ -73,10 +73,10 @@ Rails.application.config.to_prepare do
 
   # override the render method to set the scope groups mode to nil
   # This is because the "merge" method from rails fails to merge with and id if a default scope is set that checks for "not null"
-  Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
-    def render(*args)
+  Decidim::ParticipatoryProcesses::ProcessGroupCell.class_eval do
+    def show
       Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
-      super
+      cell card_size, model, options
     end
   end
 end
