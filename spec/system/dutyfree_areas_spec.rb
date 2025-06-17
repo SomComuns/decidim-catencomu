@@ -11,12 +11,17 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
   let(:user) { nil }
 
   before do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     create :content_block, organization:, scope_name: :homepage, manifest_name: :hero
     create :content_block, organization:, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title
 
     login_as user, scope: :user if user
 
     switch_to_host(organization.host)
+  end
+
+  after do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   shared_examples "can visit duty free areas" do

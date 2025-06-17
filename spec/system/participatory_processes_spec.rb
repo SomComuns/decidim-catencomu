@@ -51,7 +51,12 @@ describe "Participatory_processes" do
   let!(:second_area) { create(:area, organization:) }
 
   before do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     switch_to_host(organization.host)
+  end
+
+  after do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   context "when visiting home page" do

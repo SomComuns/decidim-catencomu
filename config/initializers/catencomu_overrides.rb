@@ -20,7 +20,67 @@ Rails.application.config.to_prepare do
       end
     end
   end
+
+  Decidim::FiltersHelper.class_eval do
+    def filter_form_for(filter, url = detect_url, html_options = {})
+      url = detect_url if url == "/processes"
+      content_tag :div, class: "filters" do
+        form_for(
+          filter,
+          namespace: filter_form_namespace,
+          builder: Decidim::FilterFormBuilder,
+          url:,
+          as: :filter,
+          method: :get,
+          remote: true,
+          html: { id: nil }.merge(html_options)
+        ) do |form|
+          inner = []
+          inner << hidden_field_tag("per_page", params[:per_page], id: nil) if params[:per_page]
+          inner << capture { yield form }
+          inner.join.html_safe
+        end
+      end
+    end
+
+    def detect_url
+      return request.path if request.present?
+
+      url_for
+    end
+  end
+
+  Decidim::ParticipatoryProcess.class_eval do
+    class << self
+      attr_accessor :scoped_groups_mode, :scoped_groups_namespace
+
+      def scope_groups_mode(mode, namespace)
+        self.scoped_groups_mode = mode
+        self.scoped_groups_namespace = namespace
+      end
+
+      # control the default scope for querying participatory processes in ActiveRecord
+      def default_scope
+        case scoped_groups_mode
+        when :exclude
+          where.not(decidim_participatory_process_group_id: nil)
+        when :include
+          where(decidim_participatory_process_group_id: nil)
+        end
+      end
+    end
+  end
+
+  # override the render method to set the scope groups mode to nil
+  # This is because the "merge" method from rails fails to merge with and id if a default scope is set that checks for "not null"
+  Decidim::ParticipatoryProcesses::ProcessGroupCell.class_eval do
+    def show
+      Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
+      cell card_size, model, options
+    end
+  end
 end
+
 Rails.application.config.after_initialize do
   # Creates a new menu next to Processes for ungrouped processes
   if Rails.application.secrets.scope_ungrouped_processes[:enabled]
