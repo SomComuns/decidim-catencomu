@@ -29,6 +29,7 @@ describe "Scoped_admins" do
   before do
     # ErrorController is only called when in production mode, so we simulated it
     # otherwise admin redirections do not work
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     unless ENV["SHOW_EXCEPTIONS"]
       allow(Rails.application).to \
         receive(:env_config).with(no_args).and_wrap_original do |m, *|
@@ -41,6 +42,10 @@ describe "Scoped_admins" do
 
     switch_to_host(organization.host)
     login_as user, scope: :user
+  end
+
+  after do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   it "user has admin access" do

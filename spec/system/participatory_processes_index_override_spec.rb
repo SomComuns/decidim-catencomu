@@ -26,7 +26,12 @@ describe "Participatory_processes_index_override" do
   let!(:blueprint) { create(:blueprint, organization:, content_block: navigation_map) }
 
   before do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     switch_to_host(organization.host)
+  end
+
+  after do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   context "when visiting the processes index page" do

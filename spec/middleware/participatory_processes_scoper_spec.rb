@@ -19,7 +19,13 @@ describe ParticipatoryProcessesScoper do
   let(:enabled) { true }
 
   before do
+    previous_enabled = Rails.application.secrets.scope_ungrouped_processes[:enabled]
     Rails.application.secrets.scope_ungrouped_processes[:enabled] = enabled
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
+  end
+
+  after do
+    Rails.application.secrets.scope_ungrouped_processes[:enabled] = previous_enabled
     Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 

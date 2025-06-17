@@ -22,6 +22,7 @@ describe "Restrict_actions_y_CiviCRM_verification" do
   end
 
   before do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     organization.available_authorizations = [handler_name]
     organization.save!
     switch_to_host(organization.host)
@@ -29,6 +30,7 @@ describe "Restrict_actions_y_CiviCRM_verification" do
   end
 
   after do
+    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     expect_no_js_errors
   end
 
