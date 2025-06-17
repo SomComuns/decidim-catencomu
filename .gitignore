@@ -48,6 +48,7 @@
 
 # Ignore node modules
 /node_modules
+/packages/*/node_modules
 
 
 # Ignore Tailwind configuration

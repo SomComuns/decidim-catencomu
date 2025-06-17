@@ -20,7 +20,31 @@ Rails.application.config.to_prepare do
       end
     end
   end
+
+  Decidim::FiltersHelper.class_eval do
+    def filter_form_for(filter, url = detect_url, html_options = {})
+      url = detect_url if url == "/processes"
+      content_tag :div, class: "filters" do
+        form_for(
+          filter,
+          namespace: filter_form_namespace,
+          builder: FilterFormBuilder,
+          url:,
+          as: :filter,
+          method: :get,
+          remote: true,
+          html: { id: nil }.merge(html_options)
+        ) do |form|
+          inner = []
+          inner << hidden_field_tag("per_page", params[:per_page], id: nil) if params[:per_page]
+          inner << capture { yield form }
+          inner.join.html_safe
+        end
+      end
+    end
+  end
 end
+
 Rails.application.config.after_initialize do
   # Creates a new menu next to Processes for ungrouped processes
   if Rails.application.secrets.scope_ungrouped_processes[:enabled]
