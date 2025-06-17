@@ -28,7 +28,7 @@ Rails.application.config.to_prepare do
         form_for(
           filter,
           namespace: filter_form_namespace,
-          builder: FilterFormBuilder,
+          builder: Decidim::FilterFormBuilder,
           url:,
           as: :filter,
           method: :get,
@@ -41,6 +41,12 @@ Rails.application.config.to_prepare do
           inner.join.html_safe
         end
       end
+    end
+
+    def detect_url
+      return request.path if request.present?
+
+      url_for
     end
   end
 end
