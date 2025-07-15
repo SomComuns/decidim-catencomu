@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/decidim/decidim.git
-  revision: 87b55f3de27c8781c7887a47ae15d276c664868f
+  revision: 63eef3ca9d33c661c47d32ede4a3ac7b53bfa714
   branch: release/0.29-stable
   specs:
     decidim (0.29.4)
@@ -321,8 +321,8 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1122.0)
-    aws-sdk-core (3.226.1)
+    aws-partitions (1.1126.0)
+    aws-sdk-core (3.226.2)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -452,9 +452,9 @@ GEM
     factory_bot_rails (6.5.0)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    faker (3.5.1)
+    faker (3.5.2)
       i18n (>= 1.8.11, < 2)
-    faraday (2.13.1)
+    faraday (2.13.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -478,7 +478,7 @@ GEM
       mime-types
     fog-local (0.9.0)
       fog-core (>= 1.27, < 3.0)
-    formatador (1.1.0)
+    formatador (1.1.1)
     foundation_rails_helper (4.0.1)
       actionpack (>= 4.1, < 7.1)
       activemodel (>= 4.1, < 7.1)
@@ -537,7 +537,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     invisible_captcha (0.13.0)
       rails (>= 3.2.0)
-    io-console (0.8.0)
+    io-console (0.8.1)
     jmespath (1.6.2)
     json (2.12.2)
     jwt (3.1.2)
@@ -584,7 +584,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0624)
+    mime-types-data (3.2025.0708)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -748,7 +748,7 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.6.1)
     redis (4.8.1)
-    redis-client (0.25.0)
+    redis-client (0.25.1)
       connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
@@ -887,7 +887,7 @@ GEM
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.3.2)
-    tilt (2.6.0)
+    tilt (2.6.1)
     timeout (0.4.3)
     trailblazer-option (0.1.2)
     tzinfo (2.0.6)
