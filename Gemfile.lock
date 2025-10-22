@@ -221,6 +221,17 @@ GIT
       decidim-core (= 0.30.2)
 
 GIT
+  remote: https://github.com/openpoke/decidim-module-civicrm
+  revision: 8a36be125b9480a0488c885fc6400f241495b67c
+  branch: upgrade-0.30
+  specs:
+    decidim-civicrm (0.8.1)
+      decidim-admin (>= 0.30, < 0.31)
+      decidim-core (>= 0.30, < 0.31)
+      decidim-verifications (>= 0.30, < 0.31)
+      deface (~> 1.9)
+
+GIT
   remote: https://github.com/openpoke/decidim-module-term_customizer
   revision: 00d55ec218e84e5bced560b3b4253f06c9e8104b
   branch: main
@@ -1001,6 +1012,7 @@ DEPENDENCIES
   decidim-alternative_landing!
   decidim-calendar!
   decidim-catcomu_managers!
+  decidim-civicrm!
   decidim-decidim_awesome!
   decidim-dev!
   decidim-navigation_maps!
