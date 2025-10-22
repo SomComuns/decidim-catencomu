@@ -6,7 +6,7 @@ describe "Participatory_processes" do
   let!(:organization) { create(:organization) }
   let!(:global_menu) { create(:content_block, organization:, scope_name: :homepage, manifest_name: :global_menu) }
 
-  let!(:process_group) { create :participatory_process_group, organization: }
+  let!(:process_group) { create(:participatory_process_group, organization:) }
   let!(:ungrouped_process) do
     create(
       :participatory_process,

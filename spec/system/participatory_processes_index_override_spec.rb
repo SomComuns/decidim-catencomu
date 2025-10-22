@@ -5,7 +5,7 @@ require "decidim/navigation_maps/test/factories"
 
 describe "Participatory_processes_index_override" do
   let!(:organization) { create(:organization) }
-  let!(:process_group) { create :participatory_process_group, organization: }
+  let!(:process_group) { create(:participatory_process_group, organization:) }
   let!(:ungrouped_process) do
     create(
       :participatory_process,

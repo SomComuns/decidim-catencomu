@@ -3,17 +3,17 @@
 require "rails_helper"
 
 describe "Free_and_private_login_areas", perform_enqueued: true do
-  let(:organization) { create :organization, force_users_to_authenticate_before_access_organization: closed }
+  let(:organization) { create(:organization, force_users_to_authenticate_before_access_organization: closed) }
   let(:closed) { true }
-  let!(:alternative_participatory_process) { create :participatory_process, organization: }
-  let!(:participatory_process_group) { create :participatory_process_group, organization: }
-  let!(:participatory_process) { create :participatory_process, organization:, participatory_process_group: }
+  let!(:alternative_participatory_process) { create(:participatory_process, organization:) }
+  let!(:participatory_process_group) { create(:participatory_process_group, organization:) }
+  let!(:participatory_process) { create(:participatory_process, organization:, participatory_process_group:) }
   let(:user) { nil }
 
   before do
     Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
-    create :content_block, organization:, scope_name: :homepage, manifest_name: :hero
-    create :content_block, organization:, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title
+    create(:content_block, organization:, scope_name: :homepage, manifest_name: :hero)
+    create(:content_block, organization:, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title)
 
     login_as user, scope: :user if user
 
@@ -77,7 +77,7 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
     it_behaves_like "can visit duty free areas"
 
     context "and user is logged" do
-      let(:user) { create :user, :confirmed, organization: }
+      let(:user) { create(:user, :confirmed, organization:) }
 
       it_behaves_like "can visit everything"
     end
