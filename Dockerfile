@@ -1,4 +1,4 @@
-FROM ruby:3.2.8 AS builder
+FROM ruby:3.3 AS builder
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates curl gnupg && \
     mkdir -p /etc/apt/keyrings && \
@@ -20,6 +20,7 @@ WORKDIR /app
 # Copy package dependencies files only to ensure maximum cache hit
 COPY ./package-lock.json /app/package-lock.json
 COPY ./package.json /app/package.json
+COPY ./packages /app/packages
 COPY ./Gemfile /app/Gemfile
 COPY ./Gemfile.lock /app/Gemfile.lock
 # Custom modules
@@ -78,14 +79,13 @@ RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs .git
 
 # This image is for production env only
-FROM ruby:3.2.8-slim AS final
+FROM ruby:3.3-slim AS final
 
 RUN apt-get update && \
     apt-get install -y postgresql-client \
     imagemagick \
     curl \
     p7zip \
-    wkhtmltopdf \
     supervisor && \
     apt-get clean
 
@@ -94,9 +94,9 @@ EXPOSE 3000
 ARG CAPROVER_GIT_COMMIT_SHA=${CAPROVER_GIT_COMMIT_SHA}
 ENV APP_REVISION=${CAPROVER_GIT_COMMIT_SHA}
 
-ENV RAILS_LOG_TO_STDOUT true
-ENV RAILS_SERVE_STATIC_FILES true
-ENV RAILS_ENV production
+ENV RAILS_LOG_TO_STDOUT=true
+ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_ENV=production
 
 ARG RUN_RAILS
 ARG RUN_SIDEKIQ
