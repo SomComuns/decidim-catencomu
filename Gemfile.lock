@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/Platoniq/decidim-module-alternative_landing
-  revision: 3399ca139831f054079360cdcdd6d2b83aa33db4
-  branch: main
-  specs:
-    decidim-alternative_landing (0.6.0)
-      decidim-admin (>= 0.30, < 0.31)
-      decidim-core (>= 0.30, < 0.31)
-      redcarpet (~> 3.4)
-
-GIT
   remote: https://github.com/Platoniq/decidim-module-navigation_maps
   revision: d035196fa3e705426a830d6fc22956f20ec05d1c
   branch: main
@@ -219,6 +209,16 @@ GIT
       devise_invitable (~> 2.0, >= 2.0.9)
     decidim-verifications (0.30.2)
       decidim-core (= 0.30.2)
+
+GIT
+  remote: https://github.com/openpoke/decidim-module-alternative_landing
+  revision: d58a2d316e5fa384422603326f95bc5adc38d57f
+  branch: main
+  specs:
+    decidim-alternative_landing (0.6.0)
+      decidim-admin (>= 0.30, < 0.31)
+      decidim-core (>= 0.30, < 0.31)
+      redcarpet (~> 3.4)
 
 GIT
   remote: https://github.com/openpoke/decidim-module-civicrm
@@ -610,7 +610,8 @@ GEM
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.8.1)
+    mail (2.9.0)
+      logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -1004,7 +1005,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  aws-sdk-s3 (= 1.160)
+  aws-sdk-s3
   bootsnap (~> 1.7)
   brakeman (~> 6.1)
   byebug (~> 11.0)
