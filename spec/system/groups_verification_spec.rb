@@ -26,7 +26,10 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
 
   let!(:user) { create(:user, :confirmed, organization:) }
 
-  let!(:meeting) { create(:meeting, :published, component: meetings_component, registrations_enabled: true) }
+  let(:meeting_address) { "Some address" }
+  let(:latitude) { 40.1234 }
+  let(:longitude) { 2.1234 }
+  let!(:meeting) { create(:meeting, :published, component: meetings_component, registrations_enabled: true, address: meeting_address, latitude: latitude, longitude: longitude) }
 
   let!(:meetings_component) do
     create(
@@ -50,6 +53,9 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
   end
 
   before do
+    stub_geocoding(meeting_address, [latitude, longitude])
+    stub_geocoding_coordinates([latitude, longitude])
+
     switch_to_host(organization.host)
     login_as user, scope: :user
   end
