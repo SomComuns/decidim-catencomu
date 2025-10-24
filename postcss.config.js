@@ -4,7 +4,11 @@ module.exports = {
   syntax: 'postcss-scss',
   plugins: [
     // postcss-import must be the very first plugin https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports
-    require('postcss-import'),
+    require('postcss-import')({
+      path: [
+        "node_modules"
+      ]
+    }),
     require('tailwindcss'),
     require('postcss-flexbugs-fixes'),
     require('postcss-preset-env')({
