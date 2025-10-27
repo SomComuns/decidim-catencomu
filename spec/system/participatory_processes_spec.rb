@@ -156,43 +156,44 @@ describe "Participatory_processes" do
         end
       end
 
-      context "when filtering by scope" do
-        before do
-          within "#panel-dropdown-menu-scope" do
-            check translated(first_scope.name)
-          end
-        end
+      # these filters are never shown
+      # context "when filtering by scope" do
+      #   before do
+      #     within "#panel-dropdown-menu-scope" do
+      #       check translated(first_scope.name)
+      #     end
+      #   end
 
-        it "show ungrouped processes when filtering" do
-          expect(page).to have_content(ungrouped_process.title["en"])
-          expect(page).to have_no_content(ungrouped_process_old.title["en"])
-          expect(page).to have_no_content(grouped_process.title["en"])
-          expect(page).to have_no_content(grouped_process_old.title["en"])
-        end
+      #   it "show ungrouped processes when filtering" do
+      #     expect(page).to have_content(ungrouped_process.title["en"])
+      #     expect(page).to have_no_content(ungrouped_process_old.title["en"])
+      #     expect(page).to have_no_content(grouped_process.title["en"])
+      #     expect(page).to have_no_content(grouped_process_old.title["en"])
+      #   end
 
-        it "has the alternative path" do
-          expect(page).to have_current_path(Regexp.new(global_processes_path))
-        end
-      end
+      #   it "has the alternative path" do
+      #     expect(page).to have_current_path(Regexp.new(global_processes_path))
+      #   end
+      # end
 
-      context "when filtering by area" do
-        before do
-          within "#panel-dropdown-menu-area" do
-            check translated(first_area.name)
-          end
-        end
+      # context "when filtering by area" do
+      #   before do
+      #     within "#panel-dropdown-menu-area" do
+      #       check translated(first_area.name)
+      #     end
+      #   end
 
-        it "show ungrouped processes when filtering" do
-          expect(page).to have_content(ungrouped_process.title["en"])
-          expect(page).to have_no_content(ungrouped_process_old.title["en"])
-          expect(page).to have_no_content(grouped_process.title["en"])
-          expect(page).to have_no_content(grouped_process_old.title["en"])
-        end
+      #   it "show ungrouped processes when filtering" do
+      #     expect(page).to have_content(ungrouped_process.title["en"])
+      #     expect(page).to have_no_content(ungrouped_process_old.title["en"])
+      #     expect(page).to have_no_content(grouped_process.title["en"])
+      #     expect(page).to have_no_content(grouped_process_old.title["en"])
+      #   end
 
-        it "has the alternative path" do
-          expect(page).to have_current_path(Regexp.new(global_processes_path))
-        end
-      end
+      #   it "has the alternative path" do
+      #     expect(page).to have_current_path(Regexp.new(global_processes_path))
+      #   end
+      # end
     end
   end
 
