@@ -105,95 +105,87 @@ describe "Participatory_processes" do
           expect(el[:href]).to match(/#{decidim_participatory_processes.participatory_processes_path}/)
         end
       end
-
-      # this filter is never shown in scoped processes
-      # it "show grouped processes when filtering" do
-      #   within ".order-by__tabs" do
-      #     click_on "Past"
-      #   end
-
-      #   expect(page).to have_content(grouped_process_old.title["en"])
-      #   expect(page).not_to have_content(grouped_process.title["en"])
-      #   expect(page).not_to have_content(ungrouped_process.title["en"])
-      #   expect(page).not_to have_content(ungrouped_process_old.title["en"])
-      # end
     end
 
-    context "and navigating to ungrouped processes" do
+    context "when filtering ungrouped participatory processes" do
+      let!(:taxonomy) { create(:taxonomy, :with_parent, organization:, name: { en: "A great taxonomy" }) }
+      let!(:another_taxonomy) { create(:taxonomy, parent: taxonomy.parent, organization:, name: { en: "Another taxonomy" }) }
+
+      let!(:ungrouped_process_with_taxonomy) do
+        create(
+          :participatory_process,
+          :active,
+          taxonomies: [taxonomy],
+          organization:
+        )
+      end
+
+      let!(:ungrouped_process_with_taxonomy_old) do
+        create(
+          :participatory_process,
+          :past,
+          taxonomies: [taxonomy],
+          organization:
+        )
+      end
+
+      let!(:ungrouped_process_without_taxonomy) do
+        create(
+          :participatory_process,
+          :active,
+          organization:
+        )
+      end
+
+      let!(:taxonomy_filter) { create(:taxonomy_filter, root_taxonomy: taxonomy.parent, participatory_space_manifests:) }
+      let!(:taxonomy_filter_item) { create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: taxonomy) }
+      let!(:another_taxonomy_filter_item) { create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: another_taxonomy) }
+      let(:participatory_space_manifests) { ["participatory_processes"] }
+
       before do
         within "#home__menu" do
           click_on "Global processes"
         end
       end
 
-      it "shows ungrouped processes" do
-        within "#processes-grid" do
-          expect(page).to have_content(ungrouped_process.title["en"])
-          expect(page).to have_no_content(grouped_process.title["en"])
-        end
-      end
-
-      it "has the alternative path" do
-        expect(page).to have_current_path(global_processes_path)
-      end
-
-      context "when filtering by time" do
+      context "and filtering by taxonomy" do
         before do
-          within "#panel-dropdown-menu-date" do
-            choose "Past"
+          within "#panel-dropdown-menu-taxonomy" do
+            click_filter_item "A great taxonomy"
+            sleep 2
           end
         end
 
-        it "show ungrouped processes when filtering" do
-          expect(page).to have_content(ungrouped_process_old.title["en"])
-          expect(page).to have_no_content(ungrouped_process.title["en"])
-          expect(page).to have_no_content(grouped_process.title["en"])
-          expect(page).to have_no_content(grouped_process_old.title["en"])
+        it "shows only ungrouped processes from that taxonomy" do
+          within "#processes-grid" do
+            expect(page).to have_content(translated(ungrouped_process_with_taxonomy.title))
+            expect(page).to have_no_content(translated(ungrouped_process_without_taxonomy.title))
+            expect(page).to have_no_content(grouped_process.title)
+          end
         end
 
-        it "has the alternative path" do
-          expect(page).to have_current_path(Regexp.new(global_processes_path))
+        context "and then filtering by time" do
+          before do
+            within "#panel-dropdown-menu-date" do
+              choose "Past"
+              sleep 2
+            end
+          end
+
+          it "shows only past ungrouped processes with that taxonomy" do
+            within "#processes-grid" do
+              expect(page).to have_content(translated(ungrouped_process_with_taxonomy_old.title))
+              expect(page).to have_no_content(translated(ungrouped_process_with_taxonomy.title))
+              expect(page).to have_no_content(translated(ungrouped_process_without_taxonomy.title))
+              expect(page).to have_no_content(grouped_process.title)
+            end
+          end
+
+          it "keeps the alternative path" do
+            expect(page).to have_current_path(Regexp.new(global_processes_path))
+          end
         end
       end
-
-      # these filters are never shown
-      # context "when filtering by scope" do
-      #   before do
-      #     within "#panel-dropdown-menu-scope" do
-      #       check translated(first_scope.name)
-      #     end
-      #   end
-
-      #   it "show ungrouped processes when filtering" do
-      #     expect(page).to have_content(ungrouped_process.title["en"])
-      #     expect(page).to have_no_content(ungrouped_process_old.title["en"])
-      #     expect(page).to have_no_content(grouped_process.title["en"])
-      #     expect(page).to have_no_content(grouped_process_old.title["en"])
-      #   end
-
-      #   it "has the alternative path" do
-      #     expect(page).to have_current_path(Regexp.new(global_processes_path))
-      #   end
-      # end
-
-      # context "when filtering by area" do
-      #   before do
-      #     within "#panel-dropdown-menu-area" do
-      #       check translated(first_area.name)
-      #     end
-      #   end
-
-      #   it "show ungrouped processes when filtering" do
-      #     expect(page).to have_content(ungrouped_process.title["en"])
-      #     expect(page).to have_no_content(ungrouped_process_old.title["en"])
-      #     expect(page).to have_no_content(grouped_process.title["en"])
-      #     expect(page).to have_no_content(grouped_process_old.title["en"])
-      #   end
-
-      #   it "has the alternative path" do
-      #     expect(page).to have_current_path(Regexp.new(global_processes_path))
-      #   end
-      # end
     end
   end
 
