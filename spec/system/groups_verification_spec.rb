@@ -5,39 +5,31 @@ require "decidim/proposals/test/factories"
 require "decidim/meetings/test/factories"
 
 describe "Restrict_actions_by_CiviCRM_groups_verification" do
+  include_context "with a component"
+
   let(:handler_name) { "civicrm_groups" }
   let(:manifest_name) { "proposals" }
-  let(:options) { {} }
-  let(:authorization_options) do
-    {
-      authorization_handlers: {
-        handler_name => { "options" => options }
-      }
-    }
-  end
 
   let!(:organization) do
-    create(:organization, available_authorizations: %w(civicrm_groups))
-  end
-
-  let(:participatory_space) do
-    create(:participatory_process, :with_steps, organization:)
+    create(:organization, available_authorizations: [handler_name])
   end
 
   let!(:user) { create(:user, :confirmed, organization:) }
 
-  let(:meeting_address) { "Some address" }
-  let(:latitude) { 40.1234 }
-  let(:longitude) { 2.1234 }
-  let!(:meeting) { create(:meeting, :published, component: meetings_component, registrations_enabled: true, address: meeting_address, latitude: latitude, longitude: longitude) }
+  let!(:participatory_space) do
+    create(:participatory_process, :with_steps, organization:)
+  end
+
+  let!(:meeting_address) { "Some address" }
+  let!(:latitude) { 40.1234 }
+  let!(:longitude) { 2.1234 }
 
   let!(:meetings_component) do
     create(
       :meeting_component,
       manifest: Decidim.find_component_manifest("meetings"),
-      manifest_name: :meetings,
       participatory_space:,
-      permissions: { join: authorization_options }
+      permissions:
     )
   end
 
@@ -46,10 +38,15 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
       :proposal_component,
       :with_creation_enabled,
       manifest: Decidim.find_component_manifest("proposals"),
-      manifest_name: :proposals,
       participatory_space:,
-      permissions: { create: authorization_options }
+      permissions:
     )
+  end
+
+  let!(:meeting) do
+    create(:meeting, :published, component: meetings_component,
+                                 registrations_enabled: true, address: meeting_address,
+                                 latitude:, longitude:)
   end
 
   before do
@@ -57,49 +54,91 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
     stub_geocoding_coordinates([latitude, longitude])
 
     switch_to_host(organization.host)
+    Capybara.app_host = "http://#{organization.host}"
     login_as user, scope: :user
   end
 
-  describe "Group Verification" do
-    let(:options) { { "groups" => "1,5" } }
-    let(:metadata) { { "group_ids" => [1, 2] } }
-    let(:wrong_metadata) { { "group_ids" => [2, 3] } }
+  around do |example|
+    I18n.with_locale(:en) { example.run }
+  end
 
-    context "when user is authorized" do
-      let!(:authorization) { create(:authorization, user:, name: handler_name, metadata:) }
+  describe "CiviCRM group-based authorization" do
+    let(:valid_metadata) { { "group_ids" => [1, 2] } }
+    let(:invalid_metadata) { { "group_ids" => [2, 3] } }
 
-      it "allows to join a meeting" do
-        visit_and_join_meeting
+    context "when user is authorized with correct group" do
+      let(:permissions) do
+        {
+          create: {
+            authorization_handlers: {
+              handler_name => { "options" => { "groups" => "1,5" } }
+            }
+          }
+        }
+      end
+      let!(:authorization) { create(:authorization, user:, name: handler_name, metadata: valid_metadata) }
 
-        expect(page).to have_no_content "Authorization required"
-        expect(page).to have_no_content "Not authorized"
+      before do
+        meetings_component.update!(permissions:)
+        proposals_component.update!(permissions:)
       end
 
-      it "allows to create a proposal" do
+      it "allows joining a meeting" do
+        visit_and_join_meeting
+        expect(page).to have_no_content("Authorization required")
+        expect(page).to have_no_content("Not authorized")
+      end
+
+      it "allows creating a proposal" do
         visit_and_create_proposal
-        expect(page).to have_no_content "Not authorized"
-        expect(page).to have_no_content "Authorization required"
-        expect(page).to have_css ".new_proposal"
+        expect(page).to have_no_content("Authorization required")
+        expect(page).to have_no_content("Not authorized")
+        expect(page).to have_css(".new_proposal")
       end
     end
 
     context "when user is authorized with wrong metadata" do
-      let!(:authorization) { create(:authorization, user:, name: handler_name, metadata: wrong_metadata) }
+      let!(:authorization) { create(:authorization, user:, name: handler_name, metadata: invalid_metadata) }
 
-      it "does not allow to join a meeting" do
-        visit_and_join_meeting
-        expect(page).to have_content "Not authorized"
-        expect(page).to have_no_button "Submit"
+      context "when trying to join a meeting" do
+        let(:permissions) do
+          {
+            join: {
+              authorization_handlers: {
+                handler_name => { "options" => { "groups" => "1,5" } }
+              }
+            }
+          }
+        end
+
+        it "does not allow joining a meeting" do
+          visit_and_join_meeting
+          expect(page).to have_content("Not authorized")
+          expect(page).to have_no_button("Submit")
+        end
       end
 
-      it "does not allow to create a proposal" do
-        visit_and_create_proposal
-        expect(page).to have_content "Not authorized"
-        expect(page).to have_no_css ".new_proposal"
+      context "when trying to create a proposal" do
+        let(:permissions) do
+          {
+            create: {
+              authorization_handlers: {
+                handler_name => { "options" => { "groups" => "1,5" } }
+              }
+            }
+          }
+        end
+
+        it "does not allow creating a proposal" do
+          visit_and_create_proposal
+          expect(page).to have_content("Not authorized")
+          expect(page).to have_no_css(".new_proposal")
+        end
       end
     end
 
-    context "when user is not authorized" do
+    context "when user has no authorization" do
+      let(:permissions) { nil }
       let!(:authorization) { nil }
 
       it "does not allow to join a meeting" do
@@ -117,12 +156,12 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
   end
 
   def visit_and_join_meeting
-    page.visit resource_locator(meeting).path
-    click_on "Register"
+    visit resource_locator(meeting).path
+    click_on "Register", match: :first
   end
 
   def visit_and_create_proposal
-    page.visit main_component_path(proposals_component)
-    click_on "New proposal"
+    visit main_component_path(proposals_component)
+    click_on "New proposal", match: :first
   end
 end
