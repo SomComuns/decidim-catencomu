@@ -3,8 +3,8 @@
 require "rails_helper"
 
 describe "Visit_the_account_page" do
-  let(:organization) { create :organization, external_domain_allowlist: %w(home.url registration.url) }
-  let(:user) { create :user, :confirmed, organization: }
+  let(:organization) { create(:organization, external_domain_allowlist: %w(home.url registration.url)) }
+  let(:user) { create(:user, :confirmed, organization:) }
 
   before do
     switch_to_host(organization.host)

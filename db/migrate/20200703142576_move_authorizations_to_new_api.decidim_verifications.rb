@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-# This migration comes from decidim_verifications (originally 20171030133426)
 
+# This migration comes from decidim_verifications (originally 20171030133426)
+# This file has been modified by `decidim upgrade:migrations` task on 2025-10-22 16:10:33 UTC
 #
 # Assumes to authorizations in the old format (as rectify form classes) will be
 # registered as the underscored class name using the new API. For example, a

@@ -94,14 +94,13 @@ Rails.application.config.after_initialize do
                     I18n.t(key, scope: "decidim.scope_ungrouped_processes"),
                     Rails.application.routes.url_helpers.send("#{path}_path"),
                     position:,
-                    if: (
+                    if:
                       Decidim::ParticipatoryProcess
-                      .unscoped
-                      .where(organization: current_organization)
-                      .where.not(decidim_participatory_process_group_id: nil)
-                      .published
-                      .any?
-                    ),
+                        .unscoped
+                        .where(organization: current_organization)
+                        .where.not(decidim_participatory_process_group_id: nil)
+                        .published
+                        .any?,
                     active: :inclusive
     end
     Decidim.menu :menu do |menu|

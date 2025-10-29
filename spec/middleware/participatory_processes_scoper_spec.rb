@@ -9,7 +9,7 @@ describe ParticipatoryProcessesScoper do
   let(:middleware) { described_class.new(app) }
   let(:path) { "some_path" }
   let!(:organization) { create(:organization, host:) }
-  let!(:process_group) { create :participatory_process_group, organization: }
+  let!(:process_group) { create(:participatory_process_group, organization:) }
   let!(:other_organization) { create(:organization, host: "another.host.org") }
   let!(:external_process) { create(:participatory_process, slug: "external-slug", organization: other_organization) }
   let!(:alternative_process) { create(:participatory_process, slug: "alternative-slug", organization:) }

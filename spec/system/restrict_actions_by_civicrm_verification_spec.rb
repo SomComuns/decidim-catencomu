@@ -7,9 +7,9 @@ describe "Restrict_actions_y_CiviCRM_verification" do
 
   let(:user) { create(:user, :confirmed, organization:) }
 
-  let(:participatory_process) { create :participatory_process, organization: }
-  let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process, permissions: }
-  let!(:proposal) { create :proposal, component: proposals_component }
+  let(:participatory_process) { create(:participatory_process, organization:) }
+  let(:proposals_component) { create(:component, manifest_name: :proposals, participatory_space: participatory_process, permissions:) }
+  let!(:proposal) { create(:proposal, component: proposals_component) }
 
   let(:options) { {} }
   let(:permissions) { { comment: authorization_options } }
@@ -37,24 +37,15 @@ describe "Restrict_actions_y_CiviCRM_verification" do
   shared_examples "can comment" do
     it "allows to comment" do
       visit_proposal
-      within "#comments" do
-        expect(page).to have_css "textarea"
-        fill_in "Comment", with: "A very thoughtful comment"
-        expect(page).to have_button "Publish comment"
-      end
+      find("textarea[name='comment[body]']").set("A very thoughtful comment")
+      expect(page).to have_button "Publish comment"
     end
   end
 
   shared_examples "cannot comment" do
     it "does not allow to comment" do
       visit_proposal
-      within "#comments" do
-        expect(page).to have_no_button "Send"
-
-        within ".flash.warning" do
-          expect(page).to have_css "[data-dialog-open=authorizationModal]"
-        end
-      end
+      expect(page).to have_content "You need to be verified to comment at this moment, but you can read the previous ones."
     end
   end
 
