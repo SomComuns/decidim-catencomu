@@ -20,6 +20,7 @@ module Decidim
       config.to_prepare do
         Decidim::ParticipatoryProcesses::Admin::ParticipatoryProcessForm.include(Decidim::CatcomuManagers::Admin::ParticipatoryProcessFormOverride)
         Decidim::User.include(Decidim::CatcomuManagers::UserOverride)
+        Decidim::Civicrm::Group.include(Decidim::CatcomuManagers::CivicrmGroupOverride)
       end
 
       initializer "decidim_catcomu_managers.admin_menu" do
