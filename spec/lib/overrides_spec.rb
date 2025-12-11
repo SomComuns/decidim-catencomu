@@ -34,7 +34,8 @@ checksums = [
   {
     package: "decidim-meetings",
     files: {
-      "/app/cells/decidim/meetings/join_meeting_button/show.erb" => "f885f36957b27f20535c8d5b985ecee5"
+      "/app/cells/decidim/meetings/join_meeting_button/show.erb" => "f885f36957b27f20535c8d5b985ecee5",
+      "/app/controllers/decidim/meetings/directory/meetings_controller.rb" => "7e280b4bb00a5019fe06c9336ec62b5a"
     }
   }
 ]
