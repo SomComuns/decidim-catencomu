@@ -16,5 +16,9 @@ module MeetingsControllerOverride
         with_any_global_category: nil
       }
     end
+
+    def meetings
+      @meetings ||= paginate(search.result.order(start_time: :desc ))
+    end
   end
 end
