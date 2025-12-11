@@ -16,5 +16,10 @@ module MeetingsControllerOverride
         with_any_global_category: nil
       }
     end
+
+    def meetings
+      is_upcoming_meetings = params.dig("filter", "with_any_date")&.include?("upcoming")
+      @meetings ||= paginate(search.result.order(start_time: is_upcoming_meetings ? :asc : :desc))
+    end
   end
 end
