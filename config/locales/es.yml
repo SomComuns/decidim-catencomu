@@ -4,6 +4,7 @@ es:
     account_callout: Estos datos son exclusivamente para el espacio web de Comunitat, y no se sincronizan con las del espacio web de Participació.
     account_link: Visita el espacio web de Participació.
     login:
+      admin_login: Accesso administración
       sign_in_civicrm: Iniciar sessióon con CiviCRM
     processes:
       description: Descripción de los ámbitos territoriales
