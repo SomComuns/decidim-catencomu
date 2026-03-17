@@ -2,6 +2,7 @@
 en:
   catencomu:
     login:
+      admin_login: Administrator access
       sign_in_civicrm: Iniciar sessió amb CiviCRM
   decidim:
     calendar:
