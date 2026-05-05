@@ -4,17 +4,19 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.29-stable" }.freeze
+DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.30-stable" }.freeze
 gem "decidim", DECIDIM_VERSION
 
 gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 
-gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.29-stable"
-gem "decidim-calendar", github: "decidim-ice/decidim-module-calendar", branch: "release/0.29-stable"
-gem "decidim-civicrm", git: "https://github.com/openpoke/decidim-module-civicrm", branch: "main"
-gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "main"
-gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "release/0.29-stable"
-gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer", branch: "main"
+# gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.29-stable"
+gem "decidim-calendar", github: "decidim-ice/decidim-module-calendar", branch: "main"
+# gem "decidim-civicrm", git: "https://github.com/openpoke/decidim-module-civicrm", branch: "release/0.31-stable"
+gem "decidim-civicrm", git: "https://github.com/openpoke/decidim-module-civicrm", ref: "d2ca1b0bfb00939d225be4c451fd651814b412de"
+gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "release/0.30-stable"
+gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "main"
+gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer", branch: "release/0.30-stable"
+gem "decidim-pokecode", github: "openpoke/decidim-module-pokecode", branch: "release/0.30-stable"
 
 gem "aws-sdk-s3", "1.160"
 gem "bootsnap", "~> 1.7"
