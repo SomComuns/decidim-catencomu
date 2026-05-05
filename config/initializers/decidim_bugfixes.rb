@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# Eager loading: prevent N+1 on area when rendering the processes index.
-# Upstream search_collection switched to published_processes.query and dropped .includes(:area).
+# Eager-loads :area in the processes index search collection.
 
 Rails.application.config.to_prepare do
   Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
