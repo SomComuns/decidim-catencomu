@@ -61,3 +61,11 @@ daily_delete_inactive_participants_job:
   status: <%= ENV.fetch("DELETE_INACTIVE_PARTICIPANTS", "enabled") %> # enabled by default
   args:
     task: decidim:participants:delete_inactive_participants
+
+daily_sync_civicrm_job:
+  cron: "3 3 * * *"
+  class: "InvokeRakeTaskJob"
+  queue: default
+  status: <%= ENV.fetch("SYNC_CIVICRM", "enabled") %> # enabled by default
+  args:
+    task: civicrm:sync:groups
