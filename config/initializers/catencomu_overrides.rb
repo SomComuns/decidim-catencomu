@@ -83,12 +83,12 @@ end
 
 Rails.application.config.after_initialize do
   # Creates a new menu next to Processes for ungrouped processes
-  if Rails.application.secrets.scope_ungrouped_processes[:enabled]
+  if Rails.application.config_for(:catcomu).scope_ungrouped_processes[:enabled]
 
     def add_menu_item(menu, position = nil)
       path = ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE
-      key = Rails.application.secrets.scope_ungrouped_processes[:key] || path
-      position = Rails.application.secrets.scope_ungrouped_processes[:position_in_menu] if position.nil?
+      key = Rails.application.config_for(:catcomu).scope_ungrouped_processes[:key] || path
+      position = Rails.application.config_for(:catcomu).scope_ungrouped_processes[:position_in_menu] if position.nil?
 
       menu.add_item :ungrouped_participatory_processes,
                     I18n.t(key, scope: "decidim.scope_ungrouped_processes"),

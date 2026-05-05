@@ -18,15 +18,14 @@ describe ParticipatoryProcessesScoper do
   let(:route) { "global_processes" }
   let(:enabled) { true }
 
-  previous_enabled = Rails.application.secrets.scope_ungrouped_processes[:enabled]
-
   before do
-    Rails.application.secrets.scope_ungrouped_processes[:enabled] = enabled
+    config = Rails.application.config_for(:catcomu).deep_dup
+    config.scope_ungrouped_processes[:enabled] = enabled
+    allow(Rails.application).to receive(:config_for).with(:catcomu).and_return(config)
     Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   after do
-    Rails.application.secrets.scope_ungrouped_processes[:enabled] = previous_enabled
     Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 

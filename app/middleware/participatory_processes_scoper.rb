@@ -71,7 +71,7 @@ class ParticipatoryProcessesScoper
   end
 
   def scope_groups?
-    Rails.application.secrets.scope_ungrouped_processes[:enabled]
+    Rails.application.config_for(:catcomu).scope_ungrouped_processes[:enabled]
   end
 
   def out_of_scope?

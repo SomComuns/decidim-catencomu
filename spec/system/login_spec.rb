@@ -16,7 +16,7 @@ describe "Visit_the_account_page" do
 
   context "when sign_up is disabled" do
     it "has an external link to registration_url defined in secrets.yml" do
-      expect(page).to have_css("[href=\"#{Rails.application.secrets.registration_url[I18n.locale]}\"]")
+      expect(page).to have_css("[href=\"#{Rails.application.config_for(:catcomu).registration_url[I18n.locale]}\"]")
     end
   end
 end

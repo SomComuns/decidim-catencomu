@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # recreates the /processes route for /any-alternative, reusing the same controllers
   # content will be differentiatied automatically by scoping selectively all SQL queries depending if a process is in a group or not
-  if Rails.application.secrets.scope_ungrouped_processes[:enabled]
+  if Rails.application.config_for(:catcomu).scope_ungrouped_processes[:enabled]
     path = ParticipatoryProcessesScoper::ALTERNATIVE_NAMESPACE
     resources path, only: [:index, :show], param: :slug, path:, controller: "decidim/participatory_processes/participatory_processes" do
       get "all-metrics", on: :member

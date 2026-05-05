@@ -5,7 +5,7 @@ namespace :civicrm do
 
   desc "Create private participatory processes for Civicrm Groups"
   task create_private_process_for_groups: :environment do
-    Rails.application.secrets.civicrm.private_processes.each do |item|
+    Rails.application.config_for(:catcomu).civicrm[:private_processes].each do |item|
       # TODO: create private participatory space
     end
   end
