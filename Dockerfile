@@ -21,6 +21,8 @@ COPY ./package.json /app/package.json
 COPY ./packages /app/packages
 COPY ./Gemfile /app/Gemfile
 COPY ./Gemfile.lock /app/Gemfile.lock
+# Custom modules
+COPY ./decidim-module-catcomu_managers /app/decidim-module-catcomu_managers
 
 RUN gem install bundler:$(grep -A 1 'BUNDLED WITH' Gemfile.lock | tail -n 1 | xargs) && \
     bundle config set --deployment true && \
