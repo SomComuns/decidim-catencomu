@@ -11,8 +11,7 @@ describe "Participatory_processes" do
     create(
       :participatory_process,
       :active,
-      scope: first_scope,
-      area: first_area,
+      taxonomies: [taxonomy, other_taxonomy],
       organization:
     )
   end
@@ -20,8 +19,7 @@ describe "Participatory_processes" do
     create(
       :participatory_process,
       :past,
-      scope: second_scope,
-      area: second_area,
+      taxonomies: [another_taxonomy, another_other_taxonomy],
       organization:
     )
   end
@@ -29,8 +27,7 @@ describe "Participatory_processes" do
     create(
       :participatory_process,
       :active,
-      scope: first_scope,
-      area: first_area,
+      taxonomies: [taxonomy, other_taxonomy],
       organization:,
       participatory_process_group: process_group
     )
@@ -39,16 +36,24 @@ describe "Participatory_processes" do
     create(
       :participatory_process,
       :past,
-      scope: second_scope,
-      area: second_area,
+      taxonomies: [another_taxonomy, another_other_taxonomy],
       organization:,
       participatory_process_group: process_group
     )
   end
-  let!(:first_scope) { create(:scope, organization:) }
-  let!(:second_scope) { create(:scope, organization:) }
-  let!(:first_area) { create(:area, organization:) }
-  let!(:second_area) { create(:area, organization:) }
+  let!(:taxonomy) { create(:taxonomy, :with_parent, organization:, name: { en: "A taxonomy" }) }
+  let!(:another_taxonomy) { create(:taxonomy, parent: taxonomy.parent, organization:, name: { en: "Another taxonomy" }) }
+  let!(:other_taxonomy) { create(:taxonomy, :with_parent, organization:, name: { en: "Other taxonomy" }) }
+  let!(:another_other_taxonomy) { create(:taxonomy, parent: other_taxonomy.parent, organization:, name: { en: "Another other taxonomy" }) }
+  let(:participatory_space_manifests) { ["participatory_processes"] }
+  let!(:taxonomy_filter) { create(:taxonomy_filter, root_taxonomy: taxonomy.parent, participatory_space_manifests:) }
+  let!(:other_taxonomy_filter) { create(:taxonomy_filter, root_taxonomy: other_taxonomy.parent, participatory_space_manifests:) }
+  let!(:taxonomy_filter_items) do
+    [taxonomy, another_taxonomy].map { |t| create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: t) }
+  end
+  let!(:other_taxonomy_filter_items) do
+    [other_taxonomy, another_other_taxonomy].map { |t| create(:taxonomy_filter_item, taxonomy_filter: other_taxonomy_filter, taxonomy_item: t) }
+  end
 
   before do
     Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
@@ -156,10 +161,10 @@ describe "Participatory_processes" do
         end
       end
 
-      context "when filtering by scope" do
+      context "when filtering by a taxonomy" do
         before do
-          within "#panel-dropdown-menu-scope" do
-            check translated(first_scope.name)
+          within "#panel-dropdown-menu-taxonomy-#{taxonomy.parent.id}" do
+            click_filter_item translated(taxonomy.name)
           end
         end
 
@@ -175,10 +180,10 @@ describe "Participatory_processes" do
         end
       end
 
-      context "when filtering by area" do
+      context "when filtering by another taxonomy" do
         before do
-          within "#panel-dropdown-menu-area" do
-            check translated(first_area.name)
+          within "#panel-dropdown-menu-taxonomy-#{other_taxonomy.parent.id}" do
+            click_filter_item translated(other_taxonomy.name)
           end
         end
 

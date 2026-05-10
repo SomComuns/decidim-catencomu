@@ -1,9 +1,13 @@
-<!-- insert_before "erb[silent]:contains('else')" -->
+<!-- insert_before "erb[silent]:contains(' if current_organization.sign_in_enabled?')" -->
 
-<% elsif translated_attribute(Rails.application.config_for(:catcomu).registration_url).present? %>
-  <p>
-    <%= t("decidim.devise.sessions.new.are_you_new?") %>
-    <%= link_to translated_attribute(Rails.application.config_for(:catcomu).registration_url), target: :blank do %>
-      <%= t("decidim.devise.sessions.new.register") %> <%= icon "external-link-line", role: "img", class: "inline-block", "aria-hidden": true %>
-    <% end %>
-  </p>
+<% if !current_organization.sign_up_enabled? && translated_attribute(Rails.application.config_for(:catcomu).registration_url).present? %>
+  <div class="login__info mb-10 flex justify-center font-semibold">
+    <p>
+      <%= t("decidim.devise.sessions.new.are_you_new?") %>
+      <%= link_to translated_attribute(Rails.application.config_for(:catcomu).registration_url), target: :blank do %>
+        <%= t("decidim.devise.sessions.new.register") %>
+        <%= icon "external-link-line", role: "img", class: "inline-block", "aria-hidden": true %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
