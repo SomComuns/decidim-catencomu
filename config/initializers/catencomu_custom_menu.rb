@@ -5,6 +5,7 @@ Rails.application.config.after_initialize do
     menu.add_item :catencomu_home,
                   I18n.t("menu.home", scope: "decidim"),
                   Rails.application.config_for(:catcomu).home_url || decidim.root_path,
-                  position: 1
+                  position: 1,
+                  active: ["decidim/homepage" => :show]
   end
 end
