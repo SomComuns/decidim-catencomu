@@ -7,13 +7,13 @@ describe "Scoped_admins" do
 
   let(:user) { create(:user, :confirmed, :admin_terms_accepted, organization:) }
 
-  let!(:participatory_process) { create :participatory_process, participatory_process_group:, organization: }
-  let!(:another_participatory_process) { create :participatory_process, organization: }
-  let!(:participatory_process_group) { create :participatory_process_group, organization: }
-  let!(:another_participatory_process_group) { create :participatory_process_group, organization: }
-  let!(:config) { create :awesome_config, organization:, var: :scoped_admins, value: scoped_admins }
-  let(:config_helper) { create :awesome_config, organization:, var: :scoped_admin_bar }
-  let!(:helper_constraint) { create :config_constraint, awesome_config: config_helper, settings: }
+  let!(:participatory_process) { create(:participatory_process, participatory_process_group:, organization:) }
+  let!(:another_participatory_process) { create(:participatory_process, organization:) }
+  let!(:participatory_process_group) { create(:participatory_process_group, organization:) }
+  let!(:another_participatory_process_group) { create(:participatory_process_group, organization:) }
+  let!(:config) { create(:awesome_config, organization:, var: :scoped_admins, value: scoped_admins) }
+  let(:config_helper) { create(:awesome_config, organization:, var: :scoped_admin_bar) }
+  let!(:helper_constraint) { create(:config_constraint, awesome_config: config_helper, settings:) }
   let(:scoped_admins) do
     {
       "bar" => [user.id.to_s]
