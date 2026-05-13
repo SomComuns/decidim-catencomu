@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
+ActiveRecord::Schema[7.2].define(version: 2026_05_13_104254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
@@ -516,10 +516,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
     t.integer "civicrm_contact_id", null: false
     t.integer "civicrm_uid"
     t.jsonb "extra", default: {}
-    t.boolean "marked_for_deletion", default: false
+    t.datetime "marked_for_deletion", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.jsonb "membership_types"
+    t.jsonb "custom_fields", default: {}, null: false
     t.index ["decidim_organization_id", "civicrm_contact_id"], name: "index_unique_civicrm_contact_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_civicrm_contacts_on_decidim_organization_id"
     t.index ["decidim_user_id"], name: "index_civicrm_contacts_on_decidim_user_id"
@@ -532,7 +533,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
     t.integer "civicrm_event_id"
     t.jsonb "extra", default: {}
     t.jsonb "data"
-    t.boolean "marked_for_deletion", default: false
+    t.datetime "marked_for_deletion", precision: nil
     t.boolean "redirect_active", default: false, null: false
     t.string "redirect_url"
     t.datetime "created_at", precision: nil, null: false
@@ -548,7 +549,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
     t.integer "civicrm_event_registration_id", null: false
     t.jsonb "extra", default: {}
     t.jsonb "data"
-    t.boolean "marked_for_deletion", default: false
+    t.datetime "marked_for_deletion", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["decidim_meeting_registration_id"], name: "index_civicrm_event_meeting_registration_unique"
@@ -559,10 +560,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
     t.bigint "group_id", null: false
     t.bigint "contact_id"
     t.integer "civicrm_contact_id"
-    t.boolean "marked_for_deletion", default: false
+    t.datetime "marked_for_deletion", precision: nil
     t.jsonb "extra", default: {}
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.jsonb "custom_fields", default: {}, null: false
     t.index ["civicrm_contact_id", "group_id"], name: "index_unique_civicrm_membership_group_and_contact", unique: true
     t.index ["civicrm_contact_id"], name: "index_decidim_civicrm_group_memberships_on_civicrm_contact_id"
     t.index ["contact_id"], name: "index_decidim_civicrm_group_memberships_on_contact_id"
@@ -587,7 +589,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
     t.string "title"
     t.string "description"
     t.jsonb "extra", default: {}
-    t.boolean "marked_for_deletion", default: false
+    t.datetime "marked_for_deletion", precision: nil
     t.boolean "auto_sync_members", default: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -599,7 +601,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_05_05_105346) do
     t.bigint "decidim_organization_id"
     t.integer "civicrm_membership_type_id", null: false
     t.string "name", null: false
-    t.boolean "marked_for_deletion", default: false
+    t.datetime "marked_for_deletion", precision: nil
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["decidim_organization_id"], name: "index_decidim_civicrm_membership_types_on_organization"
