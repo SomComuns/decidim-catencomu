@@ -13,8 +13,6 @@ checksums = [
       "/app/views/decidim/devise/sessions/new.html.erb" => "da0d18178c8dcead2774956e989527c5", # adds link to civicrm signup
       # concerns
       "/app/controllers/concerns/decidim/force_authentication.rb" => "fb182e6efdbc34a9d2b75aa4df06faa1",
-      # helpers
-      "/app/helpers/decidim/filters_helper.rb" => "7974c1cfd660a97c19ce5805e07af3d2",
       "/app/views/layouts/decidim/header/_main.html.erb" => "a090eeca739613446d2eab8f4de513b1", # add language chooser to header
       "/app/presenters/decidim/official_author_presenter.rb" => "dbfb2fefa1c75d703e65443cd68014c2"
     }
@@ -23,12 +21,7 @@ checksums = [
     package: "decidim-participatory_processes",
     files: {
       # views
-      "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "8ef7c51e040a5848519d64eba67146c7", # processes index page
-      "/app/models/decidim/participatory_process.rb" => "7a5d16b62827f11d3c15719fdb2a068b",
-      # cells
-      "/app/cells/decidim/participatory_processes/process_filters_cell.rb" => "f65eee2d28faaf7f014c201af3fea432",
-      # routes definition
-      "/lib/decidim/participatory_processes/engine.rb" => "c56a26cb92f77324002ba784f43496fb"
+      "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "8ef7c51e040a5848519d64eba67146c7" # processes index page
     }
   },
   {

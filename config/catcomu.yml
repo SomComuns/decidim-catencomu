@@ -6,10 +6,6 @@ default: &default
   registration_url:
     ca: <%= ENV["USER_REGISTRATION_URL_CA"] %>
     es: <%= ENV["USER_REGISTRATION_URL_ES"] %>
-  scope_ungrouped_processes:
-    key: menu
-    position_in_menu: 5.9
-    enabled: true
   managers:
     contact_data: <%= ENV["CATCOMU_CONTACTS"] %>
   civicrm:

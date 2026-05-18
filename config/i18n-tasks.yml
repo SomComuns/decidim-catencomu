@@ -55,7 +55,6 @@ ignore_unused:
   - decidim.events.civicrm_verification.ok.email_subject
   - decidim.events.civicrm_verification.ok.notification_title
   - decidim.navigation_maps.content_blocks.name
-  - decidim.scope_ungrouped_processes.menu
   - decidim.system.organizations.omniauth_settings.civicrm.client_id
   - decidim.system.organizations.omniauth_settings.civicrm.client_secret
   - decidim.system.organizations.omniauth_settings.civicrm.site

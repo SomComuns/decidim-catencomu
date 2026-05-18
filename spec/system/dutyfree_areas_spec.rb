@@ -5,23 +5,17 @@ require "rails_helper"
 describe "Free_and_private_login_areas", perform_enqueued: true do
   let(:organization) { create(:organization, force_users_to_authenticate_before_access_organization: closed) }
   let(:closed) { true }
-  let!(:alternative_participatory_process) { create(:participatory_process, organization:) }
   let!(:participatory_process_group) { create(:participatory_process_group, organization:) }
   let!(:participatory_process) { create(:participatory_process, organization:, participatory_process_group:) }
   let(:user) { nil }
 
   before do
-    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     create(:content_block, organization:, scope_name: :homepage, manifest_name: :hero)
     create(:content_block, organization:, scope_name: :participatory_process_group_homepage, scoped_resource_id: participatory_process_group.id, manifest_name: :title)
 
     login_as user, scope: :user if user
 
     switch_to_host(organization.host)
-  end
-
-  after do
-    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   shared_examples "can visit duty free areas" do
@@ -33,11 +27,6 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
     it "allows visiting processes landing page" do
       visit decidim_participatory_processes.participatory_processes_path
       expect_participatory_processes
-    end
-
-    it "allows visiting alternatve processes landing page" do
-      visit global_processes_path
-      expect_alternative_participatory_processes
     end
 
     it "allows visiting a process group" do
@@ -60,11 +49,6 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
     it "allows visiting processes landing page" do
       visit decidim_participatory_processes.participatory_processes_path
       expect_participatory_processes
-    end
-
-    it "allows visiting alternatve processes landing page" do
-      visit global_processes_path
-      expect_alternative_participatory_processes
     end
 
     it "allows visiting a process" do
@@ -102,11 +86,6 @@ describe "Free_and_private_login_areas", perform_enqueued: true do
   def expect_participatory_processes
     expect(page).to have_content(participatory_process_group.title["en"])
     expect(current_url).to match("/processes")
-  end
-
-  def expect_alternative_participatory_processes
-    expect(page).to have_content(alternative_participatory_process.title["en"])
-    expect(current_url).to match("/global_processes")
   end
 
   def expect_participatory_process

@@ -60,8 +60,6 @@ ca:
     navigation_maps:
       content_blocks:
         name: Mapa interactiu (Àmbits Territorials)
-    scope_ungrouped_processes:
-      menu: Processos globals
     system:
       organizations:
         omniauth_settings:

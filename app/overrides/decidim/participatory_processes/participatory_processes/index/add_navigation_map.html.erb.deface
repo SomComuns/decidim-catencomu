@@ -1,6 +1,6 @@
 <!-- insert_after "erb[loud]:contains('participatory_space_floating_help')" -->
 
-<% if request.path.match? /^\/#{ParticipatoryProcessesScoper::DEFAULT_NAMESPACE}$/ %>
+<% if request.path.match? %r{^/processes$} %>
   <section id="processes-description" class="layout-main__section">
     <h1 class="title-decorator"><%= t("catencomu.processes.title") %></h1>
     <p><%= t("catencomu.processes.description") %></p>
