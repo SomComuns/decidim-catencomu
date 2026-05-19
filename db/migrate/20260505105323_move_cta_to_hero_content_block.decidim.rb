@@ -19,6 +19,8 @@ class MoveCtaToHeroContentBlock < ActiveRecord::Migration[7.0]
         settings = cta_button_text.inject(settings) { |acc, (k, _v)| acc.update("cta_button_path_#{k}" => organization.cta_button_path) }
       end
 
+      next unless content_block
+
       content_block.settings = settings
       content_block.settings_will_change!
       content_block.save!

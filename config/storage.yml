@@ -6,7 +6,7 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-s3:
+amazon:
   service: S3
   public: <%= Decidim::Env.new("AWS_PUBLIC", "true").to_boolean_string %>
   force_path_style: <%= Decidim::Env.new("AWS_FORCE_PATH_STYLE", "false").to_boolean_string %>

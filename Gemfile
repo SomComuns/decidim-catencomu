@@ -4,8 +4,10 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { github: "decidim/decidim", branch: "release/0.31-stable" }.freeze
+DECIDIM_VERSION = { github: "openpoke/decidim", branch: "0.31-backports" }.freeze
 gem "decidim", DECIDIM_VERSION
+gem "decidim-elections", DECIDIM_VERSION
+gem "decidim-templates", DECIDIM_VERSION
 
 gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 
@@ -17,10 +19,7 @@ gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-modu
 gem "decidim-pokecode", github: "openpoke/decidim-module-pokecode", branch: "main"
 gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer", branch: "main"
 
-gem "aws-sdk-s3", "1.160"
 gem "bootsnap", "~> 1.7"
-gem "deface"
-gem "health_check"
 gem "puma", "> 6.3.1"
 
 group :development, :test do
@@ -34,11 +33,4 @@ group :development do
   gem "letter_opener_web"
   gem "listen"
   gem "web-console"
-end
-
-group :production do
-  gem "sentry-rails"
-  gem "sentry-ruby"
-  gem "sidekiq"
-  gem "sidekiq-cron"
 end
