@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # This migration comes from decidim (originally 20250523104311)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-05-21 10:27:02 UTC
 class MoveCtaToHeroContentBlock < ActiveRecord::Migration[7.0]
   class Organization < ApplicationRecord
     self.table_name = :decidim_organizations
@@ -18,8 +19,6 @@ class MoveCtaToHeroContentBlock < ActiveRecord::Migration[7.0]
         # Adds i18n support to cta_button_path for every defined lang in cta_button_text
         settings = cta_button_text.inject(settings) { |acc, (k, _v)| acc.update("cta_button_path_#{k}" => organization.cta_button_path) }
       end
-
-      next unless content_block
 
       content_block.settings = settings
       content_block.settings_will_change!
