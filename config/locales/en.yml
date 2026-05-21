@@ -1,16 +1,19 @@
 ---
 en:
   catencomu:
+    account_callout: This data is exclusive to the Comunitat website and is not synchronized with the Participació website.
+    account_link: Visit the Participació website.
     login:
       admin_login: Administrator access
       sign_in_civicrm: Iniciar sessió amb CiviCRM
+    processes:
+      description: Description of territorial areas
+      title: Territorial areas
   decidim:
     calendar:
       calendar:
         calendar_modal:
           export_calendar: Export calendar
-    scope_ungrouped_processes:
-      menu: Global processes
   layouts:
     decidim:
       footer:

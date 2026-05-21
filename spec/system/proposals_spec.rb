@@ -3,20 +3,15 @@
 require "rails_helper"
 
 describe "Visit_a_proposal", perform_enqueued: true do
-  let(:organization) { create :organization }
-  let(:participatory_process) { create :participatory_process, organization: }
-  let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process }
-  let!(:proposal) { create :proposal, component: proposals_component }
+  let(:organization) { create(:organization) }
+  let(:participatory_process) { create(:participatory_process, organization:) }
+  let(:proposals_component) { create(:component, manifest_name: :proposals, participatory_space: participatory_process) }
+  let!(:proposal) { create(:proposal, component: proposals_component) }
 
   before do
-    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     switch_to_host(organization.host)
     page.visit main_component_path(proposals_component)
     click_on proposal.title["en"]
-  end
-
-  after do
-    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
   end
 
   it "allows viewing a single proposal" do

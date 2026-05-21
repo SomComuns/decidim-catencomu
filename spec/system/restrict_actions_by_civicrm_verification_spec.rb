@@ -7,9 +7,9 @@ describe "Restrict_actions_y_CiviCRM_verification" do
 
   let(:user) { create(:user, :confirmed, organization:) }
 
-  let(:participatory_process) { create :participatory_process, organization: }
-  let(:proposals_component) { create :component, manifest_name: :proposals, participatory_space: participatory_process, permissions: }
-  let!(:proposal) { create :proposal, component: proposals_component }
+  let(:participatory_process) { create(:participatory_process, organization:) }
+  let(:proposals_component) { create(:component, manifest_name: :proposals, participatory_space: participatory_process, permissions:) }
+  let!(:proposal) { create(:proposal, component: proposals_component) }
 
   let(:options) { {} }
   let(:permissions) { { comment: authorization_options } }
@@ -22,7 +22,6 @@ describe "Restrict_actions_y_CiviCRM_verification" do
   end
 
   before do
-    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     organization.available_authorizations = [handler_name]
     organization.save!
     switch_to_host(organization.host)
@@ -30,7 +29,6 @@ describe "Restrict_actions_y_CiviCRM_verification" do
   end
 
   after do
-    Decidim::ParticipatoryProcess.scope_groups_mode(nil, nil)
     expect_no_js_errors
   end
 
@@ -39,7 +37,7 @@ describe "Restrict_actions_y_CiviCRM_verification" do
       visit_proposal
       within "#comments" do
         expect(page).to have_css "textarea"
-        fill_in "Comment", with: "A very thoughtful comment"
+        fill_in "comment[body]", with: "A very thoughtful comment"
         expect(page).to have_button "Publish comment"
       end
     end
@@ -49,11 +47,8 @@ describe "Restrict_actions_y_CiviCRM_verification" do
     it "does not allow to comment" do
       visit_proposal
       within "#comments" do
-        expect(page).to have_no_button "Send"
-
-        within ".flash.warning" do
-          expect(page).to have_css "[data-dialog-open=authorizationModal]"
-        end
+        expect(page).to have_no_button "Publish comment"
+        expect(page).to have_content("You need to be verified to comment at this moment")
       end
     end
   end

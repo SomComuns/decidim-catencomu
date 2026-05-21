@@ -52,6 +52,7 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
   before do
     switch_to_host(organization.host)
     login_as user, scope: :user
+    stub_geocoding_coordinates([meeting.latitude, meeting.longitude])
   end
 
   describe "Group Verification" do
@@ -65,14 +66,14 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
       it "allows to join a meeting" do
         visit_and_join_meeting
 
-        expect(page).to have_no_content "Authorization required"
+        expect(page).to have_no_content "We need to verify your identity"
         expect(page).to have_no_content "Not authorized"
       end
 
       it "allows to create a proposal" do
         visit_and_create_proposal
         expect(page).to have_no_content "Not authorized"
-        expect(page).to have_no_content "Authorization required"
+        expect(page).to have_no_content "We need to verify your identity"
         expect(page).to have_css ".new_proposal"
       end
     end
@@ -98,13 +99,13 @@ describe "Restrict_actions_by_CiviCRM_groups_verification" do
 
       it "does not allow to join a meeting" do
         visit_and_join_meeting
-        expect(page).to have_content "Authorization required"
+        expect(page).to have_content "We need to verify your identity"
         expect(page).to have_no_button "Submit"
       end
 
       it "does not allow to create a proposal" do
         visit_and_create_proposal
-        expect(page).to have_content "Authorization required"
+        expect(page).to have_content "We need to verify your identity"
         expect(page).to have_no_css ".new_proposal"
       end
     end

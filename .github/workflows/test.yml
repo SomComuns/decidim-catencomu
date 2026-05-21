@@ -7,12 +7,12 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 3.2.8
-  NODE_VERSION: 18.17.1
+  RUBY_VERSION: 3.3.11
+  NODE_VERSION: 22.14.0
   RAILS_ENV: test
   DATABASE_USERNAME: postgres
   DATABASE_PASSWORD: postgres
-  CHROME_VERSION: 126.0.6478.182
+  CHROME_VERSION: 139.0.7258.66
 
 jobs:
   test:
@@ -28,12 +28,12 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
       - run: |
-          sudo apt-get update; sudo apt-get -f install wkhtmltopdf imagemagick
+          sudo apt-get update; sudo apt-get -f install imagemagick
 
       - uses: ruby/setup-ruby@v1
         with:

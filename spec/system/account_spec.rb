@@ -3,8 +3,8 @@
 require "rails_helper"
 
 describe "Visit_the_account_page" do
-  let(:organization) { create :organization, external_domain_allowlist: %w(home.url registration.url) }
-  let(:user) { create :user, :confirmed, organization: }
+  let(:organization) { create(:organization, external_domain_allowlist: %w(home.url registration.url)) }
+  let(:user) { create(:user, :confirmed, organization:) }
 
   before do
     switch_to_host(organization.host)
@@ -13,6 +13,6 @@ describe "Visit_the_account_page" do
   end
 
   it "has a link to home_url" do
-    expect(page).to have_css("[href=\"#{Rails.application.secrets.participacio_url[I18n.locale]}\"]")
+    expect(page).to have_css("[href=\"#{Rails.application.config_for(:catcomu).participacio_url[I18n.locale]}\"]")
   end
 end

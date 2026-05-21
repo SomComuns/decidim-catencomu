@@ -35,7 +35,6 @@ module Decidim
 
           next if current_user && current_user.attributes["admin"]
 
-          menu.remove_item(:dashboard)
           menu.remove_item(:moderations)
           menu.remove_item(:static_pages)
           menu.remove_item(:impersonatable_users)
@@ -64,7 +63,7 @@ module Decidim
         end
       end
 
-      initializer "decidim_catcomu_managers.webpacker.assets_path" do
+      initializer "decidim_catcomu_managers.shakapacker.assets_path" do
         Decidim.icons.register(name: "admin-line", icon: "admin-line", category: "system", description: "", engine: :core)
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end

@@ -17,7 +17,6 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
@@ -38,22 +37,32 @@
 .env
 .envrc
 .rbenv-vars
-.rubocop-*
+mise.toml
+
+# Others
+.vscode
+.byebug*
+*.gem
+*.sql
+.rubocop-http*
+/coverage/
+backups/*
+!backups/.keep
 
 # Ignore the files and folders generated through Webpack
+/public/packs
+/public/packs-test
 /public/decidim-packs
 /public/packs-test
 /public/sw.js*
-
+/public/sw.js.map*
+/app/views/static/api
 
 # Ignore node modules
 /node_modules
 /packages/*/node_modules
-
+npm_debug.log
 
 # Ignore Tailwind configuration
 tailwind.config.js
 .rspec-failures
-coverage/*
-.byebug*
-.rubocop-https

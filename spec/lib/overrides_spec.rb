@@ -9,33 +9,25 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      "/app/views/decidim/account/show.html.erb" => "f13218e2358a2d611996c2a197c0de25", # blocks email editing
-      "/app/views/decidim/devise/sessions/new.html.erb" => "a8fe60cd10c1636822c252d5488a979d", # adds link to civicrm signup
+      "/app/views/decidim/account/show.html.erb" => "1c230c5c6bc02e0bb22e1ea92b0da96c", # blocks email editing
+      "/app/views/decidim/devise/sessions/new.html.erb" => "da0d18178c8dcead2774956e989527c5", # adds link to civicrm signup
       # concerns
       "/app/controllers/concerns/decidim/force_authentication.rb" => "fb182e6efdbc34a9d2b75aa4df06faa1",
-      # helpers
-      "/app/helpers/decidim/filters_helper.rb" => "7974c1cfd660a97c19ce5805e07af3d2",
-      "/app/views/layouts/decidim/header/_main.html.erb" => "69acfdeade5dab8cd73e1d19f37fef2c", # add language chooser to header
-      "/app/presenters/decidim/official_author_presenter.rb" => "7eea722eb014913cb2cd4784a8e62205"
+      "/app/views/layouts/decidim/header/_main.html.erb" => "a090eeca739613446d2eab8f4de513b1", # add language chooser to header
+      "/app/presenters/decidim/official_author_presenter.rb" => "dbfb2fefa1c75d703e65443cd68014c2"
     }
   },
   {
     package: "decidim-participatory_processes",
     files: {
       # views
-      "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "356fe312dfd6f31607e72f619628f6f1", # processes index page
-      "/app/models/decidim/participatory_process.rb" => "6f19ab033d83404a6f314911b7538fbf",
-      # cells
-      "/app/cells/decidim/participatory_processes/process_filters_cell.rb" => "cd533ebf6e4de40d74ca838eea90341d",
-      # routes definition
-      "/lib/decidim/participatory_processes/engine.rb" => "768f018c309226defc178b9e58d3173a"
+      "/app/views/decidim/participatory_processes/participatory_processes/index.html.erb" => "8ef7c51e040a5848519d64eba67146c7" # processes index page
     }
   },
   {
     package: "decidim-meetings",
     files: {
-      "/app/cells/decidim/meetings/join_meeting_button/show.erb" => "f885f36957b27f20535c8d5b985ecee5",
-      "/app/controllers/decidim/meetings/directory/meetings_controller.rb" => "7e280b4bb00a5019fe06c9336ec62b5a"
+      "/app/controllers/decidim/meetings/directory/meetings_controller.rb" => "cae2c841a3b115a4a8a13a07254bbe0a"
     }
   }
 ]
