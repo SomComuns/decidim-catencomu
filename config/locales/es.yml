@@ -6,6 +6,7 @@ es:
     login:
       admin_login: Accesso administración
       sign_in_civicrm: Iniciar sessióon con CiviCRM
+      sign_in_info: Para acceder a la plataforma como  participante has de usar tu cuenta de Catalunya en Comú
     processes:
       description: Descripción de los ámbitos territoriales
       title: Ámbitos Territoriales

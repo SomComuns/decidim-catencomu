@@ -5,7 +5,8 @@ en:
     account_link: Visit the Participació website.
     login:
       admin_login: Administrator access
-      sign_in_civicrm: Iniciar sessió amb CiviCRM
+      sign_in_civicrm: Sign in with CiviCRM
+      sign_in_info: To access the platform as a participant, you must use your Catalunya en Comú account.
     processes:
       description: Description of territorial areas
       title: Territorial areas
