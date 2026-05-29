@@ -37,3 +37,7 @@ h6,
   // text-rendering: optimizeLegibility;
   // letter-spacing: -.5px;
 }
+
+.login__omniauth-button--civicrm span, .login__omniauth-button span {
+  @apply inline;
+}
