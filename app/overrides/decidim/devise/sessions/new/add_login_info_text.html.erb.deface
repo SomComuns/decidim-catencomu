@@ -1,4 +1,4 @@
-<!-- insert_after "div.flex.justify-center" -->
+<!-- insert_before "erb[silent]:contains('cache current_organization')"" -->
 
 <p class="login__info flex justify-center font-semibold">
   <%= t("catencomu.login.sign_in_info") %>
