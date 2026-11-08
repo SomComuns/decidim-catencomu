@@ -14,7 +14,7 @@ gem "decidim-catcomu_managers", path: "./decidim-module-catcomu_managers"
 # gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.29-stable"
 # gem "decidim-calendar", github: "decidim-ice/decidim-module-calendar", branch: "main"
 gem "decidim-civicrm", git: "https://github.com/openpoke/decidim-module-civicrm", branch: "release/0.31-stable"
-gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "main"
+gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "release/0.31-stable"
 gem "decidim-pokecode", github: "openpoke/decidim-module-pokecode", branch: "release/0.31-stable"
 gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer", branch: "release/0.31-stable"
 
