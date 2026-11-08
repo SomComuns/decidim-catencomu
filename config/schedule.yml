@@ -54,14 +54,6 @@ weekly_notifications_digest_job:
   args:
     task: decidim:mailers:notifications_digest_weekly
 
-daily_delete_inactive_participants_job:
-  cron: "0 0 * * *"
-  class: "InvokeRakeTaskJob"
-  queue: delete_inactive_participants
-  status: <%= ENV.fetch("DELETE_INACTIVE_PARTICIPANTS", "enabled") %> # enabled by default
-  args:
-    task: decidim:participants:delete_inactive_participants
-
 daily_sync_civicrm_job:
   cron: "3 3 * * *"
   class: "InvokeRakeTaskJob"
